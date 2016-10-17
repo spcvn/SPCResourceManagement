@@ -97,7 +97,6 @@ class QuizsController extends AppController
 			if($quizs->save($quiz)){
 				return $this->redirect(['action' => 'complete']);
 			}
-			//echo'<pre>'; print_r($arrAnswers); print_r($total); die('111');
 		}
 		
     	$this->set(compact('candidate_name'));

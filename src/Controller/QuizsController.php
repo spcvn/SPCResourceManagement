@@ -30,14 +30,16 @@ class QuizsController extends AppController
 			$quizs->time = $arrDatas['time'];
 			
 			$date_array = $arrDatas['quiz_date'];
-			$quizs->quiz_date = date('Y-m-d H:i:s', mktime($date_array['hour'], $date_array['minute'], 0,
-									$date_array['month'], $date_array['day'], $date_array['year']));
+// 			$quizs->quiz_date = date('Y-m-d H:i:s', mktime($date_array['hour'], $date_array['minute'], 0,
+// 									$date_array['month'], $date_array['day'], $date_array['year']));
 			$quizs->code = $this->randomCode();
 			$quizs->url = $this->randomURL();
 			
 			if($this->Quizs->save($quizs)){
 				$quiz_id = $quizs->id;
 				$this->registerQuizDetail($quiz_id, $arrDatas['number_questions']);
+				$linkURL = $quizs->url;
+				return $this->redirect(['action' => 'generate_done', $linkURL]);
 			}
 			else{
 				$this->Flash->error(__('The quizs could not be saved. Please, try again.'));
@@ -47,15 +49,52 @@ class QuizsController extends AppController
     }
     
     // Do Quiz
-    public function test($quiz_id){
+    public function test($url){
     	$this->loadModel('Quizs');
     	$this->loadModel('Questions');
     	$this->loadModel('QuizDetails');
     	$this->loadModel('Answers');
     	$this->loadModel('Candidates');
     	
+    	// check quiz is exist
+    	$quizId = $this->Quizs->find('all', ['fields' => 'id'])->where(['url' => $url])->first();
+    	if(isset($quizId)){
+    		$quiz_id = $quizId->toArray()['id'];
+    	}else{
+    		$this->Flash->error(__('The quiz could not be loaded. Please, try again.'));
+    		return $this->redirect(['controller' => 'Error', 'action' => 'notExistQuiz']);
+    	}
+    	
+    	// check status of quiz
+    	$status = $this->Quizs->get($quiz_id, ['fields' => 'status'])->toArray();
+    	if($status['status'] == 1){
+    		return $this->redirect(['action' => 'complete']);
+    	}
+    	
+    	// check time duration
+    	$quiz_date = $this->Quizs->get($quiz_id, ['fields' => 'quiz_date'])->toArray();
+    	$time = $this->Quizs->get($quiz_id, ['fields' => 'time'])->toArray();
+    	$time = $time['time'] * 60;
+    	$now = date("Y-m-d H:i:s");
+    	if(isset($quiz_date['quiz_date'])){
+    		$quiz_date = $quiz_date['quiz_date']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+    		$duration = strtotime($now) - strtotime($quiz_date);
+    		if($duration > $time){
+    			return $this->redirect(['action' => 'complete']);
+    		}else{
+    			$time = $time - $duration;
+    		}
+    	}
+    	else{
+    		$quiz = $this->Quizs->get($quiz_id);
+    		$quiz->quiz_date = $now;
+    		$this->Quizs->save($quiz);
+    	}
+    	
+    	// show list questions
     	$candidate_id = $this->Quizs->get($quiz_id, ['fields' => 'candidate_id'])->toArray();
     	$total = $this->Quizs->get($quiz_id, ['fields' => 'total'])->toArray();
+    	
     	$candidate_info = $this->Candidates->get($candidate_id)->toArray();
     	$candidate_name = $candidate_info['first_name'] . ' ' . $candidate_info['last_name'];
     	
@@ -81,7 +120,11 @@ class QuizsController extends AppController
 			// save QuizDetail
 			$correct = 0;
 			for($i=1; $i<=$total['total']; $i++){
-				$is_correct = $this->updateAnswer($quiz_id, $arrAnswers['question_id'.$i], $arrAnswers['answer'.$i]);
+				if(isset($arrAnswers['answer'.$i])){
+					$is_correct = $this->updateAnswer($quiz_id, $arrAnswers['question_id'.$i], $arrAnswers['answer'.$i]);
+				}else{
+					continue;
+				}
 				if($is_correct == 1){
 					$correct++;
 				}
@@ -97,8 +140,12 @@ class QuizsController extends AppController
 			if($quizs->save($quiz)){
 				return $this->redirect(['action' => 'complete']);
 			}
+			else{
+				$this->Flash->error(__('The quizs could not be saved. Please, try again.'));
+			}
 		}
 		
+		$this->set('time', $time);
     	$this->set(compact('candidate_name'));
     	$this->set(compact('arrQuestions'));
     }
@@ -126,7 +173,8 @@ class QuizsController extends AppController
     	$this->loadModel('Questions');
     	$this->loadModel('QuizDetails');
     	
-    	$arrQuestions = $this->Questions->find('list', ['fields' => 'id'])->toArray();
+    	$arrQuestions = $this->Questions->find('list', ['fields' => 'id'])
+    									->where(['status' => 1])->toArray();
     	$arrQuestionQuizs = [];
     	
     	while(count($arrQuestionQuizs) < $num){
@@ -164,5 +212,9 @@ class QuizsController extends AppController
     
     public function complete(){
     	;
+    }
+    
+    public function generateDone($url){
+    	$this->set(compact('url'));
     }
 }

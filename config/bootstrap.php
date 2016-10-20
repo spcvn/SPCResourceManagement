@@ -223,3 +223,6 @@ if (Configure::read('debug')) {
 }
 
 Plugin::load('Migrations');
+
+// Load CSV
+Plugin::load('CsvView');

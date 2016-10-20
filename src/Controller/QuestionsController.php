@@ -18,7 +18,8 @@ class QuestionsController extends AppController
      */
     public function index()
     {
-        $questions = $this->paginate($this->Questions);
+        $this->paginate = ['limit' => 5];
+    	$questions = $this->paginate($this->Questions);
 
         $this->set(compact('questions'));
         $this->set('_serialize', ['questions']);
@@ -126,7 +127,8 @@ class QuestionsController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $question = $this->Questions->get($id);
-        if ($this->Questions->delete($question)) {
+        $question->status = 0;
+        if ($this->Questions->save($question)) {
             $this->Flash->success(__('The question has been deleted.'));
         } else {
             $this->Flash->error(__('The question could not be deleted. Please, try again.'));
@@ -150,5 +152,29 @@ class QuestionsController extends AppController
     		
     		$this->Answers->save($answer);
     	}
+    }
+    
+    // Export questions
+    public function exportQuestion() {
+    	
+    	$date = date("YmdHis");
+    	$this->response->download($date.'questions.csv');
+    	$data = $this->Questions->find('all')->toArray();
+    	$_serialize = 'data';
+    	$_header = ['ID', 'Content', 'Section', 'Rank', 'Status'];
+    	$_extract = ['id', 'content', 'section', 'rank', 'status'];
+    	$this->set(compact('data', '_serialize', '_header', '_extract'));
+    	$this->viewBuilder()->className('CsvView.Csv');
+    	return;
+    }
+    
+    // Import questions
+    public function importQuestion(){
+    	
+    }
+    
+    // Import answers
+    public function importAnswer(){
+    	
     }
 }

@@ -1,5 +1,15 @@
-<body onLoad="">
+<style>
+	.fix-box{
+	    position: fixed;
+	    width: 100%;
+	    top: 0px;
+	    left: 83%;
+	}
+</style>
 <h2><?= $candidate_name ?></h2>
+<div class="sidebars" style="float: right; padding-right: 10%; font-size: 50px">
+	<span id="timer"></span>
+</div>
 <div class="questions form large-9 medium-8 columns content">
     <?= $this->Form->create('Quiz', ['id' => 'quiz', 'name' => 'quiz']) ?>
     <fieldset>
@@ -24,31 +34,34 @@
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
-</body>
 <script type="text/javascript">
+    
+	// auto submit when timeout
+    var count=<?php echo $time; ?>;
+    
+    var counter=setInterval(timer, 1000);
 
-	/*
-	document.onkeydown = function() {    
-	    switch (event.keyCode) { 
-	        case 116 : //F5 button
-	            event.returnValue = false;
-	            event.keyCode = 0;
-	            return false; 
-	        case 82 : //R button
-	            if (event.ctrlKey) { 
-	                event.returnValue = false; 
-	                event.keyCode = 0;  
-	                return false; 
-           		}
-    	}
-	}*/
-	
-	$(window).on('beforeunload', function(){ 
-		alert('Are you sure ?');
-		});
-
-    window.onload=function(){
-    	window.setTimeout(function(){ document.quiz.submit(); }, 100000000);
-    }; 
+    function timer()
+    {
+      document.getElementById("timer").innerHTML = Math.floor(count/60) + ":" + count%60;
+      if (count <= 0)
+      {
+         clearInterval(counter);
+         document.quiz.submit();
+      }
+      count = count - 1;
+    }
+    
+    // fixed timer
+    $(document).ready(function () {  
+    $(window).bind("scroll", function(e) {
+        var top = $(window).scrollTop();
+      if (top > 150) { 
+        $(".sidebars").addClass("fix-box");
+      } else {
+        $(".sidebars").removeClass("fix-box");
+      } 
+    });
+});
     
 </script>

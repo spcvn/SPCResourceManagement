@@ -2,6 +2,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Question'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link('Export', ['controller' => 'questions', 'action' => 'exportQuestion']) ?></li>
     </ul>
 </nav>
 <div class="questions index large-9 medium-8 columns content">
@@ -13,6 +14,7 @@
                 <th scope="col"><?= $this->Paginator->sort('content') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('section') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('rank') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -23,6 +25,7 @@
                 <td><?= $question->content ?></td>
                 <td><?= $this->Number->format($question->section) ?></td>
                 <td><?= $this->Number->format($question->rank) ?></td>
+                <td><?= $this->Number->format($question->status) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $question->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $question->id]) ?>

@@ -3,7 +3,7 @@
 	    position: fixed;
 	    width: 100%;
 	    top: 0px;
-	    left: 83%;
+	    left: 84%;
 	}
 </style>
 <h2><?= $candidate_name ?></h2>

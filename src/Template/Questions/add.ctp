@@ -40,12 +40,22 @@
 	function addAnswer() {
 		answer_no++;
 		
-	    var x = document.createElement("INPUT");
+		var x = document.createElement("INPUT");
 	    x.setAttribute("type", "text");
 	    x.setAttribute("name", "answer" + answer_no);
-	    x.setAttribute("id", "answer" + answer_no);
+	    
+	    
+	    var y = document.createElement("LABEL");
+	    y.setAttribute("for", "answer" + answer_no);
+	    y.innerHTML = "Answer" + answer_no;
+	    
+	    var z = document.createElement("LABEL");
+	    z.setAttribute("id", "answer" + answer_no);
+	    z.appendChild(y);
+	    z.appendChild(x);
 	    answer = document.getElementById("answer");
-	    answer.appendChild(x);
+	    //answer.appendChild(y);
+	    answer.appendChild(z);
 	    
 	    checkAnswer(answer_no);
 	}

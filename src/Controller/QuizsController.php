@@ -17,6 +17,19 @@ class QuizsController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
+	public function index(){
+		$this->paginate = ['limit' => 5];
+		$quizs = $this->paginate($this->Quizs);
+		
+		$this->set(compact('quizs'));
+		$this->set('_serialize', ['quizs']);
+	}
+	
+	/**
+	 * Generate method
+	 *
+	 * @return \Cake\Network\Response|null
+	 */
     public function generate()
     {
     	$this->loadModel('Quizs');

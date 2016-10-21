@@ -26,7 +26,7 @@
 			echo $this->Form->input('rank', ['type' => 'select', 'options' => $rank]);
 			echo $this->Form->input('content');
 		?>
-		<div id="answer">Answer
+		<div id="answer">
 			<?php
 				$i = 0;
 				foreach($answers as $answer){

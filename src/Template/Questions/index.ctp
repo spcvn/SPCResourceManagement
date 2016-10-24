@@ -2,7 +2,9 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Question'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link('Export', ['controller' => 'questions', 'action' => 'exportQuestion']) ?></li>
+        <li><?= $this->Html->link('Export Questions', ['action' => 'exportQuestion']) ?></li>
+        <li><?= $this->Html->link('Export Answer', ['action' => 'exportAnswer']) ?></li>
+        <li><?= $this->Html->link('Import', ['action' => 'import']) ?></li>
     </ul>
 </nav>
 <div class="questions index large-9 medium-8 columns content">

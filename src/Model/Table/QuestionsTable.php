@@ -59,8 +59,8 @@ class QuestionsTable extends Table
 
         $validator
             ->integer('question_no')
-            ->requirePresence('question_no', 'create')
-            ->notEmpty('question_no');
+            //->requirePresence('question_no', 'create')
+            ->allowEmpty('question_no');
 
         $validator
             ->requirePresence('content', 'create')

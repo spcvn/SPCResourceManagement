@@ -19,8 +19,15 @@ class QuizsController extends AppController
      */
 	public function index(){
 		$this->paginate = ['limit' => 5];
-		$quizs = $this->paginate($this->Quizs);
-		
+		//$quizs = $this->paginate($this->Quizs);
+		$quiz = $this->Quizs->find()->contain([
+		        'Candidates' => function($q){
+		            return $q->select(['first_name', 'last_name'])
+		                      ->where(['Candidates.id' => 'Quiz.candidate_id']);
+		        }
+		]);
+		$quizs = $this->paginate($quiz);
+		echo'<pre>'; print_r($quizs); die('2222');
 		$this->set(compact('quizs'));
 		$this->set('_serialize', ['quizs']);
 	}
@@ -30,7 +37,7 @@ class QuizsController extends AppController
 	 *
 	 * @return \Cake\Network\Response|null
 	 */
-    public function generate()
+    public function generate($id)
     {
     	$this->loadModel('Quizs');
     	
@@ -38,7 +45,7 @@ class QuizsController extends AppController
     	if ($this->request->is('post')){
     		$arrDatas = $this->request->data;
     		
-			$quizs->candidate_id = $arrDatas['candidate'];
+			$quizs->candidate_id = $id;
 			$quizs->total = $arrDatas['number_questions'];
 			$quizs->time = $arrDatas['time'];
 			

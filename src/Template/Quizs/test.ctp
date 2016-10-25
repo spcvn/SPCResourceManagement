@@ -54,14 +54,14 @@
     
     // fixed timer
     $(document).ready(function () {  
-    $(window).bind("scroll", function(e) {
-        var top = $(window).scrollTop();
-      if (top > 150) { 
-        $(".sidebars").addClass("fix-box");
-      } else {
-        $(".sidebars").removeClass("fix-box");
-      } 
+	    $(window).bind("scroll", function(e) {
+	        var top = $(window).scrollTop();
+	      if (top > 150) { 
+	        $(".sidebars").addClass("fix-box");
+	      } else {
+	        $(".sidebars").removeClass("fix-box");
+	      } 
+	    });
     });
-});
     
 </script>

@@ -1,7 +1,7 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Quiz'), ['action' => 'generate']) ?></li>
+        <!--<li><?= $this->Html->link(__('New Quiz'), ['action' => 'generate']) ?></li>-->
     </ul>
 </nav>
 <div class="questions index large-9 medium-8 columns content">
@@ -23,7 +23,7 @@
             <?php foreach ($quizs as $quiz): ?>
             <tr>
                 <td><?= $this->Number->format($quiz->id) ?></td>
-                <td><?= $this->Number->format($quiz->candidate_id) ?></td>
+                <td><?= $quiz->last_name . $quiz->first_name ?></td>
                 <td><?= $quiz->url ?></td>
                 <td><?= $this->Number->format($quiz->time) ?></td>
                 <td><?= $quiz->quiz_date ?></td>

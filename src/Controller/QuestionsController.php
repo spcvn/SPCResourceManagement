@@ -109,16 +109,7 @@ class QuestionsController extends AppController
         	if ($this->Questions->save($question)) {
         		$this->registerAnswer($id, $arrDatas);
         		
-        		$question = $this->Questions->get($id);
-        		$answers = $this->Answers->find('list', ['keyField' => 'answer_id',
-        				'valueField' => 'answer',])
-        				->where(['question_id' => $id])
-        				->toArray();
-        				 
-        		$correct_answer = $this->Answers->find('list', ['keyField' => 'answer_id',
-        				'valueField' => 'answer',])
-        				->where(['question_id' => $id, 'is_correct' => 1])
-        				->toArray();
+        		return $this->redirect(['action' => 'edit', $id]);
         	} else {
         		$this->Flash->error(__('The question could not be saved. Please, try again.'));
         	}

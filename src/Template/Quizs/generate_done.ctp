@@ -4,5 +4,5 @@
     </ul>
 </nav>
 <div class="questions form large-9 medium-8 columns content">
-    Link quiz: localhost/ResourceManagement/quizs/test/<?= $url ?>
+    Link quiz: localhost/spc_resource_management/quizs/test/<?= $url ?>
 </div>

@@ -23,7 +23,7 @@
             <?php foreach ($quizs as $quiz): ?>
             <tr>
                 <td><?= $this->Number->format($quiz->id) ?></td>
-                <td><?= $quiz->last_name . $quiz->first_name ?></td>
+                <td><?= $quiz->candidate->last_name . $quiz->candidate->first_name ?></td>
                 <td><?= $quiz->url ?></td>
                 <td><?= $this->Number->format($quiz->time) ?></td>
                 <td><?= $quiz->quiz_date ?></td>

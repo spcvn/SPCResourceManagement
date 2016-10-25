@@ -19,15 +19,13 @@ class QuizsController extends AppController
      */
 	public function index(){
 		$this->paginate = ['limit' => 5];
-		//$quizs = $this->paginate($this->Quizs);
 		$quiz = $this->Quizs->find()->contain([
 		        'Candidates' => function($q){
 		            return $q->select(['first_name', 'last_name'])
-		                      ->where(['Candidates.id' => 'Quiz.candidate_id']);
+		                      ->autoFields(false);
 		        }
 		]);
 		$quizs = $this->paginate($quiz);
-		echo'<pre>'; print_r($quizs); die('2222');
 		$this->set(compact('quizs'));
 		$this->set('_serialize', ['quizs']);
 	}

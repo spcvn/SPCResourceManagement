@@ -14,9 +14,9 @@
                 <th scope="col"><?= $this->Paginator->sort('link') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('time') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('start') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('total') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('correct') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('score') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -26,10 +26,12 @@
                 <td><?= $quiz->candidate->last_name . $quiz->candidate->first_name ?></td>
                 <td><?= $quiz->url ?></td>
                 <td><?= $this->Number->format($quiz->time) ?></td>
-                <td><?= $quiz->quiz_date ?></td>
-                <td><?= $this->Number->format($quiz->total) ?></td>
-                <td><?= $this->Number->format($quiz->correct) ?></td>
+                <td><?= (!is_null($quiz->quiz_date))?$quiz->quiz_date:"Not yet" ?></td>
+                <td><?= $this->Number->format($quiz->correct). "/" . $this->Number->format($quiz->total) ?></td>
                 <td><?= $this->Number->format($quiz->status) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $quiz->id]) ?>
+                </td>
             </tr>
             <?php endforeach; ?>
         </tbody>

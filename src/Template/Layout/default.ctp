@@ -44,7 +44,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="/">SPCVN</a></li>
+                <?php if (is_array($is_login)): ?>
+                    <li><?= $this->Html->link(__('Logout'), ['controller' => 'users', 'action' => 'logout']) ?> </li>
+                <?php endif; ?>
+                
             </ul>
         </div>
     </nav>

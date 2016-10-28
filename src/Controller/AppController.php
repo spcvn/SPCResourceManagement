@@ -52,6 +52,7 @@ class AppController extends Controller
             ]
         ]);
 		
+        $this->set('is_login', $this->Auth->user());
     }
 	
 	public $paginate = [

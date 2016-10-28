@@ -6,3 +6,6 @@
         <li><?= $this->Html->link('Candidates', ['controller' => 'candidates', 'action' => 'index']) ?></li>
     </ul>
 </nav>
+<div class="view large-9 medium-8 columns content">
+    <h1> Welcome to SPCVN</h1>
+</div>

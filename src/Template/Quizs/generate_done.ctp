@@ -4,5 +4,5 @@
     </ul>
 </nav>
 <div class="questions form large-9 medium-8 columns content">
-    Link quiz: <?= $root_path ?>/quizs/test/<?= $url ?>
+    Link quiz: <a target="_blank" href="/quizs/test/<?= $url ?>"><?= $root_path ?>/quizs/test/<?= $url ?></a>
 </div>

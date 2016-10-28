@@ -67,6 +67,10 @@ class ErrorController extends AppController
     }
     
     public function notExistQuiz(){
-    	
+    
+    }
+    
+    public function error404(){
+        
     }
 }

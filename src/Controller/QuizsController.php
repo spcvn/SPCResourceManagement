@@ -19,10 +19,39 @@ class QuizsController extends AppController
      */
 	public function index(){
 		$this->paginate = ['limit' => 5];
-		$quizs = $this->paginate($this->Quizs);
-		
+		$quiz = $this->Quizs->find()->contain([
+		        'Candidates' => function($q){
+		            return $q->select(['first_name', 'last_name'])
+		                      ->autoFields(false);
+		        }
+		]);
+		$quizs = $this->paginate($quiz);
 		$this->set(compact('quizs'));
 		$this->set('_serialize', ['quizs']);
+	}
+	
+	// View detail
+	public function view($id){
+	    $this->loadModel('Quizs');
+	    $this->loadModel('Questions');
+	    $this->loadModel('QuizDetails');
+	    $this->loadModel('Answers');
+	    $this->loadModel('Candidates');
+	    
+	    // get Quiz information
+	    $quizs = $this->Quizs->get($id);
+	    
+	    $candidates = $this->Candidates->get($quizs->candidate_id);
+	    
+	    // get questions
+	    $questions = $this->QuizDetails->find()->contain(['Questions' => function($q){
+                                                    return $q->contain(['Answers']);
+                                                }])
+                                               ->where(['QuizDetails.quiz_id' => $id]);
+        //echo'<pre>'; var_dump($questions); die('1111');
+	    $question = $questions->all();
+        //$question = $this->Questions->find()->contain(['Answers'])->all();
+	    
 	}
 	
 	/**
@@ -30,15 +59,19 @@ class QuizsController extends AppController
 	 *
 	 * @return \Cake\Network\Response|null
 	 */
-    public function generate()
+    public function generate($id = null)
     {
-    	$this->loadModel('Quizs');
+    	if($id == null){
+    	    $this->Flash->error(__('Do not exist candidate. Please, try again.'));
+    	    return $this->redirect(['controller' => 'Error', 'action' => 'error404']);
+    	}
+        $this->loadModel('Quizs');
     	
     	$quizs = $this->Quizs->newEntity();
     	if ($this->request->is('post')){
     		$arrDatas = $this->request->data;
     		
-			$quizs->candidate_id = $arrDatas['candidate'];
+			$quizs->candidate_id = $id;
 			$quizs->total = $arrDatas['number_questions'];
 			$quizs->time = $arrDatas['time'];
 			

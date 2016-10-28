@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
 
 /**
  * Questions Controller
@@ -172,13 +174,145 @@ class QuestionsController extends AppController
     	return;
     }
     
+    // Export answers
+    public function exportAnswer() {
+        $this->loadModel('Answers');
+        $date = date("YmdHis");
+        $this->response->download($date.'answers.csv');
+        $data = $this->Answers->find('all')->order(['question_id' => 'ASC'])->toArray();
+        $_serialize = 'data';
+        $_header = ['Question_id', 'Answer_id', 'Answer', 'Is_correct'];
+        $_extract = ['question_id', 'answer_id', 'answer', 'is_correct'];
+        $this->set(compact('data', '_serialize', '_header', '_extract'));
+        $this->viewBuilder()->className('CsvView.Csv');
+        return;
+    }
+    
+    // import
+    public function import(){
+    	$csvFiles = array('application/vnd.ms-excel','text/plain','text/csv','text/tsv');
+    	if ($this->request->is('post')) {
+    		if($_FILES['questions']['name'] == null || $_FILES['answers']['name'] == null){
+    			$this->Flash->error(__('Please choose file.'));
+    		}
+    		else{
+    			if(!in_array($_FILES['questions']['type'], $csvFiles) || !in_array($_FILES['answers']['type'], $csvFiles)){
+    				$this->Flash->error(__('Invalid files type.'));
+    			}
+    			else{
+    				// create folder upload
+    				$dir = new Folder(DS . 'upload');
+    				if(is_null($dir->path)){
+    					$dir = new Folder();
+    					$dir->create(DS . 'upload', true, 0755);
+
+    				}
+    				$dir->cd('upload/');
+
+    				// upload question
+	    			$questionName = date("YmdHis") . 'question.csv';
+	    			$tmp_question = $_FILES['questions']['tmp_name'];
+	    			move_uploaded_file($tmp_question, $dir->path.$questionName);
+	    			
+	    			$questionPath = $this->sfEncodeFile($dir->path.$questionName, 'UTF-8', $dir->path);
+
+	    			// upload answer
+	    			$answerName = date("YmdHis") . 'answer.csv';
+	    			$tmp_answer = $_FILES['answers']['tmp_name'];
+	    			move_uploaded_file($tmp_answer, $dir->path.$answerName);
+	    			$answerPath = $this->sfEncodeFile($dir->path.$answerName, 'UTF-8', $dir->path);
+    				
+	    			// call import
+	    			$this->importQuestion($questionPath);
+	    			$this->importAnswer($answerPath);
+    			}
+    			
+    		}
+    	}
+    }
     // Import questions
-    public function importQuestion(){
-    	
+    public function importQuestion($file){
+        $this->loadModel('Questions');
+        $arrQuestion = ['id', 'content', 'section', 'rank', 'status'];
+        
+        $fp = fopen($file, "r");
+        
+        $line_count = 0;
+        
+        while (!feof($fp)) {
+            $arrCSV = fgetcsv($fp, 1000);
+        
+            $line_count++;
+            if($line_count == 1){
+                continue;
+            }
+            if(empty($arrCSV)){
+                continue;
+            }
+            $arrDatas = [];
+            $arrDatas = array_combine($arrQuestion, $arrCSV);
+            
+            $question = $this->Questions->newEntity();
+            $question->accessible('id', true);
+            $question = $this->Questions->patchEntity($question, $arrDatas);
+            $this->Questions->save($question);
+        }
+        
+        fclose($fp);
     }
     
     // Import answers
-    public function importAnswer(){
-    	
+    public function importAnswer($file){
+        $this->loadModel('Answers');
+        $arrAnswer = ['question_id', 'answer_id', 'answer', 'is_correct'];
+        $fp = fopen($file, "r");
+        
+        $line_count = 0;
+        
+        while (!feof($fp)) {
+            $arrCSV = fgetcsv($fp, 1000);
+        
+            $line_count++;
+            if($line_count == 1){
+                continue;
+            }
+            if(empty($arrCSV)){
+                continue;
+            }
+            $arrDatas = [];
+            $arrDatas = array_combine($arrAnswer, $arrCSV);
+            $answer = $this->Answers->newEntity();
+            $answer = $this->Answers->patchEntity($answer, $arrDatas);
+            $this->Answers->save($answer);
+        }
+        
+        fclose($fp);
+    }
+    
+    public function sfEncodeFile($filepath, $enc_type, $out_dir)
+    {
+        $ifp = fopen($filepath, 'r');
+    
+        if ($ifp !== false) {
+            $basename = basename($filepath);
+            $outpath = $out_dir . 'enc_' . $basename;
+    
+            $ofp = fopen($outpath, 'w+');
+    
+            while (!feof($ifp)) {
+                $line = fgets($ifp);
+                $line = mb_convert_encoding($line, $enc_type, 'ASCII, JIS,UTF-8, EUC-JP, SJIS-Win, SJIS');
+                fwrite($ofp,  $line);
+            }
+    
+            fclose($ofp);
+            fclose($ifp);
+        }
+        else {
+            $this->Flash->error(__('Can not open file.'));
+            exit;
+        }
+    
+        return $outpath;
     }
 }

@@ -32,7 +32,7 @@ class QuizDetailsTable extends Table
 
         $this->table('quiz_details');
         $this->belongsTo('Questions', [
-                'className' => 'Publishing.Questions',
+                'className' => 'Questions',
                 'foreignKey' => 'question_id'
         ]);
     }

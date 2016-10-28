@@ -31,27 +31,31 @@ class QuizsController extends AppController
 	}
 	
 	// View detail
-	public function view($id){
+	public function view($id = null){
 	    $this->loadModel('Quizs');
 	    $this->loadModel('Questions');
 	    $this->loadModel('QuizDetails');
 	    $this->loadModel('Answers');
 	    $this->loadModel('Candidates');
 	    
+	    // check if null ID
+	    if($id == null){
+	        $this->Flash->error(__('Do not exist quiz. Please, try again.'));
+	        return $this->redirect(['controller' => 'Error', 'action' => 'error404']);
+	    }
 	    // get Quiz information
 	    $quizs = $this->Quizs->get($id);
 	    
 	    $candidates = $this->Candidates->get($quizs->candidate_id);
 	    
-	    // get questions
-	    $questions = $this->QuizDetails->find()->contain(['Questions' => function($q){
-                                                    return $q->contain(['Answers']);
-                                                }])
+	    // get questions detail
+	    $quiz_details = $this->QuizDetails->find()->contain(['Questions' => ['Answers']])
                                                ->where(['QuizDetails.quiz_id' => $id]);
-        //echo'<pre>'; var_dump($questions); die('1111');
-	    $question = $questions->all();
-        //$question = $this->Questions->find()->contain(['Answers'])->all();
+	    $quiz_details = $quiz_details->all();
 	    
+	    $this->set('quizs', $quizs);
+	    $this->set('candidates', $candidates);
+	    $this->set('quiz_details', $quiz_details);
 	}
 	
 	/**
@@ -261,6 +265,7 @@ class QuizsController extends AppController
     }
     
     public function generateDone($url){
+        $this->set('root_path', $this->request->env('HTTP_HOST'));
     	$this->set(compact('url'));
     }
 }

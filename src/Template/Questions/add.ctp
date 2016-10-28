@@ -23,7 +23,7 @@
         <a href="javascript:addAnswer()" class="button">+</a>
         <a class="delete_answer button" href="javascript:removeAnswer()">-</a>
         <?php
-        	echo $this->Form->input('correct_answer');
+        	echo $this->Form->input('correct_answer', ["required" => "true"]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
@@ -43,7 +43,7 @@
 		var x = document.createElement("INPUT");
 	    x.setAttribute("type", "text");
 	    x.setAttribute("name", "answer" + answer_no);
-	    
+	    x.setAttribute("required", "true");
 	    
 	    var y = document.createElement("LABEL");
 	    y.setAttribute("for", "answer" + answer_no);

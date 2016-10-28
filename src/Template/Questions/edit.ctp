@@ -59,7 +59,7 @@
 	    var x = document.createElement("INPUT");
 	    x.setAttribute("type", "text");
 	    x.setAttribute("name", "answer" + answer_no);
-	    
+	    x.setAttribute("required", "true");
 	    
 	    var y = document.createElement("LABEL");
 	    y.setAttribute("for", "answer" + answer_no);

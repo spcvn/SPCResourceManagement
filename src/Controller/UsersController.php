@@ -19,8 +19,10 @@ class UsersController extends AppController
     public function index()
     {
         $users = $this->paginate($this->Users);
+        $status = ['0' => 'Disable', '1' => 'Active'];;
 
         $this->set(compact('users'));
+        $this->set(compact('status'));
         $this->set('_serialize', ['users']);
     }
 
@@ -77,6 +79,7 @@ class UsersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->data);
+            $user->updated = date("Y-m-d H:i:s");
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -100,10 +103,12 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+        $user->status = 0;
+        $user->updated = date("Y-m-d H:i:s");
+        if ($this->Users->save($user)) {
+            $this->Flash->success(__('The user has been deactive.'));
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The user could not be deactive. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -124,15 +129,35 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
-                $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                if($user['status'] == 1){
+                    $this->Auth->setUser($user);
+                    return $this->redirect($this->Auth->redirectUrl());
+                }else{
+                    $this->Flash->error(__('Account is diabled, try again'));
+                }
+            }else{
+                $this->Flash->error(__('Invalid username or password, try again'));
             }
-            $this->Flash->error(__('Invalid username or password, try again'));
         }
     }
 
     public function logout()
     {
         return $this->redirect($this->Auth->logout());
+    }
+    
+    // Active user
+    public function active($id = null){
+        $this->request->allowMethod(['post', 'delete']);
+        $user = $this->Users->get($id);
+        $user->status = 1;
+        $user->updated = date("Y-m-d H:i:s");
+        if ($this->Users->save($user)) {
+            $this->Flash->success(__('The user has been active.'));
+        } else {
+            $this->Flash->error(__('The user could not be actived. Please, try again.'));
+        }
+    
+        return $this->redirect(['action' => 'index']);
     }
 }

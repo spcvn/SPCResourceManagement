@@ -11,16 +11,12 @@
     <h3><?= h($user->id) ?></h3>
     <table class="vertical-table">
         <tr>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($user->id) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Username') ?></th>
             <td><?= h($user->username) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Salt') ?></th>
-            <td><?= h($user->salt) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Email') ?></th>
@@ -39,10 +35,6 @@
             <td><?= h($user->last_name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Avatar') ?></th>
-            <td><?= h($user->avatar) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Dept') ?></th>
             <td><?= h($user->dept) ?></td>
         </tr>
@@ -57,14 +49,6 @@
         <tr>
             <th scope="row"><?= __('Addr02') ?></th>
             <td><?= h($user->addr02) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($user->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Role') ?></th>
-            <td><?= $this->Number->format($user->role) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>

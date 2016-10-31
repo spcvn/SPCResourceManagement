@@ -9,20 +9,18 @@
     <fieldset>
         <legend><?= __('Add User') ?></legend>
         <?php
-            echo $this->Form->input('username');
-            echo $this->Form->input('password');
-            echo $this->Form->input('salt');
-            echo $this->Form->input('email');
-            echo $this->Form->input('status');
-            echo $this->Form->input('first_name');
-            echo $this->Form->input('last_name');
-            echo $this->Form->input('avatar');
-            echo $this->Form->input('dept');
+            echo $this->Form->input('username', ['required' => true]);
+            echo $this->Form->input('password', ['required' => true]);
+            echo $this->Form->input('email', ['required' => true]);
+            $status = ['0' => 'Disable', '1' => 'Active'];
+            echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
+            echo $this->Form->input('first_name', ['required' => true]);
+            echo $this->Form->input('last_name', ['required' => true]);
+            echo $this->Form->input('dept', ['required' => true]);
             echo $this->Form->input('mobile');
-            echo $this->Form->input('birth_date', ['empty' => true]);
+            echo $this->Form->input('birth_date', ['minYear' => '1930', 'maxYear'=> '2016']);
             echo $this->Form->input('addr01');
             echo $this->Form->input('addr02');
-            echo $this->Form->input('role');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

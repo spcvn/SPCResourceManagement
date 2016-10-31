@@ -2,7 +2,6 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
-		<li><?= $this->Html->link(__('Logout'), ['action' => 'logout']) ?></li>
     </ul>
 </nav>
 <div class="users index large-9 medium-8 columns content">
@@ -10,30 +9,34 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('username') ?></th>
 				<th scope="col"><?= $this->Paginator->sort('first_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('dept') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('updated') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('role') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($users as $user): ?>
             <tr>
-                <td><?= $this->Number->format($user->id) ?></td>
                 <td><?= h($user->username) ?></td>
                 <td><?= h($user->first_name) ?></td>
                 <td><?= h($user->last_name) ?></td>
+                <td><?= h($user->dept) ?></td>
                 <td><?= h($user->created) ?></td>
                 <td><?= h($user->updated) ?></td>
-                <td><?= $this->Number->format($user->role) ?></div></td>
+                <td><?= $status[$user->status] ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                    <?php if ($user->status == 1): ?>
+                    <?= $this->Form->postLink(__('Deactive'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to deactive # {0}?', $user->id)]) ?>
+                    <?php else: ?>
+                    <?= $this->Form->postLink(__('Active'), ['action' => 'active', $user->id], ['confirm' => __('Are you sure you want to active # {0}?', $user->id)]) ?>
+                    <?php endif; ?>
                 </td>
             </tr>
             <?php endforeach; ?>

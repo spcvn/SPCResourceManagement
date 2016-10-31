@@ -2,9 +2,9 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
-                __('Delete'),
+                __('Deactive'),
                 ['action' => 'delete', $user->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]
+                ['confirm' => __('Are you sure you want to deactive # {0}?', $user->id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
@@ -17,18 +17,14 @@
         <?php
             echo $this->Form->input('username');
             echo $this->Form->input('password');
-            echo $this->Form->input('salt');
             echo $this->Form->input('email');
-            echo $this->Form->input('status');
             echo $this->Form->input('first_name');
             echo $this->Form->input('last_name');
-            echo $this->Form->input('avatar');
             echo $this->Form->input('dept');
             echo $this->Form->input('mobile');
-            echo $this->Form->input('birth_date', ['empty' => true]);
+            echo $this->Form->input('birth_date');
             echo $this->Form->input('addr01');
             echo $this->Form->input('addr02');
-            echo $this->Form->input('role');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

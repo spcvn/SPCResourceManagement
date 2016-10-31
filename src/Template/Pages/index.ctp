@@ -4,6 +4,7 @@
         <li><?= $this->Html->link(__('Question'), ['controller' => 'questions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link('Quiz', ['controller' => 'quizs', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link('Candidates', ['controller' => 'candidates', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link('Users', ['controller' => 'users', 'action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="view large-9 medium-8 columns content">

@@ -25,10 +25,10 @@
                 <td><?= $this->Number->format($quiz->id) ?></td>
                 <td><?= $quiz->candidate->last_name . $quiz->candidate->first_name ?></td>
                 <td><?= $quiz->url ?></td>
-                <td><?= $this->Number->format($quiz->time) ?></td>
+                <td><?= $this->Number->format($quiz->time). ' mins' ?></td>
                 <td><?= (!is_null($quiz->quiz_date))?$quiz->quiz_date:"Not yet" ?></td>
                 <td><?= $this->Number->format($quiz->correct). "/" . $this->Number->format($quiz->total) ?></td>
-                <td><?= $this->Number->format($quiz->status) ?></td>
+                <td><?= $status[$quiz->status] ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $quiz->id]) ?>
                 </td>

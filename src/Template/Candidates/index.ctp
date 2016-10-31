@@ -5,6 +5,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Candidate'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Export Candidate'), ['action' => 'export']) ?></li>
     </ul>
 </nav>
 

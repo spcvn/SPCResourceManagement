@@ -26,7 +26,8 @@
             echo $this->Form->input('interview_date');
             echo $this->Form->input('start_work');
             echo $this->Form->input('score');
-            echo $this->Form->input('result');
+            $results = ['0' => 'Fail', '2' => 'Pass'];
+            echo $this->Form->input('result', ['type' => 'select', 'options' => $results]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

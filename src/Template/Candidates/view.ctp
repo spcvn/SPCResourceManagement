@@ -47,10 +47,6 @@
             <td><?= h($candidate->result) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($candidate->id) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Birth Date') ?></th>
             <td><?= h($candidate->birth_date) ?></td>
         </tr>

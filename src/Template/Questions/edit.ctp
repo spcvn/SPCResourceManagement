@@ -7,12 +7,6 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $question->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $question->id)]
-            )
-        ?></li>
         <li><?= $this->Html->link(__('List Questions'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
@@ -31,7 +25,7 @@
 				$i = 0;
 				foreach($answers as $answer){
 					$i ++;
-					echo $this->Form->input('answer'.$i, ['default' => $answer]);
+					echo $this->Form->input('answer'.$i, ['default' => $answer, 'required' => 'true']);
 				}
 			?>
 		</div>

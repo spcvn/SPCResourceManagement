@@ -18,7 +18,7 @@ class QuizsController extends AppController
      * @return \Cake\Network\Response|null
      */
 	public function index(){
-		$this->paginate = ['limit' => 5];
+		$this->paginate = ['limit' => 5, 'order' => ['id' => 'DESC']];
 		$quiz = $this->Quizs->find()->contain([
 		        'Candidates' => function($q){
 		            return $q->select(['first_name', 'last_name'])
@@ -26,7 +26,10 @@ class QuizsController extends AppController
 		        }
 		]);
 		$quizs = $this->paginate($quiz);
+		$status = ['0' => 'New', '1' => 'Done'];
+		
 		$this->set(compact('quizs'));
+		$this->set(compact('status'));
 		$this->set('_serialize', ['quizs']);
 	}
 	
@@ -70,10 +73,16 @@ class QuizsController extends AppController
     	    return $this->redirect(['controller' => 'Error', 'action' => 'error404']);
     	}
         $this->loadModel('Quizs');
+        $this->loadModel('Questions');
+        $max = $this->Questions->find('all')->count();
     	
     	$quizs = $this->Quizs->newEntity();
     	if ($this->request->is('post')){
     		$arrDatas = $this->request->data;
+    		if($arrDatas['number_questions'] > $max){
+    		    $this->Flash->error(__('Limit questions. Please, try again.'));
+    		    return $this->redirect(['controller' => 'quizs', 'action' => 'generate', $id]);
+    		}
     		
 			$quizs->candidate_id = $id;
 			$quizs->total = $arrDatas['number_questions'];
@@ -163,10 +172,8 @@ class QuizsController extends AppController
 								'answer' => $answers
 								];
 		}
-		
 		if ($this->request->is('post')) {
 			$arrAnswers = $this->request->data;
-			
 			// save QuizDetail
 			$correct = 0;
 			for($i=1; $i<=$total['total']; $i++){

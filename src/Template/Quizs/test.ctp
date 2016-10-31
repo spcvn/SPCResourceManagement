@@ -43,11 +43,11 @@
 
     function timer()
     {
-      document.getElementById("timer").innerHTML = Math.floor(count/60) + ":" + count%60;
+      $("#timer").html(Math.floor(count/60) + ":" + count%60);
       if (count <= 0)
       {
          clearInterval(counter);
-         document.quiz.submit();
+         $('#quiz').submit();
       }
       count = count - 1;
     }

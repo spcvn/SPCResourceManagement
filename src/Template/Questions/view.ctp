@@ -14,20 +14,16 @@
             <td><?= $this->Number->format($question->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Question No') ?></th>
-            <td><?= $this->Number->format($question->question_no) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Section') ?></th>
-            <td><?= $this->Number->format($question->section) ?></td>
+            <td><?= $sections[$question->section] ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Rank') ?></th>
-            <td><?= $this->Number->format($question->rank) ?></td>
+            <td><?= $ranks[$question->rank] ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Status') ?></th>
-            <td><?= $this->Number->format($question->status) ?></td>
+            <td><?= $status[$question->status] ?></td>
         </tr>
     </table>
     <div class="row">

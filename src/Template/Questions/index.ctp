@@ -25,13 +25,17 @@
             <tr>
                 <td><?= $this->Number->format($question->id) ?></td>
                 <td><?= $question->content ?></td>
-                <td><?= $this->Number->format($question->section) ?></td>
-                <td><?= $this->Number->format($question->rank) ?></td>
-                <td><?= $this->Number->format($question->status) ?></td>
+                <td><?= $sections[$question->section] ?></td>
+                <td><?= $ranks[$question->rank] ?></td>
+                <td><?= $status[$question->status] ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $question->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $question->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $question->id], ['confirm' => __('Are you sure you want to delete # {0}?', $question->id)]) ?>
+                    <?php if ($question->status == 1): ?>
+                    <?= $this->Form->postLink(__('Deactive'), ['action' => 'delete', $question->id], ['confirm' => __('Are you sure you want to deactive # {0}?', $question->id)]) ?>
+                    <?php else: ?>
+                    <?= $this->Form->postLink(__('Active'), ['action' => 'active', $question->id], ['confirm' => __('Are you sure you want to active # {0}?', $question->id)]) ?>
+                    <?php endif; ?>
                 </td>
             </tr>
             <?php endforeach; ?>

@@ -20,9 +20,20 @@ class QuestionsController extends AppController
      */
     public function index()
     {
-        $this->paginate = ['limit' => 5];
+        $this->paginate = ['limit' => 5, 
+                            'order' => ['id' => 'DESC']];
     	$questions = $this->paginate($this->Questions);
-
+    	
+    	$this->loadModel('Sections');
+    	$sections = $this->Sections->find('list');
+    	$sections = $sections->toArray();
+    	
+    	$ranks = ['1' => 'Easy', '2' => 'Medium'];
+    	$status = ['0' => 'Unused', '1' => 'Use'];
+    	
+    	$this->set(compact('sections'));
+    	$this->set(compact('ranks'));
+    	$this->set(compact('status'));
         $this->set(compact('questions'));
         $this->set('_serialize', ['questions']);
     }
@@ -39,6 +50,17 @@ class QuestionsController extends AppController
         $question = $this->Questions->get($id, [
             'contain' => ['Answers', 'QuizDetails']
         ]);
+        
+        $this->loadModel('Sections');
+        $sections = $this->Sections->find('list');
+        $sections = $sections->toArray();
+         
+        $ranks = ['1' => 'Easy', '2' => 'Medium'];
+        $status = ['0' => 'Unused', '1' => 'Use'];
+         
+        $this->set(compact('sections'));
+        $this->set(compact('ranks'));
+        $this->set(compact('status'));
 
         $this->set('question', $question);
         $this->set('_serialize', ['question']);
@@ -135,11 +157,25 @@ class QuestionsController extends AppController
         $question = $this->Questions->get($id);
         $question->status = 0;
         if ($this->Questions->save($question)) {
-            $this->Flash->success(__('The question has been deleted.'));
+            $this->Flash->success(__('The question has been deactive.'));
         } else {
-            $this->Flash->error(__('The question could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The question could not be deactive. Please, try again.'));
         }
 
+        return $this->redirect(['action' => 'index']);
+    }
+    
+    // Active question
+    public function active($id = null){
+        $this->request->allowMethod(['post', 'delete']);
+        $question = $this->Questions->get($id);
+        $question->status = 1;
+        if ($this->Questions->save($question)) {
+            $this->Flash->success(__('The question has been active.'));
+        } else {
+            $this->Flash->error(__('The question could not be actived. Please, try again.'));
+        }
+        
         return $this->redirect(['action' => 'index']);
     }
     

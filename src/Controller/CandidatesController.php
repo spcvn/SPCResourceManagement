@@ -114,4 +114,20 @@ class CandidatesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    
+    // Export candidates
+    public function export() {
+         
+        $date = date("YmdHis");
+        $this->response->download($date.'candidates.csv');
+        $data = $this->Candidates->find('all')->toArray();
+        $_serialize = 'data';
+        $_header = ['ID', 'First Name', 'Last Name', 'Birth Day', 'Address01', 'Address02', 'Mobile',
+                    'Expected Salary', 'Interview Date', 'Start Work', 'Position', 'Score', 'Result'];
+        $_extract = ['id', 'first_name', 'last_name', 'birth_date', 'addr01', 'addr02', 'mobile',
+                    'expected_salary', 'interview_date', 'start_work', 'position', 'score', 'result'];
+        $this->set(compact('data', '_serialize', '_header', '_extract'));
+        $this->viewBuilder()->className('CsvView.Csv');
+        return;
+    }
 }

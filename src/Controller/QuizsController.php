@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 /**
  * Questions Controller
@@ -274,5 +275,12 @@ class QuizsController extends AppController
     public function generateDone($url){
         $this->set('root_path', $this->request->env('HTTP_HOST'));
     	$this->set(compact('url'));
+    }
+    
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['test', 'complete']);
+    
     }
 }

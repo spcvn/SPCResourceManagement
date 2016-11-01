@@ -56,12 +56,11 @@ class AppController extends Controller
     }
 	
 	public $paginate = [
-    // Other keys here.
-    'maxLimit' => 10
+        'maxLimit' => 10
 	];
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['test', 'complete']);
+        //$this->Auth->allow(['test', 'complete']);
     }
     //...
 	

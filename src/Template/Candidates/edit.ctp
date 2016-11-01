@@ -24,7 +24,7 @@
             echo $this->Form->input('position');
             echo $this->Form->input('expected_salary');
             echo $this->Form->input('interview_date');
-            echo $this->Form->input('start_work');
+            echo $this->Form->input('expected start working day');
             echo $this->Form->input('score');
             $results = ['0' => 'Fail', '2' => 'Pass'];
             echo $this->Form->input('result', ['type' => 'select', 'options' => $results]);

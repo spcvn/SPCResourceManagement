@@ -23,7 +23,7 @@
         <a href="javascript:addAnswer()" class="button">+</a>
         <a class="delete_answer button" href="javascript:removeAnswer()">-</a>
         <?php
-        	echo $this->Form->input('correct_answer', ["required" => "true"]);
+        	//echo $this->Form->input('correct_answer', ["required" => "true"]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
@@ -33,6 +33,12 @@
 <script>
 	var answer_no = 0;
 	
+	//create 4 answers
+    addAnswer();
+    addAnswer();
+    addAnswer();
+    addAnswer();
+    
 	$( document ).ready(function() {
 		checkAnswer(answer_no);
 	});
@@ -49,9 +55,16 @@
 	    y.setAttribute("for", "answer" + answer_no);
 	    y.innerHTML = "Answer" + answer_no;
 	    
-	    var z = document.createElement("LABEL");
+	    var t = document.createElement("INPUT");
+        t.setAttribute("type", "radio");
+        t.setAttribute("name", "correct_answer");
+        t.setAttribute("value", answer_no);
+	    
+	    var z = document.createElement("DIV");
 	    z.setAttribute("id", "answer" + answer_no);
+	    
 	    z.appendChild(y);
+	    z.appendChild(t);
 	    z.appendChild(x);
 	    answer = document.getElementById("answer");
 	    //answer.appendChild(y);

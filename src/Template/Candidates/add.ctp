@@ -10,8 +10,11 @@
         <legend><?= __('Add Candidate') ?></legend>
         <?php
             echo $this->Form->input('first_name');
+            echo $this->Form->input('middle_name');
             echo $this->Form->input('last_name');
             echo $this->Form->input('birth_date', ['minYear' => '1930', 'maxYear' => '2016']);
+            $marriedStatus = ['0' => 'Single', '1' => 'Married'];
+            echo $this->Form->input('married',['type'=>'select','options'=>$marriedStatus]);
             echo $this->Form->input('addr01');
             echo $this->Form->input('addr02');
             echo $this->Form->input('mobile');

@@ -5,7 +5,6 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
 /**
  * Candidates Model
  *
@@ -52,14 +51,24 @@ class CandidatesTable extends Table
             ->notEmpty('first_name');
 
         $validator
+            ->allowEmpty('last_name');
+
+        $validator
             ->requirePresence('last_name', 'create')
             ->notEmpty('last_name');
 
         $validator
+            ->integer('married')
+            ->requirePresence('married', 'create')
+            ->allowEmpty('married');
+        $validator
             ->date('birth_date')
             ->requirePresence('birth_date', 'create')
+            ->add('birth_date','custom',[
+                    'rule'=>[$this,'birth_dateValidation'],
+                    'message'=>'Your Age have just over 13!'
+                ])
             ->notEmpty('birth_date');
-
         $validator
             ->requirePresence('addr01', 'create')
             ->notEmpty('addr01');
@@ -97,5 +106,11 @@ class CandidatesTable extends Table
             ->allowEmpty('result');
 
         return $validator;
+    }
+    public function birth_dateValidation($birthDate,$context){
+          $age = (date("md", date("U", mktime(0, 0, 0, $birthDate['day'], $birthDate['month'], $birthDate['year']))) > date("md")
+            ? ((date("Y") - $birthDate['year']) - 1)
+            : (date("Y") - $birthDate['year']));
+          return $age>13?true:false;
     }
 }

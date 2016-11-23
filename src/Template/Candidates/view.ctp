@@ -15,8 +15,16 @@
             <td><?= h($candidate->first_name) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Middle Name') ?></th>
+            <td><?= h($candidate->middle_name) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Last Name') ?></th>
             <td><?= h($candidate->last_name) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Married Status') ?></th>
+            <td><?= h($candidate->married==0?"Single":"Married") ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Addr01') ?></th>

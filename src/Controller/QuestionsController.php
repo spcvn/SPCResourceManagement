@@ -18,9 +18,10 @@ class QuestionsController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    
+
     public function index()
     {
+        exit();
         $this->paginate = ['limit' => 5, 
                             'order' => ['id' => 'DESC']];
     	$questions = $this->paginate($this->Questions);

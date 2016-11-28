@@ -23,7 +23,7 @@
         	<?php $j=1; ?>
         	<?php foreach ($arrQuestion['answer'] as $key => $answer): ?>
         		<input type="radio" name=<?= 'answer'.$i ?> id=<?= 'answer'.$i.$j ?> value=<?= $key ?>>
-        		<label for=<?= 'answer'.$i.$j ?>><?= $answer ?></label>
+        		<label for=<?= 'answer'.$i.$j ?>><?= htmlspecialchars($answer); ?></label>
         		<br />
         		<?php $j++; ?>
         	<?php endforeach; ?>
@@ -65,3 +65,7 @@
     });
     
 </script>
+<bottom>
+<bottom>
+<bottom>
+<?php...?>

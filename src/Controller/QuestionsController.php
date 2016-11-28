@@ -21,7 +21,6 @@ class QuestionsController extends AppController
 
     public function index()
     {
-        exit();
         $this->paginate = ['limit' => 5, 
                             'order' => ['id' => 'DESC']];
     	$questions = $this->paginate($this->Questions);

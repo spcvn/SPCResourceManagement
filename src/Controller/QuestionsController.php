@@ -18,6 +18,7 @@ class QuestionsController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
+    
     public function index()
     {
         $this->paginate = ['limit' => 5, 

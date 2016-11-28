@@ -57,10 +57,10 @@ class QuestionsTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
+        /*$validator
             ->integer('question_no')
             //->requirePresence('question_no', 'create')
-            ->allowEmpty('question_no');
+            ->allowEmpty('question_no');*/
 
         $validator
             ->requirePresence('content', 'create')

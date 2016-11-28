@@ -16,7 +16,7 @@
         <?php $i=1; ?>
         <?php foreach ($arrQuestions as $arrQuestion): ?>
         	<legend><?= __('Question'. $i) ?></legend>
-        	<div><?= $arrQuestion['content'] ?></div>
+        	<div><?= htmlspecialchars($arrQuestion['content']) ?></div>
         	<?php 
         		echo $this->Form->input('question_id'.$i, ['type' => 'hidden', 'value' => $arrQuestion['id']]);
         	?>

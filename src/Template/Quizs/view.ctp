@@ -44,7 +44,7 @@
     <?php foreach ($quiz_details as $quiz_detail): ?>
         <legend style="font-size:200%"><?= __('Question'. $i) ?></legend>
         <br>
-        <div><b><?= $quiz_detail->question->content ?></b></div>
+        <div><b><?= htmlspecialchars($quiz_detail->question->content) ?></b></div>
         <?php foreach ($quiz_detail->question->answers as $answer): ?>
             <div class=<?php if($quiz_detail->answer == $answer->answer_id){
                                 if($quiz_detail->is_correct == 0){
@@ -55,7 +55,7 @@
                              }else if($answer->is_correct == 1){
                                     echo"correct";
                                 }?>>
-            <?= "◯ " . $answer->answer ?></div>
+            <?= "◯ " . htmlspecialchars ($answer->answer) ?></div>
         <?php endforeach; ?>
         <?php $i++; ?>
         <br><br>

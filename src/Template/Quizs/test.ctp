@@ -16,14 +16,14 @@
         <?php $i=1; ?>
         <?php foreach ($arrQuestions as $arrQuestion): ?>
         	<legend><?= __('Question'. $i) ?></legend>
-        	<div><?= htmlspecialchars($arrQuestion['content']) ?></div>
+        	<div><?= nl2br(htmlspecialchars($arrQuestion['content'])); ?></div>
         	<?php 
         		echo $this->Form->input('question_id'.$i, ['type' => 'hidden', 'value' => $arrQuestion['id']]);
         	?>
         	<?php $j=1; ?>
         	<?php foreach ($arrQuestion['answer'] as $key => $answer): ?>
         		<input type="radio" name=<?= 'answer'.$i ?> id=<?= 'answer'.$i.$j ?> value=<?= $key ?>>
-        		<label for=<?= 'answer'.$i.$j ?>><?= htmlspecialchars($answer); ?></label>
+        		<label for=<?= 'answer'.$i.$j ?>><?= nl2br(htmlspecialchars($answer)); ?></label>
         		<br />
         		<?php $j++; ?>
         	<?php endforeach; ?>

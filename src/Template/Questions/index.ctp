@@ -24,7 +24,7 @@
             <?php foreach ($questions as $question): ?>
             <tr>
                 <td><?= $this->Number->format($question->id) ?></td>
-                <td><?= $question->content ?></td>
+                <td><?= htmlspecialchars($question->content) ?></td>
                 <td><?= $sections[$question->section] ?></td>
                 <td><?= $ranks[$question->rank] ?></td>
                 <td><?= $status[$question->status] ?></td>

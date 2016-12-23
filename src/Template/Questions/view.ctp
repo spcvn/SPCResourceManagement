@@ -1,6 +1,6 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
+        <li class="heading"><?= __('View Question') ?></li>
         <li><?= $this->Html->link(__('Edit Question'), ['action' => 'edit', $question->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Question'), ['action' => 'delete', $question->id], ['confirm' => __('Are you sure you want to delete # {0}?', $question->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Questions'), ['action' => 'index']) ?> </li>
@@ -18,17 +18,13 @@
             <td><?= $sections[$question->section] ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Rank') ?></th>
-            <td><?= $ranks[$question->rank] ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Status') ?></th>
             <td><?= $status[$question->status] ?></td>
         </tr>
     </table>
     <div class="row">
         <h4><?= __('Content') ?></h4>
-        <?= $this->Text->autoParagraph(h($question->content)); ?>
+        <?= $question->content; ?>
     </div>
     <div class="related">
         <h4><?= __('Answers') ?></h4>
@@ -40,10 +36,10 @@
                 <th scope="col"><?= __('Is Correct') ?></th>
             </tr>
             <?php foreach ($question->answers as $answers): ?>
-            <tr>
-                <td><?= h($answers->answer_id) ?></td>
+            <tr  class="<?=($answers->is_correct == 1)?'correctRow':''?>">
+                <td><?= h($answers->id) ?></td>
                 <td><?= h($answers->answer) ?></td>
-                <td><?= h($answers->is_correct) ?></td>
+                <td><?= ($answers->is_correct)?'<i class="fa fa-check green" aria-hidden="true"></i>':'<i class="fa fa-times red" aria-hidden="true"></i>' ?></td>
             </tr>
             <?php endforeach; ?>
         </table>

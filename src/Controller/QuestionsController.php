@@ -116,13 +116,12 @@ class QuestionsController extends AppController
     	$this->set(compact('section'));
     	
     	$question = $this->Questions->get($id);
-    	$answers = $this->Answers->find('list', ['keyField' => 'answer_id',
+    	$answers = $this->Answers->find('list', ['keyField' => 'id',
     							'valueField' => 'answer',])
     							->where(['question_id' => $id])
     							->toArray();
     	
-    	$correct_answer = $this->Answers->find('list', ['keyField' => 'answer_id',
-				    			'valueField' => 'answer',])
+    	$correct_answer = $this->Answers->find('list', ['keyField' => 'id'])
 				    			->where(['question_id' => $id, 'is_correct' => 1])
 				    			->toArray();
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -130,7 +129,6 @@ class QuestionsController extends AppController
         	 
         	$question->content = $arrDatas['content'];
         	$question->section = $arrDatas['section'];
-        	$question->rank = $arrDatas['rank'];
         	if ($this->Questions->save($question)) {
         		$this->registerAnswer($id, $arrDatas);
         		
@@ -182,19 +180,22 @@ class QuestionsController extends AppController
     
     public function registerAnswer($question_id, $arrDatas){
     	$this->loadModel('Answers');
-    	for($i = 1; $i <= 10; $i++){
-    		$answer = $this->Answers->newEntity();
-    		
-    		if(!isset($arrDatas['answer'.$i])) {
-    			break;
-    		}
-    		$answer->question_id = $question_id;
-    		$answer->answer_id = $i;
-    		$answer->answer = $arrDatas['answer'.$i];
-    		$answer->is_correct = ($i == $arrDatas['correct_answer'])? 1:0;
-    		
-    		$this->Answers->save($answer);
-    	}
+        $answers = $this->Answers->find('all', ['keyField' => 'id'])
+                                ->where(['question_id' => $question_id])
+                                ->toArray();
+        
+        $temp = $arrDatas;
+        unset($temp['section'],$temp['content'],$temp['correct_answer']);
+        foreach ($temp as $ansId=>$content) {
+            $ans = $this->Answers->newEntity();
+            $ans->question_id = $question_id;
+            if(!preg_match('/answer/',$ansId)){
+                $ans->id = $ansId;
+            }
+            $ans->answer = $content;
+            $ans->is_correct = ($ansId == $arrDatas['correct_answer'])? 1:0;
+            $this->Answers->save($ans);
+        }
     }
     
     // Export questions

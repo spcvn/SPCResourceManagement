@@ -28,9 +28,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('awesome/css/font-awesome.min.css') ?>
     
-    <?= $this->Html->script('jquery-3.1.1.min.js') ?>
-
+    <?= $this->Html->script('jquery-3.1.1.min.js') ?>   
+    <?= $this->Html->script('ckeditor/ckeditor.js') ?>
+    <?= $this->Html->script('customs.js') ?>
+ 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>

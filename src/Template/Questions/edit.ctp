@@ -6,7 +6,7 @@
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
+        <li class="heading"><?= __('Edit Question') ?></li>
         <li><?= $this->Html->link(__('List Questions'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
@@ -16,23 +16,21 @@
         <legend><?= __('Edit Question') ?></legend>
         <?php
             echo $this->Form->input('section', ['type' => 'select', 'options' => $section]);
-            $rank = ['1' => 'Easy', '2' => 'Medium'];
-			echo $this->Form->input('rank', ['type' => 'select', 'options' => $rank]);
 			echo $this->Form->input('content');
 		?>
 		<div id="answer">
 			<?php
 				$i = 0;
-				foreach($answers as $answer){
+				foreach($answers as $key =>$answer){
 					$i ++;
-					echo $this->Form->input('answer'.$i, ['default' => $answer, 'required' => 'true']);
+					echo $this->Form->input($key, ['default' => $answer, 'required' => 'true']);
 				}
 			?>
 		</div>
         <a href="javascript:addAnswer()" class="button">+</a>
         <a class="delete_answer button" href="javascript:removeAnswer()">-</a>
 		<?php
-			echo $this->Form->input('correct_answer', ['default' => key($correct_answer)]);
+			echo $this->Form->select('correct_answer', $answers,['default'=>key($correct_answer)]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
@@ -40,6 +38,7 @@
 </div>
 
 <script>
+	CKEDITOR.replace( 'content' );
 	var answer_init = <?php echo count($answers); ?>;
 	var answer_no = answer_init;
 	

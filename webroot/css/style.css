@@ -1,0 +1,39 @@
+table tbody tr:hover{
+	background-color:#e5e6e6;
+}
+.green{
+	color:#00bd46;
+}
+.green:hover{
+	color:#01dc52;
+}
+.red{
+	color:#c70000;
+}
+.red:hover{
+	color:#dc0101;
+}
+.orange{
+	color:#bd4700;
+}
+.orange:hover{
+	color:#e05400;
+}
+/* Page->index */
+.logo h1{
+	    font-family: cursive;
+    font-size: 1.12rem;
+    color: #555;
+}
+.logo{
+	position: absolute;
+	top:150px;
+	left: 15%;
+}
+.logo img{
+	max-width: 80%;
+}
+/* Question */
+.correctRow{
+	background-color: #ecffe0!important;
+}

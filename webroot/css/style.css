@@ -1,0 +1,67 @@
+.quote,.prettyprint{
+    font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+    background: #e8e8e8;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+}
+.logo{
+	position: absolute;
+	left: 30%;
+	top: 100px;
+}
+.logo h1{
+	font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+	font-size: 22px;
+	color: #f04124;
+}
+#answer .columns.corAnswer,
+#answer .columns.delAnswer {
+	float: left;
+	margin-top:20px;
+	padding: 5px;
+}
+#answer .columns.delAnswer a{
+	color: #999;
+	-webkit-transition: all 0.15s linear;
+}
+#answer .columns.delAnswer a:hover,
+#answer .columns.delAnswer a:focus{
+	box-shadow: none!important;
+	color: red;
+	border: none;
+}
+#answer input[type="radio"] {
+    display:none;
+}
+#answer .lbchecked{
+	color: #00e600;
+}
+#answer .corAnswer label{
+	color: #999;
+	-webkit-transition: all 0.15s linear;
+}
+#answer .corAnswer label:hover{
+	color: red;
+}
+#answer .corAnswer label.active{
+	color: red;
+}
+.red{
+	color: red;
+}
+.green{
+	color: #00e600;
+}
+.org{
+	color: #fb8217;
+}
+.bold{
+	font-weight: bold;
+}
+.text-center{
+	text-align: center;
+}
+.questions table tbody tr:hover{
+	background-color: #c5dcde;
+	color: #fff;
+}

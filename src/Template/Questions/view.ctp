@@ -37,7 +37,7 @@
             </tr>
             <?php foreach ($question->answers as $answers): ?>
             <tr  class="<?=($answers->is_correct == 1)?'correctRow':''?>">
-                <td><?= h($answers->id) ?></td>
+                <td><?= h($answers->id) ?></td> 
                 <td><?= h($answers->answer) ?></td>
                 <td><?= ($answers->is_correct)?'<i class="fa fa-check green" aria-hidden="true"></i>':'<i class="fa fa-times red" aria-hidden="true"></i>' ?></td>
             </tr>

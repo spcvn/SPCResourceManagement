@@ -5,7 +5,15 @@ $(document).ready(function(){
 		console.log()
 		redirectURL(_controller,'view',param);
 	});
+	$('button[type=submit]').click(function() {
+          return confirm('You sure you want to save this?');
+    });
+    $('.datepicker-input').datepicker();
 });
 function redirectURL($controller,$action,$param){
 	window.location = "/"+$controller+"/"+$action+"/"+$param; 
+}
+function submit(form){
+	console.log(form);
+	form.submit();
 }

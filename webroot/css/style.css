@@ -1,3 +1,56 @@
+/* FORM  */
+/*input[type="text"], 
+input[type="password"], 
+input[type="date"], 
+input[type="datetime"], 
+input[type="datetime-local"], 
+input[type="month"], 
+input[type="week"], 
+input[type="email"], 
+input[type="number"], 
+input[type="search"], 
+input[type="tel"], 
+input[type="time"], 
+input[type="url"], 
+input[type="color"], 
+textarea{
+	border: transparent;
+	box-shadow: none;
+}
+input[type="text"]:hover, 
+input[type="password"]:hover, 
+input[type="date"]:hover, 
+input[type="datetime"]:hover, 
+input[type="datetime-local"]:hover, 
+input[type="month"]:hover, 
+input[type="week"]:hover, 
+input[type="email"]:hover, 
+input[type="number"]:hover, 
+input[type="search"]:hover, 
+input[type="tel"]:hover, 
+input[type="time"]:hover, 
+input[type="url"]:hover, 
+input[type="color"]:hover, 
+textarea:hover,
+input[type="text"]:focus, 
+input[type="password"]:focus, 
+input[type="date"]:focus, 
+input[type="datetime"]:focus, 
+input[type="datetime-local"]:focus, 
+input[type="month"]:focus, 
+input[type="week"]:focus, 
+input[type="email"]:focus, 
+input[type="number"]:focus, 
+input[type="search"]:focus, 
+input[type="tel"]:focus, 
+input[type="time"]:focus, 
+input[type="url"]:focus, 
+input[type="color"]:focus, 
+textarea:focus{
+	border: 1px solid #ccc;
+	box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}*/
+/* Table */
 table tbody tr:hover{
 	background-color:#e5e6e6;
 }
@@ -36,4 +89,27 @@ table tbody tr:hover{
 /* Question */
 .correctRow{
 	background-color: #ecffe0!important;
+}
+#review .title{
+	text-transform: uppercase;
+	font-weight: bold;
+	border-bottom: 1px solid #ccc;
+	padding: 20px 10px;
+}
+#review .body .trow{
+	padding: 20px 0;
+}
+#review .body .trow:nth-child(even){
+	background-color: #ecffe0;
+}
+#review .body .col-left{
+	float: left;
+	font-weight: bold;
+	margin-right: 20px;
+}
+.actions {
+	text-align: center;
+}
+.actions a {
+	margin: 0px 2px;
 }

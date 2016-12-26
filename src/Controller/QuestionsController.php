@@ -83,10 +83,8 @@ class QuestionsController extends AppController
     	$question = $this->Questions->newEntity();
         if ($this->request->is('post')) {
         	$arrDatas = $this->request->data;
-        	
             $question->content = $arrDatas['content'];
             $question->section = $arrDatas['section'];
-            $question->rank = $arrDatas['rank'];
             if ($this->Questions->save($question)) {
                 $question_id = $question->id;
                 $this->registerAnswer($question_id, $arrDatas);
@@ -186,14 +184,18 @@ class QuestionsController extends AppController
         
         $temp = $arrDatas;
         unset($temp['section'],$temp['content'],$temp['correct_answer']);
+        $i=1;
         foreach ($temp as $ansId=>$content) {
             $ans = $this->Answers->newEntity();
             $ans->question_id = $question_id;
             if(!preg_match('/answer/',$ansId)){
                 $ans->id = $ansId;
+                $ans->is_correct = ($ansId == $arrDatas['correct_answer'])? 1:0;
+            }else{
+                $ans->is_correct = ($i == $arrDatas['correct_answer'])? 1:0;
             }
             $ans->answer = $content;
-            $ans->is_correct = ($ansId == $arrDatas['correct_answer'])? 1:0;
+            $i++;
             $this->Answers->save($ans);
         }
     }

@@ -42,9 +42,9 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->first('<< ' . __('First')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->last(__('Last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter('{{start}}') ?></p>
     </div>

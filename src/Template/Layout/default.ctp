@@ -30,12 +30,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->css('cake.css') ?>
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('jquery.modal') ?>
+    <?= $this->Html->css('jquery.datetimepicker.min') ?>
     <?= $this->Html->css('awesome/css/font-awesome.min.css') ?>
     
     <?= $this->Html->script('jquery-3.1.1.min.js') ?>   
     <?= $this->Html->script('ckeditor/ckeditor.js') ?>
     <?= $this->Html->script('jquery.modal.min') ?>
-    <?= $this->Html->script('customs.js') ?>
+    <?= $this->Html->script('jquery.datetimepicker.full.min') ?>
  
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -67,4 +68,5 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <script type="text/javascript">
     var baseUrl = '<?php echo $this->request->webroot?>';
 </script>
+<?= $this->Html->script('customs.js') ?>
 </html>

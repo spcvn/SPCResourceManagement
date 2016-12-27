@@ -5,12 +5,8 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
 /**
  * Candidates Model
- *
- * @property \Cake\ORM\Association\HasMany $Quizs
- * @property \Cake\ORM\Association\HasMany $Users
  *
  * @method \App\Model\Entity\Candidate get($primaryKey, $options = [])
  * @method \App\Model\Entity\Candidate newEntity($data = null, array $options = [])
@@ -36,13 +32,6 @@ class CandidatesTable extends Table
         $this->table('candidates');
         $this->displayField('id');
         $this->primaryKey('id');
-
-        $this->hasMany('Quizs', [
-            'foreignKey' => 'candidate_id'
-        ]);
-        $this->hasMany('Users', [
-            'foreignKey' => 'candidate_id'
-        ]);
     }
 
     /**
@@ -62,29 +51,39 @@ class CandidatesTable extends Table
             ->notEmpty('first_name');
 
         $validator
-            ->allowEmpty('middle_name');
+            ->allowEmpty('last_name');
 
         $validator
             ->requirePresence('last_name', 'create')
             ->notEmpty('last_name');
 
         $validator
-            ->date('birth_date')
-            ->requirePresence('birth_date', 'create')
-            ->notEmpty('birth_date');
-
-        $validator
             ->integer('married')
             ->requirePresence('married', 'create')
-            ->notEmpty('married');
-
+            ->allowEmpty('married');
+        $validator
+            ->date('birth_date')
+            ->requirePresence('birth_date', 'create')
+            ->add('birth_date','custom',[
+                    'rule'=>[$this,'birth_dateValidation'],
+                    'message'=>'Your Age have just over 13!'
+                ])
+            ->notEmpty('birth_date');
         $validator
             ->requirePresence('addr01', 'create')
             ->notEmpty('addr01');
 
+        /*$validator
+            ->requirePresence('addr02', 'create')
+            ->notEmpty('addr02');*/
+
         $validator
             ->requirePresence('mobile', 'create')
             ->notEmpty('mobile');
+
+        $validator
+            ->requirePresence('position', 'create')
+            ->notEmpty('position');
 
         $validator
             ->requirePresence('expected_salary', 'create')
@@ -95,28 +94,23 @@ class CandidatesTable extends Table
             ->requirePresence('interview_date', 'create')
             ->notEmpty('interview_date');
 
-        $validator
-            ->requirePresence('position', 'create')
-            ->allowEmpty('position');
+        /*$validator
+            ->date('start_work')
+            ->requirePresence('start_work', 'create')
+            ->allowEmpty('start_work');
 
         $validator
-            ->integer('score')
             ->allowEmpty('score');
 
         $validator
-            ->requirePresence('result', 'create')
-            ->allowEmpty('result');
-
-        $validator
-            ->date('created_date')
-            ->requirePresence('created_date', 'create')
-            ->allowEmpty('created_date');
-
-        $validator
-            ->date('update_date')
-            ->requirePresence('update_date', 'create')
-            ->allowEmpty('update_date');
+            ->allowEmpty('result');*/
 
         return $validator;
+    }
+    public function birth_dateValidation($birthDate,$context){
+          $age = (date("md", date("U", mktime(0, 0, 0, $birthDate['day'], $birthDate['month'], $birthDate['year']))) > date("md")
+            ? ((date("Y") - $birthDate['year']) - 1)
+            : (date("Y") - $birthDate['year']));
+          return $age>13?true:false;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 namespace App\Model\Entity;
-use Cake\Auth\DefaultPasswordHasher;
+
 use Cake\ORM\Entity;
 
 /**
@@ -9,6 +9,25 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $username
  * @property string $password
+ * @property string $salt
+ * @property string $email
+ * @property string $first_name
+ * @property string $middle_name
+ * @property string $last_name
+ * @property string $addr01
+ * @property string $addr02
+ * @property \Cake\I18n\Time $birth_date
+ * @property string $mobile
+ * @property string $dept
+ * @property string $avatar
+ * @property \Cake\I18n\Time $created
+ * @property \Cake\I18n\Time $updated
+ * @property string $status
+ * @property int $role
+ * @property int $candidate_id
+ * @property \Cake\I18n\Time $start_work
+ *
+ * @property \App\Model\Entity\Candidate $candidate
  */
 class User extends Entity
 {
@@ -32,12 +51,7 @@ class User extends Entity
      *
      * @var array
      */
-  //  protected $_hidden = [
-  //      'password'
-  //  ];
-  
-   protected function _setPassword($password)
-    {
-        return (new DefaultPasswordHasher)->hash($password);
-    }
+    protected $_hidden = [
+        'password'
+    ];
 }

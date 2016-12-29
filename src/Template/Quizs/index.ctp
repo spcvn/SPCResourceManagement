@@ -25,7 +25,7 @@
             foreach ($quizs as $quiz): ?>
             <tr>
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $cur++ ?></td>
-                <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $quiz->candidate->last_name . $quiz->candidate->first_name ?></td>
+                <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $quiz->candidate->last_name ." ". $quiz->candidate->first_name ?></td>
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $quiz->url ?></td>
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $this->Number->format($quiz->time). ' mins' ?></td>
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= (!is_null($quiz->quiz_date))?$quiz->quiz_date:"Not yet" ?></td>

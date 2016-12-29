@@ -27,6 +27,11 @@ jQuery(function(){
 		  '15:00', '15:30', '18:00', '18:30'
 		 ]
     });
+    $('input[name=mobile]').on('keypress',function(event){
+    	if(event.which != 8 && isNaN(String.fromCharCode(event.which))){
+           event.preventDefault(); //stop character from entering input
+       }
+    });
 });
 function redirectURL($controller,$action,$param){
 	window.location = "/"+$controller+"/"+$action+"/"+$param; 

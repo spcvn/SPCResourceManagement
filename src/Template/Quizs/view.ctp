@@ -29,14 +29,15 @@
 </nav>
 <div class="view large-9 medium-8 columns content">
     <div class="candidate left">
-        <p><b><?= $candidates->last_name . $candidates->first_name ?></b></p>
+        <p><b><?= $candidates->last_name ." ". $candidates->first_name ?></b></p>
         <p>Birth Day: <?= $candidates->birth_date ?></p>
+        <p>Position : <?= $candidates->position ?></p>  
         <p>Tell: <?= $candidates->mobile ?></p>  
     </div>
     <div class="quiz right">
         <p>Time: <?= $quizs->time ?> minutes</p>
         <p>Quiz Date: <?= (is_null($quizs->quiz_date))? "Not yet":$quizs->quiz_date ?></p>
-        <p>Result: <?= $this->Number->format($quizs->correct). "/" . $this->Number->format($quizs->total) ?></p>
+        <p>Result: <?= $this->Number->format($quizs->score). "/" . $this->Number->format($quizs->total) ?></p>
     </div>
 </div>
 <div class="questions large-9 medium-8 columns content clear right">
@@ -45,8 +46,9 @@
         <legend style="font-size:200%"><?= __('Question'. $i) ?></legend>
         <br>
         <div><b><?= htmlspecialchars($quiz_detail->question->content) ?></b></div>
-        <?php foreach ($quiz_detail->question->answers as $answer): ?>
-            <div class=<?php if($quiz_detail->answer == $answer->answer_id){
+        <?php foreach ($quiz_detail->question->answers as $answer): 
+        ?>
+            <div class=<?php if($quiz_detail->answer_id == $answer->id){
                                 if($quiz_detail->is_correct == 0){
                                     echo"wrong";
                                 }else if($answer->is_correct == 1){

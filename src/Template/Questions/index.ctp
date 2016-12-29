@@ -25,7 +25,7 @@
             ?>
             <tr>
                 <td class="viewDetail" data-id="<?=$question->id?>"><?= $cur++;?></td>
-                <td class="viewDetail" data-id="<?=$question->id?>"><?= htmlspecialchars($question->content) ?></td>
+                <td class="viewDetail" data-id="<?=$question->id?>"><?=$question->content?></td>
                 <td class="viewDetail" data-id="<?=$question->id?>"><?= $sections[$question->section] ?></td>
                 <td class="actions">
                     <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-file-text-o']), ['action' => 'view', $question->id],['escape'=>false]) ?>

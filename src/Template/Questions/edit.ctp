@@ -2,6 +2,10 @@
 	.no_display{
 		display: none;
 	}
+	.btnDelete{
+		float: right;
+		margin: -45px -20px auto;
+	}
 </style>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
@@ -24,6 +28,7 @@
 				foreach($answers as $key =>$answer){
 					$i++;
 					echo $this->Form->input($key, ['default' => $answer, 'required' => 'true']);
+					echo $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'ansdelete', $key],['escape'=>false,'class'=>'btnDelete']);
 				}
 			?>
 		</div>

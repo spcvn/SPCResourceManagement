@@ -83,10 +83,8 @@ class QuestionsController extends AppController
     	$question = $this->Questions->newEntity();
         if ($this->request->is('post')) {
         	$arrDatas = $this->request->data;
-        	
             $question->content = $arrDatas['content'];
             $question->section = $arrDatas['section'];
-            $question->rank = $arrDatas['rank'];
             if ($this->Questions->save($question)) {
                 $question_id = $question->id;
                 $this->registerAnswer($question_id, $arrDatas);
@@ -117,12 +115,12 @@ class QuestionsController extends AppController
     	
     	$question = $this->Questions->get($id);
     	$answers = $this->Answers->find('list', ['keyField' => 'id',
-    							'valueField' => 'answer',])
-    							->where(['question_id' => $id])
+    							'valueField' => 'answer'])
+    							->where(['question_id' => $id,'is_delete'=>0])
     							->toArray();
     	
     	$correct_answer = $this->Answers->find('list', ['keyField' => 'id'])
-				    			->where(['question_id' => $id, 'is_correct' => 1])
+				    			->where(['question_id' => $id, 'is_correct' => 1,'is_delete'=>0])
 				    			->toArray();
         if ($this->request->is(['patch', 'post', 'put'])) {
         	$arrDatas = $this->request->data;
@@ -163,6 +161,29 @@ class QuestionsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    /**
+     * Uno Trung
+     * Delete method
+     *
+     * @param string|null $id Question id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function ansdelete($id = null)
+    {
+        $this->request->allowMethod(['post', 'get']);
+        $this->loadModel('Answers');
+        $answer = $this->Answers->get($id);
+        $answer->is_delete = 1;
+        // echo "<pre>";print_r($answer);exit();
+        if ($this->Answers->save($answer)) {
+            $this->Flash->success(__('The answer has been delete.'));
+        } else {
+            $this->Flash->error(__('The answer could not be delete. Please, try again.'));
+        }
+
+        return $this->redirect($this->referer());
+    }
     
     // Active question
     public function active($id = null){
@@ -186,14 +207,18 @@ class QuestionsController extends AppController
         
         $temp = $arrDatas;
         unset($temp['section'],$temp['content'],$temp['correct_answer']);
+        $i=1;
         foreach ($temp as $ansId=>$content) {
             $ans = $this->Answers->newEntity();
             $ans->question_id = $question_id;
             if(!preg_match('/answer/',$ansId)){
                 $ans->id = $ansId;
+                $ans->is_correct = ($ansId == $arrDatas['correct_answer'])? 1:0;
+            }else{
+                $ans->is_correct = ($i == $arrDatas['correct_answer'])? 1:0;
             }
             $ans->answer = $content;
-            $ans->is_correct = ($ansId == $arrDatas['correct_answer'])? 1:0;
+            $i++;
             $this->Answers->save($ans);
         }
     }
@@ -243,10 +268,8 @@ class QuestionsController extends AppController
     				if(is_null($dir->path)){
     					$dir = new Folder();
     					$dir->create(DS . 'upload', true, 0755);
-
     				}
     				$dir->cd('upload/');
-
     				// upload question
 	    			$questionName = date("YmdHis") . 'question.csv';
 	    			$tmp_question = $_FILES['questions']['tmp_name'];
@@ -271,7 +294,7 @@ class QuestionsController extends AppController
     // Import questions
     public function importQuestion($file){
         $this->loadModel('Questions');
-        $arrQuestion = ['id', 'content', 'section', 'rank', 'status'];
+        $arrQuestion = ['id', 'content', 'section', 'status'];
         
         $fp = fopen($file, "r");
         
@@ -295,14 +318,13 @@ class QuestionsController extends AppController
             $question = $this->Questions->patchEntity($question, $arrDatas);
             $this->Questions->save($question);
         }
-        
         fclose($fp);
     }
     
     // Import answers
     public function importAnswer($file){
         $this->loadModel('Answers');
-        $arrAnswer = ['question_id', 'answer_id', 'answer', 'is_correct'];
+        $arrAnswer = ['question_id', 'answer', 'is_correct'];
         $fp = fopen($file, "r");
         
         $line_count = 0;
@@ -319,8 +341,10 @@ class QuestionsController extends AppController
             }
             $arrDatas = [];
             $arrDatas = array_combine($arrAnswer, $arrCSV);
+            
             $answer = $this->Answers->newEntity();
             $answer = $this->Answers->patchEntity($answer, $arrDatas);
+            // echo "<pre>";print_r($answer);echo "</pre>";  
             $this->Answers->save($answer);
         }
         
@@ -339,7 +363,7 @@ class QuestionsController extends AppController
     
             while (!feof($ifp)) {
                 $line = fgets($ifp);
-                $line = mb_convert_encoding($line, $enc_type, 'ASCII, JIS,UTF-8, EUC-JP, SJIS-Win, SJIS');
+                // $line = mb_convert_encoding($line, $enc_type, 'ASCII, JIS,UTF-8, EUC-JP, SJIS-Win, SJIS');
                 fwrite($ofp,  $line);
             }
     

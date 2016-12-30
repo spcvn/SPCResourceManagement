@@ -42,7 +42,10 @@ class CandidatesController extends AppController
         $candidate = $this->Candidates->get($id, [
             'contain' => []
         ]);
-
+        $select = new \stdClass();
+        $select->position = ['it' => 'IT Position', 'admin' => 'Admin'];
+        $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
+        $this->set(compact('select'));
         $this->set('candidate', $candidate);
         $this->set('_serialize', ['candidate']);
     }
@@ -55,8 +58,17 @@ class CandidatesController extends AppController
     public function add()
     {
         $candidate = $this->Candidates->newEntity();
+        $select = new \stdClass();
+        $select->position = ['it' => 'IT Position', 'admin' => 'Admin'];
+        $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
         if ($this->request->is('post')) {
+
             $candidate = $this->Candidates->patchEntity($candidate, $this->request->data);
+            // echo "<pre>"; print_r($candidate);exit();
+            $candidate->score = "";
+            $candidate->result = "";
+            $candidate->created_date = gmdate('Y-M-dd',time()+3600*7);
+            $candidate->update_date = "";
             if ($this->Candidates->save($candidate)) {
                 $this->Flash->success(__('The candidate has been saved.'));
 
@@ -66,6 +78,7 @@ class CandidatesController extends AppController
             }
         }
         $this->set(compact('candidate'));
+        $this->set(compact('select'));
         $this->set('_serialize', ['candidate']);
     }
 
@@ -81,6 +94,9 @@ class CandidatesController extends AppController
         $candidate = $this->Candidates->get($id, [
             'contain' => []
         ]);
+        $select = new \stdClass();
+        $select->position = ['it' => 'IT Position', 'admin' => 'Admin'];
+        $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
         if ($this->request->is(['patch', 'post', 'put'])) {
             $candidate = $this->Candidates->patchEntity($candidate, $this->request->data);
             if ($this->Candidates->save($candidate)) {
@@ -91,6 +107,7 @@ class CandidatesController extends AppController
                 $this->Flash->error(__('The candidate could not be saved. Please, try again.'));
             }
         }
+        $this->set(compact('select'));
         $this->set(compact('candidate'));
         $this->set('_serialize', ['candidate']);
     }

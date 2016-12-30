@@ -1,3 +1,6 @@
+/* FORM  */
+
+/* Table */
 table tbody tr:hover{
 	background-color:#e5e6e6;
 }
@@ -19,6 +22,9 @@ table tbody tr:hover{
 .orange:hover{
 	color:#e05400;
 }
+.viewDetail{
+	cursor: pointer;
+}
 /* Page->index */
 .logo h1{
 	    font-family: cursive;
@@ -36,4 +42,36 @@ table tbody tr:hover{
 /* Question */
 .correctRow{
 	background-color: #ecffe0!important;
+}
+#review .title{
+	text-transform: uppercase;
+	font-weight: bold;
+	border-bottom: 1px solid #ccc;
+	padding: 20px 10px;
+}
+#review .body .trow{
+	padding: 20px 0;
+}
+#review .body .trow:nth-child(even){
+	background-color: #ecffe0;
+}
+#review .body .col-left{
+	float: left;
+	font-weight: bold;
+	margin-right: 20px;
+}
+.actions {
+	text-align: center;
+}
+.actions a {
+	margin: 0px 2px;
+}
+/* Quizs */
+.position{
+	font-weight: bold;
+	padding: 5px 10px 5px 40px;
+	background: #e8e8e8;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+
 }

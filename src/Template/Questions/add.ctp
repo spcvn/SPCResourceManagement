@@ -5,7 +5,7 @@
 </style>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
+        <li class="heading"><?= __('Add Question') ?></li>
         <li><?= $this->Html->link(__('List Questions'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
@@ -15,8 +15,6 @@
         <legend><?= __('Add Question') ?></legend>
         <?php
             echo $this->Form->input('section', ['type' => 'select', 'options' => $section]);
-            $rank = ['1' => 'Easy', '2' => 'Medium'];
-			echo $this->Form->input('rank', ['type' => 'select', 'options' => $rank]);
 			echo $this->Form->input('content');
         ?>
         <div id="answer">Answer</div>
@@ -40,6 +38,7 @@
     addAnswer();
     
 	$( document ).ready(function() {
+		CKEDITOR.replace( 'content' );
 		checkAnswer(answer_no);
 	});
 	

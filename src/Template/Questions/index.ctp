@@ -25,7 +25,7 @@
             ?>
             <tr>
                 <td class="viewDetail" data-id="<?=$question->id?>"><?= $cur++;?></td>
-                <td class="viewDetail" data-id="<?=$question->id?>"><?= htmlspecialchars($question->content) ?></td>
+                <td class="viewDetail" data-id="<?=$question->id?>"><?=$question->content?></td>
                 <td class="viewDetail" data-id="<?=$question->id?>"><?= $sections[$question->section] ?></td>
                 <td class="actions">
                     <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-file-text-o']), ['action' => 'view', $question->id],['escape'=>false]) ?>
@@ -42,9 +42,9 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->first('<< ' . __('First')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->last(__('Last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter('{{start}}') ?></p>
     </div>

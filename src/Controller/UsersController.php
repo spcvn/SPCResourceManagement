@@ -19,11 +19,11 @@ class UsersController extends AppController
     public function index()
     {
         $users = $this->paginate($this->Users);
-        $status = ['0' => 'Disable', '1' => 'Active'];;
-
+        $status = ['0' => 'Disable', '1' => 'Active'];
         $this->set(compact('users'));
         $this->set(compact('status'));
         $this->set('_serialize', ['users']);
+
     }
 
     /**
@@ -66,6 +66,7 @@ class UsersController extends AppController
                 // $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
+        $this->set("province",$this->getProvince());
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
@@ -93,6 +94,9 @@ class UsersController extends AppController
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
+        $this->set("province",$this->getProvince());
+        $this->set("district",$this->getDistrict());
+        $this->set("ward",$this->getWard());
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
@@ -161,5 +165,49 @@ class UsersController extends AppController
         }
     
         return $this->redirect(['action' => 'index']);
+    }
+    public function getProvince($id =null){
+        $this->loadModel('Province');
+        $province = $this->Province->find('list',['keyField' => 'provinceid',
+                                'valueField' => 'name']);
+        $province = $province->toArray();
+        return $province;
+    }
+    public function getDistrict($provinceId = null){
+        $this->loadModel('District');
+        $district = $this->District
+                    ->find('list',['keyField'=>'districtid','valueField' => function($dis){
+                        return $dis->type." ".$dis->name;
+                    }]);
+        if($provinceId !== null){
+            $district = $district->where(['provinceid'=>$provinceId]);
+        }
+        
+        $district = $district->toArray();
+        return $district;
+    }
+    public function getWard($districtId = null){
+        $this->loadModel('Ward');
+        $ward = $this->Ward
+                    ->find('list',['keyField'=>'wardid','valueField' => function($dis){
+                        return $dis->type." ".$dis->name;
+                    }]);
+        if($districtId !== null){
+            $ward = $ward->where(['districtid'=>$districtId]);
+        }
+        $ward = $ward->toArray();
+        return $ward;
+    }
+    public function loadAddress(){
+        $data = [];
+        if ($this->request->is(['post'])) {
+            if(isset($this->request->data['provinceid'])){
+                $data['district'] = $this->getDistrict($this->request->data['provinceid']);
+            }
+            if(isset($this->request->data['districtid']))
+                $data['ward'] = $this->getWard($this->request->data['districtid']);
+        }
+        echo json_encode($data);   
+        die();
     }
 }

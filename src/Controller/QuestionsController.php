@@ -78,8 +78,6 @@ class QuestionsController extends AppController
         $sections = $this->Sections->find('list');
         $section = $sections->toArray();
         $this->set(compact('section'));
-        
-        
     	$question = $this->Questions->newEntity();
         if ($this->request->is('post')) {
         	$arrDatas = $this->request->data;

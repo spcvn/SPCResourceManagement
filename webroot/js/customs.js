@@ -32,6 +32,29 @@ jQuery(function(){
            event.preventDefault(); //stop character from entering input
        }
     });
+    $("#provinceid").on('change',function(e){
+			$.post("/users/load-address",{provinceid:$(this).val()},function(data){
+					var opts = $.parseJSON(data);
+					$('#districtid').html('');
+					$('#wardid').html('');
+	                $.each(opts.district, function(key, val) {
+	                    $('#districtid').append($('<option>', { value : key })
+							          .text(val));
+	                });
+
+				});
+		});
+		$("#districtid").on('change',function(e){
+			$.post("/users/load-address",{districtid:$(this).val()},function(data){
+					var opts = $.parseJSON(data);
+					$('#wardid').html('');
+	                $.each(opts.ward, function(key, val) {
+	                    $('#wardid').append($('<option>', { value : key })
+							          .text(val)); 
+	                });
+
+				});
+		});
 });
 function redirectURL($controller,$action,$param){
 	window.location = "/"+$controller+"/"+$action+"/"+$param; 

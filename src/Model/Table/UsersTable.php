@@ -83,8 +83,24 @@ class UsersTable extends Table
             ->notEmpty('last_name');
 
         $validator
-            ->requirePresence('addr01', 'create')
-            ->notEmpty('addr01');
+            ->integer('provinceid')
+            ->requirePresence('provinceid', 'create')
+            ->notEmpty('provinceid');
+
+        $validator
+            ->integer('districtid')
+            ->requirePresence('districtid', 'create')
+            ->notEmpty('districtid');
+
+        $validator
+            ->integer('wardid')
+            ->requirePresence('wardid', 'create')
+            ->notEmpty('wardid');
+
+        $validator
+            ->date('birth_date')
+            ->requirePresence('birth_date', 'create')
+            ->notEmpty('birth_date');
 
         $validator
             ->requirePresence('mobile', 'create')
@@ -95,6 +111,9 @@ class UsersTable extends Table
             ->notEmpty('dept');
 
         $validator
+            ->requirePresence('status', 'create')
+            ->notEmpty('status');
+         $validator
             ->requirePresence('email')
             ->add('email', 'validFormat', [
                 'rule' => 'email',
@@ -123,6 +142,7 @@ class UsersTable extends Table
             'allowEmpty' => true, 
             'message'=>'Phone number should be numeric')
         ]);
+
         return $validator;
     }
 

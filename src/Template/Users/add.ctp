@@ -22,7 +22,10 @@
             echo $this->Form->input('dept', ['type'=>'select','options'=>$arrDept]);
             echo $this->Form->input('mobile',['type'=>'text']);
             echo $this->Form->input('birth_date', ['minYear' => '1930', 'maxYear'=> '2016']);
-            echo $this->Form->input('addr01');
+            echo $this->Form->input('provinceid',['label'=>"Province",'type'=>'select','options'=>$province,'id'=>'provinceid']);
+            echo $this->Form->input('districtid',['label'=>"District",'type'=>'select','options'=>[],'id'=>'districtid']);
+            echo $this->Form->input('wardid',['label'=>"Ward",'type'=>'select','options'=>[],'id'=>'wardid']);
+            echo $this->Form->input('addr01',['label'=>'Address']);
         ?>
     </fieldset>
     <?= $this->Html->link(__('Preview'),"javascript:review()",['id'=>'btnPreview']) ?>
@@ -65,7 +68,7 @@
             <td id="mobile"></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Addr01') ?></th>
+            <th scope="row"><?= __('Address') ?></th>
             <td id="addr01"></td>
         </tr>
         <tr>
@@ -93,6 +96,7 @@
             arrPosition['hr']="HR";
             console.log(formdata);
             $strDob = "";
+            $strAdd = "";
             $(formdata).each(function(index, obj){
                 (obj.name == 'status')?obj.value = arrStatus[obj.value]:obj.value;
                 (obj.name == 'dept')?obj.value = arrPosition[obj.value]:obj.value;
@@ -107,6 +111,11 @@
                     $strDob += obj.value; 
                 }
                 $('#review #birth_date').html($strDob);
+                //address 
+                if(obj.name == "provinceid" || obj.name == "districtid" || obj.name == "wardid"){
+                    $strAdd += $('#'+obj.name+" option:selected").text()+", "; 
+                }
+                $('#review #addr01').html($strAdd);
             });
             var wWidth = $(window).width();
             var dWidth = wWidth * 0.8;
@@ -118,4 +127,7 @@
             });
             return false;
         }
+        $(function(){
+            $("#province").val($("#province").val()).change();
+        });
 </script>

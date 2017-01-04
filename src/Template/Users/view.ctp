@@ -47,20 +47,20 @@
             <td><?= h($user->mobile) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Addr01') ?></th>
+            <th scope="row"><?= __('Region') ?></th>
             <td><?= h($user->addr01) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Addr02') ?></th>
-            <td><?= h($user->addr02) ?></td>
+            <th scope="row"><?= __('Address') ?></th>
+            <td><?= h($user->province[0].", ".$user->district[0].", ".$user->ward[0]) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($user->created) ?></td>
+            <td><?= h($user->created->format('Y-m-d H:i')) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Updated') ?></th>
-            <td><?= h($user->updated) ?></td>
+            <td><?= (isset($user->updated))?$user->updated->format('Y-m-d H:i'):"" ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Birth Date') ?></th>

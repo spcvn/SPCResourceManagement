@@ -3,3 +3,4 @@
 /tmp/*
 /logs/*
 .idea/
+src/Model/Table/QuizDetailsTable__.php

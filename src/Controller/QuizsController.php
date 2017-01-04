@@ -56,7 +56,7 @@ class QuizsController extends AppController
 	    $quiz_details = $this->QuizDetails->find()->contain(['Questions' => ['Answers']])
                                                ->where(['QuizDetails.quiz_id' => $id]);
 	    $quiz_details = $quiz_details->all();
-	    
+	    // echo "<pre>";print_r($quiz_details);exit();
 	    $this->set('quizs', $quizs);
 	    $this->set('candidates', $candidates);
 	    $this->set('quiz_details', $quiz_details);

@@ -29,7 +29,7 @@
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $quiz->url ?></td>
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $this->Number->format($quiz->time). ' mins' ?></td>
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= (!is_null($quiz->quiz_date))?$quiz->quiz_date:"Not yet" ?></td>
-                <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $this->Number->format($quiz->correct). "/" . $this->Number->format($quiz->total) ?></td>
+                <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $this->Number->format($quiz->score). "/" . $this->Number->format($quiz->total) ?></td>
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $status[$quiz->status] ?></td>
                 <td class="actions">
                     <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-file-text-o']), ['action' => 'view', $quiz->id],['escape'=>false]) ?>

@@ -38,7 +38,10 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
-
+        $user->province = array_values($this->getProvince($user->provinceid));
+        $user->district = array_values($this->getDistrict(null,$user->districtid));
+        $user->ward = array_values($this->getWard(null,$user->wardid));
+        // echo "<pre>"; print_r($user);exit();
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
     }
@@ -170,10 +173,13 @@ class UsersController extends AppController
         $this->loadModel('Province');
         $province = $this->Province->find('list',['keyField' => 'provinceid',
                                 'valueField' => 'name']);
+        if($id !== null){
+            $province = $province->where(['provinceid'=>$id]);
+        }
         $province = $province->toArray();
         return $province;
     }
-    public function getDistrict($provinceId = null){
+    public function getDistrict($provinceId = null,$id = null){
         $this->loadModel('District');
         $district = $this->District
                     ->find('list',['keyField'=>'districtid','valueField' => function($dis){
@@ -182,11 +188,14 @@ class UsersController extends AppController
         if($provinceId !== null){
             $district = $district->where(['provinceid'=>$provinceId]);
         }
+        if($id !== null){
+            $district = $district->where(['districtid'=>$id]);
+        }
         
         $district = $district->toArray();
         return $district;
     }
-    public function getWard($districtId = null){
+    public function getWard($districtId = null,$id = null){
         $this->loadModel('Ward');
         $ward = $this->Ward
                     ->find('list',['keyField'=>'wardid','valueField' => function($dis){
@@ -194,6 +203,9 @@ class UsersController extends AppController
                     }]);
         if($districtId !== null){
             $ward = $ward->where(['districtid'=>$districtId]);
+        }
+        if($id !== null){
+            $ward = $ward->where(['wardid'=>$id]);
         }
         $ward = $ward->toArray();
         return $ward;

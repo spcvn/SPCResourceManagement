@@ -228,8 +228,8 @@ class QuestionsController extends AppController
     	$this->response->download($date.'questions.csv');
     	$data = $this->Questions->find('all')->toArray();
     	$_serialize = 'data';
-    	$_header = ['ID', 'Content', 'Section', 'Rank', 'Status'];
-    	$_extract = ['id', 'content', 'section', 'rank', 'status'];
+    	$_header = ['ID', 'Content', 'Section',  'Status'];
+    	$_extract = ['id', 'content', 'section', 'status'];
     	$this->set(compact('data', '_serialize', '_header', '_extract'));
     	$this->viewBuilder()->className('CsvView.Csv');
     	return;
@@ -242,8 +242,8 @@ class QuestionsController extends AppController
         $this->response->download($date.'answers.csv');
         $data = $this->Answers->find('all')->order(['question_id' => 'ASC'])->toArray();
         $_serialize = 'data';
-        $_header = ['Question_id', 'Answer_id', 'Answer', 'Is_correct'];
-        $_extract = ['question_id', 'answer_id', 'answer', 'is_correct'];
+        $_header = ['Question_id', 'id', 'Answer', 'Is_correct'];
+        $_extract = ['question_id', 'id', 'answer', 'is_correct'];
         $this->set(compact('data', '_serialize', '_header', '_extract'));
         $this->viewBuilder()->className('CsvView.Csv');
         return;

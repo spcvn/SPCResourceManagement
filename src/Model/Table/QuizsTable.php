@@ -7,15 +7,18 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Sections Model
+ * Quizs Model
  *
- * @method \App\Model\Entity\Section get($primaryKey, $options = [])
- * @method \App\Model\Entity\Section newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Section[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Section|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Section patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Section[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Section findOrCreate($search, callable $callback = null)
+ * @property \Cake\ORM\Association\BelongsTo $Candidates
+ * @property \Cake\ORM\Association\HasMany $QuizDetails
+ *
+ * @method \App\Model\Entity\Quiz get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Quiz newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Quiz[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Quiz|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Quiz patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Quiz[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Quiz findOrCreate($search, callable $callback = null)
  */
 class QuizsTable extends Table
 {
@@ -31,9 +34,15 @@ class QuizsTable extends Table
         parent::initialize($config);
 
         $this->table('quizs');
+        $this->displayField('id');
+        $this->primaryKey('id');
+
         $this->belongsTo('Candidates', [
-                'className' => 'Publishing.Candidates',
-                'foreignKey' => 'candidate_id'
+            'foreignKey' => 'candidate_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->hasMany('QuizDetails', [
+            'foreignKey' => 'quiz_id'
         ]);
     }
 
@@ -49,6 +58,53 @@ class QuizsTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
+        $validator
+            ->requirePresence('code', 'create')
+            ->notEmpty('code');
+
+        $validator
+            ->requirePresence('url', 'create')
+            ->notEmpty('url');
+
+        $validator
+            ->integer('time')
+            ->requirePresence('time', 'create')
+            ->notEmpty('time');
+
+        $validator
+            ->dateTime('quiz_date')
+            ->requirePresence('quiz_date', 'create')
+            ->notEmpty('quiz_date');
+
+        $validator
+            ->integer('status')
+            ->requirePresence('status', 'create')
+            ->notEmpty('status');
+
+        $validator
+            ->integer('score')
+            ->requirePresence('score', 'create')
+            ->notEmpty('score');
+
+        $validator
+            ->integer('total')
+            ->requirePresence('total', 'create')
+            ->notEmpty('total');
+
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['candidate_id'], 'Candidates'));
+
+        return $rules;
     }
 }

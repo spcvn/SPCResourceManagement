@@ -1,3 +1,13 @@
+/* layout */
+@media only screen and (min-width: 64.0625em){
+	.large-3{
+		width: 20%;
+	}	
+	.large-9 {
+		width: 80%;
+	}
+}
+
 /* FORM  */
 
 /* Table */

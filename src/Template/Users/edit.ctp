@@ -28,7 +28,6 @@
             echo $this->Form->input('dept', ['type'=>'select','options'=>$arrDept]);
             echo $this->Form->input('mobile',['type'=>'text']);
             echo $this->Form->input('birth_date', ['minYear' => '1930', 'maxYear'=> '2016']);
-
             echo $this->Form->input('provinceid',['label'=>"Province",'type'=>'select','options'=>$province,'id'=>'provinceid']);
             echo $this->Form->input('districtid',['label'=>"District",'type'=>'select','options'=>$district,'id'=>'districtid']);
             echo $this->Form->input('wardid',['label'=>"Ward",'type'=>'select','options'=>$ward,'id'=>'wardid']);
@@ -130,4 +129,6 @@
             });
             return false;
         }
+
+
 </script>   

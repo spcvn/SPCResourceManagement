@@ -85,6 +85,7 @@ class UsersTable extends Table
         $validator
             ->requirePresence('addr01', 'create')
             ->notEmpty('addr01');
+
         $validator
             ->integer('provinceid')
             ->requirePresence('provinceid', 'create')

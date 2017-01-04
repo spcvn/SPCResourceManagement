@@ -16,12 +16,6 @@ use Cake\ORM\Entity;
  * @property string $last_name
  * @property string $addr01
  * @property string $addr02
-<<<<<<< HEAD
-=======
- * @property int $provinceid
- * @property int $districtid
- * @property int $wardid
->>>>>>> 041ec623d07dd51a2d696400248f52bdfa42b7f6
  * @property \Cake\I18n\Time $birth_date
  * @property string $mobile
  * @property string $dept

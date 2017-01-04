@@ -122,7 +122,7 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be deactive. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect($this->referer());
     }
 	
 	public function beforeFilter(Event $event)

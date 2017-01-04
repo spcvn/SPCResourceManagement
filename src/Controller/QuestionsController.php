@@ -157,7 +157,7 @@ class QuestionsController extends AppController
             $this->Flash->error(__('The question could not be deactive. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect($this->referer());
     }
     /**
      * Uno Trung

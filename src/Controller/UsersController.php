@@ -41,7 +41,6 @@ class UsersController extends AppController
         $user->province = array_values($this->getProvince($user->provinceid));
         $user->district = array_values($this->getDistrict(null,$user->districtid));
         $user->ward = array_values($this->getWard(null,$user->wardid));
-        // echo "<pre>"; print_r($user);exit();
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
     }

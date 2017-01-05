@@ -74,7 +74,7 @@ class UsersController extends AppController
     }
 
     /**
-     * Edit method
+     * Edit method     
      *
      * @param string|null $id User id.
      * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
@@ -174,9 +174,9 @@ class UsersController extends AppController
                                 'valueField' => 'name']);
         if($id !== null){
             $province = $province->where(['provinceid'=>$id]);
-        }
+        }        
         $province = $province->toArray();
-        return $province;
+        return count($province)>0?$province:array("0"=>"---");
     }
     public function getDistrict($provinceId = null,$id = null){
         $this->loadModel('District');
@@ -192,7 +192,7 @@ class UsersController extends AppController
         }
         
         $district = $district->toArray();
-        return $district;
+        return count($district)>0?$district:array("0"=>"---");
     }
     public function getWard($districtId = null,$id = null){
         $this->loadModel('Ward');
@@ -207,7 +207,7 @@ class UsersController extends AppController
             $ward = $ward->where(['wardid'=>$id]);
         }
         $ward = $ward->toArray();
-        return $ward;
+        return count($ward)>0?$ward:array("0"=>"---");
     }
     public function loadAddress(){
         $data = [];

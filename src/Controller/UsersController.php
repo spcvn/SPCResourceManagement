@@ -168,6 +168,7 @@ class UsersController extends AppController
     
         return $this->redirect(['action' => 'index']);
     }
+    /* update by unoTrung */
     public function getProvince($id =null){
         $this->loadModel('Province');
         $province = $this->Province->find('list',['keyField' => 'provinceid',

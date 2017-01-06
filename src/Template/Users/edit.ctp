@@ -28,7 +28,7 @@
             echo $this->Form->input('dept', ['type'=>'select','options'=>$arrDept]);
             echo $this->Form->input('mobile',['type'=>'text']);
             echo $this->Form->input('birth_date', ['minYear' => date("Y")-66, 'maxYear'=> date("Y")-17]);
-            echo $this->cell("Province.province",['config'=>'all',"type"=>"edit",'data'=>$user]);
+            echo $this->cell("Province.Province",['config'=>'all',"type"=>"edit",'data'=>$user]);
             echo $this->Form->input('addr01',['label'=>'Address']);
         ?>
     </fieldset>

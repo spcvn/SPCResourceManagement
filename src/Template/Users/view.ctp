@@ -56,7 +56,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($user->created->format('Y-m-d H:i')) ?></td>
+            <td><?=(isset($user->created))?$user->created->format('Y-m-d H:i'):"" ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Updated') ?></th>

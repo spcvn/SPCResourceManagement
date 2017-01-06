@@ -226,3 +226,6 @@ Plugin::load('Migrations');
 
 // Load CSV
 Plugin::load('CsvView');
+
+
+Plugin::load('Province', ['bootstrap' => false, 'routes' => true]);

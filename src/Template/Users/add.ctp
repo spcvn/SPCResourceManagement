@@ -21,10 +21,8 @@
             $arrDept = ['it'=>"IT",'hr'=>"HR",'admin'=>'Admin'];
             echo $this->Form->input('dept', ['type'=>'select','options'=>$arrDept]);
             echo $this->Form->input('mobile',['type'=>'text']);
-            echo $this->Form->input('birth_date', ['minYear' => '1930', 'maxYear'=> '2016']);
-            echo $this->Form->input('provinceid',['label'=>"Province",'type'=>'select','options'=>$province,'id'=>'provinceid']);
-            echo $this->Form->input('districtid',['label'=>"District",'type'=>'select','options'=>[],'id'=>'districtid']);
-            echo $this->Form->input('wardid',['label'=>"Ward",'type'=>'select','options'=>[],'id'=>'wardid']);
+              echo $this->Form->input('birth_date', ['minYear' => date("Y")-66, 'maxYear'=> date("Y")-17]);
+            echo $this->cell("Province.province",['config'=>'all']);
             echo $this->Form->input('addr01',['label'=>'Address']);
         ?>
     </fieldset>

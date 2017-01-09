@@ -11,6 +11,9 @@
 /* FORM  */
 
 /* Table */
+table tbody tr:nth-child(even){
+	background-color: #fcffd6;
+}
 table tbody tr:hover{
 	background-color:#e5e6e6;
 }

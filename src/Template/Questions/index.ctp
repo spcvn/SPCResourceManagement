@@ -31,9 +31,9 @@
                     <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-file-text-o']), ['action' => 'view', $question->id],['escape'=>false]) ?>
                     <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-pencil orange']), ['action' => 'edit', $question->id],['escape'=>false]) ?>
                     <?php if ($question->status == 1): ?>
-                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-check green']), ['action' => 'delete', $question->id], ['confirm' => __('Are you sure you want to deactive # {0}?', $question->id),'escape'=>false]) ?>
+                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'delete', $question->id], ['confirm' => __('Are you sure you want to deactive # {0}?', $question->id),'escape'=>false]) ?>
                     <?php else: ?>
-                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'active', $question->id], ['confirm' => __('Are you sure you want to active # {0}?', $question->id),'escape'=>false]) ?>
+                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-check green']), ['action' => 'active', $question->id], ['confirm' => __('Are you sure you want to active # {0}?', $question->id),'escape'=>false]) ?>
                     <?php endif; ?>
                 </td>
             </tr>

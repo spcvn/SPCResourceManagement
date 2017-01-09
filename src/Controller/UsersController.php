@@ -218,9 +218,12 @@ class UsersController extends AppController
                 $user = end($user);
                 $user->token = $this->addToken($user->id,$this->randomString(8));
                 $this->getMailer('User')->send('resetPassword', [$user]);
+                $this->Flash->success(__('Please check your email : '.$user->email));
+            }else{
+                $this->Flash->error(__('The email not exist.'));
+                return $this->redirect($this->Auth->logout());
             }
             $this->set('user', $user);
-
         }
     }
     public function resetPassword($token){

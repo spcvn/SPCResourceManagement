@@ -224,14 +224,6 @@ class UsersController extends AppController
     }
     public function resetPassword($token){
         $this->loadModel('Resetpasswords');
-        $tblReset = $this->Resetpasswords;
-        $exist = $tblReset->exists(['token'=>$token,'timeout >='=>time()]);
-        if(!$exist){
-            $this->Flash->error(__('Not exist reset link!'));
-            return $this->redirect($this->referer());
-        }else{
-            $this->set('token',$token);   
-        }
         if($this->request->is('post')){
             $data = $this->request->data;
             $tblReset = $this->Resetpasswords->find('all')->where(['token'=>$data['token']])->toArray();
@@ -240,10 +232,19 @@ class UsersController extends AppController
             $user->password = $data['password'];
             if($this->Users->save($user)){
                 $this->Flash->success(__('The user has been change password.'));
+                $this->Resetpasswords->delete($tblReset);
                 return $this->redirect($this->Auth->logout());
             } else {
                 $this->Flash->error(__('The user could not be actived. Please, try again.'));
             }
+        }
+        $tblReset = $this->Resetpasswords;
+        $exist = $tblReset->exists(['token'=>$token,'timeout >='=>time()]);
+        if(!$exist){
+            $this->Flash->error(__('Not exist reset link!'));
+            return $this->redirect($this->referer());
+        }else{
+            $this->set('token',$token);   
         }
     }
     private function addToken($id,$token,$time = 86400){

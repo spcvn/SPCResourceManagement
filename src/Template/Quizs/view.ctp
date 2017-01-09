@@ -45,7 +45,7 @@
     <?php foreach ($quiz_details as $quiz_detail): ?>
         <legend style="font-size:200%"><?= __('Question'. $i) ?></legend>
         <br>
-        <div><b><?= nl2br(htmlspecialchars($quiz_detail->question->content)) ?></b></div>
+        <div><b><?= nl2br($quiz_detail->question->content) ?></b></div>
         <?php foreach ($quiz_detail->question->answers as $answer): 
         ?>
             <div class=<?php if($quiz_detail->answer_id == $answer->id){

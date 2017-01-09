@@ -2,54 +2,91 @@
 	.no_display{
 		display: none;
 	}
+	.btnDelete{
+		float: right;
+		margin: -45px -20px auto;
+	}
 </style>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
+        <li class="heading"><?= __('Edit Question') ?></li>
         <li><?= $this->Html->link(__('List Questions'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="questions form large-9 medium-8 columns content">
-    <?= $this->Form->create($question) ?>
+    <?= $this->Form->create($question,['id'=>'qForm']) ?>
     <fieldset>
         <legend><?= __('Edit Question') ?></legend>
         <?php
             echo $this->Form->input('section', ['type' => 'select', 'options' => $section]);
-            $rank = ['1' => 'Easy', '2' => 'Medium'];
-			echo $this->Form->input('rank', ['type' => 'select', 'options' => $rank]);
 			echo $this->Form->input('content');
 		?>
 		<div id="answer">
 			<?php
 				$i = 0;
-				foreach($answers as $answer){
-					$i ++;
-					echo $this->Form->input('answer'.$i, ['default' => $answer, 'required' => 'true']);
+				foreach($answers as $key =>$answer){
+					$i++;
+					echo $this->Form->input($key, ['default' => $answer, 'required' => 'true']);
+					echo $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'ansdelete', $key],['escape'=>false,'class'=>'btnDelete']);
 				}
 			?>
 		</div>
         <a href="javascript:addAnswer()" class="button">+</a>
         <a class="delete_answer button" href="javascript:removeAnswer()">-</a>
 		<?php
-			echo $this->Form->input('correct_answer', ['default' => key($correct_answer)]);
+			echo $this->Form->label('Correct Answer');
+			echo $this->Form->select('correct_answer', $answers,['default'=>key($correct_answer)]);
         ?>
     </fieldset>
+    <?= $this->Html->link(__('Preview'),"javascript:review()",['class'=>'btnPreview']) ?>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
-
+<div id="review" style="display: none">
+	<div class="title">Title</div>
+	<div class="body">Body</div>
+	<div class="footer">
+		<?=$this->Html->link('Cancel','#',['class'=>'btn btn-cancel','rel'=>'modal:close'])?>
+		<?=$this->Html->link('Save','javascript:submit($("#qForm"))',['class'=>'btn btn-cancel'])?>
+	</div>
+</div>
 <script>
+	CKEDITOR.replace( 'content' );
+	
 	var answer_init = <?php echo count($answers); ?>;
 	var answer_no = answer_init;
 	
 	$( document ).ready(function() {
 		checkAnswer(answer_no);
 	});
-	
+	function review(){
+		$('.title').html('Question reviewing');
+		$('.body').html('<div class="question"><b>Question : </b>'+CKEDITOR.instances.content.getData()+"</div>");
+		var ans = $('#answer').find('input[type=text]');
+		$('.body').append();
+		ans.each(function(index){
+			$('.body').append(
+				'<div class="trow"><div class="col-left">Answer '
+				+(index+1)
+				+': </div><div>'
+				+$(this).val()
+				+'</div></div>'
+			);
+		});
+		var wWidth = $(window).width();
+        var dWidth = wWidth * 0.8;
+        console.log(dWidth);
+		$('#review').modal({
+			escapeClose: false,
+			  clickClose: false,
+			  showClose: false,
+			  width: dWidth
+		});
+		return false;
+	}
 	function addAnswer() {
 		answer_no++;
-		
 	    var x = document.createElement("INPUT");
 	    x.setAttribute("type", "text");
 	    x.setAttribute("name", "answer" + answer_no);

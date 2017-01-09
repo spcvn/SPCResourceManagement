@@ -1,3 +1,7 @@
+<?php
+    $arrStatus = ['0' => 'Disable', '1' => 'Active'];
+    $arrDept = ['it'=>"IT",'hr'=>"HR",'admin'=>'Admin'];
+?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -24,7 +28,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Status') ?></th>
-            <td><?= h($user->status) ?></td>
+            <td><?= h($arrStatus[$user->status]) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('First Name') ?></th>
@@ -36,31 +40,31 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Dept') ?></th>
-            <td><?= h($user->dept) ?></td>
+            <td><?= h((isset($arrDept[$user->dept]))?$arrDept[$user->dept]:$user->dept) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Mobile') ?></th>
             <td><?= h($user->mobile) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Addr01') ?></th>
+            <th scope="row"><?= __('Region') ?></th>
             <td><?= h($user->addr01) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Addr02') ?></th>
-            <td><?= h($user->addr02) ?></td>
+            <th scope="row"><?= __('Address') ?></th>
+            <td><?= h($user->province[0].", ".$user->district[0].", ".$user->ward[0]) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($user->created) ?></td>
+            <td><?=(isset($user->created))?$user->created->format('Y-m-d H:i'):"" ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Updated') ?></th>
-            <td><?= h($user->updated) ?></td>
+            <td><?= (isset($user->updated))?$user->updated->format('Y-m-d H:i'):"" ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Birth Date') ?></th>
-            <td><?= h($user->birth_date) ?></td>
+            <td><?= h($user->birth_date->format('Y-m-d')) ?></td>
         </tr>
     </table>
 </div>

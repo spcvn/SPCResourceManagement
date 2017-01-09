@@ -72,11 +72,6 @@ class QuestionsTable extends Table
             ->notEmpty('section');
 
         $validator
-            ->integer('rank')
-            ->requirePresence('rank', 'create')
-            ->notEmpty('rank');
-
-        $validator
             ->integer('status')
             ->requirePresence('status', 'create');
 

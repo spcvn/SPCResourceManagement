@@ -27,7 +27,7 @@ class QuizsController extends AppController
 		        }
 		]);
 		$quizs = $this->paginate($quiz);
-		$status = ['0' => 'New', '1' => 'Complete'];
+		$status = ['0' => 'New', '1' => 'Completed'];
 		
 		$this->set(compact('quizs'));
 		$this->set(compact('status'));
@@ -56,7 +56,7 @@ class QuizsController extends AppController
 	    $quiz_details = $this->QuizDetails->find()->contain(['Questions' => ['Answers']])
                                                ->where(['QuizDetails.quiz_id' => $id]);
 	    $quiz_details = $quiz_details->all();
-	    
+	    // echo "<pre>";print_r($quiz_details);exit();
 	    $this->set('quizs', $quizs);
 	    $this->set('candidates', $candidates);
 	    $this->set('quiz_details', $quiz_details);
@@ -75,22 +75,21 @@ class QuizsController extends AppController
     	}
         $this->loadModel('Quizs');
         $this->loadModel('Questions');
-        $max = $this->Questions->find('all')->count();
-    	
-    	$quizs = $this->Quizs->newEntity();
     	if ($this->request->is('post')){
-    		$arrDatas = $this->request->data;
+            $max = $this->Questions->find('all')->count();
+            $quizs = $this->Quizs->newEntity();
+    		
+            $arrDatas = $this->request->data;
     		if($arrDatas['number_questions'] > $max){
     		    $this->Flash->error(__('Limit questions. Please, try again.'));
     		    return $this->redirect(['controller' => 'quizs', 'action' => 'generate', $id]);
     		}
-    		
 			$quizs->candidate_id = $id;
 			$quizs->total = $arrDatas['number_questions'];
 			$quizs->time = $arrDatas['time'];
 			
-			$date_array = $arrDatas['quiz_date'];
-// 			$quizs->quiz_date = date('Y-m-d H:i:s', mktime($date_array['hour'], $date_array['minute'], 0,
+			// $date_array = $arrDatas['quiz_date'];
+			// $quizs->quiz_date = date('Y-m-d H:i:s', mktime($date_array['hour'], $date_array['minute'], 0,
 // 									$date_array['month'], $date_array['day'], $date_array['year']));
 			$quizs->code = $this->randomCode();
 			$quizs->url = $this->randomURL();
@@ -115,19 +114,19 @@ class QuizsController extends AppController
     	$this->loadModel('QuizDetails');
     	$this->loadModel('Answers');
     	$this->loadModel('Candidates');
-    	
     	// check quiz is exist
     	$quizId = $this->Quizs->find('all', ['fields' => 'id'])->where(['url' => $url])->first();
     	if(isset($quizId)){
     		$quiz_id = $quizId->toArray()['id'];
     	}else{
     		$this->Flash->error(__('The quiz could not be loaded. Please, try again.'));
+            exit();
     		return $this->redirect(['controller' => 'Error', 'action' => 'notExistQuiz']);
     	}
     	
     	// check status of quiz
     	$status = $this->Quizs->get($quiz_id, ['fields' => 'status'])->toArray();
-    	if($status['status'] == 1){
+    	if($status['status'] > 0){
     		return $this->redirect(['action' => 'complete']);
     	}
     	
@@ -156,7 +155,7 @@ class QuizsController extends AppController
     	$total = $this->Quizs->get($quiz_id, ['fields' => 'total'])->toArray();
     	
     	$candidate_info = $this->Candidates->get($candidate_id)->toArray();
-    	$candidate_name = $candidate_info['first_name'] . ' ' . $candidate_info['last_name'];
+    	$candidate_name = 
     	
     	$arrQuestions = [];
     	$question_ids = $this->QuizDetails->find('all', ['fields' => 'question_id'])
@@ -164,7 +163,7 @@ class QuizsController extends AppController
     	$question_ids = $question_ids->all()->toArray();
 		foreach($question_ids as $question_id){
 			$content = $this->Questions->get($question_id->question_id, ['fields' => 'content'])->toArray();
-			$answers = $this->Answers->find('list', ['keyField' => 'answer_id',
+			$answers = $this->Answers->find('list', ['keyField' => 'id',
 					'valueField' => 'answer',])
 					->where(['question_id' => $question_id->question_id])
 					->toArray();
@@ -175,26 +174,27 @@ class QuizsController extends AppController
 		}
 		if ($this->request->is('post')) {
 			$arrAnswers = $this->request->data;
-			// save QuizDetail
-			$correct = 0;
-			for($i=1; $i<=$total['total']; $i++){
-				if(isset($arrAnswers['answer'.$i])){
-					$is_correct = $this->updateAnswer($quiz_id, $arrAnswers['question_id'.$i], $arrAnswers['answer'.$i]);
-				}else{
-					continue;
-				}
-				if($is_correct == 1){
-					$correct++;
-				}
-			}
+            // save QuizDetail
+            $correct = 0;
+            for($i=1; $i<=$total['total']; $i++){
+                if(isset($arrAnswers['answer'.$i])){
+                    $is_correct = $this->updateAnswer($quiz_id, $arrAnswers['question_id'.$i], $arrAnswers['answer'.$i]);
+                }else{
+                    continue;
+                }
+                if($is_correct == 1){
+                    $correct++;
+                }
+            }
 			// save Quiz
 			$arrDatas = [];
-			$arrDatas['correct'] = $correct;
-			$arrDatas['status'] = 1;
+			$arrDatas['score'] = $correct;
+			$arrDatas['status'] = $this->request->data['status'];
 			
 			$quizs = TableRegistry::get('Quizs');
 			$quiz = $quizs->get($quiz_id);
 			$quizs->patchEntity($quiz, $arrDatas);
+
 			if($quizs->save($quiz)){
 				return $this->redirect(['action' => 'complete']);
 			}
@@ -204,7 +204,7 @@ class QuizsController extends AppController
 		}
 		
 		$this->set('time', $time);
-    	$this->set(compact('candidate_name'));
+    	$this->set(compact('candidate_info'));
     	$this->set(compact('arrQuestions'));
     }
     
@@ -232,7 +232,10 @@ class QuizsController extends AppController
     	$this->loadModel('QuizDetails');
     	
     	$arrQuestions = $this->Questions->find('list', ['fields' => 'id'])
-    									->where(['status' => 1])->toArray();
+    									->where(['status' => 1])
+                                        ->order('rand()')
+                                        ->limit($num)
+                                        ->toArray();
     	$arrQuestionQuizs = [];
     	
     	while(count($arrQuestionQuizs) < $num){
@@ -248,18 +251,18 @@ class QuizsController extends AppController
     		
     		$this->QuizDetails->save($arrQuizDetail);
     	}
+        // exit();
     }
     
     public function updateAnswer($quiz_id, $question_id, $answer_id){
     	$this->loadModel('Answers');
-    	$this->loadModel('QuizDetails');
-    	
-    	$is_correct = $this->Answers->get([$answer_id, $question_id], ['fields' => 'is_correct'])->toArray();
-    	$quizDetail = $this->QuizDetails->newEntity();
-    	$quizDetail->quiz_id = $quiz_id;
-    	$quizDetail->question_id = $question_id;
-    	$quizDetail->answer = $answer_id;
-    	$quizDetail->is_correct = $is_correct['is_correct'];
+        $this->loadModel('QuizDetails');
+        $is_correct = $this->Answers->get($answer_id,['fields'=>'is_correct'])->toArray();
+        $quizDetail = $this->QuizDetails->newEntity();
+        $quizDetail->quiz_id = $quiz_id;
+        $quizDetail->question_id = $question_id;
+        $quizDetail->answer_id = $answer_id;
+        $quizDetail->is_correct = $is_correct['is_correct'];
     	if($this->QuizDetails->save($quizDetail)){
     		return $is_correct['is_correct'];
     	}
@@ -269,7 +272,7 @@ class QuizsController extends AppController
     }
     
     public function complete(){
-    	;
+    	
     }
     
     public function generateDone($url){

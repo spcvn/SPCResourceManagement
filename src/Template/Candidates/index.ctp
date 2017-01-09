@@ -1,50 +1,42 @@
-
-<head>
-	 <link rel="stylesheet" href="../RM/webroot/css/style.css" type="text/css"/>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Candidate'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('Export Candidate'), ['action' => 'export']) ?></li>
+        <li class="heading"><?= __('CANDIDATE') ?></li>
+        <li><?= $this->Html->link(__('Add Candidate'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Export Candidate List'), ['action' => 'export']) ?></li>
     </ul>
 </nav>
 
 <div class="candidates index large-9 medium-8 columns content">
 
     <h3><?= __('Candidates') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0" data-col="candidates">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('first_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('birth_date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('mobile') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('position') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('expected_salary') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('interview_date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('score') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('result') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col" style="width: 3%"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col" style="width: 35%"><?= $this->Paginator->sort('last_name','Name') ?></th>
+                <th scope="col" style="width: 20%"><?= $this->Paginator->sort('birth_date','DOB') ?></th>
+                <th scope="col" style="width: 15%"><?= $this->Paginator->sort('mobile',"Contact") ?></th>
+                <th scope="col" style="width: 10%"><?= $this->Paginator->sort('position',"Applied position") ?></th>
+                <th scope="col" style="width: 17%" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($candidates as $candidate): ?>
+            <?php 
+            $cur = $this->Paginator->counter('{{start}}');
+            foreach ($candidates as $candidate): 
+                $fullname = h($candidate->first_name)." ".h($candidate->last_name);
+            ?>
+            
             <tr>
-                <td><?= $this->Number->format($candidate->id) ?></td>
-				<td><div id="linebreak"><?= h($candidate->first_name) ?></div></td>
-                <td><div id="linebreak"><?= h($candidate->last_name) ?></td>
-                <td><div id="linebreak"><?= h($candidate->birth_date) ?></td>
-                <td><div id="linebreak"><?= h($candidate->mobile) ?></td>
-                <td><div id="linebreak"><?= h($candidate->position) ?></td>
-                <td><div id="linebreak"><?= h($candidate->expected_salary) ?></td>
-                <td><div id="linebreak"><?= h($candidate->interview_date) ?></td>
-                <td><div id="linebreak"><?= h($candidate->score) ?></td>
-                <td><?= h($candidate->result) ?></td>
+                <td class="viewDetail" data-id="<?=$candidate->id?>"><?= $cur++?></td>
+                <td class="viewDetail" data-id="<?=$candidate->id?>"><div id="linebreak"><?= $fullname ?></td>
+                <td class="viewDetail" data-id="<?=$candidate->id?>"><div id="linebreak"><?= $candidate->birth_date->format('Y-m-d'); ?></td>
+                <td class="viewDetail" data-id="<?=$candidate->id?>"><div id="linebreak"><?= h($candidate->mobile) ?></td>
+                <td class="viewDetail" data-id="<?=$candidate->id?>"><div id="linebreak"><?= h($candidate->position) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $candidate->id]) ?><br>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $candidate->id]) ?><br>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $candidate->id], ['confirm' => __('Are you sure you want to delete # {0}?', $candidate->id)]) ?>
+                    <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-file-text-o']), ['action' => 'view', $candidate->id],['escape'=>false]) ?>
+                    <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-pencil orange']), ['action' => 'edit', $candidate->id],['escape'=>false]) ?>
+                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'delete', $candidate->id], ['confirm' => __('Are you sure you want to delete # {0}?', $candidate->id),'escape'=>false]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -52,9 +44,9 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('First')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('Last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
     </div>

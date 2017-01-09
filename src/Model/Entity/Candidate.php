@@ -8,17 +8,23 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $first_name
+ * @property string $middle_name
  * @property string $last_name
  * @property \Cake\I18n\Time $birth_date
+ * @property int $married
  * @property string $addr01
  * @property string $addr02
  * @property string $mobile
- * @property string $position
  * @property string $expected_salary
  * @property \Cake\I18n\Time $interview_date
- * @property \Cake\I18n\Time $start_work
- * @property string $score
+ * @property string $position
+ * @property int $score
  * @property string $result
+ * @property \Cake\I18n\Time $created_date
+ * @property \Cake\I18n\Time $update_date
+ *
+ * @property \App\Model\Entity\Quiz[] $quizs
+ * @property \App\Model\Entity\User[] $users
  */
 class Candidate extends Entity
 {

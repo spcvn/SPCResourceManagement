@@ -7,5 +7,6 @@
 			<?= $this->Form->input('password', array('type' => 'password')); ?>
 			<h2 class="text-center"><?= $this->Form->submit('Login', array('class' => 'button')); ?> </h2>
 		<?= $this->Form->end(); ?>
+		<?= $this->Html->link(__("forgot password"),["controller"=>"users","action"=>"forgotPassword"])?>
 	</div>
 </div>

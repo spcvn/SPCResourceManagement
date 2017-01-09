@@ -15,6 +15,7 @@
     <fieldset>
         <legend><?= __('Edit Candidate') ?></legend>
         <?php
+        // print_r($candidate->interview_date);exit();
             echo $this->Form->input('first_name');
             echo $this->Form->input('middle_name');
             echo $this->Form->input('last_name');
@@ -25,9 +26,8 @@
             echo $this->Form->input('mobile');
             echo $this->Form->input('position',['type'=>'select','options'=>$select->position]);
             echo $this->Form->input('expected_salary',['type'=>'select','options'=>$select->salary]);
-            echo $this->Form->input('interview_date',['type'=>'text','id'=>'datetimepicker','value' => $candidate->interview_date->format('Y-m-d H:i')]);
-            /*echo $this->Form->input('expected start working day');*/
-            /*echo $this->Form->input('score');*/
+            echo $this->Form->input('interview_date',['type'=>'text','id'=>'datetimepicker'
+                ,'value' => date("Y-m-d H:i:s", strtotime($candidate->interview_date))]);
             $results = ['0' => 'Fail', '2' => 'Pass',''=>'---'];
             echo $this->Form->input('result', ['type' => 'select', 'options' => $results, '']);
         ?>

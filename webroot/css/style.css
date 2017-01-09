@@ -7,6 +7,14 @@
 		width: 80%;
 	}
 }
+@media only screen and (min-width: 48.0625em){
+	.large-3{
+		width: 15%;
+	}	
+	.large-9 {
+		width: 85%;
+	}
+}
 
 /* FORM  */
 

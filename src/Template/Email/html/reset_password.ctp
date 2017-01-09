@@ -22,8 +22,8 @@
 <b>Dear <?=$user->first_name?>!</b>
 <p>this is forgot password email!<br/>
 your account : <b><?=$user->username?></b><br>
-please visit below <a href="<?=$link.$token?>">link</a>  to type new password.<br/>
-<a href="<?=$link.$token?>"><?=$link.$token?></a><br/>
+please visit below link to type new password.<br/>
+<?=$this->Html->link("CLick here to reset email!", ['controller'=>'users','action' => 'resetPassword',$token,'_full' => true])?><br/>
 thanks.</p>
 </body>
 </html>

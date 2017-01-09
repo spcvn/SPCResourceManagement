@@ -19,8 +19,9 @@
 	<title>Forgot password email</title>
 </head>
 <body>
-<b>Dear <?=$user?>!</b>
+<b>Dear <?=$user->first_name?>!</b>
 <p>this is forgot password email!<br/>
+your account : <b><?=$user->username?></b><br>
 please visit below <a href="<?=$link.$token?>">link</a>  to type new password.<br/>
 <a href="<?=$link.$token?>"><?=$link.$token?></a><br/>
 thanks.</p>

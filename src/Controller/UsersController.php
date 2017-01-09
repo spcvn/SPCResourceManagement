@@ -220,6 +220,7 @@ class UsersController extends AppController
                 $this->getMailer('User')->send('resetPassword', [$user]);
             }
             $this->set('user', $user);
+
         }
     }
     public function resetPassword($token){
@@ -232,7 +233,7 @@ class UsersController extends AppController
             $user->password = $data['password'];
             if($this->Users->save($user)){
                 $this->Flash->success(__('The user has been change password.'));
-                $this->Resetpasswords->delete($tblReset);
+                $re = $this->Resetpasswords->delete($tblReset[0]);
                 return $this->redirect($this->Auth->logout());
             } else {
                 $this->Flash->error(__('The user could not be actived. Please, try again.'));

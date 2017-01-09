@@ -85,3 +85,17 @@ table tbody tr:hover{
 	border-right: 1px solid #ccc;
 
 }
+#frmUsers input#password, #confirm-password{
+	width: 50%;
+}
+#btnPassword{
+	background-color: #f04124;
+	color: #fff;
+	padding: 15px 20px;
+	display: inline-block;
+}
+#btnPassword:hover{
+	background-color: #ff593e;
+}
+.pass{
+}

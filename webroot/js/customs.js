@@ -40,3 +40,10 @@ function submit(form){
 	console.log(form);
 	form.submit();
 }
+function generationPassword(){
+	$.post("/users/generate-random-string/8",null,function(res){
+		$('input[name=password]').val(res);
+		$('input[name=confirm_password]').val(res);
+		$('.pass').html(res);
+	});
+}

@@ -112,7 +112,7 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('dept', 'create')
-            ->notEmpty('dept');
+            ->allowEmpty('dept');
 
         $validator
             ->requirePresence('status', 'create')

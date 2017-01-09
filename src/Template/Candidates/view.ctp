@@ -6,6 +6,7 @@
         <li><?= $this->Form->postLink(__('Delete Candidate'), ['action' => 'delete', $candidate->id], ['confirm' => __('Are you sure you want to delete # {0}?', $candidate->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Candidates'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('Create Test'), ['controller' => 'quizs', 'action' => 'generate', $candidate->id]) ?> </li>
+        <li><?=$this->Html->link(__('Member of SPC'),['controller'=>'users','action'=>'changeUser',$candidate->id])?></li>
     </ul>
 </nav>
 <div class="candidates view large-9 medium-8 columns content">

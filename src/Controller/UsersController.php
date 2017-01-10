@@ -3,7 +3,6 @@ namespace App\Controller;
 use Cake\Event\Event;
 use App\Controller\AppController;
 use Province\Controller\ProvinceController;
-
 use Cake\Mailer\MailerAwareTrait;
 use Cake\Utility\Security;
 /**
@@ -232,14 +231,19 @@ class UsersController extends AppController
             $data = $this->request->data;
             $tblReset = $this->Resetpasswords->find('all')->where(['token'=>$data['token']])->toArray();
             $user = $this->Users->get($tblReset[0]->userid);
+            $user = $this->Users->patchEntity($user, $this->request->data);
             $user->updated = date("Y-m-d H:i:s");
-            $user->password = $data['password'];
+            $user->email = $user->email;
             if($this->Users->save($user)){
                 $this->Flash->success(__('The user has been change password.'));
                 $re = $this->Resetpasswords->delete($tblReset[0]);
                 return $this->redirect($this->Auth->logout());
             } else {
-                $this->Flash->error(__('The user could not be actived. Please, try again.'));
+                if($user->errors()){
+                    foreach ($user->errors() as $value) {
+                        $this->Flash->error(__($value[key($value)]));
+                    }
+                }
             }
         }
         $tblReset = $this->Resetpasswords;

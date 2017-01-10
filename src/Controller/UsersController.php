@@ -216,6 +216,7 @@ class UsersController extends AppController
             if(count($user)>0){
                 $user = end($user);
                 $user->token = $this->addToken($user->id,$this->randomString(8));
+                // echo "<pre>";print_r($user);exit();
                 $this->getMailer('User')->send('resetPassword', [$user]);
                 $this->Flash->success(__('Please check your email : '.$user->email));
             }else{
@@ -231,7 +232,7 @@ class UsersController extends AppController
             $data = $this->request->data;
             $tblReset = $this->Resetpasswords->find('all')->where(['token'=>$data['token']])->toArray();
             $user = $this->Users->get($tblReset[0]->userid);
-            $user = $this->Users->patchEntity($user, $this->request->data);
+            $user = $this->Users->patchEntity($user,$data);
             $user->updated = date("Y-m-d H:i:s");
             if($this->Users->save($user)){
                 $this->Flash->success(__('The user has been change password.'));
@@ -254,6 +255,12 @@ class UsersController extends AppController
             $this->set('token',$token);   
         }
     }
+    /*
+    * By UnoTrung
+    * function : addToken
+    * $time = 86400 = 1 day;
+    * -> token live in 1 day
+    */
     private function addToken($id,$token,$time = 86400){
         $this->loadModel('Resetpasswords');
         $tblReset = $this->Resetpasswords->newEntity();

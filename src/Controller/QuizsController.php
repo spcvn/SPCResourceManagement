@@ -27,7 +27,7 @@ class QuizsController extends AppController
 		        }
 		]);
 		$quizs = $this->paginate($quiz);
-		$status = ['0' => 'New', '1' => 'Completed'];
+		$status = ['0' => 'New', '1' => 'Completed','2' => 'Testing'];
 		
 		$this->set(compact('quizs'));
 		$this->set(compact('status'));

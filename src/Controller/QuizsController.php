@@ -115,19 +115,23 @@ class QuizsController extends AppController
     	$this->loadModel('Answers');
     	$this->loadModel('Candidates');
     	// check quiz is exist
-    	$quizId = $this->Quizs->find('all', ['fields' => 'id'])->where(['url' => $url])->first();
+    	$quizId = $this->Quizs->find('all', ['fields' => ['id','ipaddress']])->where(['url' => $url])->first();
     	if(isset($quizId)){
     		$quiz_id = $quizId->toArray()['id'];
     	}else{
     		$this->Flash->error(__('The quiz could not be loaded. Please, try again.'));
-            exit();
     		return $this->redirect(['controller' => 'Error', 'action' => 'notExistQuiz']);
     	}
-    	
     	// check status of quiz
     	$status = $this->Quizs->get($quiz_id, ['fields' => 'status'])->toArray();
     	if($status['status'] > 0){
-    		return $this->redirect(['action' => 'complete']);
+            if ($status['status'] == 2) {
+                if($_SERVER['REMOTE_ADDR'] != $quizId->ipaddress){
+                    return $this->redirect(['action' => 'complete']);
+                }
+            }else{
+    		  return $this->redirect(['action' => 'complete']);
+            }
     	}
     	
     	// check time duration
@@ -202,7 +206,12 @@ class QuizsController extends AppController
 				$this->Flash->error(__('The quizs could not be saved. Please, try again.'));
 			}
 		}
-		
+		$quizId->status = 2;//status is testing
+        $quizId->ipaddress = $_SERVER['REMOTE_ADDR'];
+        if(!$this->Quizs->save($quizId)){
+            return $this->redirect(['controller' => 'Error', 'action' => 'notExistQuiz']);
+        }
+
 		$this->set('time', $time);
     	$this->set(compact('candidate_info'));
     	$this->set(compact('arrQuestions'));

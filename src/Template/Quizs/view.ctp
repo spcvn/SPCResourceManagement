@@ -20,6 +20,9 @@
     .view{
         background-color: #DCDCDC;
     }
+    .answered{
+        text-decoration: line-through;
+    }
 </style>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -43,7 +46,7 @@
 <div class="questions large-9 medium-8 columns content clear right">
     <?php $i=1; ?>
     <?php foreach ($quiz_details as $quiz_detail): ?>
-        <legend style="font-size:200%"><?= __('Question'. $i) ?></legend>
+        <legend style="font-size:200%" class="<?=($quiz_detail->answer_id==0)?'answered':''?>"><?= __('Question'. $i) ?></legend>
         <br>
         <div><b><?= nl2br($quiz_detail->question->content) ?></b></div>
         <?php foreach ($quiz_detail->question->answers as $answer): 
@@ -68,5 +71,6 @@
     $(document).ready(function () {
     	$('.true').append( "<b> &#x02713</b>");
     	$('.wrong').append( "<b> &#x02717</b>");
+        $('.answered').attr('title','Not yet answer');
     });
 </script>

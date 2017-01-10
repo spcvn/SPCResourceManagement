@@ -233,7 +233,6 @@ class UsersController extends AppController
             $user = $this->Users->get($tblReset[0]->userid);
             $user = $this->Users->patchEntity($user, $this->request->data);
             $user->updated = date("Y-m-d H:i:s");
-            $user->email = $user->email;
             if($this->Users->save($user)){
                 $this->Flash->success(__('The user has been change password.'));
                 $re = $this->Resetpasswords->delete($tblReset[0]);

@@ -101,7 +101,7 @@ class QuestionsController extends AppController
                 $question_id = $question->id;
                 if(!$this->registerAnswer($question_id, $arrDatas)){
                     $this->Flash->error(__('The question not yet choosed correct answer. Please, try again.'));
-                    return $this->redirect($this->referer());
+                    return $this->redirect(['action'=>'edit',$question_id]);
                 }
                 return $this->redirect(['action' => 'index']);
             } else {

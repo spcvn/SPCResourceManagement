@@ -9,6 +9,12 @@
 </nav>
 <div class="questions index large-9 medium-8 columns content">
     <h3><?= __('Questions') ?></h3>
+    <?=$this->Form->create('search')?>
+    <fieldset>
+    <?=$this->Form->input('Search')?>
+    </fieldset>
+    <?=$this->Form->submit(__('Submit'))?>
+    <?=$this->Form->End()?>
     <table cellpadding="0" cellspacing="0" data-col="questions">
         <thead>
             <tr>

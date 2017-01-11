@@ -26,6 +26,7 @@ class QuizsController extends AppController
 		                      ->autoFields(false);
 		        }
 		]);
+        
 		$quizs = $this->paginate($quiz);
 		$status = ['0' => 'New', '1' => 'Completed','2' => 'Testing'];
 		

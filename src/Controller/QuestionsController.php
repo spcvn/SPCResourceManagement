@@ -99,8 +99,10 @@ class QuestionsController extends AppController
             $question->section = $arrDatas['section'];
             if ($this->Questions->save($question)) {
                 $question_id = $question->id;
-                $this->registerAnswer($question_id, $arrDatas);
-                
+                if(!$this->registerAnswer($question_id, $arrDatas)){
+                    $this->Flash->error(__('The question not yet choosed correct answer. Please, try again.'));
+                    return $this->redirect($this->referer());
+                }
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The question could not be saved. Please, try again.'));
@@ -227,12 +229,17 @@ class QuestionsController extends AppController
                 $ans->id = $ansId;
                 $ans->is_correct = ($ansId == $arrDatas['correct_answer'])? 1:0;
             }else{
-                $ans->is_correct = ($i == $arrDatas['correct_answer'])? 1:0;
+                if(isset($arrDatas['correct_answer'])){
+                    $ans->is_correct = ($i == $arrDatas['correct_answer'])? 1:0;
+                }else{
+                    return false;
+                }
             }
             $ans->answer = $content;
             $i++;
             $this->Answers->save($ans);
         }
+        return true;
     }
     
     // Export questions

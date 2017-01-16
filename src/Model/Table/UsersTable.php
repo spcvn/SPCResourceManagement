@@ -69,7 +69,11 @@ class UsersTable extends Table
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
-            ->notEmpty('email');
+            ->notEmpty('email')
+            ->add('email', 'validFormat', [
+                'rule' => 'email',
+                'message' => 'E-mail must be valid'
+            ]);
 
         $validator
             ->requirePresence('first_name', 'create')
@@ -117,13 +121,7 @@ class UsersTable extends Table
         $validator
             ->requirePresence('status', 'create')
             ->notEmpty('status');
-         $validator
-            ->requirePresence('email')
-            ->add('email', 'validFormat', [
-                'rule' => 'email',
-                'message' => 'E-mail must be valid'
-            ]);
-
+            
         $validator->add('password', [
             'compare' => [
                 'rule' => ['compareWith', 'confirm_password'],

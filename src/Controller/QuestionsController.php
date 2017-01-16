@@ -23,22 +23,36 @@ class QuestionsController extends AppController
     {
         $this->paginate = ['limit' => 5, 
                             'order' => ['id' => 'DESC']];
-    	$questions = $this->paginate($this->Questions);
-    	
+        $query = $this->Questions->find('all');
+        if($this->request->is('post')){
+            $query = $query->where([
+                'content LIKE'=>'%'.$this->request->data['Search'].'%'
+            ]);
+        }
+        
     	$this->loadModel('Sections');
     	$sections = $this->Sections->find('list');
     	$sections = $sections->toArray();
     	
     	$ranks = ['1' => 'Easy', '2' => 'Medium'];
     	$status = ['0' => 'Unused', '1' => 'Use'];
-    	
+    	// echo "<pre>"; print_r($this->paginate($query));exit();
     	$this->set(compact('sections'));
     	$this->set(compact('ranks'));
     	$this->set(compact('status'));
-        $this->set(compact('questions'));
+        $this->set('questions',$this->paginate($query));
         $this->set('_serialize', ['questions']);
     }
-
+    public function findQuestions(\Cake\ORM\Query $query, array $options)
+    {
+        $query
+            ->matching('Questions', function(\Cake\ORM\Query $q) use ($options) {
+                return $q->where([
+                    'Questions.content LIKE ' => $options['content']
+                ]);
+            });
+        return $query;
+    }
     /**
      * View method
      *
@@ -85,8 +99,10 @@ class QuestionsController extends AppController
             $question->section = $arrDatas['section'];
             if ($this->Questions->save($question)) {
                 $question_id = $question->id;
-                $this->registerAnswer($question_id, $arrDatas);
-                
+                if(!$this->registerAnswer($question_id, $arrDatas)){
+                    $this->Flash->error(__('The question not yet choosed correct answer. Please, try again.'));
+                    return $this->redirect(['action'=>'edit',$question_id]);
+                }
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The question could not be saved. Please, try again.'));
@@ -213,12 +229,17 @@ class QuestionsController extends AppController
                 $ans->id = $ansId;
                 $ans->is_correct = ($ansId == $arrDatas['correct_answer'])? 1:0;
             }else{
-                $ans->is_correct = ($i == $arrDatas['correct_answer'])? 1:0;
+                if(isset($arrDatas['correct_answer'])){
+                    $ans->is_correct = ($i == $arrDatas['correct_answer'])? 1:0;
+                }else{
+                    return false;
+                }
             }
             $ans->answer = $content;
             $i++;
             $this->Answers->save($ans);
         }
+        return true;
     }
     
     // Export questions

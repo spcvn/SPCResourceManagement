@@ -91,6 +91,9 @@ class QuizsTable extends Table
             ->requirePresence('total', 'create')
             ->notEmpty('total');
 
+        $validator
+            ->allowEmpty('ipaddress');
+
         return $validator;
     }
 

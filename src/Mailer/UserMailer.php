@@ -2,7 +2,6 @@
 namespace App\Mailer;
 
 use Cake\Mailer\Mailer;
-
 /**
  * User mailer.
  */
@@ -26,7 +25,7 @@ class UserMailer extends Mailer
 
     public function resetPassword($user)
     {
-    	$this->viewVars(['user'=>$user,'link'=>"http://rm.localhost/users/resetpassword/"]);
+    	$this->viewVars(['user'=>$user]);
         $this
             ->to($user->email)
             ->subject('[SPC-VN RM] Forget Password')

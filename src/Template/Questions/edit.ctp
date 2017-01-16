@@ -91,6 +91,7 @@
 	    x.setAttribute("type", "text");
 	    x.setAttribute("name", "answer" + answer_no);
 	    x.setAttribute("required", "true");
+	    x.setAttribute("onchange", "changeVal($(this),"+answer_no+")");
 	    
 	    var y = document.createElement("LABEL");
 	    y.setAttribute("for", "answer" + answer_no);
@@ -125,4 +126,15 @@
 			$(".delete_answer").addClass("no_display");
 		}
 	}
+	function changeVal(element,index){
+		var val = element.val().replace(/[a-z].	/, '');
+		if($('select[name=correct_answer] option[value='+index+']').length == 0){
+			// console.log($(this));
+			$('select[name=correct_answer]').append($('<option>', { value : index }).text(val)); 
+		}else{
+			$('select[name=correct_answer] option[value='+index+']').text(val); 
+		}
+		return element.val(val);
+	}
+
 </script>

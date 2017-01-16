@@ -219,7 +219,7 @@ Type::build('datetime')
  * Debug Kit should not be installed on a production system
  */
 if (Configure::read('debug')) {
-    // Plugin::load('DebugKit', ['bootstrap' => true]);
+    //Plugin::load('DebugKit', ['bootstrap' => true]);
 }
 
 Plugin::load('Migrations');
@@ -229,3 +229,5 @@ Plugin::load('CsvView');
 
 
 Plugin::load('Province', ['bootstrap' => false, 'routes' => true]);
+
+Plugin::load('AceTheme', ['bootstrap' => false, 'routes' => true]);

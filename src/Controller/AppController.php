@@ -63,5 +63,9 @@ class AppController extends Controller
         //$this->Auth->allow(['test', 'complete']);
     }
     //...
+    public function beforeRender(Event $event)
+    {
+        $this->viewBuilder()->theme('AceTheme');
+    }
 	
 }

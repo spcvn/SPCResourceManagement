@@ -19,7 +19,7 @@ class UserMailer extends Mailer
         $this
             ->to($user->email)
             ->subject(sprintf('Welcome %s', $user->name))
-            ->template('welcome_mail') // By default template with same name as method name is used.
+            ->template('welcome_mail') 
             ->layout('custom');
     }
 

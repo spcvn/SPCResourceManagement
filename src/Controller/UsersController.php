@@ -216,7 +216,6 @@ class UsersController extends AppController
             if(count($user)>0){
                 $user = end($user);
                 $user->token = $this->addToken($user->id,$this->randomString(8));
-                // echo "<pre>";print_r($user);exit();
                 $this->getMailer('User')->send('resetPassword', [$user]);
                 $this->Flash->success(__('Please check your email : '.$user->email));
             }else{

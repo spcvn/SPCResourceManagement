@@ -25,7 +25,11 @@ class QuizsTableTest extends TestCase
      */
     public $fixtures = [
         'app.quizs',
-        'app.candidates'
+        'app.candidates',
+        'app.users',
+        'app.quiz_details',
+        'app.questions',
+        'app.answers'
     ];
 
     /**
@@ -68,6 +72,16 @@ class QuizsTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

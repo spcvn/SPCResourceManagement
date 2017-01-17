@@ -9,6 +9,12 @@
 </nav>
 <div class="questions index large-9 medium-8 columns content">
     <h3><?= __('Questions') ?></h3>
+    <?=$this->Form->create('search')?>
+    <fieldset>
+    <?=$this->Form->input('Search')?>
+    </fieldset>
+    <?=$this->Form->submit(__('Submit'))?>
+    <?=$this->Form->End()?>
     <table cellpadding="0" cellspacing="0" data-col="questions">
         <thead>
             <tr>
@@ -31,9 +37,9 @@
                     <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-file-text-o']), ['action' => 'view', $question->id],['escape'=>false]) ?>
                     <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-pencil orange']), ['action' => 'edit', $question->id],['escape'=>false]) ?>
                     <?php if ($question->status == 1): ?>
-                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-check green']), ['action' => 'delete', $question->id], ['confirm' => __('Are you sure you want to deactive # {0}?', $question->id),'escape'=>false]) ?>
+                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'delete', $question->id], ['confirm' => __('Are you sure you want to deactive # {0}?', $question->id),'escape'=>false]) ?>
                     <?php else: ?>
-                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'active', $question->id], ['confirm' => __('Are you sure you want to active # {0}?', $question->id),'escape'=>false]) ?>
+                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-check green']), ['action' => 'active', $question->id], ['confirm' => __('Are you sure you want to active # {0}?', $question->id),'escape'=>false]) ?>
                     <?php endif; ?>
                 </td>
             </tr>

@@ -15,8 +15,10 @@ use Cake\ORM\Entity;
  * @property int $status
  * @property int $score
  * @property int $total
+ * @property string $ipaddress
  *
- * @property \Publishing\Model\Entity\Candidate $candidate
+ * @property \App\Model\Entity\Candidate $candidate
+ * @property \App\Model\Entity\QuizDetail[] $quiz_details
  */
 class Quiz extends Entity
 {

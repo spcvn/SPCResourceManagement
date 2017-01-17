@@ -2,7 +2,6 @@
 namespace App\Mailer;
 
 use Cake\Mailer\Mailer;
-
 /**
  * User mailer.
  */
@@ -20,13 +19,13 @@ class UserMailer extends Mailer
         $this
             ->to($user->email)
             ->subject(sprintf('Welcome %s', $user->name))
-            ->template('welcome_mail') // By default template with same name as method name is used.
+            ->template('welcome_mail') 
             ->layout('custom');
     }
 
     public function resetPassword($user)
     {
-    	$this->viewVars(['user'=>$user,'link'=>"http://rm.localhost/users/resetpassword/"]);
+    	$this->viewVars(['user'=>$user]);
         $this
             ->to($user->email)
             ->subject('[SPC-VN RM] Forget Password')

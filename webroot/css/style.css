@@ -7,6 +7,14 @@
 		width: 80%;
 	}
 }
+@media only screen and (min-width: 48.0625em){
+	.large-3{
+		width: 15%;
+	}	
+	.large-9 {
+		width: 85%;
+	}
+}
 
 /* FORM  */
 
@@ -101,4 +109,10 @@ table tbody tr:hover{
 	background-color: #ff593e;
 }
 .pass{
+}
+pre.prettyprint{
+	background-color: #F8F8F8;
+    border: 1px solid #DDD;
+    padding: 10px;
+    box-shadow: none;
 }

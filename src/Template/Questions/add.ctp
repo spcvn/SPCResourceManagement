@@ -40,6 +40,12 @@
 	$( document ).ready(function() {
 		CKEDITOR.replace( 'content' );
 		checkAnswer(answer_no);
+		$('input[type=text]').on('change',function(e){
+			$(this).val(function(index, value) {
+			   return value.replace(/[a-z].	/, '');
+			});
+
+		});
 	});
 	
 	function addAnswer() {

@@ -12,8 +12,6 @@
                 <th scope="col"><?= $this->Paginator->sort('mobile') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('interview_date') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('score') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created_date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('update_date') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -25,12 +23,10 @@
                 <td><?= h($candidate->middle_name) ?></td>
                 <td><?= h($candidate->last_name) ?></td>
                 <td><?= h($candidate->birth_date) ?></td>
-                <td><?= $this->Number->format($candidate->married) ?></td>
+                <td><?= $candidate->married ? 'Yes' : 'No' ?></td>
                 <td><?= h($candidate->mobile) ?></td>
                 <td><?= h($candidate->interview_date) ?></td>
                 <td><?= $this->Number->format($candidate->score) ?></td>
-                <td><?= h($candidate->created_date) ?></td>
-                <td><?= h($candidate->update_date) ?></td>
                 <td class="actions">
                     <div class="btn-group">
                         <?= $this->Html->link(

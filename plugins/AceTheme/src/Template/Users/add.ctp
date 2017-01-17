@@ -1,38 +1,55 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Candidates'), ['controller' => 'Candidates', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Candidate'), ['controller' => 'Candidates', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
+<div class="users form-register content">
     <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Add User') ?></legend>
-        <?php
-            echo $this->Form->input('username');
-            echo $this->Form->input('password');
-            echo $this->Form->input('salt');
-            echo $this->Form->input('email');
-            echo $this->Form->input('first_name');
-            echo $this->Form->input('middle_name');
-            echo $this->Form->input('last_name');
-            echo $this->Form->input('addr01');
-            echo $this->Form->input('addr02');
-            echo $this->Form->input('provinceid');
-            echo $this->Form->input('districtid');
-            echo $this->Form->input('wardid');
-            echo $this->Form->input('birth_date');
-            echo $this->Form->input('mobile');
-            echo $this->Form->input('dept');
-            echo $this->Form->input('avatar');
-            echo $this->Form->input('status');
-            echo $this->Form->input('role');
-            echo $this->Form->input('candidate_id', ['options' => $candidates]);
-            echo $this->Form->input('start_work');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="box-form">
+                <h2>Create An Account</h2>
+                <?php
+                echo $this->Form->input('username',['type'=>'text']);
+                echo $this->Form->input('password');
+                echo $this->Form->input('confirm-password');
+                ?>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="box-form">
+                <h2>Information Account</h2>
+                <?php
+                echo $this->Form->input('first_name',['type'=>'text']);
+                echo $this->Form->input('middle_name',['type'=>'text']);
+                echo $this->Form->input('last_name',['type'=>'text']);
+                echo $this->Form->input('email',['type'=>'email']);
+                echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
+                ?>
+                <div class="row">
+                    <div class="col-md-4">
+                        <?php echo $this->Form->input('provinceid',['label'=>'Province', 'type'=>'select']); ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo $this->Form->input('districtid',['label'=>'District', 'type'=>'select']);;?>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo $this->Form->input('wardid',['label'=>'Ward', 'type'=>'select']);?>
+                    </div>
+                </div>
+                <?php
+                echo $this->Form->input('birth',['class'=>'datepicker','label'=>'Birthday']);
+                echo $this->Form->input('mobile',['type'=>'text']);
+                //            echo $this->Form->input('dept');
+                echo $this->Form->input('start_work',['type'=>'text','class'=>'datepicker']);
+                ?>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <?= $this->Form->button(__('Submit')) ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+        $( ".datepicker" ).datepicker();
+    } );
+</script>

@@ -1,16 +1,6 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Candidate'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Quizs'), ['controller' => 'Quizs', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Quiz'), ['controller' => 'Quizs', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="candidates index large-9 medium-8 columns content">
+<div class="candidates index content">
     <h3><?= __('Candidates') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
@@ -42,9 +32,22 @@
                 <td><?= h($candidate->created_date) ?></td>
                 <td><?= h($candidate->update_date) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $candidate->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $candidate->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $candidate->id], ['confirm' => __('Are you sure you want to delete # {0}?', $candidate->id)]) ?>
+                    <div class="btn-group">
+                        <?= $this->Html->link(
+                            $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
+                            ['action' => 'view', $candidate->id],
+                            ['class'=>'btn btn-xs btn-success','title'=>__('Show Details'),'escape'=>false]) ?>
+                        <?= $this->Html->link(
+                            $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil bigger-120']),
+                            ['action' => 'edit', $candidate->id],
+                            ['class'=>'btn btn-xs btn-info', 'title'=>'Edit','escape'=>false]) ?>
+                        <?= $this->Form->postLink(
+                            $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
+                            ['action' => 'delete', $candidate->id],
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $candidate->id),"class"=>'btn btn-xs btn-danger','title'=>'Delete','escape'=>false]) ?>
+
+                    </div>
+
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -52,11 +55,11 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first(__('first')) ?>
+            <?= $this->Paginator->prev(__('previous')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('next')) ?>
+            <?= $this->Paginator->last(__('last')) ?>
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>

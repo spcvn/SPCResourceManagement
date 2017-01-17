@@ -22,8 +22,10 @@ class UsersController extends AppController
     use MailerAwareTrait;
     public function index()
     {
+        $pro = new ProvinceController;
         $users = $this->paginate($this->Users);
         $status = ['0' => 'Disable', '1' => 'Active'];
+        $this->set('province',$pro->getProvince());
         $this->set(compact('users'));
         $this->set(compact('status'));
         $this->set('_serialize', ['users']);
@@ -147,6 +149,7 @@ class UsersController extends AppController
                 $this->Flash->error(__('Invalid username or password, try again'));
             }
         }
+        $this->viewBuilder()->layout('login-form');
     }
 
     public function logout()

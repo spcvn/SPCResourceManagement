@@ -129,13 +129,6 @@
 
                     <b class="arrow"></b>
                 </li>
-                <li class="">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Export Candidate List'),
-                        ['controller'=>'candidates','action'=>'export'],
-                        ['escape'=>false])?>
-
-                </li>
             </ul>
         </li>
         <li class="">
@@ -172,12 +165,6 @@
                         ['escape'=>false])?>
 
                     <b class="arrow"></b>
-                </li>
-                <li class="">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Delete User'),
-                        ['controller'=>'users','action'=>'delete'],
-                        ['escape'=>false])?>
                 </li>
             </ul>
         </li>

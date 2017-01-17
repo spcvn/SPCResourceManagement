@@ -7,42 +7,48 @@
         margin: -45px -20px auto;
     }
 </style>
-
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Edit Question') ?></li>
-        <li><?= $this->Html->link(__('List Questions'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
 <div class="questions form form-question content">
     <?= $this->Form->create($question,['id'=>'qForm']) ?>
     <fieldset>
         <legend><?= __('Edit Question') ?></legend>
         <?php
         echo $this->Form->input('section', ['type' => 'select', 'options' => $section]);
-        echo $this->Form->input('content');
+        echo $this->Form->label('Content');
+        echo $this->Form->input('content',['templates' => [
+            'formGroup' => '{{input}}'
+        ]]);
         ?>
         <div id="answer">
             <?php
             $i = 0;
             foreach($answers as $key =>$answer){
                 $i++;
-                echo $this->Form->input($key, ['default' => $answer, 'required' => 'true']);
+                ?>
+                <div class="row-answer">
+                <?php
+                echo $this->Form->input(__('Answer ').$i, ['default' => $answer, 'required' => 'true']);
                 echo $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'ansdelete', $key],['escape'=>false,'class'=>'btnDelete']);
+                ?>
+                </div>
+                <?php
             }
             ?>
         </div>
         <div class="actions">
             <a href="javascript:addAnswer()" class="btn btn-success">Add +</a>
-            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer() " title="">Remove -</a>
+            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()">Remove -</a>
         </div>
-        <?php
-        echo $this->Form->label('Correct Answer');
-        echo $this->Form->select('correct_answer', $answers,['default'=>key($correct_answer)]);
-        ?>
+        <div class="input select">
+            <?php
+            echo $this->Form->label('Correct Answer');
+            echo $this->Form->select('correct_answer', $answers,['default'=>key($correct_answer)]);
+            ?>
+        </div>
     </fieldset>
-    <?= $this->Html->link(__('Preview'),"javascript:review()",['class'=>'btnPreview']) ?>
-    <?= $this->Form->button(__('Submit')) ?>
+    <div class="Actions-end clearfix">
+        <?= $this->Html->link(__('Preview'),"javascript:review()",['class'=>'btn btn-info btnPreview']) ?>
+        <?= $this->Form->button(__('Submit')) ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>
 <div id="review" style="display: none">
@@ -54,11 +60,15 @@
     </div>
 </div>
 <script>
-    CKEDITOR.replace( 'content' );
+
 
     var answer_init = <?php echo count($answers); ?>;
     var answer_no = answer_init;
 
+    $( document ).ready(function() {
+        checkAnswer(answer_no);
+        CKEDITOR.replace( 'content' );
+    });
     function review(){
         $('.title').html('Question reviewing');
         $('.body').html('<div class="question"><b>Question : </b>'+CKEDITOR.instances.content.getData()+"</div>");
@@ -93,10 +103,11 @@
 
         var y = document.createElement("LABEL");
         y.setAttribute("for", "answer" + answer_no);
-        y.innerHTML = "Answer" + answer_no;
+        y.innerHTML = "Answer " + answer_no;
 
-        var z = document.createElement("LABEL");
+        var z = document.createElement("div");
         z.setAttribute("id", "answer" + answer_no);
+        z.setAttribute("class","input text")
         z.appendChild(y);
         z.appendChild(x);
         answer = document.getElementById("answer");

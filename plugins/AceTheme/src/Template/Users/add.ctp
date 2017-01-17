@@ -7,7 +7,7 @@
                 <?php
                 echo $this->Form->input('username',['type'=>'text']);
                 echo $this->Form->input('password');
-                echo $this->Form->input('confirm-password');
+                echo $this->Form->input('confirm-password',['type']);
                 ?>
             </div>
         </div>

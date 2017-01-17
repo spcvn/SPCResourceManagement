@@ -18,11 +18,11 @@
                 </tr>
             </table>
             <div class="content-question">
-                <h4 class="ttl"><?= __('Content') ?></h4>
+                <h4><?= __('Content') ?></h4>
                 <?= $this->Text->autoParagraph(h($question->content)); ?>
             </div>
             <div class="related">
-                <h4 class="ttl"><?= __('Related Answers') ?></h4>
+                <h4><?= __('Related Answers') ?></h4>
                 <?php $i=1; if (!empty($question->answers)): ?>
                     <table class="table table-bordered table-hover">
                         <thead>
@@ -61,7 +61,7 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4 class="ttl"><?= __('Related Quiz Details') ?></h4>
+                <h4><?= __('Related Quiz Details') ?></h4>
                 <?php if (!empty($question->quiz_details)): ?>
                     <table class="table table-bordered table-hover">
                         <tr>

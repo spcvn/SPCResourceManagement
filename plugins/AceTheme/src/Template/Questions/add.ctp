@@ -6,7 +6,6 @@
 <div class="questions form form-question content">
     <?= $this->Form->create($question) ?>
     <fieldset>
-        <legend><?= __('Add Question') ?></legend>
         <?php
             echo $this->Form->input('section', ['type' => 'select', 'options' => $section]);
             echo $this->Form->label('Content');
@@ -15,12 +14,14 @@
             ]]);
         ?>
         <div id="answer"><h4>Answer <span>(Please check in which is correct.)</span></h4></div>
-        <div class="actions">
+        <div class="actions nopd">
             <a href="javascript:addAnswer()" class="btn btn-success" title="add a new answer">Add +</a>
             <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="remove an answer">Remove -</a>
         </div>
     </fieldset>
-    <?= $this->Form->button(__('Save ').$this->Html->tag('i','',['class'=>'fa fa-save'])) ?>
+    <div class="Actions text-center">
+        <?= $this->Form->button(__('Save ').$this->Html->tag('i','',['class'=>'fa fa-save'])) ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>
 

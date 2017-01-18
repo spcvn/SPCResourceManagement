@@ -65,7 +65,7 @@ class AppController extends Controller
     //...
     public function beforeRender(Event $event)
     {
-        // $this->viewBuilder()->theme('AceTheme');
+        $this->viewBuilder()->theme('AceTheme');
     }
 	
 }

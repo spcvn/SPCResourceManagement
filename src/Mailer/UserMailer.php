@@ -32,4 +32,13 @@ class UserMailer extends Mailer
             ->emailFormat('html')
             ->set(['token' => $user->token]);
     }
+    public function memberOfSpc($user,$password)
+    {
+        $this->viewVars(['user'=>$user]);
+        $this
+            ->to($user->email)
+            ->subject('[SPC-VN RM] Welcome to SPC-VN')
+            ->emailFormat('html')
+            ->set(['password' => $password]);
+    }
 }

@@ -211,8 +211,10 @@ form button[type=submit]:hover{
     font-size: 20px;
     margin-bottom: 20px;
 }
-ttl-light{
+.ttl-light{
     font-weight: 300;
+    color: #2679B5;
+    margin-bottom: 30px;
 }
 .content-question{
     padding: 30px 0;
@@ -288,9 +290,47 @@ ttl-light{
 .Actions-end button[type=submit]{
     float: right;
 }
+.table-review{
+    width: 100%;
+}
 .table-review th,
 .table-review td{
-    padding: 8px 0;
+    padding: 8px 5px;
+    vertical-align: top;
+}
+.table-review td{
+    color: #8089A0;
+}
+.users.view .wrap-review{
+    width: 80%;
+    margin: 0 auto;
+    padding: 0 30px 30px;
+    border: 1px double #438EB9;
+    position: relative;
+}
+.users.view .btn-edit-simple{
+    min-width: 120px;
+    text-align: center;
+    border: 1px solid #8089A0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 10px;
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+.users.view .btn-edit-simple:hover,
+.users.view .btn-edit-simple:focus{
+    text-decoration: none;
+    border-color: #438EB9;
+}
+.users .wrap-edit{
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px double #438EB9;
 }
 /*end radio custom*/
 @media (min-width: 768px) {
@@ -312,6 +352,15 @@ ttl-light{
     .form .file label,
     .form .textarea label{
         width: 15%;
+    }
+    .users.form .wrap-edit .text input,
+    .users.form .wrap-edit .email input,
+    .users.form .wrap-edit .password input,
+    .users.form .wrap-edit .select input,
+    .users.form .wrap-edit .number input,
+    .users.form .wrap-edit .file input,
+    .users.form .wrap-edit .textarea textarea{
+        width: 84%;
     }
 }
 @media (max-width: 479px) {

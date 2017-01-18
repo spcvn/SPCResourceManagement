@@ -205,7 +205,7 @@
                         <?= $this->Html->image('/images/avatars/default-user-icon.png',['class'=>'nav-user-photo', 'alt'=>'Jason\'s Photo'])?>
                         <span class="user-info">
 									<small>Welcome,</small>
-									Jason
+									Admin
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>

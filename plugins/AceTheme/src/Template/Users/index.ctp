@@ -15,7 +15,7 @@
             </thead>
             <tbody>
             <?php $i = 0;
-            $province[0] = "-";
+            $province[0] = $province[1] = "-";
             foreach ($users as $user): ;?>
 
                 <tr>

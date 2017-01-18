@@ -1,4 +1,4 @@
-<div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+<div id="sidebar" class="sidebar responsive ace-save-state">
     <script type="text/javascript">
         try{ace.settings.loadState('sidebar')}catch(e){}
     </script>
@@ -154,14 +154,6 @@
                     <?= $this->Html->link(
                             $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Add User'),
                         ['controller'=>'users','action'=>'add'],
-                        ['escape'=>false])?>
-
-                    <b class="arrow"></b>
-                </li>
-                <li class="">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Edit User'),
-                        ['controller'=>'users','action'=>'edit'],
                         ['escape'=>false])?>
 
                     <b class="arrow"></b>

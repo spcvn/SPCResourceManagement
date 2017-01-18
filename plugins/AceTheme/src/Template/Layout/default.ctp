@@ -1,5 +1,5 @@
-<?= $this->element('header') ?>
-<?= $this->element('header-main'); ?>
+<?= $this->element('headtag') ?>
+<?= $this->element('header'); ?>
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
             try{ace.settings.loadState('main-container')}catch(e){}
@@ -15,7 +15,7 @@
                             <i class="ace-icon fa fa-home home-icon"></i>
                             <a href="#">Home</a>
                         </li>
-                        <li class="active">Dashboard</li>
+                        <li class="active"><?=isset($title)?$title:''?></li>
                     </ul><!-- /.breadcrumb -->
 
                     <div class="nav-search" id="nav-search">

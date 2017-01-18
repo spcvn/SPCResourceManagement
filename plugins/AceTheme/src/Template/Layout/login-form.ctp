@@ -1,4 +1,4 @@
-<?= $this->element('header') ?>
+<?= $this->element('headtag') ?>
 <body class="login-layout light-login">
 <div class="main-container">
     <div class="main-content">

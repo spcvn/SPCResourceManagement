@@ -59,16 +59,6 @@
                                 </div>
 
                                 <div class="ace-settings-item">
-                                    <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
-                                    <label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-                                </div>
-
-<!--                                <div class="ace-settings-item">-->
-<!--                                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />-->
-<!--                                    <label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>-->
-<!--                                </div>-->
-
-                                <div class="ace-settings-item">
                                     <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
                                     <label class="lbl" for="ace-settings-add-container">
                                         Inside
@@ -95,16 +85,6 @@
                             </div><!-- /.pull-left -->
                         </div><!-- /.ace-settings-box -->
                     </div><!-- /.ace-settings-container -->
-
-                    <div class="page-header">
-                        <h1>
-                            <?=isset($title)?$title:'Dashboard'?>
-                            <small>
-                                <i class="ace-icon fa fa-angle-double-right"></i>
-                                <?=isset($subTitle)?$subTitle:'overview & stats'?>
-                            </small>
-                        </h1>
-                    </div><!-- /.page-header -->
 
                     <?= $this->fetch('content')?>
 

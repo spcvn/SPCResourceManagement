@@ -15,7 +15,7 @@
             <a href="/" class="navbar-brand">
                 <small>
                     <i class="fa fa-users"></i>
-                    Resource Management Admin
+                    Resource Management
                 </small>
             </a>
         </div>

@@ -7,11 +7,22 @@
                 <?php
                 echo $this->Form->input('username',['type'=>'text']);
                 echo $this->Form->input('password');
-                echo $this->Form->input('confirm-password',['type']);
+                echo $this->Form->input('confirm-password',['type'=>'password']);
                 ?>
             </div>
         </div>
         <div class="col-md-7">
+            <div class="box-form">
+                <h2>Is Candidate</h2>
+                <div class="input select">
+                    <label>Select a Candidate:</label>
+                    <select name="candidate" id="provinceid">
+                        <option>Hien Nguyen</option>
+                        <option>Hung Nguyen</option>
+                        <option>Trung Nguyen</option>
+                    </select>
+                </div>
+            </div>
             <div class="box-form">
                 <h2>Information Account</h2>
                 <?php

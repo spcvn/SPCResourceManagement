@@ -6,9 +6,9 @@ $arrDept = ['it'=>"IT",'hr'=>"HR",'admin'=>'Admin'];
     <div class="wrap-review">
         <h3 class="ttl-light"><i class="fa fa-vcard"></i> <?= h($user->first_name).' '.h($user->last_name); ?>        </h3>
         <?= $this->Html->link(
-            $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']).__(' Edit Detail'),
+            $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
             ['action' => 'edit', $user->id],
-            ['class'=>'btn-edit-simple', 'title'=>'Edit','escape'=>false]) ?>
+            ['class'=>'btn-edit-simple', 'title'=>'Edit Detail','escape'=>false]) ?>
         <div class="row">
             <div class="col-sm-7">
                 <table class="table-review table-hover vertical-table">

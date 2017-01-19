@@ -104,7 +104,7 @@
         </li>
         <li class="">
             <?= $this->Html->link(
-                $this->Html->tag('i','',['class'=>'menu-icon fa fa-calendar'])
+                $this->Html->tag('i','',['class'=>'menu-icon fa fa-users'])
                 .$this->Html->tag('span',__('Candidate'),
                     ['class'=>'menu-text']).$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
                 '',

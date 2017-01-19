@@ -2,7 +2,7 @@
     <div class="col-xs-12">
         <!-- PAGE CONTENT BEGINS -->
         <div class="questions view content">
-            <h3 class="ttl-main no-line"><?= h($question->id) ?></h3>
+            <p>Section: <?= h($question->section); ?> </p>
             <table class="table table-bordered table-hover vertical-table" style="max-width: 600px;">
                 <tr>
                     <th scope="row"><?= __('Id') ?></th>

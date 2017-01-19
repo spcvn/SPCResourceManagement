@@ -1,3 +1,15 @@
+.ace-settings-container{
+    top: 5px;
+}
+.page-content{
+    padding-top: 50px;
+}
+.welcome-logo{
+    text-align: center;
+}
+.welcome-logo img{
+    max-width: 60%;
+}
 img{
     max-width: 100%;
     height: auto;
@@ -51,6 +63,8 @@ form button[type=submit],.btnPreview{
     border: none;
     text-transform: uppercase;
     font-weight: bold;
+    margin-top: 15px;
+    font-size: 16px;
 }
 
 .btnPreview, .form-question .btnPreview{
@@ -118,12 +132,25 @@ form button[type=submit]:hover{
     width: 100%;
 }
 /*form register*/
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    background: url("../images/arrow_down.png") no-repeat right 5px center;
+    height: 34px;
+    padding-right: 30px;
+}
+select::-ms-expand{
+    display: none;
+}
 .form-register{
     padding-top: 30px;
 }
 .form-register .box-form{
     border: 1px solid #b5b5b5;
     padding: 0 15px 30px;
+    margin-bottom: 30px;
 }
 .form-register .box-form h2{
     position: relative;
@@ -147,6 +174,7 @@ form button[type=submit]:hover{
 .form-register .text input{
     width: 100%;
     margin-bottom: 0;
+    color: #393939;
 }
 .form-register .actions{
     text-align: right;
@@ -309,28 +337,39 @@ form button[type=submit]:hover{
     position: relative;
 }
 .users.view .btn-edit-simple{
-    min-width: 120px;
     text-align: center;
     border: 1px solid #8089A0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
     display: inline-block;
-    padding: 10px;
+    padding: 10px 15px;
     position: absolute;
     right: 30px;
     top: 20px;
+    color: #8089A0;
 }
 .users.view .btn-edit-simple:hover,
 .users.view .btn-edit-simple:focus{
     text-decoration: none;
     border-color: #438EB9;
+    color: #438EB9;
 }
 .users .wrap-edit{
     width: 80%;
     margin: 0 auto;
     padding: 30px;
     border: 1px double #438EB9;
+}
+.users .wrap-edit h2{
+    position: relative;
+    top: -45px;
+    left: -5px;
+    display: inline-block;
+    background-color: #ffffff;
+    padding: 0 5px;
+    margin: 0;
+    font-size: 20px;
 }
 /*end radio custom*/
 @media (min-width: 768px) {

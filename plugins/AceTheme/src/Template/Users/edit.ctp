@@ -1,5 +1,6 @@
 <div class="users form content">
     <div class="wrap-edit">
+        <h2>Edit Information</h2>
         <?= $this->Form->create($user) ?>
         <fieldset>
             <?php

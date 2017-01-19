@@ -54,8 +54,17 @@ class AppController extends Controller
 		
         $this->set('is_login', $this->Auth->user());
     }
-	
-	public $paginate = [
+    function getDevelopMode(){
+
+        $develop_mode="web";
+        $hostname=strtolower(gethostname());
+        if((preg_match("#spc#",$hostname)))   $develop_mode="dev";
+        if((preg_match("#desktop-v1fq2s5#",$hostname))) $develop_mode="local";
+
+        return $develop_mode;
+    }
+
+    public $paginate = [
         'maxLimit' => 10
 	];
     public function beforeFilter(Event $event)
@@ -65,7 +74,11 @@ class AppController extends Controller
     //...
     public function beforeRender(Event $event)
     {
-        $this->viewBuilder()->theme('AceTheme');
+        $develop_mode = $this->getDevelopMode();
+        if($develop_mode == 'local'){
+            $this->viewBuilder()->theme('AceTheme');
+        }
+
     }
 	
 }

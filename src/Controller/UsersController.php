@@ -74,7 +74,12 @@ class UsersController extends AppController
                 // $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
+        $this->loadModel('Candidates');
+        $candidates = $this->Candidates->find('list',['keyField'=>'id','valueField'=>function($candidate){
+            return $candidate->first_name." ".$candidate->last_name;
+        }])->where(['result'=>2])->toArray();
         $this->set(compact('user'));
+        $this->set(compact('candidates'));
         $this->set('_serialize', ['user']);
     }
 

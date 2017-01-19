@@ -145,5 +145,18 @@ class CandidatesController extends AppController
         $this->viewBuilder()->className('CsvView.Csv');
         return;
     }
-    
+    public function getCandidate()
+    {
+        
+        if(!isset($this->request->data['id'])){
+            return false;
+        }
+        $select = new \stdClass();
+        $select->position = ['it' => 'IT Position', 'admin' => 'Admin'];
+        $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
+        $candidate = $this->Candidates->get($this->request->data['id'], [
+            'contain' => []
+        ])->toArray();
+        echo json_encode($candidate);exit();
+    }
 }

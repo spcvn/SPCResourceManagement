@@ -1,3 +1,6 @@
+<?php
+    $candidates['-1']=__('Select a candidate...');
+?>
 <div class="users form-register content">
     <?= $this->Form->create($user) ?>
     <div class="row">
@@ -14,14 +17,7 @@
         <div class="col-md-7">
             <div class="box-form">
                 <h2>Is Candidate</h2>
-                <div class="input select">
-                    <label>Select a Candidate:</label>
-                    <select name="candidate" id="provinceid">
-                        <option>Hien Nguyen</option>
-                        <option>Hung Nguyen</option>
-                        <option>Trung Nguyen</option>
-                    </select>
-                </div>
+                <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>'-1'])?>            
             </div>
             <div class="box-form">
                 <h2>Information Account</h2>
@@ -63,4 +59,15 @@
     $( function() {
         $( ".datepicker" ).datepicker();
     } );
+    $('select[name=candidate_id]').on('change',function(event){
+        var id = $(this).val();
+        var url = "<?=$this->Url->build(['controller'=>'candidates','action'=>'getCandidate'])?>"
+        $.post(url,{"id":id},function(resData){
+            var data = $.parseJSON(resData);
+            $.each(data,function(key,val){
+                $('input[name='+key+']').val(val);
+            })
+            console.log(data);
+        });
+    });
 </script>

@@ -11,7 +11,7 @@
             <tr>
                 <th scope="col" style="width: 3%"><?= $this->Paginator->sort('id',"No.") ?></th>
                 <th scope="col" style="width: 15%"><?= $this->Paginator->sort('username') ?></th>
-		<th scope="col" style="width: 25%"><?= $this->Paginator->sort('first_name') ?></th>
+		        <th scope="col" style="width: 25%"><?= $this->Paginator->sort('first_name') ?></th>
                 <th scope="col" style="width: 25%"><?= $this->Paginator->sort('last_name') ?></th>
                 <th scope="col" style="width: 10%"><?= $this->Paginator->sort('dept') ?></th>
                 <th scope="col" style="width: 10%"><?= $this->Paginator->sort('status') ?></th>

@@ -69,39 +69,83 @@
 
                     <b class="arrow"></b>
                 </li>
-                <li class="">
+                <li>
                     <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('  Export Question'),
-                        ['controller'=>'questions','action'=>'exportQuestion'],
-                        ['escape'=>false])?>
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right'])
+                        .$this->Html->tag('span',__('Report'),['class'=>'menu-text'])
+                        .$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
+                        ['controller'=>'questions','action'=>'#'],
+                        ['class'=>'dropdown-toggle', 'escape'=>false])?>
 
                     <b class="arrow"></b>
-                </li>
-                <li class="">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('  Export Answer'),
-                        ['controller'=>'questions','action'=>'exportAnswer'],
-                        ['escape'=>false])?>
 
-                    <b class="arrow"></b>
-                </li>
-                <li class="">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('  Import'),
-                        ['controller'=>'questions','action'=>'import'],
-                        ['escape'=>false])?>
+                    <ul class="submenu">
+                        <li class="">
+                            <?= $this->Html->link(
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('  Export Question'),
+                                ['controller'=>'questions','action'=>'exportQuestion'],
+                                ['escape'=>false])?>
 
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <?= $this->Html->link(
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('  Export Answer'),
+                                ['controller'=>'questions','action'=>'exportAnswer'],
+                                ['escape'=>false])?>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <?= $this->Html->link(
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('  Import'),
+                                ['controller'=>'questions','action'=>'import'],
+                                ['escape'=>false])?>
+
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </li>
         <li class="" id="Quizs">
             <?= $this->Html->link(
                 $this->Html->tag('i','',['class'=>'menu-icon fa fa-list-alt'])
-                .$this->Html->tag('span',__('Test Review'),
-                    ['class'=>'menu-text']),
-                ['controller'=>'quizs','action'=>'index'],
-                ['escape'=>false])?>
+                .$this->Html->tag('span',__('Exam'),
+                    ['class'=>'menu-text']).$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
+                '',
+                ['class'=>'dropdown-toggle','escape'=>false])?>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="" id="index">
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Test List'),
+                        ['controller'=>'quizs','action'=>'index'],
+                        ['escape'=>false])?>
+
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('List Exam Template'),
+                        ['controller'=>'exams','action'=>'index'],
+                        ['escape'=>false])?>
+
+                    <b class="arrow"></b>
+                </li>
+                <li class="">
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Exam Assignment'),
+                        ['controller'=>'exams','action'=>'exam_assignment'],
+                        ['escape'=>false])?>
+
+                    <b class="arrow"></b>
+                </li>
+
+            </ul>
         </li>
+
         <li class="" id="Candidates">
             <?= $this->Html->link(
                 $this->Html->tag('i','',['class'=>'menu-icon fa fa-users'])

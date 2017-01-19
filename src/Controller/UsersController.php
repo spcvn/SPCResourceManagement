@@ -19,6 +19,10 @@ class UsersController extends AppController
      * @return \Cake\Network\Response|null
      */
     use MailerAwareTrait;
+    public function beforeRender(Event $event){
+        parent::beforeRender($event); 
+        $this->set('active','user');
+    }
     public function index()
     {
         $pro = new ProvinceController;
@@ -126,13 +130,12 @@ class UsersController extends AppController
 
         return $this->redirect($this->referer());
     }
-	
-	public function beforeFilter(Event $event)
+    
+    public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
         $this->Auth->allow(['logout','forgotPassword','resetPassword']);
     }
-
     public function login()
     {
         if ($this->request->is('post')) {

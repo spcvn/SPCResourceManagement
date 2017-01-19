@@ -131,7 +131,7 @@
                 </li>
             </ul>
         </li>
-        <li class="">
+        <li class="" id="user">
             <?= $this->Html->link(
                     $this->Html->tag('i','',['class'=>'menu-icon fa fa-user-o'])
                     .$this->Html->tag('span',__('User'),

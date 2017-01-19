@@ -60,6 +60,7 @@ class AppController extends Controller
         $hostname=strtolower(gethostname());
         if((preg_match("#spc#",$hostname)))   $develop_mode="dev";
         if((preg_match("#desktop-v1fq2s5#",$hostname))) $develop_mode="local";
+        if((preg_match("#laptop-eln3pr95#",$hostname))) $develop_mode="local";
 
         return $develop_mode;
     }

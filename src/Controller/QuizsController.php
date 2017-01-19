@@ -13,6 +13,10 @@ use Cake\Event\Event;
 class QuizsController extends AppController
 {
 
+    public function beforeRender(Event $event){
+        parent::beforeRender($event); 
+        $this->set('active','exams');
+    }
     /**
      * Index method
      *

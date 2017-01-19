@@ -11,6 +11,12 @@ use App\Controller\AppController;
 class ExamsController extends AppController
 {
 
+
+    public function beforeRender(Event $event){
+        parent::beforeRender($event); 
+        $this->set('active','exams');
+    }
+
     /**
      * Index method
      *

@@ -64,7 +64,7 @@
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
-        var activeMenu = "<?=$active?>";
+        var activeMenu = '<?=isset($active)?$active:"home"?>';
     jQuery(function($) {
         $('.easy-pie-chart.percentage').each(function(){
             var $box = $(this).closest('.infobox');

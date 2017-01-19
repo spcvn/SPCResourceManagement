@@ -1,3 +1,6 @@
+.paginator p{
+    color: #9d9a9a;
+}
 .ace-settings-container{
     top: 5px;
 }
@@ -34,6 +37,15 @@ img{
 .form .file label,
 .form .textarea label{
     float: left;
+}
+.form .text input,
+.form .email input,
+.form .password input,
+.form .select input,
+.form .number input,
+.form .file input,
+.form .textarea textarea{
+    color: #393939;
 }
 .form .textarea textarea{
     min-height: 150px;
@@ -348,12 +360,14 @@ select::-ms-expand{
     right: 30px;
     top: 20px;
     color: #8089A0;
+    opacity: 0.75;
 }
 .users.view .btn-edit-simple:hover,
 .users.view .btn-edit-simple:focus{
     text-decoration: none;
     border-color: #438EB9;
     color: #438EB9;
+    opacity: 1;
 }
 .users .wrap-edit{
     width: 80%;

@@ -19,10 +19,6 @@ class UsersController extends AppController
      * @return \Cake\Network\Response|null
      */
     use MailerAwareTrait;
-    public function beforeRender(Event $event){
-        parent::beforeRender($event); 
-        $this->set('active','user');
-    }
     public function index()
     {
         $pro = new ProvinceController;

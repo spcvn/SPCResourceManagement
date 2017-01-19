@@ -1,6 +1,5 @@
 <?php
 namespace App\Controller;
-use Cake\Event\Event;
 use App\Controller\AppController;
 
 /**
@@ -10,12 +9,6 @@ use App\Controller\AppController;
  */
 class CandidatesController extends AppController
 {
-
-    public function beforeRender(Event $event){
-        parent::beforeRender($event); 
-        $this->set('active','candidate');
-    }
-
     /**
      * Index method`
      *

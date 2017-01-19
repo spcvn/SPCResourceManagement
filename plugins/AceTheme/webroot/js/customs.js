@@ -54,6 +54,6 @@ function sideBarActive($activeMenu){
 		$('#sidebar').find('#'+$activeMenu).addClass('active');
 		if($('#sidebar').find('.active').find('ul').hasClass('submenu')){
 			$('#sidebar').find('#'+$activeMenu).addClass('open');
+			$('#sidebar').find('.active').find('ul').find('#'+activeSubMenu).addClass('active');
 		}
-
 }

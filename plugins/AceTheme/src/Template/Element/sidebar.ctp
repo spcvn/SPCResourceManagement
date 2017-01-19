@@ -34,7 +34,7 @@
     </div><!-- /.sidebar-shortcuts -->
 
     <ul class="nav nav-list">
-        <li class="active">
+        <li class="" id="home">
             <a href="/">
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text"> Dashboard </span>
@@ -42,7 +42,7 @@
 
             <b class="arrow"></b>
         </li>
-        <li class="active open">
+        <li class="" id="questions">
             <?= $this->Html->link(
                     $this->Html->tag('i','',['class'=>'menu-icon fa fa-question-circle'])
                     .$this->Html->tag('span',__('Question'),['class'=>'menu-text'])
@@ -52,7 +52,7 @@
 
             <b class="arrow"></b>
 
-            <ul class="submenu">
+            <ul class="submenu" >
                 <li>
                     <?= $this->Html->link(
                         $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).'  List Question',
@@ -94,7 +94,7 @@
                 </li>
             </ul>
         </li>
-        <li class="">
+        <li class="" id="exams">
             <?= $this->Html->link(
                 $this->Html->tag('i','',['class'=>'menu-icon fa fa-list-alt'])
                 .$this->Html->tag('span',__('Test Review'),
@@ -102,7 +102,7 @@
                 ['controller'=>'quizs','action'=>'index'],
                 ['escape'=>false])?>
         </li>
-        <li class="">
+        <li class="" id="candidate">
             <?= $this->Html->link(
                 $this->Html->tag('i','',['class'=>'menu-icon fa fa-users'])
                 .$this->Html->tag('span',__('Candidate'),

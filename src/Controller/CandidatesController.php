@@ -1,6 +1,6 @@
 <?php
 namespace App\Controller;
-
+use Cake\Event\Event;
 use App\Controller\AppController;
 
 /**
@@ -11,16 +11,21 @@ use App\Controller\AppController;
 class CandidatesController extends AppController
 {
 
+    public function beforeRender(Event $event){
+        parent::beforeRender($event); 
+        $this->set('active','candidate');
+    }
+
     /**
-     * Index method
+     * Index method`
      *
      * @return \Cake\Network\Response|null
-	 
+     
      */
-	 public $paginate = [
+     public $paginate = [
     // Other keys here.
     'maxLimit' => 10
-	];
+    ];
 
     public function index()
     {

@@ -11,7 +11,8 @@ $(document).ready(function(){
     
 });
 jQuery(function(){
-    $('#sidebar').find('#'+activeMenu).addClass('active');
+    sideBarActive(activeMenu);
+    console.log(activeMenu);
 	/*$('#datepicker').datetimepicker({
     	timepicker:false,
   		format:'Y-m-d'
@@ -47,4 +48,12 @@ function generationPassword(){
 		$('input[name=confirm_password]').val(res);
 		$('.pass').html(res);
 	});
+}
+function sideBarActive($activeMenu){
+		$('#sidebar').find('li').removeClass('active open');
+		$('#sidebar').find('#'+$activeMenu).addClass('active');
+		if($('#sidebar').find('.active').find('ul').hasClass('submenu')){
+			$('#sidebar').find('#'+$activeMenu).addClass('open');
+		}
+
 }

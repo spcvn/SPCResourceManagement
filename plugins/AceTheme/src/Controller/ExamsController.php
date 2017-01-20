@@ -1,12 +1,12 @@
 <?php
-namespace App\Controller;
+namespace AceTheme\Controller;
 
-use App\Controller\AppController;
+use AceTheme\Controller\AppController;
 
 /**
  * Exams Controller
  *
- * @property \App\Model\Table\ExamsTable $Exams
+ * @property \AceTheme\Model\Table\ExamsTable $Exams
  */
 class ExamsController extends AppController
 {
@@ -107,8 +107,5 @@ class ExamsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-    }
-    public function examAssignment(){
-
     }
 }

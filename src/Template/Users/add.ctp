@@ -1,131 +1,249 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user,['id'=>'frmUsers']) ?>
-    <fieldset>
-        <legend><?= __('Add User') ?></legend>
-        <?php
-            echo $this->Form->input('username', ['type'=>'text','required' => true]);
-            echo $this->Form->input('password', ['required' => true]);
-            echo $this->Form->input('confirm_password',['type'=>'password','required' => true]);
-            echo $this->Form->input('email', ['required' => true]);
-            $status = ['0' => 'Disable', '1' => 'Active'];
-            echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
-            echo $this->Form->input('first_name', ['type'=>'text','required' => true]);
-            echo $this->Form->input('middle_name', ['type'=>'text']);
-            echo $this->Form->input('last_name', ['type'=>'text','required' => true]);
-            $arrDept = ['it'=>"IT",'hr'=>"HR",'admin'=>'Admin'];
-            echo $this->Form->input('dept', ['type'=>'select','options'=>$arrDept]);
-            echo $this->Form->input('mobile',['type'=>'text']);
-              echo $this->Form->input('birth_date', ['minYear' => date("Y")-66, 'maxYear'=> date("Y")-17]);
-            echo $this->cell("Province.Province",['config'=>'all']);
-            echo $this->Form->input('addr01',['label'=>'Address']);
-        ?>
-    </fieldset>
-    <?= $this->Html->link(__('Preview'),"javascript:review()",['id'=>'btnPreview']) ?>
-    <?= $this->Form->button(__('Submit')) ?>
+<?php
+    $candidates['-1']=__('Select a candidate...');
+    $user->positions['-1'] = __('Select a position...');
+?>
+<div class="users form-register content">
+    <?= $this->Form->create($user) ?>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="box-form">
+                <h2>Create An Account</h2>
+                <?php
+                echo $this->Form->error('error');
+                echo $this->Form->input('username',['type'=>'text']);
+                echo "<span class='text-error'>";
+                echo $this->Html->image('../images/loading.gif',['class'=>'user-loading hidden']);
+                echo "</span>";
+                echo $this->Form->input('password');
+                echo $this->Form->input('confirm_password',['type'=>'password']);
+                echo "<div class='pass'>&nbsp;</div>";
+                echo $this->Html->link(__("Generate password"),"javascript:generationPassword()",["id"=>"btnPassword"]);
+                ?>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="box-form">
+                <h2>Is Candidate</h2>
+                <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>'-1'])?>            
+            </div>
+            <div class="box-form">
+                <h2>Information Account</h2>
+                <?php
+                echo $this->Form->input('email',['type'=>'email']);
+                echo $this->Form->input('first_name',['type'=>'text']);
+                echo $this->Form->input('middle_name',['type'=>'text']);
+                echo $this->Form->input('last_name',['type'=>'text']);
+                echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
+                ?>
+                <div class="row col-3">
+                    <?php echo $this->cell("Province.Province",['config'=>'all']);?>
+                </div>
+                <?php
+                echo $this->Form->input('birth_date', ['class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
+                echo $this->Form->input('mobile',['type'=>'text']);
+                echo $this->Form->input('dept',['type'=>'select', 'options'=>$user->positions ,'default'=>'-1']);
+                echo $this->Form->input('start_work',['type'=>'text','class'=>'datepicker','default' => date('Y-m-d')]);
+                $status = ['0' => 'Active', '1' => 'Disable'];
+                echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
+                echo $this->Form->input('role', ['type' => 'hidden', 'value'=>'0']);
+                echo $this->Form->input('avatar', ['type' => 'hidden', 'value'=>'default.png']);
+                ?>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="row">
+            <div class="col-sm-6 text-left">
+                <a class="btn btnPreview" data-toggle="modal" data-target="#reviewUser">Preview</a>
+            </div>
+            <div class="col-sm-6">
+                <?= $this->Form->button(__('Submit')) ?>
+            </div>
+        </div>
+    </div>
     <?= $this->Form->end() ?>
 </div>
-<div id="review" style="display: none;">
-    <h3><?= h($user->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td id="id"></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Username') ?></th>
-            <td id="username"></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Email') ?></th>
-            <td id="email"></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Status') ?></th>
-            <td id="status"></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('First Name') ?></th>
-            <td id="first_name"></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Last Name') ?></th>
-            <td id="last_name"></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Dept') ?></th>
-            <td id="dept"></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Mobile') ?></th>
-            <td id="mobile"></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Address') ?></th>
-            <td id="addr01"></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Birth Date') ?></th>
-            <td id="birth_date"></td>
-        </tr>
-    </table>
-    <div class="footer">
-        <?=$this->Html->link('Cancel','#',['class'=>'btn btn-cancel','rel'=>'modal:close'])?>
-        <?=$this->Html->link('Save','javascript:submit($("#frmUsers"))',['class'=>'btn btn-cancel'])?>
+<div id="reviewUser" class="modal fade review-user" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title text-center">INFORMATION USER</h3>
+                <ul class="ulnostyle">
+                    <li>
+                        <h4><strong>Account</strong></h4>
+                        <table class="table ViewTable">
+                            <tr>
+                                <th style="width: 150px;">Username</th>
+                                <td style="width: 10px;">:</td>
+                                <td>thuyph</td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li>
+                        <h4><strong>Information</strong></h4>
+                        <table class="table">
+                            <tr>
+                                <th style="width: 150px;">Email</th>
+                                <td style="width: 10px;">:</td>
+                                <td>username@email.com</td>
+                            </tr>
+                            <tr>
+                                <th>First Name</th>
+                                <td>:</td>
+                                <td>First Name</td>
+                            </tr>
+                            <tr>
+                                <th>Middle Name</th>
+                                <td>:</td>
+                                <td>Middle Name</td>
+                            </tr>
+                            <tr>
+                                <th>Last Name</th>
+                                <td>:</td>
+                                <td>Last Name</td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td>:</td>
+                                <td>Nguyen Hien Le, Tan Binh, HCM</td>
+                            </tr>
+                            <tr>
+                                <th>Province</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>District</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Ward</th>
+                                <td>:</td>
+                                <td>Tan Binh</td>
+                            </tr>
+                            <tr>
+                                <th>Birthday</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Mobile</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Dept</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Start work</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+
+                        </table>
+                    </li>
+                </ul>
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <button type="button" class="btn btn-info">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
-
-<script type="text/javascript">
-    function review(){
-            var formdata = $('#frmUsers').serializeArray();
-            var data = {};
-            var arrStatus = {};
-            arrStatus[0] = "Disable";
-            arrStatus[1] = "Enable";
-
-            var arrPosition = {};
-            arrPosition['it']="IT Position";
-            arrPosition['admin']="Admin";
-            arrPosition['hr']="HR";
-            console.log(formdata);
-            $strDob = "";
-            $strAdd = "";
-            $(formdata).each(function(index, obj){
-                (obj.name == 'status')?obj.value = arrStatus[obj.value]:obj.value;
-                (obj.name == 'dept')?obj.value = arrPosition[obj.value]:obj.value;
-                $('#review #'+obj.name).html(obj.value);
-                if(obj.name == "birth_date[year]"){
-                    $strDob += obj.value+"-"; 
-                }
-                if(obj.name == "birth_date[month]"){
-                    $strDob += obj.value+"-"; 
-                }
-                if(obj.name == "birth_date[day]"){
-                    $strDob += obj.value; 
-                }
-                $('#review #birth_date').html($strDob);
-                //address 
-                if(obj.name == "provinceid" || obj.name == "districtid" || obj.name == "wardid"){
-                    $strAdd += $('#'+obj.name+" option:selected").text()+", "; 
-                }
-                $('#review #addr01').html($strAdd);
-            });
-            var wWidth = $(window).width();
-            var dWidth = wWidth * 0.8;
-            $('#review').modal({
-                escapeClose: false,
-                  clickClose: false,
-                  showClose: false,
-                  width: dWidth
-            });
-            return false;
-        }
-        $(function(){
-            $("#province").val($("#province").val()).change();
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+        $( ".datepicker" ).datepicker();
+    } );
+    $('select[name=candidate_id]').on('change',function(event){
+        var id = $(this).val();
+        var url = "<?=$this->Url->build(['controller'=>'candidates','action'=>'getCandidate'])?>"
+        $.post(url,{"id":id},function(resData){
+            var data = $.parseJSON(resData);
+            $.each(data,function(key,val){
+                $('input[name='+key+']').val(val);
+                if(key=='position')
+                    $('select[name=dept]').val(val);
+            })
+            console.log(data);
         });
+    });
+    var timer 
+    $('input[name=username]').on('blur',function(){
+        var eleUsername = $( this );
+        var classUsername = $( this ).parent('div.input');
+        classUsername.find('.error').remove();
+        classUsername.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
+        var processing=false;
+        clearTimeout(timer);
+        timer = setTimeout( function(){
+            if (!processing){
+                processing=true;
+                var url = "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>";
+                $.post(url,{ username:eleUsername.val() },function(res){
+                    var data = $.parseJSON(res);
+                    classUsername.find('.user-loading').remove();
+                    if(data.status == 'exist'){
+                        classUsername.addClass('has-error');
+                        classUsername.append('<i class="error">Username is exist, Please pick a another username!</i>');
+                    }else{
+                        classUsername.find('.error').remove();
+                        classUsername.removeClass('has-error');
+                    }
+                });
+            }
+        }
+        ,1000);
+    });
+    /*
+    * 
+    *    $('.has-error') : show error to input element
+    *
+    */
+    $('input[name=email]').on('blur',function(){
+
+        var eleEmail = $( this );
+        var classEmail = $('.input.email');
+        classEmail.find('.error').remove();
+        classEmail.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
+
+        var processing=false;
+        clearTimeout(timer);
+        timer = setTimeout( function(){
+            if (!processing){
+                processing=true;
+                var url = "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>";
+                $.post(url,{ email:eleEmail.val() },function(res){
+                    var data = $.parseJSON(res);
+                    classEmail.find('.user-loading').remove();
+                    if(data.status == 'exist'){
+                        classEmail.addClass('has-error');
+                        classEmail.append('<i class="error">Username is exist, Please pick a another email!</i>');
+                    }else{
+                        classEmail.find('.error').remove();
+                        classEmail.removeClass('has-error');
+                    }
+                });
+            }
+        }
+        ,1000);
+    });
 </script>

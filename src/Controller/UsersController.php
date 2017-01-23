@@ -162,6 +162,7 @@ class UsersController extends AppController
                 $this->Flash->error(__('Invalid username or password, try again'));
             }
         }
+        $this->set("title","Please Enter Your Information");
         $this->viewBuilder()->layout('login-form');
     }
 
@@ -242,6 +243,8 @@ class UsersController extends AppController
             }
             $this->set('user', $user);
         }
+        $this->set("title","Forget Password");
+        $this->viewBuilder()->layout('login-form');
     }
     public function resetPassword($token){
         $this->loadModel('Resetpasswords');
@@ -271,6 +274,8 @@ class UsersController extends AppController
         }else{
             $this->set('token',$token);   
         }
+        $this->set("title","Reset Pass");
+        $this->viewBuilder()->layout('login-form');
     }
     /*
     * By UnoTrung

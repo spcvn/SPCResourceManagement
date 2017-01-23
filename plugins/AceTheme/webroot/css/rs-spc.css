@@ -72,13 +72,12 @@ img{
 .spc-side-nav > li{
     list-style-type: none;
 }
-form button[type=submit],.btnPreview{
+form button[type=submit],.btnPreview, .btn-reset{
     padding: 15px 30px;
     text-align: center;
     min-width: 160px;
     border: none;
     text-transform: uppercase;
-    font-weight: bold;
     margin-top: 15px;
     font-size: 16px;
 }

@@ -1,53 +1,74 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('User') ?></li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="users index large-9 medium-8 columns content">
-    <h3><?= __('User List') ?></h3>
-    <table cellpadding="0" cellspacing="0" data-col="users">
-        <thead>
+<div class="users index content">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
             <tr>
-                <th scope="col" style="width: 3%"><?= $this->Paginator->sort('id',"No.") ?></th>
-                <th scope="col" style="width: 15%"><?= $this->Paginator->sort('username') ?></th>
-		        <th scope="col" style="width: 25%"><?= $this->Paginator->sort('first_name') ?></th>
-                <th scope="col" style="width: 25%"><?= $this->Paginator->sort('last_name') ?></th>
-                <th scope="col" style="width: 10%"><?= $this->Paginator->sort('dept') ?></th>
-                <th scope="col" style="width: 10%"><?= $this->Paginator->sort('status') ?></th>
-                <th scope="col" style="width: 15%" class="actions"><?= __('Actions') ?></th>
+                <th style="text-align: center;" scope="col"><?= $this->Paginator->sort('No.') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('last_name',['text'=>'Name']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('birth_date',['text'=>'Birthday Date']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('provinceid',['text'=>'Province']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('dept',['model'=>'Positions']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
-        </thead>
-        <tbody>
-            <?php 
-            $cur = $this->Paginator->counter('{{start}}');
-            foreach ($users as $user): ?>
-            <tr>
-                <td class="viewDetail" data-id="<?=$user->id?>"><?= h($cur++) ?></td>
-                <td class="viewDetail" data-id="<?=$user->id?>"><?= h($user->username) ?></td>
-                <td class="viewDetail" data-id="<?=$user->id?>"><?= h($user->first_name) ?></td>
-                <td class="viewDetail" data-id="<?=$user->id?>"><?= h($user->last_name) ?></td>
-                <td class="viewDetail" data-id="<?=$user->id?>"><?= h($user->dept) ?></td>
-                <td class="viewDetail" data-id="<?=$user->id?>"><?= $status[$user->status] ?></td>
-                <td class="actions">
-                    <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-file-text-o']), ['action' => 'view', $user->id],['escape'=>false]) ?>
-                    <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-pencil orange']), ['action' => 'edit', $user->id],['escape'=>false]) ?>
-                    <?php if ($user->status == 1): ?>
-                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-times red','title'=>'Deactive']), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to deactive # {0}?', $user->id),'escape'=>false]) ?>
-                    <?php else: ?>
-                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-check green','title'=>'Active']), ['action' => 'active', $user->id], ['confirm' => __('Are you sure you want to active # {0}?', $user->id),'escape'=>false]) ?>
-                    <?php endif; ?>
-                </td>
-            </tr>
+            </thead>
+            <tbody>
+            <?php $i = 0;
+            $province[0] = $province[1] = "-";
+            foreach ($users as $user): ;?>
+
+                <tr>
+                    <td style="text-align: center;"><?= $i++ ?></td>
+                    <td><?php echo h($user->last_name ." ". $user->middle_name ." ". $user->first_name); ?></td>
+                    <td><?=  date("Y/m/d",strtotime(h($user->birth_date))) ?></td>
+                    <td><?= $province[$user->provinceid] ?></td>
+                    <td><?= h($user->position->name)?></td>
+                    <td><?= h($user->status) ?></td>
+                    <td class="actions">
+                        <div class="btn-group">
+                            <?= $this->Html->link(
+                                $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
+                                ['action' => 'view', $user->id],
+                                ['class'=>'btn btn-xs btn-success','title'=>__('Show Details'),'escape'=>false]) ?>
+                            <?= $this->Html->link(
+                                $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil bigger-120']),
+                                ['action' => 'edit', $user->id],
+                                ['class'=>'btn btn-xs btn-info', 'title'=>'Edit','escape'=>false]) ?>
+                            <?= $this->Html->link(
+                                $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
+                                ['action' => 'delete', $user->id],
+                                ['class'=>'btn btn-xs btn-danger  btn-delete', 'title'=>'Delete','escape'=>false]) ?>
+                        </div>
+                    </td>
+                </tr>
             <?php endforeach; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('First')) ?>
+            <?= $this->Paginator->first( __('first')) ?>
+            <?= $this->Paginator->prev(__('previous')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->last(__('Last') . ' >>') ?>
+            <?= $this->Paginator->next(__('next')) ?>
+            <?= $this->Paginator->last(__('last')) ?>
         </ul>
-        <p><?= $this->Paginator->counter() ?></p>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.btn-delete').confirm({
+            content: "Are you sure you want to delete  #<span class='exam-name'>Thao Nguyen</span>?",
+            title: "",
+            buttons: {
+                yes: {
+                    btnClass:'btn-danger',
+                },
+                no: {
+                    keys: ['N'],
+                },
+            }
+        });
+    })
+</script>

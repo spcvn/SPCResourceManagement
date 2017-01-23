@@ -11,7 +11,7 @@
                 echo $this->Form->input('last_name',['type'=>'text']);
                 echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
                 ?>
-                <div class="row">
+                <div class="row col-3">
                     <?php echo $this->cell("Province.Province",['config'=>'all',"type"=>"edit",'data'=>$user]);?>
                 </div>
                 <?php

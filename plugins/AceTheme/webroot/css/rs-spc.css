@@ -1,3 +1,7 @@
+.btn:hover,
+.btn:focus{
+    border-color: transparent;
+}
 .paginator p{
     color: #9d9a9a;
 }
@@ -41,7 +45,7 @@ img{
 .form .text input,
 .form .email input,
 .form .password input,
-.form .select input,
+.form .select select,
 .form .number input,
 .form .file input,
 .form .textarea textarea{
@@ -80,7 +84,12 @@ form button[type=submit],.btnPreview{
 }
 
 .btnPreview, .form-question .btnPreview{
-    height: 49px;
+    height: 53px;
+    background-color: #6FB3DF!important;
+}
+.btnPreview:hover,
+.form-question .btnPreview:hover{
+    background-color: #438EB9!important;
 }
 .row-answer{
     position: relative;
@@ -430,6 +439,12 @@ select::-ms-expand{
     margin: 0;
     font-size: 20px;
 }
+.users.form .col-3 .select label {
+    width: 100%;
+}
+.users.form .col-3 .select select{
+    width: 100%;
+}
 /*end radio custom*/
 /*exam layout cs*/
 .table-blue > thead > tr{
@@ -486,6 +501,25 @@ select::-ms-expand{
 }
 /*add exam template end*/
 /*exam layout cs end*/
+.ulnostyle{
+    padding: 0;
+    margin: 0;
+}
+.ulnostyle > li{
+    list-style-type: none;
+}
+/*review modal*/
+.modal .modal-content{
+    padding: 30px;
+}
+.modal button.close{
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    font-size: 32px;
+}
+
+/*review modal end*/
 @media (min-width: 768px) {
     .form .text input,
     .form .email input,
@@ -513,7 +547,7 @@ select::-ms-expand{
     .users.form .wrap-edit .number input,
     .users.form .wrap-edit .file input,
     .users.form .wrap-edit .textarea textarea{
-        width: 84%;
+        width: 85%;
     }
 }
 @media (min-width: 1200px) {

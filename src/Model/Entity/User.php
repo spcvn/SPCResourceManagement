@@ -1,7 +1,8 @@
 <?php
 namespace App\Model\Entity;
-use Cake\Auth\DefaultPasswordHasher;
+
 use Cake\ORM\Entity;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * User Entity
@@ -16,9 +17,12 @@ use Cake\ORM\Entity;
  * @property string $last_name
  * @property string $addr01
  * @property string $addr02
+ * @property string $provinceid
+ * @property string $districtid
+ * @property string $wardid
  * @property \Cake\I18n\Time $birth_date
  * @property string $mobile
- * @property string $dept
+ * @property int $dept
  * @property string $avatar
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $updated

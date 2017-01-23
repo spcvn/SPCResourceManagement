@@ -71,6 +71,10 @@ class CandidatesTable extends Table
         $validator
             ->date('birth_date')
             ->requirePresence('birth_date', 'create')
+            ->add('birth_date','custom',[
+                    'rule'=>[$this,'birth_dateValidation'],
+                    'message'=>'Your Age have just over 13!'
+                ])
             ->notEmpty('birth_date');
 
         $validator
@@ -96,27 +100,34 @@ class CandidatesTable extends Table
             ->notEmpty('interview_date');
 
         $validator
+            ->integer('position')
             ->requirePresence('position', 'create')
-            ->allowEmpty('position');
+            ->notEmpty('position');
 
-        $validator
+        /*$validator
             ->integer('score')
-            ->allowEmpty('score');
+            ->allowEmpty('score');*/
 
-        $validator
+        /*$validator
             ->requirePresence('result', 'create')
-            ->allowEmpty('result');
+            ->notEmpty('result');*/
 
         $validator
             ->date('created_date')
             ->requirePresence('created_date', 'create')
-            ->allowEmpty('created_date');
+            ->notEmpty('created_date');
 
         $validator
             ->date('update_date')
             ->requirePresence('update_date', 'create')
-            ->allowEmpty('update_date');
+            ->notEmpty('update_date');
 
         return $validator;
+    }
+    public function birth_dateValidation($birthDate,$context){
+          $age = (date("md", date("U", mktime(0, 0, 0, $birthDate['day'], $birthDate['month'], $birthDate['year']))) > date("md")
+            ? ((date("Y") - $birthDate['year']) - 1)
+            : (date("Y") - $birthDate['year']));
+          return $age>13?true:false;
     }
 }

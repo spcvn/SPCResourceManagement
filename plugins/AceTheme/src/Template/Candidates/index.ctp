@@ -22,10 +22,10 @@
                 <td><?= h($candidate->first_name) ?></td>
                 <td><?= h($candidate->middle_name) ?></td>
                 <td><?= h($candidate->last_name) ?></td>
-                <td><?= h($candidate->birth_date) ?></td>
+                <td><?= h($candidate->birth_date->format('Y-m-d')) ?></td>
                 <td><?= $candidate->married ? 'Yes' : 'No' ?></td>
                 <td><?= h($candidate->mobile) ?></td>
-                <td><?= h($candidate->interview_date) ?></td>
+                <td><?= h($candidate->interview_date->format('Y-m-d')) ?></td>
                 <td><?= $this->Number->format($candidate->score) ?></td>
                 <td class="actions">
                     <div class="btn-group">

@@ -44,6 +44,9 @@ class UsersTable extends Table
             'foreignKey' => 'candidate_id',
             'joinType' => 'INNER'
         ]);
+        $this->belongsTo('Positions', [
+            'foreignKey' => 'dept'
+        ]);
     }
 
     /**
@@ -65,6 +68,9 @@ class UsersTable extends Table
         $validator
             ->requirePresence('password', 'create')
             ->notEmpty('password');
+
+        $validator
+            ->allowEmpty('salt');
 
         $validator
             ->email('email')
@@ -89,6 +95,7 @@ class UsersTable extends Table
         $validator
             ->requirePresence('addr01', 'create')
             ->notEmpty('addr01');
+
 
         $validator
             ->integer('provinceid')
@@ -115,30 +122,33 @@ class UsersTable extends Table
             ->notEmpty('mobile');
 
         $validator
+            ->integer('dept')
             ->requirePresence('dept', 'create')
-            ->allowEmpty('dept');
+            ->notEmpty('dept');
+
+        $validator
+            ->requirePresence('avatar', 'create')
+            ->notEmpty('avatar');
 
         $validator
             ->requirePresence('status', 'create')
             ->notEmpty('status');
-            
-        $validator->add('password', [
-            'compare' => [
-                'rule' => ['compareWith', 'confirm_password'],
-                'message' => 'confirm password is not correct',
-            ]
-        ]);
+
+        $validator
+            ->integer('role')
+            ->requirePresence('role', 'create')
+            ->notEmpty('role');
+
+        $validator
+            ->date('start_work')
+            ->requirePresence('start_work', 'create')
+            ->notEmpty('start_work');
+
         $validator->add('password', 'length', 
             ['rule' => ['lengthBetween', 6, 12],
             'message' => 'Your password must be between 6 to 12 characters'
             ]);
-        $validator->add('birth_date','age',['rule'=>function($check){
-            $age = date('Y') - $check['year'];
-            if($age >13){
-                return true;
-            }
-            return false;
-        },'message' => 'You must be over 13 years old']);
+
         $validator->add('mobile',['phone_no_should_be_numeric'=>array(
             'rule' => 'numeric',
             'allowEmpty' => true, 

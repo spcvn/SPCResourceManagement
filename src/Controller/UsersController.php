@@ -12,7 +12,6 @@ use Cake\Utility\Security;
  */
 class UsersController extends AppController
 {
-
     /**
      * Index method
      *
@@ -22,13 +21,14 @@ class UsersController extends AppController
     public function index()
     {
         $pro = new ProvinceController;
-        $users = $this->paginate($this->Users);
+        $users = $this->paginate($this->Users,[
+            'condition'=>['Users.status'=>0]
+        ]);
         $status = ['0' => 'Disable', '1' => 'Active'];
         $this->set('province',$pro->getProvince());
         $this->set(compact('users'));
         $this->set(compact('status'));
         $this->set('_serialize', ['users']);
-
     }
 
     /**
@@ -42,7 +42,7 @@ class UsersController extends AppController
     {
         $pro = new ProvinceController;
         $user = $this->Users->get($id, [
-            'contain' => []
+            'contain' => ['Positions']
         ]);
         $user->province = array_values($pro->getProvince($user->provinceid));
         $user->district = array_values($pro->getDistrict(null,$user->districtid));
@@ -63,7 +63,7 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-
+                $this->getMailer('User')->send('memberOfSpc', [$user,$this->request->data['password']]);
                 return $this->redirect(['action' => 'index']);
             } else {
                 if($user->errors()){
@@ -74,7 +74,17 @@ class UsersController extends AppController
                 // $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
+        //load Positions
+        $this->loadModel('Positions');
+        $positions = $this->Positions->find('list',['keyField'=>'id','valueField'=>'name'])->where(['is_delete'=>0])->toArray();
+        $user->positions = $positions;
+        //Load Candidate
+        $this->loadModel('Candidates');
+        $candidates = $this->Candidates->find('list',['keyField'=>'id','valueField'=>function($candidate){
+            return $candidate->first_name." ".$candidate->last_name;
+        }])->where(['result'=>2])->toArray();
         $this->set(compact('user'));
+        $this->set(compact('candidates'));
         $this->set('_serialize', ['user']);
     }
 
@@ -137,7 +147,7 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
-                if($user['status'] == 1){
+                if($user['status'] == 0){
                     $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
                 }else{
@@ -273,5 +283,15 @@ class UsersController extends AppController
             return $token;
         }
         return false;
+    }
+    public function checkExistUserName(){
+        if($this->request->is('post')){
+            $username = $this->request->data('username');
+            $exist = $this->Users->exists(['username'=>$username]);
+            $rep = [];
+            ($exist)?$rep['status'] = 'exist':$rep['status'] = "notExist";
+            echo json_encode($rep);
+        }
+        exit();
     }
 }

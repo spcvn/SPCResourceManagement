@@ -157,6 +157,7 @@ class CandidatesController extends AppController
         $candidate = $this->Candidates->get($this->request->data['id'], [
             'contain' => []
         ])->toArray();
+        $candidate['birth_date'] = $candidate['birth_date']->i18nFormat('yyyy-MM-dd');
         echo json_encode($candidate);exit();
     }
 }

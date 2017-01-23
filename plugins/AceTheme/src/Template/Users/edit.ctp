@@ -1,28 +1,30 @@
-<div class="users form content">
+<span class="loading" style="display:block"><?=$this->Html->image('../images/loading.gif')?>Loading...</span>
+<div class="users form content" style="display:none">
     <div class="wrap-edit">
         <h2>Edit Information</h2>
         <?= $this->Form->create($user) ?>
-        <fieldset>
-            <?php
-            echo $this->Form->input('username', ['type'=>'text']);
-            echo $this->Form->input('password');
-            echo $this->Form->input('salt', ['type'=>'text']);
-            echo $this->Form->input('email', ['type'=>'text']);
-            echo $this->Form->input('first_name', ['type'=>'text']);
-            echo $this->Form->input('middle_name', ['type'=>'text']);
-            echo $this->Form->input('last_name', ['type'=>'text']);
-            echo $this->Form->input('addr01', ['type'=>'text']);
-            echo $this->Form->input('provinceid',['label'=>'Province']);
-            echo $this->Form->input('districtid',['label'=>'District']);
-            echo $this->Form->input('wardid',['label'=>'Ward']);
-            echo $this->Form->input('birth_date',['type'=>'text', 'label'=>'Birthday Date', 'class'=>'datepicker']);
-            echo $this->Form->input('mobile', ['type'=>'text']);
-            echo $this->Form->input('dept', ['type'=>'text']);
-            echo $this->Form->input('status', ['type'=>'text']);
-            //            echo $this->Form->input('candidate_id', ['options' => $candidates]);
-            echo $this->Form->input('start_work',['type'=>'text','class'=>'datepicker']);
-            ?>
-        </fieldset>
+        <div class="box-form">
+                <?php
+                echo $this->Form->input('email',['type'=>'email']);
+                echo $this->Form->input('first_name',['type'=>'text']);
+                echo $this->Form->input('middle_name',['type'=>'text']);
+                echo $this->Form->input('last_name',['type'=>'text']);
+                echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
+                ?>
+                <div class="row">
+                    <?php echo $this->cell("Province.Province",['config'=>'all',"type"=>"edit",'data'=>$user]);?>
+                </div>
+                <?php
+                echo $this->Form->input('birth_date', ['class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
+                echo $this->Form->input('mobile',['type'=>'text']);
+                echo $this->Form->input('position',['type'=>'select','name'=>'dept','default'=>$user->dept]);
+                echo $this->Form->input('start_work',['type'=>'text','format' => 'Y-m-d','value'=>!empty($user->start_work)?$user->start_work->format('Y-m-d'):""]);
+                $status = ['0' => 'Active', '1' => 'Disable'];
+                echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
+                echo $this->Form->input('role', ['type' => 'hidden', 'value'=>'0']);
+                echo $this->Form->input('avatar', ['type' => 'hidden', 'value'=>'default.png']);
+                ?>
+            </div>
         <div class="actions text-center">
             <?= $this->Form->button($this->Html->tag('i','',['class'=>'fa fa-save']).__(' Save')) ?>
         </div>
@@ -34,5 +36,7 @@
 <script>
     $(document).ready( function() {
         $( ".datepicker" ).datepicker();
+         $(".loading").hide();
+         $(".content").show('fade');
     } );
 </script>

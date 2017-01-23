@@ -13,11 +13,10 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $birth_date
  * @property int $married
  * @property string $addr01
- * @property string $addr02
  * @property string $mobile
  * @property string $expected_salary
  * @property \Cake\I18n\Time $interview_date
- * @property string $position
+ * @property int $position
  * @property int $score
  * @property string $result
  * @property \Cake\I18n\Time $created_date

@@ -1,7 +1,7 @@
 <?php
-$arrStatus = ['0' => 'Disable', '1' => 'Active'];
-$arrDept = ['it'=>"IT",'hr'=>"HR",'admin'=>'Admin'];
+$arrStatus = ['1' => 'Disable', '0' => 'Active'];
 ?>
+
 <div class="users view content">
     <div class="wrap-review">
         <h3 class="ttl-light"><i class="fa fa-vcard"></i> <?= h($user->first_name).' '.h($user->last_name); ?>        </h3>
@@ -35,7 +35,7 @@ $arrDept = ['it'=>"IT",'hr'=>"HR",'admin'=>'Admin'];
                     <tr>
                         <th scope="row"><?= __('Dept') ?></th>
                         <td>:</td>
-                        <td><?= h((isset($arrDept[$user->dept]))?$arrDept[$user->dept]:$user->dept) ?></td>
+                        <td><?= h($user->position->name) ?></td>
                     </tr>
                     <tr>
                         <th scope="row"><?= __('Mobile') ?></th>

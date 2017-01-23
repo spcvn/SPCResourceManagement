@@ -36,10 +36,10 @@
                                 $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil bigger-120']),
                                 ['action' => 'edit', $user->id],
                                 ['class'=>'btn btn-xs btn-info', 'title'=>'Edit','escape'=>false]) ?>
-                            <?= $this->Form->postLink(
+                            <?= $this->Html->link(
                                 $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
                                 ['action' => 'delete', $user->id],
-                                ['confirm' => __('Are you sure you want to delete # {0}?', $user->id),'class'=>'btn btn-xs btn-danger', 'title'=>'Delete','escape'=>false]) ?>
+                                ['class'=>'btn btn-xs btn-danger  btn-delete', 'title'=>'Delete','escape'=>false]) ?>
                         </div>
                     </td>
                 </tr>
@@ -58,3 +58,19 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.btn-delete').confirm({
+            content: "Are you sure you want to delete  #<span class='exam-name'>Thao Nguyen</span>?",
+            title: "",
+            buttons: {
+                yes: {
+                    btnClass:'btn-danger',
+                },
+                no: {
+                    keys: ['N'],
+                },
+            }
+        });
+    })
+</script>

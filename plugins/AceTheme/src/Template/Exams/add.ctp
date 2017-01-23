@@ -1,4 +1,4 @@
-<div class="exams form-add-exam content">
+<div class="exams area-add content">
     <div class="form-add-exam">
         <div class="row form-group">
             <label  class="col-xs-12 col-sm-2 control-label"><?= __('exam_name')?></label>
@@ -39,7 +39,7 @@
                         <span>%</span>
                     </div>
                     <div class="col-sm-4 actions">
-                        <a class="btn"><i class="fa fa-remove"></i></a>
+                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a>
                     </div>
                 </div>
                 <div class="row line-add">
@@ -57,8 +57,8 @@
                         <span>%</span>
                     </div>
                     <div class="col-sm-4 actions">
-                        <a class="btn"><i class="fa fa-remove"></i></a>
-                        <a class="btn">+</i></a>
+                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a>
+                        <a class="btn btn-add">+</i></a>
                     </div>
                 </div>
             </div>

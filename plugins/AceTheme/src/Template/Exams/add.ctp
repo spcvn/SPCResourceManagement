@@ -1,23 +1,69 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Exams'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="exams form large-9 medium-8 columns content">
-    <?= $this->Form->create($exam) ?>
-    <fieldset>
-        <legend><?= __('Add Exam') ?></legend>
-        <?php
-            echo $this->Form->input('name');
-            echo $this->Form->input('num_questions');
-            echo $this->Form->input('section');
-            echo $this->Form->input('create_date');
-            echo $this->Form->input('update_date');
-            echo $this->Form->input('is_delete');
-            echo $this->Form->input('id_user');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<div class="exams area-add content">
+    <div class="form-add-exam">
+        <div class="row form-group">
+            <label  class="col-xs-12 col-sm-2 control-label"><?= __('exam_name')?></label>
+            <div class="col-xs-12 col-sm-5">
+                <input type="text" class="width-100" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <label  class="col-xs-12 col-sm-2 control-label">Number of question</label>
+            <div class="col-xs-12 col-sm-5">
+                <input type="text" class="width-100" />
+            </div>
+        </div>
+        <div class="row form-group">
+            <label  class="col-xs-12 col-sm-2 control-label">Duration</label>
+            <div class="col-xs-12 col-sm-5">
+                <input type="text" class="width-100" />
+            </div>
+            <div class="col-sm-3">
+                <span>minute(s)</span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label  class="col-xs-12 col-sm-2 control-label">Section</label>
+            <div class="col-xs-12 col-sm-10">
+                <div class="row line-add">
+                    <div class="col-sm-6">
+                        <select class="width-100">
+                            <option>HTML</option>
+                            <option>CSS</option>
+                            <option>Php</option>
+                            <option>Photoshop</option>
+                            <option>Adobe Illustrator</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="width-80" />
+                        <span>%</span>
+                    </div>
+                    <div class="col-sm-4 actions">
+                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a>
+                    </div>
+                </div>
+                <div class="row line-add">
+                    <div class="col-sm-6">
+                        <select class="width-100">
+                            <option>HTML</option>
+                            <option>CSS</option>
+                            <option>Php</option>
+                            <option>Photoshop</option>
+                            <option>Adobe Illustrator</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="width-80" />
+                        <span>%</span>
+                    </div>
+                    <div class="col-sm-4 actions">
+                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a>
+                        <a class="btn btn-add">+</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </div>

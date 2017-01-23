@@ -35,7 +35,7 @@
                 echo $this->Form->input('last_name',['type'=>'text']);
                 echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
                 ?>
-                <div class="row">
+                <div class="row col-3">
                     <?php echo $this->cell("Province.Province",['config'=>'all']);?>
                 </div>
                 <?php
@@ -52,9 +52,120 @@
         </div>
     </div>
     <div class="actions">
-        <?= $this->Form->button(__('Submit')) ?>
+        <div class="row">
+            <div class="col-sm-6 text-left">
+                <a class="btn btnPreview" data-toggle="modal" data-target="#reviewUser">Preview</a>
+            </div>
+            <div class="col-sm-6">
+                <?= $this->Form->button(__('Submit')) ?>
+            </div>
+        </div>
     </div>
     <?= $this->Form->end() ?>
+</div>
+<div id="reviewUser" class="modal fade review-user" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title text-center">INFORMATION USER</h3>
+                <ul class="ulnostyle">
+                    <li>
+                        <h4><strong>Account</strong></h4>
+                        <table class="table ViewTable">
+                            <tr>
+                                <th style="width: 150px;">Username</th>
+                                <td style="width: 10px;">:</td>
+                                <td>thuyph</td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li>
+                        <h4><strong>Information</strong></h4>
+                        <table class="table">
+                            <tr>
+                                <th style="width: 150px;">Email</th>
+                                <td style="width: 10px;">:</td>
+                                <td>username@email.com</td>
+                            </tr>
+                            <tr>
+                                <th>First Name</th>
+                                <td>:</td>
+                                <td>First Name</td>
+                            </tr>
+                            <tr>
+                                <th>Middle Name</th>
+                                <td>:</td>
+                                <td>Middle Name</td>
+                            </tr>
+                            <tr>
+                                <th>Last Name</th>
+                                <td>:</td>
+                                <td>Last Name</td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td>:</td>
+                                <td>Nguyen Hien Le, Tan Binh, HCM</td>
+                            </tr>
+                            <tr>
+                                <th>Province</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>District</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Ward</th>
+                                <td>:</td>
+                                <td>Tan Binh</td>
+                            </tr>
+                            <tr>
+                                <th>Birthday</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Mobile</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Dept</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Start work</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>:</td>
+                                <td></td>
+                            </tr>
+
+                        </table>
+                    </li>
+                </ul>
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <button type="button" class="btn btn-info">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

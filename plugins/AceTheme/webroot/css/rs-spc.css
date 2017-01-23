@@ -1,3 +1,10 @@
+.btn:hover,
+.btn:focus{
+    border-color: transparent;
+}
+.paginator p{
+    color: #9d9a9a;
+}
 .ace-settings-container{
     top: 5px;
 }
@@ -18,7 +25,7 @@ img{
     overflow: hidden;
     margin-bottom: 10px;
 }
-.form .input.required label:after{
+.required label:after{
     content: " (*)";
     color: #ff2222;
 }
@@ -34,6 +41,15 @@ img{
 .form .file label,
 .form .textarea label{
     float: left;
+}
+.form .text input,
+.form .email input,
+.form .password input,
+.form .select select,
+.form .number input,
+.form .file input,
+.form .textarea textarea{
+    color: #393939;
 }
 .form .textarea textarea{
     min-height: 150px;
@@ -68,7 +84,12 @@ form button[type=submit],.btnPreview{
 }
 
 .btnPreview, .form-question .btnPreview{
-    height: 49px;
+    height: 53px;
+    background-color: #6FB3DF!important;
+}
+.btnPreview:hover,
+.form-question .btnPreview:hover{
+    background-color: #438EB9!important;
 }
 .row-answer{
     position: relative;
@@ -185,6 +206,51 @@ select::-ms-expand{
     color: #ff2222;
 }
 /*form register end*/
+/*form search*/
+.search-exams-form{
+}
+.search-exams-form .input{
+    display: inline-block;
+    width: 300px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+.search-exams-form input{
+    width: 100%;
+}
+.search-exams-form button[type=submit]{
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 14px;
+    text-transform: capitalize;
+    padding: 0 30px;
+    height: 34px;
+    line-height: 34px;
+    min-width: 0;
+}
+
+/*form search end*/
+/*form exam add*/
+.form-add-exam .input{
+    margin-bottom: 15px;
+}
+.form-add-exam .input.text label,
+.form-add-exam .input.select label,
+.form-add-exam .input.number label{
+    display: inline-block;
+    width: 170px;
+}
+.form-add-exam .input.select input,
+.form-add-exam .input.number input,
+.form-add-exam .input.text input{
+    display: inline-block;
+    max-width: 600px;
+    width: 100%;
+}
+.form-add-exam .line-add{
+    margin-bottom: 15px;
+}
+/*form exam add end*/
 /*custom paginator*/
 .pagination{
     text-transform: capitalize;
@@ -348,12 +414,14 @@ select::-ms-expand{
     right: 30px;
     top: 20px;
     color: #8089A0;
+    opacity: 0.75;
 }
 .users.view .btn-edit-simple:hover,
 .users.view .btn-edit-simple:focus{
     text-decoration: none;
     border-color: #438EB9;
     color: #438EB9;
+    opacity: 1;
 }
 .users .wrap-edit{
     width: 80%;
@@ -371,7 +439,87 @@ select::-ms-expand{
     margin: 0;
     font-size: 20px;
 }
+.users.form .col-3 .select label {
+    width: 100%;
+}
+.users.form .col-3 .select select{
+    width: 100%;
+}
 /*end radio custom*/
+/*exam layout cs*/
+.table-blue > thead > tr{
+    background: repeat-x rgba(111,179,224,0.7);
+    background-image: -webkit-linear-gradient(top,rgba(111,179,224,0.7) 10%,rgba(111,179,224,1) 90%);
+    background-image: -o-linear-gradient(top,rgba(111,179,224,0.7) 10%,rgba(111,179,224,1) 90%);
+    background-image: linear-gradient(to bottom,rgba(111,179,224,0.7),rgba(111,179,224,1));
+    color: #ffffff;
+    background-color: rgba(111,179,224,0.7);
+}
+.table-blue.table-hover > tbody > tr:hover{
+    background-color: rgba(111,179,224,0.3);
+}
+.btn-add-temp{
+    margin-bottom: 30px;
+}
+.exams .paginator{
+    text-align: right;
+}
+
+.jconfirm.jconfirm-white .jconfirm-box .jconfirm-buttons,
+.jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons{
+    float: none;
+    text-align: center;
+}
+.jconfirm-content .exam-name{
+    font-weight: bold;
+}
+/*add exam template*/
+.exams .btn-remove{
+    padding: 0 5px;
+    background-color: #D15B47!important;
+    border-color: transparent;
+}
+.exams .btn-add{
+    font-size: 20px;
+    line-height: 1;
+    padding: 0 5px;
+    background-color: #87B87F!important;
+    font-weight: bold;
+    border-color: transparent;
+}
+.exams .btn-add:visited ,
+.exams .btn-add:hover ,
+.exams .btn-add:focus{
+    background-color: rgba(135,184,127,0.75)!important;
+    border-color: transparent;
+}
+.exams .btn-remove:visited ,
+.exams .btn-remove:hover ,
+.exams .btn-remove:focus{
+    background-color: rgba(209,91,79,0.75)!important;
+    border-color: transparent;
+}
+/*add exam template end*/
+/*exam layout cs end*/
+.ulnostyle{
+    padding: 0;
+    margin: 0;
+}
+.ulnostyle > li{
+    list-style-type: none;
+}
+/*review modal*/
+.modal .modal-content{
+    padding: 30px;
+}
+.modal button.close{
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    font-size: 32px;
+}
+
+/*review modal end*/
 @media (min-width: 768px) {
     .form .text input,
     .form .email input,
@@ -399,7 +547,12 @@ select::-ms-expand{
     .users.form .wrap-edit .number input,
     .users.form .wrap-edit .file input,
     .users.form .wrap-edit .textarea textarea{
-        width: 84%;
+        width: 85%;
+    }
+}
+@media (min-width: 1200px) {
+    .page-content{
+        padding: 50px;
     }
 }
 @media (max-width: 479px) {

@@ -1,51 +1,113 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Exam'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="exams index large-9 medium-8 columns content">
-    <h3><?= __('Exams') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<div class="exams index content">
+    <div class="search-exams-form">
+        <?= $this->Form->create() ?>
+        <?php
+        echo $this->Form->input('', ['type'=>'text','placeholder'=>'Template Name']);
+        echo $this->Form->input('', ['type'=>'text','placeholder'=>'Section']);
+        ?>
+        <?= $this->Form->button($this->Html->tag('i','',['class'=>'fa fa-search']).__(' Search')) ?>
+        <?= $this->Form->end() ?>
+
+    </div>
+    <div class="action-tabs">
+        <?= $this->Html->link(
+            __('New Template +'),
+            ['controller'=>'exams','action'=>'add'],
+            ['class'=>'btn btn-success btn-add-temp']
+        ); ?>
+    </div>
+    <table class="table table-blue table-bordered table-hover">
         <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('num_questions') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('create_date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('update_date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('is_delete') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('id_user') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
+        <tr>
+            <th style="width: 50px; text-align: center;"><?= __('No.')?></th>
+            <th><?= __('Template name')?></th>
+            <th style="width: 100px; text-align: center;"><?= __('Num of question') ?></th>
+            <th style="width: 100px; text-align: center;"><?= __('Duration (minute)')?></th>
+            <th><?= __('Section')?></th>
+            <th style="text-align: center;"><?= __('Tested')?></th>
+            <th style="text-align: center;"><?= __('Action')?></th>
+        </tr>
         </thead>
         <tbody>
-            <?php foreach ($exams as $exam): ?>
-            <tr>
-                <td><?= $this->Number->format($exam->id) ?></td>
-                <td><?= h($exam->name) ?></td>
-                <td><?= $this->Number->format($exam->num_questions) ?></td>
-                <td><?= h($exam->create_date) ?></td>
-                <td><?= h($exam->update_date) ?></td>
-                <td><?= $this->Number->format($exam->is_delete) ?></td>
-                <td><?= $this->Number->format($exam->id_user) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $exam->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $exam->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $exam->id], ['confirm' => __('Are you sure you want to delete # {0}?', $exam->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
+        <tr>
+            <td style="text-align: center;">1</td>
+            <td>Front-end developer</td>
+            <td style="text-align: center;">30</td>
+            <td style="text-align: center;">20</td>
+            <td>HTML: 50%; CSS: 25%; JAVASCRIPT: 25%</td>
+            <td style="text-align: center;">0/10</td>
+            <td style="text-align: center;">
+                <div class="btn-group">
+                    <a href="#" class="btn btn-xs btn-info"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
+                    <a href="#" class="btn btn-xs btn-danger btn-delete" data-name="Front-end developer"><i class="ace-icon fa fa-trash-o bigger-120"></i></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">2</td>
+            <td>Back-end developer</td>
+            <td style="text-align: center;">30</td>
+            <td style="text-align: center;">20</td>
+            <td>PHP: 45%; SERVER: 20%; SQL: 20%; HOSTING: 15%</td>
+            <td style="text-align: center;">0/5</td>
+            <td style="text-align: center;">
+                <div class="btn-group">
+                    <a href="#" class="btn btn-xs btn-info"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
+                    <a href="#" class="btn btn-xs btn-danger btn-delete" data-name="Back-end developer"><i class="ace-icon fa fa-trash-o bigger-120"></i></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">3</td>
+            <td>Designer</td>
+            <td style="text-align: center;">30</td>
+            <td style="text-align: center;">20</td>
+            <td>Photoshop: 50%; Adobe Illustrator: 30%; Html: 10%; Css:10%;</td>
+            <td style="text-align: center;">0/10</td>
+            <td style="text-align: center;">
+                <div class="btn-group">
+                    <a href="#" class="btn btn-xs btn-info"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
+                    <a href="#" class="btn btn-xs btn-danger btn-delete" data-name="Designer"><i class="ace-icon fa fa-trash-o bigger-120"></i></a>
+                </div>
+            </td>
+        </tr>
         </tbody>
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->prev(__('previous')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('next')) ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>Are you sure to delete template: <span class="bold" data-name="name">Front-end developer</span>?</p>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.btn-delete').confirm({
+            content: "Are you sure to delete template: <span class='exam-name'>Front-end developer</span>?",
+            title: "",
+            buttons: {
+                yes: {
+                    btnClass:'btn-danger',
+                },
+                no: {
+                    keys: ['N'],
+                },
+            }
+        });
+    })
+</script>
+

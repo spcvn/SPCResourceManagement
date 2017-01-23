@@ -291,8 +291,19 @@ class UsersController extends AppController
     }
     public function checkExistUserName(){
         if($this->request->is('post')){
-            $username = $this->request->data('username');
-            $exist = $this->Users->exists(['username'=>$username]);
+            $field = 'username';
+            $value = "";
+            switch (key($this->request->data)) {
+                case 'email':
+                    $field = 'email';
+                    break;
+                
+                default:
+                    $field = 'username';
+                    break;
+            }
+            $value = $this->request->data[$field];
+            $exist = $this->Users->exists([$field=>$value]);
             $rep = [];
             ($exist)?$rep['status'] = 'exist':$rep['status'] = "notExist";
             echo json_encode($rep);

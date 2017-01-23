@@ -9,8 +9,11 @@
             <div class="box-form">
                 <h2>Create An Account</h2>
                 <?php
+                echo $this->Form->error('error');
                 echo $this->Form->input('username',['type'=>'text']);
+                echo "<span class='text-error'>";
                 echo $this->Html->image('../images/loading.gif',['class'=>'user-loading hidden']);
+                echo "</span>";
                 echo $this->Form->input('password');
                 echo $this->Form->input('confirm_password',['type'=>'password']);
                 echo "<div class='pass'>&nbsp;</div>";
@@ -73,24 +76,60 @@
         });
     });
     var timer 
-    $('input[name=username]').on('keyup',function(){
-        $('.user-loading').removeClass('hidden');
+    $('input[name=username]').on('blur',function(){
+        var eleUsername = $( this );
+        var classUsername = $( this ).parent('div.input');
+        classUsername.find('.error').remove();
+        classUsername.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
         var processing=false;
-        var username = $(this).val();
         clearTimeout(timer);
         timer = setTimeout( function(){
             if (!processing){
                 processing=true;
                 var url = "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>";
-                $.post(url,{ username:username },function(res){
+                $.post(url,{ username:eleUsername.val() },function(res){
                     var data = $.parseJSON(res);
-                    $('.user-loading').addClass('hidden');
+                    classUsername.find('.user-loading').remove();
                     if(data.status == 'exist'){
-                        $('input[name=username]').parent('div').addClass('error');
+                        classUsername.addClass('has-error');
+                        classUsername.append('<i class="error">Username is exist, Please pick a another username!</i>');
                     }else{
-                        $('input[name=username]').parent('div').removeClass('error');
+                        classUsername.find('.error').remove();
+                        classUsername.removeClass('has-error');
                     }
-                    console.log(data);
+                });
+            }
+        }
+        ,1000);
+    });
+    /*
+    * 
+    *    $('.has-error') : show error to input element
+    *
+    */
+    $('input[name=email]').on('blur',function(){
+
+        var eleEmail = $( this );
+        var classEmail = $('.input.email');
+        classEmail.find('.error').remove();
+        classEmail.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
+
+        var processing=false;
+        clearTimeout(timer);
+        timer = setTimeout( function(){
+            if (!processing){
+                processing=true;
+                var url = "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>";
+                $.post(url,{ email:eleEmail.val() },function(res){
+                    var data = $.parseJSON(res);
+                    classEmail.find('.user-loading').remove();
+                    if(data.status == 'exist'){
+                        classEmail.addClass('has-error');
+                        classEmail.append('<i class="error">Username is exist, Please pick a another email!</i>');
+                    }else{
+                        classEmail.find('.error').remove();
+                        classEmail.removeClass('has-error');
+                    }
                 });
             }
         }

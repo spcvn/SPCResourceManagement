@@ -22,7 +22,7 @@
                     <td><?php echo h($user->last_name ." ". $user->middle_name ." ". $user->first_name); ?></td>
                     <td><?=  date("Y/m/d",strtotime(h($user->birth_date))) ?></td>
                     <td><?= $province[$user->provinceid] ?></td>
-                    <td><?= h($user->dept)?></td>
+                    <td><?= h($user->position->name)?></td>
                     <td><?= h($user->status) ?></td>
                     <td class="actions">
                         <div class="btn-group">

@@ -21,7 +21,9 @@ class UsersController extends AppController
     public function index()
     {
         $pro = new ProvinceController;
-        $users = $this->paginate($this->Users);
+        $users = $this->paginate($this->Users,[
+            'condition'=>['Users.status'=>0]
+        ]);
         $status = ['0' => 'Disable', '1' => 'Active'];
         $this->set('province',$pro->getProvince());
         $this->set(compact('users'));

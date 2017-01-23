@@ -7,9 +7,8 @@
                 <th scope="col"><?= $this->Paginator->sort('last_name',['text'=>'Name']) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('birth_date',['text'=>'Birthday Date']) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('provinceid',['text'=>'Province']) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('updated') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('start_work') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('dept') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             </thead>
@@ -23,9 +22,8 @@
                     <td><?php echo h($user->last_name ." ". $user->middle_name ." ". $user->first_name); ?></td>
                     <td><?=  date("Y/m/d",strtotime(h($user->birth_date))) ?></td>
                     <td><?= $province[$user->provinceid] ?></td>
-                    <td><?= date("Y/m/d g:i",strtotime(h($user->created))) ?></td>
-                    <td><?= date("Y/m/d g:i",strtotime(h($user->updated))) ?></td>
-                    <td><?= ($user->start_work)?date("Y/m/d g:i",strtotime(h($user->start_work))):"" ?></td>
+                    <td><?= h($user->positions->name)?></td>
+                    <td><?= h($user->status) ?></td>
                     <td class="actions">
                         <div class="btn-group">
                             <?= $this->Html->link(

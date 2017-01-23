@@ -53,6 +53,11 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
                         <td><?= h($user->province[0].", ".$user->district[0].", ".$user->ward[0]) ?></td>
                     </tr>
                     <tr>
+                        <th scope="row"><?= __('Birth Date') ?></th>
+                        <td>:</td>
+                        <td><?= h($user->birth_date->format('Y-m-d')) ?></td>
+                    </tr>
+                    <tr>
                         <th scope="row"><?= __('Created') ?></th>
                         <td>:</td>
                         <td><?=(isset($user->created))?$user->created->format('Y-m-d H:i'):"" ?></td>
@@ -61,11 +66,6 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
                         <th scope="row"><?= __('Updated') ?></th>
                         <td>:</td>
                         <td><?= (isset($user->updated))?$user->updated->format('Y-m-d H:i'):"" ?></td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><?= __('Birth Date') ?></th>
-                        <td>:</td>
-                        <td><?= h($user->birth_date->format('Y-m-d')) ?></td>
                     </tr>
                     <tr>
                         <th scope="row"><?= __('Status') ?></th>

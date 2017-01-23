@@ -17,7 +17,7 @@
                 <?php
                 echo $this->Form->input('birth_date', ['class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
                 echo $this->Form->input('mobile',['type'=>'text']);
-                echo $this->Form->input('position',['type'=>'select','name'=>'dept','default'=>$user->dept]);
+                echo $this->Form->input('position',['type'=>'select','name'=>'dept','default'=>$user->dept,'options'=>$user->positions]);
                 echo $this->Form->input('start_work',['type'=>'text','format' => 'Y-m-d','value'=>!empty($user->start_work)?$user->start_work->format('Y-m-d'):""]);
                 $status = ['0' => 'Active', '1' => 'Disable'];
                 echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);

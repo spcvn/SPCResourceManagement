@@ -22,9 +22,10 @@ class UsersController extends AppController
     {
         $pro = new ProvinceController;
         $users = $this->paginate($this->Users,[
+            'contain' => ['Positions'],
             'condition'=>['Users.status'=>0]
         ]);
-        $status = ['0' => 'Disable', '1' => 'Active'];
+        $status = [1 => 'Disable', 0 => 'Active'];
         $this->set('province',$pro->getProvince());
         $this->set(compact('users'));
         $this->set(compact('status'));
@@ -111,6 +112,10 @@ class UsersController extends AppController
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
+        //load Positions
+        $this->loadModel('Positions');
+        $positions = $this->Positions->find('list',['keyField'=>'id','valueField'=>'name'])->where(['is_delete'=>0])->toArray();
+        $user->positions = $positions;
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }

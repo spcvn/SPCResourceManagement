@@ -7,7 +7,7 @@
                 <th scope="col"><?= $this->Paginator->sort('last_name',['text'=>'Name']) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('birth_date',['text'=>'Birthday Date']) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('provinceid',['text'=>'Province']) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('dept') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('dept',['model'=>'Positions']) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>

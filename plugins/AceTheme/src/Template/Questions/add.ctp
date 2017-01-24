@@ -13,10 +13,10 @@
                 'formGroup' => '{{input}}'
             ]]);
         ?>
-        <div id="answer"><h4>Answer <span>(Please check in which is correct.)</span></h4></div>
+        <div id="answer"><h4><?= __('answer');?> <span>(<?= __('alert_checkbox')?>.)</span></h4></div>
         <div class="actions nopd">
-            <a href="javascript:addAnswer()" class="btn btn-success" title="add a new answer">Add +</a>
-            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="remove an answer">Remove -</a>
+            <a href="javascript:addAnswer()" class="btn btn-success" title="<?= __('title_add_answer')?>"><?= __('add')?> +</a>
+            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="remove an answer"><?= __('remove')?> -</a>
         </div>
     </fieldset>
     <div class="Actions text-center">

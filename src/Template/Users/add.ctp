@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-5">
             <div class="box-form">
-                <h2>Create An Account</h2>
+                <h2><?= __('create_an_account')?>t</h2>
                 <?php
                 echo $this->Form->error('error');
                 echo $this->Form->input('username',['type'=>'text']);
@@ -23,11 +23,11 @@
         </div>
         <div class="col-md-7">
             <div class="box-form">
-                <h2>Is Candidate</h2>
+                <h2><?= __('is_candidate')?></h2>
                 <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>'-1'])?>            
             </div>
             <div class="box-form">
-                <h2>Information Account</h2>
+                <h2><?= __('information_account')?></h2>
                 <?php
                 echo $this->Form->input('email',['type'=>'email']);
                 echo $this->Form->input('first_name',['type'=>'text']);
@@ -70,53 +70,53 @@
         <div class="modal-content">
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title text-center">INFORMATION USER</h3>
+                <h3 class="modal-title text-center"><?= __('information_user')?></h3>
                 <ul class="ulnostyle">
                     <li>
-                        <h4><strong>Account</strong></h4>
+                        <h4><strong><?= __('account')?></strong></h4>
                         <table class="table ViewTable">
                             <tr>
-                                <th style="width: 150px;">Username</th>
+                                <th style="width: 150px;"><?= __('username')?></th>
                                 <td style="width: 10px;">:</td>
                                 <td>thuyph</td>
                             </tr>
                         </table>
                     </li>
                     <li>
-                        <h4><strong>Information</strong></h4>
+                        <h4><strong><?= __('information')?></strong></h4>
                         <table class="table">
                             <tr>
-                                <th style="width: 150px;">Email</th>
+                                <th style="width: 150px;"><?= __('email');?></th>
                                 <td style="width: 10px;">:</td>
                                 <td>username@email.com</td>
                             </tr>
                             <tr>
-                                <th>First Name</th>
+                                <th><?= __('first_name')?></th>
                                 <td>:</td>
                                 <td>First Name</td>
                             </tr>
                             <tr>
-                                <th>Middle Name</th>
+                                <th><?= __('middle_name')?></th>
                                 <td>:</td>
                                 <td>Middle Name</td>
                             </tr>
                             <tr>
-                                <th>Last Name</th>
+                                <th><?= __('last_name')?></th>
                                 <td>:</td>
                                 <td>Last Name</td>
                             </tr>
                             <tr>
-                                <th>Address</th>
+                                <th><?= __('address')?></th>
                                 <td>:</td>
                                 <td>Nguyen Hien Le, Tan Binh, HCM</td>
                             </tr>
                             <tr>
-                                <th>Province</th>
+                                <th><?= __('province')?></th>
                                 <td>:</td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <th>District</th>
+                                <th><?= __('district')?></th>
                                 <td>:</td>
                                 <td></td>
                             </tr>
@@ -131,7 +131,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <th>Mobile</th>
+                                <th><?= __('mobile')?></th>
                                 <td>:</td>
                                 <td></td>
                             </tr>
@@ -141,12 +141,12 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <th>Start work</th>
+                                <th><?= __('start_work')?></th>
                                 <td>:</td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <th>Status</th>
+                                <th></th>
                                 <td>:</td>
                                 <td></td>
                             </tr>
@@ -171,7 +171,10 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $( function() {
-        $( ".datepicker" ).datepicker();
+        $( ".datepicker" ).datepicker({
+            changeYear: true,
+            dateFormat: 'yy-mm-dd'
+        });
     } );
     $('select[name=candidate_id]').on('change',function(event){
         var id = $(this).val();
@@ -203,10 +206,11 @@
                     classUsername.find('.user-loading').remove();
                     if(data.status == 'exist'){
                         classUsername.addClass('has-error');
-                        classUsername.append('<i class="error">Username is exist, Please pick a another username!</i>');
+                        classUsername.append('<i class="error">Username is exist, please pick a another username!</i>');
                     }else{
                         classUsername.find('.error').remove();
                         classUsername.removeClass('has-error');
+                        classUsername.append('<i class="success"></i>');
                     }
                 });
             }

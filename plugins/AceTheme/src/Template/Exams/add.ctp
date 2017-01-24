@@ -2,19 +2,19 @@
     <div class="form-add-exam">
         <form>
             <div class="row form-group">
-                <label  class="col-xs-12 col-sm-2 control-label"><?= __('Exam Name')?></label>
+                <label  class="col-xs-12 col-sm-2 control-label"><?= __('exam_name')?></label>
                 <div class="col-xs-12 col-sm-5">
                     <input type="text" class="width-100" />
                 </div>
             </div>
             <div class="row form-group">
-                <label  class="col-xs-12 col-sm-2 control-label">Number of question</label>
+                <label  class="col-xs-12 col-sm-2 control-label"><?= __('number_of_question')?></label>
                 <div class="col-xs-12 col-sm-5">
                     <input type="text" class="width-100" />
                 </div>
             </div>
             <div class="row form-group">
-                <label  class="col-xs-12 col-sm-2 control-label">Duration</label>
+                <label  class="col-xs-12 col-sm-2 control-label"><?= __('duration')?></label>
                 <div class="col-xs-12 col-sm-5">
                     <input type="text" class="width-100" />
                 </div>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="row form-group">
-                <label  class="col-xs-12 col-sm-2 control-label">Section</label>
+                <label  class="col-xs-12 col-sm-2 control-label"><?= __('section')?></label>
                 <div class="col-xs-12 col-sm-10">
                     <div class="row line-add">
                         <div class="col-sm-6">
@@ -84,7 +84,7 @@
 <script>
     $(document).ready(function(){
         $('.btn-remove').confirm({
-            content: "Are you sure you want to remove this exam?",
+            content: "Are you sure you want to remove this section?",
             title: "",
             buttons: {
                 yes: {

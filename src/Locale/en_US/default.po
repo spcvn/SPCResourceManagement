@@ -1,0 +1,201 @@
+msgid "show_detail"
+msgstr "Show Detail"
+
+msgid "edit"
+msgstr "Edit"
+
+msgid "submit"
+msgstr "Submit"
+
+msgid "confirm_delete"
+msgstr "Are you sure you want to delete"
+
+msgid "username"
+msgstr "Username"
+
+msgid "password"
+msgstr "Password"
+
+msgid "confirm_password"
+msgstr "Confirm Password"
+
+msgid "first_name"
+msgstr "First Name"
+
+msgid "middle_name"
+msgstr "Middle Name"
+
+msgid "last_name"
+msgstr "Last Name"
+
+msgid "married"
+msgstr "Married"
+
+msgid "status"
+msgstr "Status"
+
+msgid "married_status"
+msgstr "Married Status"
+
+msgid "email"
+msgstr "Email"
+
+msgid "mobile"
+msgstr "Mobile"
+
+msgid "region"
+msgstr "Region"
+
+msgid "address"
+msgstr "Address"
+
+msgid "birthday"
+msgstr "Birthday"
+
+msgid "expected_salary"
+msgstr "Expected Salary"
+
+msgid "score"
+msgstr "Score"
+
+msgid "result"
+msgstr "Result"
+
+msgid "created"
+msgstr "Created"
+
+msgid "position"
+msgstr "Position"
+
+msgid "interview_date"
+msgstr "Interview Date"
+
+msgid "start_work"
+msgstr "Start Work"
+
+msgid "exam_name"
+msgstr "Exam Name"
+
+msgid "number_of_question"
+msgstr "Number of question"
+
+msgid "question"
+msgstr "Question"
+
+msgid "duration"
+msgstr "Duration"
+
+msgid "section"
+msgstr "Section"
+
+msgid "candidate"
+msgstr "Candidate"
+
+msgid "candidate_name"
+msgstr "Candidate Name"
+
+msgid "exam_template"
+msgstr "Exam Template"
+
+msgid "description"
+msgstr "Description"
+
+msgid "assign"
+msgstr "Assign"
+
+msgid "cancel"
+msgstr "Cancel"
+
+msgid "answer"
+msgstr "Answer"
+
+msgid "answers"
+msgstr "Answers"
+
+msgid "alert_checkbox"
+msgstr "Please check in which is correct"
+
+msgid "template_name"
+msgstr "Template name"
+
+msgid "template"
+msgstr "Template"
+
+msgid "new"
+msgstr "New"
+
+msgid "new_template"
+msgstr "New Template"
+
+msgid "tested"
+msgstr "Tested"
+
+msgid "action"
+msgstr "Action"
+
+msgid "actions"
+msgstr "Actions"
+
+msgid "first"
+msgstr "First"
+
+msgid "last"
+msgstr "Last"
+
+msgid "add"
+msgstr "Add"
+
+msgid "remove"
+msgstr "Remove"
+
+msgid "previous"
+msgstr "Previous"
+
+msgid "next"
+msgstr "Next"
+
+msgid "search"
+msgstr "Search"
+
+msgid "title_add_answer"
+msgstr "Add a new answer"
+
+msgid "title_remove_answer"
+msgstr "Remove an answer"
+
+msgid "related_answers"
+msgstr "Related Answers"
+
+msgid "is_correct"
+msgstr "Is Correct"
+
+msgid "expected_salary"
+msgstr "Expected Salary"
+
+msgid "birth_date"
+msgstr "Birthday"
+
+msgid "account"
+msgstr "Account"
+
+msgid "create_an_account"
+msgstr "Create An Account"
+
+msgid "is_candidate"
+msgstr "Is Candidate"
+
+msgid "information_account"
+msgstr "Information Account"
+
+msgid "information_user"
+msgstr "INFORMATION USER"
+
+msgid "information"
+msgstr "Information"
+
+msgid "province"
+msgstr "Province"
+
+msgid "district"
+msgstr "District"
+

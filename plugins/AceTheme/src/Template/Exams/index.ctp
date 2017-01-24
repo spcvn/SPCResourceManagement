@@ -2,16 +2,16 @@
     <div class="search-exams-form">
         <?= $this->Form->create() ?>
         <?php
-        echo $this->Form->input('', ['type'=>'text','placeholder'=>'Template Name']);
-        echo $this->Form->input('', ['type'=>'text','placeholder'=>'Section']);
+        echo $this->Form->input('', ['type'=>'text','placeholder'=>__('template_name')]);
+        echo $this->Form->input('', ['type'=>'text','placeholder'=>__('section')]);
         ?>
-        <?= $this->Form->button($this->Html->tag('i','',['class'=>'fa fa-search']).__(' Search')) ?>
+        <?= $this->Form->button($this->Html->tag('i','',['class'=>'fa fa-search']).__(' search')) ?>
         <?= $this->Form->end() ?>
 
     </div>
     <div class="action-tabs">
         <?= $this->Html->link(
-            __('New Template +'),
+            __('new_template').' +',
             ['controller'=>'exams','action'=>'add'],
             ['class'=>'btn btn-success btn-add-temp']
         ); ?>
@@ -20,12 +20,12 @@
         <thead>
         <tr>
             <th style="width: 50px; text-align: center;"><?= __('No.')?></th>
-            <th><?= __('Template name')?></th>
-            <th style="width: 100px; text-align: center;"><?= __('Num of question') ?></th>
-            <th style="width: 100px; text-align: center;"><?= __('Duration (minute)')?></th>
+            <th><?= __('template_name')?></th>
+            <th style="width: 150px; text-align: center;"><?= __('number_of_question') ?></th>
+            <th style="width: 150px; text-align: center;"><?= __('duration')?> (minute)</th>
             <th><?= __('Section')?></th>
-            <th style="text-align: center;"><?= __('Tested')?></th>
-            <th style="text-align: center;"><?= __('Action')?></th>
+            <th style="text-align: center;"><?= __('tested')?></th>
+            <th style="text-align: center;"><?= __('action')?></th>
         </tr>
         </thead>
         <tbody>

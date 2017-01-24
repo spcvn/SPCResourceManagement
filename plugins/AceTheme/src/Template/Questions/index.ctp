@@ -5,30 +5,29 @@
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
+                    <th scope="col" style="width: 60px; text-align: center;"><?= __('No.')?></th>
                     <th class="center">
                         <label class="pos-rel">
                             <input type="checkbox" class="ace" />
                             <span class="lbl"></span>
                         </label>
                     </th>
-                    <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('section') ?></th>
+                    <th scope="col" style="text-align: center;"><?= $this->Paginator->sort('section') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('content') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                     <th scope="col" class="actions col-xs-2"><?= __('Actions') ?></th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($questions as $question): ?>
+                <?php $i=0; foreach ($questions as $question): ?>
                     <tr>
+                        <td style="text-align: center;"><?= $i++;?></td>
                         <td class="center">
                             <label class="pos-rel">
                                 <input type="checkbox" class="ace" />
                                 <span class="lbl"></span>
                             </label>
                         </td>
-
-                        <td><?= $this->Number->format($question->id) ?></td>
                         <td class="center"><?= $this->Number->format($question->section) ?></td>
                         <td><?= $question->content; ?></td>
                         <td><?= $status[$question->status] ?></td>

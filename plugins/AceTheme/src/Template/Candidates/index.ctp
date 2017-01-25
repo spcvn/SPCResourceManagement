@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        Candidates
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            All Candidates
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="candidates index content">
     <table class="table table-bordered table-hover">
         <thead>

@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('question')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('all_questions')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="row">
     <div class="col-xs-12">
         <!-- PAGE CONTENT BEGINS -->
@@ -7,7 +16,7 @@
                 <tr>
                     <th scope="col" style="width: 60px; text-align: center;"><?= __('No.')?></th>
                     <th class="center">
-                        <label class="pos-rel">
+                        <label id="check-all" class="checkbox-all">
                             <input type="checkbox" class="ace" />
                             <span class="lbl"></span>
                         </label>
@@ -65,3 +74,26 @@
 
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        var check = true;
+        $('#check-all .lbl').click(function () {
+            if(check){
+                $('.pos-rel').addClass('selected');
+//            $('.pos-rel.select').find('input').prop('checked','checked');
+                $('.pos-rel.selected').each(function () {
+                    $(this).find('input').prop('checked','checked');
+                });
+                check=false;
+            }else {
+                $('.pos-rel').removeClass('selected');
+                $('.pos-rel').each(function () {
+                    $(this).find('input').prop('checked','');
+                });
+                check=true;
+            }
+
+        });
+
+    });
+</script>

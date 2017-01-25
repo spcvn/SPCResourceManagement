@@ -1,14 +1,4 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Quizs'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Candidates'), ['controller' => 'Candidates', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Candidate'), ['controller' => 'Candidates', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Quiz Details'), ['controller' => 'QuizDetails', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Quiz Detail'), ['controller' => 'QuizDetails', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="quizs form large-9 medium-8 columns content">
+<div class="quizs form content">
     <?= $this->Form->create($quiz) ?>
     <fieldset>
         <legend><?= __('Add Quiz') ?></legend>

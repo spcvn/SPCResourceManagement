@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('question')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('question_detail')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="row">
     <div class="col-md-6">
         <h4><?= __('section')?>: <?= h($question->section); ?> </h4>
@@ -33,11 +42,11 @@
                             <div class="btn-group">
                                 <?= $this->Html->link(
                                     $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil']),
-                                    ['controller' => 'Answers','action' => 'edit', $question->id],
+                                    ['controller' => '','action' => '#', $question->id],
                                     ['class'=>'btn btn-xs btn-info','title'=>__('Edit'),'escape'=>false]) ?>
                                 <?= $this->Html->link(
                                     $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash']),
-                                    ['controller' => 'Answers','action' => 'delete', $question->id],
+                                    ['controller' => '','action' => '#', $question->id],
                                     ['class'=>'btn btn-xs btn-danger','title'=>__('Delete'),'escape'=>false]) ?>
                             </div>
                         </td>

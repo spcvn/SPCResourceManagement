@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('exam')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('add_exam')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="exams area-add content">
     <div class="form-add-exam">
         <form>
@@ -19,7 +28,7 @@
                     <input type="text" class="width-100" />
                 </div>
                 <div class="col-sm-3">
-                    <span>minute(s)</span>
+                    <span><?= __('minute')?>(s)</span>
                 </div>
             </div>
             <div class="row form-group">

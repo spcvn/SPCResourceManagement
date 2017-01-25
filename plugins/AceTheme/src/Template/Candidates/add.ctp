@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('candidate')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('add_candidate')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="candidates form content">
     <?= $this->Form->create($candidate) ?>
     <fieldset>

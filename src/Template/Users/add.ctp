@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('users')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('add_users')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <?php
     $candidates['-1']=__('Select a candidate...');
     $user->positions['-1'] = __('Select a position...');

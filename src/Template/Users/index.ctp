@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('users')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('all_users')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="users index content">
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
@@ -16,10 +25,10 @@
             <?php $i = 0;
             $province[0] = $province[1] = "-";
             foreach ($users as $user): ;?>
-
+            <?php $name = h($user->last_name ." ". $user->middle_name ." ". $user->first_name);?>
                 <tr>
                     <td style="text-align: center;"><?= $i++ ?></td>
-                    <td><?php echo h($user->last_name ." ". $user->middle_name ." ". $user->first_name); ?></td>
+                    <td><?= $name ?></td>
                     <td><?=  date("Y/m/d",strtotime(h($user->birth_date))) ?></td>
                     <td><?= $province[$user->provinceid] ?></td>
                     <td><?= h($user->position->name)?></td>
@@ -37,7 +46,7 @@
                             <?= $this->Html->link(
                                 $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
                                 ['action' => 'delete', $user->id],
-                                ['class'=>'btn btn-xs btn-danger  btn-delete', 'title'=>'Delete','escape'=>false]) ?>
+                                ['class'=>'btn btn-xs btn-danger  btn-delete','data-name'=>$name, 'title'=>'Delete','escape'=>false]) ?>
                         </div>
                     </td>
                 </tr>
@@ -59,7 +68,13 @@
 <script>
     $(document).ready(function(){
         $('.btn-delete').confirm({
-            content: "Are you sure you want to delete  #<span class='exam-name'>Thao Nguyen</span>?",
+            content: function(){
+                if($('.btn-delete').click){
+                    console.log($(this).attr('data-name'));
+                    return "Are you sure you want to delete  #<span class='exam-name'>"+$(this).attr('data-name')+"</span>?"
+                }
+
+            },
             title: "",
             buttons: {
                 yes: {

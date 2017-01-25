@@ -82,6 +82,18 @@ msgstr "Number of question"
 msgid "question"
 msgstr "Question"
 
+msgid "all_questions"
+msgstr "All Questions"
+
+msgid "add_question"
+msgstr "Add Question"
+
+msgid "edit_question"
+msgstr "Edit Question"
+
+msgid "question_detail"
+msgstr "Question detail"
+
 msgid "duration"
 msgstr "Duration"
 
@@ -199,3 +211,47 @@ msgstr "Province"
 msgid "district"
 msgstr "District"
 
+msgid "minute"
+msgstr "minute"
+
+msgid "exam"
+msgstr "Exam"
+
+msgid "create_a_template"
+msgstr "Create a template"
+
+msgid "all_exam"
+msgstr "All Exam"
+
+msgid "add_exam"
+msgstr "Add Exam"
+
+msgid "edit_exam"
+msgstr "Edit Exam"
+
+msgid "exam_detail"
+msgstr "Exam detail"
+
+msgid "candidates"
+msgstr "Candidates"
+
+msgid "add_candidate"
+msgstr "Add Candidate"
+
+msgid "edit_candidates"
+msgstr "Edit Candidate"
+
+msgid "users"
+msgstr "Users"
+
+msgid "profile_user"
+msgstr "Profile user"
+
+msgid "edit_user"
+msgstr "Edit user"
+
+msgid "add_user"
+msgstr "Add user"
+
+msgid "all_users"
+msgstr "All users"

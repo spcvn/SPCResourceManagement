@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        Quizs
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            All test
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="quizs index content">
     <table class="table table-bordered table-hover">
         <thead>
@@ -28,10 +37,6 @@
                             $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
                             ['action' => 'view', $quiz->id],
                             ['class'=>'btn btn-xs btn-success','title'=>__('Show Details'),'escape'=>false]) ?>
-                        <?= $this->Html->link(
-                            $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil bigger-120']),
-                            ['action' => 'edit', $quiz->id],
-                            ['class'=>'btn btn-xs btn-info', 'title'=>'Edit','escape'=>false]) ?>
                         <?= $this->Html->link(
                             $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120 btn-delete']),
                             ['action' => 'delete', $quiz->id],

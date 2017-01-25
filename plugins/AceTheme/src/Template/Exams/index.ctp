@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('exam')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('exam_detail')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="exams index content">
     <div class="search-exams-form">
         <?= $this->Form->create() ?>
@@ -22,7 +31,7 @@
             <th style="width: 50px; text-align: center;"><?= __('No.')?></th>
             <th><?= __('template_name')?></th>
             <th style="width: 150px; text-align: center;"><?= __('number_of_question') ?></th>
-            <th style="width: 150px; text-align: center;"><?= __('duration')?> (minute)</th>
+            <th style="width: 150px; text-align: center;"><?= __('duration')?> (<?= __('minute')?>)</th>
             <th><?= __('Section')?></th>
             <th style="text-align: center;"><?= __('tested')?></th>
             <th style="text-align: center;"><?= __('action')?></th>

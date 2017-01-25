@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('exam')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('create_a_template')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="assignment">
     <div class="form-assignment">
         <form>

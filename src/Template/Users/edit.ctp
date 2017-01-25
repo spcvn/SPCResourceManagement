@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('users')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('edit_user')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <span class="loading" style="display:block"><?=$this->Html->image('../images/loading.gif')?>Loading...</span>
 <div class="users form content" style="display:none">
     <div class="wrap-edit">

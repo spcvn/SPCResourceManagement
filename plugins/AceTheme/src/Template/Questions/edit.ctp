@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('question')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('edit_question')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <style>
     .no_display{
         display: none;

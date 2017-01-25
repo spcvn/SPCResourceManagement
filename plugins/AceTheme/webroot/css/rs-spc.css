@@ -1,3 +1,6 @@
+.page-header{
+    margin-bottom: 25px;
+}
 .btn:hover,
 .btn:focus{
     border-color: transparent;
@@ -7,9 +10,6 @@
 }
 .ace-settings-container{
     top: 5px;
-}
-.page-content{
-    padding-top: 50px;
 }
 .welcome-logo{
     text-align: center;
@@ -28,6 +28,16 @@ img{
 .required label:after{
     content: " (*)";
     color: #ff2222;
+}
+.required.error{
+    position: relative;
+    padding-bottom: 20px;
+}
+.required.error .error-message{
+    position: absolute;
+    padding-left: 15%;
+    bottom: 0px;
+    font-style: italic;
 }
 .form .text input{
     float: left;
@@ -314,7 +324,7 @@ select::-ms-expand{
 }
 .content-question article{
     padding: 15px;
-    border: 1px dotted #1b79b8;
+    border: 1px ridge #1b79b8;
 }
 /*radio custom*/
 .radio-custom{
@@ -335,7 +345,7 @@ select::-ms-expand{
 .radio-custom label{
     position: relative;
     padding-left: 30px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     transition: all 0.3s;
 }
@@ -573,9 +583,6 @@ select::-ms-expand{
     }
 }
 @media (min-width: 1200px) {
-    .page-content{
-        padding: 50px;
-    }
 }
 @media (max-width: 479px) {
     .login-container{

@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('exam')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            All question
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="exams view content">
     <h3><?= h($exam->name) ?></h3>
     <table class="vertical-table">

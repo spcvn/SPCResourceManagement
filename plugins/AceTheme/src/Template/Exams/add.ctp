@@ -67,7 +67,7 @@
             <div class="row form-group">
                 <label class="col-xs-7 text-right">Total</label>
                 <div class="col-xs-2">
-                    <input class="total-percent width-80" type="text" value="100" /> <span>%</span>
+                    <input class="total-percent width-80" type="text" value="100" readonly/> <span>%</span>
                 </div>
             </div>
             <div class="row actions">

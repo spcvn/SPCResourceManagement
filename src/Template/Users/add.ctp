@@ -3,13 +3,13 @@
         <?= __('users')?>
         <small>
             <i class="ace-icon fa fa-angle-double-right"></i>
-            <?= __('add_users')?>
+            <?= __('add_user')?>
         </small>
     </h1>
 </div><!-- /.page-header -->
 <?php
-    $candidates['-1']=__('Select a candidate...');
-    $user->positions['-1'] = __('Select a position...');
+    $candidates['-1']=__('select_a_candidate').'...';
+    $user->positions['-1'] = __('select_a_position').'...';
 ?>
 <div class="users form-register content">
     <?= $this->Form->create($user) ?>
@@ -26,7 +26,7 @@
                 echo $this->Form->input('password');
                 echo $this->Form->input('confirm_password',['type'=>'password']);
                 echo "<div class='pass'>&nbsp;</div>";
-                echo $this->Html->link(__("Generate password"),"javascript:generationPassword()",["id"=>"btnPassword"]);
+                echo $this->Html->link(__('generate_password'),"javascript:generationPassword()",["id"=>"btnPassword"]);
                 ?>
             </div>
         </div>
@@ -182,7 +182,8 @@
     $( function() {
         $( ".datepicker" ).datepicker({
             changeYear: true,
-            dateFormat: 'yy-mm-dd'
+            dateFormat: 'yy-mm-dd',
+            yearRange: "-100:+0",
         });
     } );
     $('select[name=candidate_id]').on('change',function(event){

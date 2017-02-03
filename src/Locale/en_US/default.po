@@ -255,3 +255,12 @@ msgstr "Add user"
 
 msgid "all_users"
 msgstr "All users"
+
+msgid "select_a_candidate"
+msgstr "Select a candidate"
+
+msgid "select_a_position"
+msgstr "Select a position"
+
+msgid "generate_password"
+msgstr "Generate password"

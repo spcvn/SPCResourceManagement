@@ -1,5 +1,12 @@
 <?= $this->element('headtag') ?>
 <?= $this->element('header'); ?>
+<?php 
+    /*
+    * breadcrumbs state
+    */
+    $controller = $this->request->params['controller'];
+    $action = $this->request->params['action']=='index'?'': $this->request->params['action'];
+?>
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
             try{ace.settings.loadState('main-container')}catch(e){}
@@ -13,9 +20,23 @@
                     <ul class="breadcrumb">
                         <li>
                             <i class="ace-icon fa fa-home home-icon"></i>
-                            <a href="#">Home</a>
+                            <a href="/">Home</a>
                         </li>
-                        <li class="active"><?=isset($title)?$title:''?></li>
+                        <?php
+                            if($action != ''){
+                                ?>
+                                <li>
+                                    <?= $this->Html->link(__(isset($controller)?$controller:''),
+                                        ['controller'=>'users','action'=>'index'])?>
+                                </li>
+                                <li class="active"><?=__(isset($action)?$action:'')?></li>
+                                <?php
+                            }else{
+                                ?>
+                                <li class="active"><?=__(isset($controller)?$controller:'')?></li>
+                                <?php
+                            }
+                        ?>
                     </ul><!-- /.breadcrumb -->
 
                     <div class="nav-search" id="nav-search">

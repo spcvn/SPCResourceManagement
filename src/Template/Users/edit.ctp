@@ -35,7 +35,15 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $(document).ready( function() {
-        $( ".datepicker" ).datepicker();
+        var year = (new Date).getFullYear();
+        $( ".datepicker" ).datepicker({
+            changeYear : true,
+            changeMonth : true,
+            yearRange : "1950:c",
+            dateFormat : "yy-mm-dd",
+            minDate: new Date(year-60, 0, 1),
+            maxDate: new Date(year-13, 11, 31)
+        });
          $(".loading").hide();
          $(".content").show('fade');
     } );

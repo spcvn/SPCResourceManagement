@@ -1,0 +1,8 @@
+msgid "view"
+msgstr "Detail"
+
+msgid "add"
+msgstr "Add"
+
+msgid "edit"
+msgstr "Edit"

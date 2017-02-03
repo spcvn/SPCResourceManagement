@@ -5,9 +5,14 @@
 .btn:focus{
     border-color: transparent;
 }
+/*custom paginator*/
+.paginator{
+    text-align: right;
+}
 .paginator p{
     color: #9d9a9a;
 }
+/*custom paginator end*/
 .ace-settings-container{
     top: 5px;
 }
@@ -162,6 +167,7 @@ form button[type=submit]:hover{
     width: 100%;
 }
 /*form register*/
+.form-group select,
 select{
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -169,7 +175,7 @@ select{
     text-overflow: '';
     background: url("../images/arrow_down.png") no-repeat right 5px center;
     height: 34px;
-    padding-right: 30px;
+    padding-right: 16px;
 }
 select::-ms-expand{
     display: none;
@@ -258,6 +264,12 @@ select::-ms-expand{
 }
 .form-add-exam .line-add{
     margin-bottom: 15px;
+}
+.form-add-exam .line-add:not(:last-child) .actions .btn-add{
+    display: none;
+}
+.line-add .percent-section{
+    text-align: center;
 }
 /*form exam add end*/
 /*custom paginator*/
@@ -537,6 +549,7 @@ select::-ms-expand{
     content: "";
     background-color: rgba(111,179,224,0.3)!important;
     border-color: transparent;
+    text-align: center;
 }
 .form-assignment .row{
     margin-bottom: 15px;
@@ -549,9 +562,24 @@ select::-ms-expand{
 .ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year{
     border: none;
 }
+.ui-datepicker-title select{
+    height: 28px;
+    color: #393939;
+    padding-left: 10px;
+}
+/*custom datepicker end*/
 .error{
     color: #D15B47;
 }
+/*table layout*/
+table thead a{
+    text-decoration: none;
+}
+table thead a:hover,
+table thead a:focus{
+    text-decoration: none;
+}
+/*table layout end*/
 @media (min-width: 768px) {
     .form .text input,
     .form .email input,

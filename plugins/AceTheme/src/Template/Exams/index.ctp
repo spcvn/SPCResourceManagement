@@ -105,17 +105,22 @@
 </div>
 <script>
     $(document).ready(function(){
-        $('.btn-delete').confirm({
-            content: "Are you sure to delete template: <span class='exam-name'>Front-end developer</span>?",
-            title: "",
-            buttons: {
-                yes: {
-                    btnClass:'btn-danger',
-                },
-                no: {
-                    keys: ['N'],
-                },
-            }
+        var name;
+        $( ".btn-delete" ).each(function(index) {
+            name = $(this).attr('data-name');
+            $(this).confirm({
+                content: "Are you sure to delete template: <span class='exam-name'>"+ name +"</span>?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
+            });
         });
     })
 </script>

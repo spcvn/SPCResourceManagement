@@ -22,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php $i=0; foreach ($quizs as $quiz): ?>
+            <?php $i=1; foreach ($quizs as $quiz): ?>
             <tr>
                 <td style="text-align: center;"><?= $i++; ?></td>
                 <td><?= $quiz->has('candidate') ? $this->Html->link($quiz->candidate->id, ['controller' => 'Candidates', 'action' => 'view', $quiz->candidate->id]) : '' ?></td>
@@ -60,18 +60,20 @@
 </div>
 <script>
     $(document).ready(function(){
-        $('.btn-delete').confirm({
-            content: "Are you sure to delete template: <span class='exam-name'>Front-end developer</span>?",
-            title: "",
-            buttons: {
-                yes: {
-                    btnClass:'btn-danger',
-                    keys: ['Y']
-                },
-                no: {
-                    keys: ['N'],
-                },
-            }
+        $( ".btn-delete" ).each(function(index) {
+            $(this).confirm({
+                content: "Are you sure to delete this item?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y']
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
+            });
         });
     })
 </script>

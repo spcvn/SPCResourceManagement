@@ -28,7 +28,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php $i=0; foreach ($questions as $question): ?>
+                <?php $i=1; foreach ($questions as $question): ?>
                     <tr>
                         <td style="text-align: center;"><?= $i++;?></td>
                         <td class="center">
@@ -37,23 +37,23 @@
                                 <span class="lbl"></span>
                             </label>
                         </td>
-                        <td class="center"><?= $this->Number->format($question->section) ?></td>
+                        <td class="center"><?= $question->section; ?></td>
                         <td><?= $question->content; ?></td>
-                        <td><?= $status[$question->status] ?></td>
+                        <td><span class="label label-success arrowed-in arrowed-in-right"><?= $status[$question->status] ?></span></td>
                         <td class="actions">
                             <div class="btn-group">
                                 <?= $this->Html->link(
                                     $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
                                     ['action' => 'view', $question->id],
-                                    ['class'=>'btn btn-xs btn-success','title'=>__('Show Details'),'escape'=>false]) ?>
+                                    ['class'=>'btn btn-xs btn-success','title'=>__('show_detail'),'escape'=>false]) ?>
                                 <?= $this->Html->link(
                                     $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil bigger-120']),
                                     ['action' => 'edit', $question->id],
-                                    ['class'=>'btn btn-xs btn-info', 'title'=>'Edit','escape'=>false]) ?>
+                                    ['class'=>'btn btn-xs btn-info', 'title'=>__('edit'),'escape'=>false]) ?>
                                 <?= $this->Html->link(
                                     $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
                                     ['action' => 'delete', $question->id],
-                                    ['class'=>'btn btn-xs btn-danger', 'title'=>'Delete','escape'=>false]) ?>
+                                    ['class'=>'btn btn-xs btn-danger', 'title'=>__('delete'),'escape'=>false]) ?>
                             </div>
                         </td>
                     </tr>
@@ -62,16 +62,15 @@
             </table>
             <div class="paginator">
                 <ul class="pagination">
-                    <?= $this->Paginator->first(__('First')) ?>
-                    <?= $this->Paginator->prev(__('Previous')) ?>
+                    <?= $this->Paginator->first(__('first')) ?>
+                    <?= $this->Paginator->prev(__('previous')) ?>
                     <?= $this->Paginator->numbers() ?>
-                    <?= $this->Paginator->next(__('Next')) ?>
-                    <?= $this->Paginator->last(__('Last')) ?>
+                    <?= $this->Paginator->next(__('next')) ?>
+                    <?= $this->Paginator->last(__('last')) ?>
                 </ul>
-                <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+                <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}')]) ?></p>
             </div>
         </div>
-
     </div>
 </div>
 <script>
@@ -94,6 +93,67 @@
             }
 
         });
+
+        /////////////////////////////////
+        //table checkboxes
+        $('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
+
+        //select/deselect all rows according to table header checkbox
+        $('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
+            var th_checked = this.checked;//checkbox inside "TH" table header
+
+            $('#dynamic-table').find('tbody > tr').each(function(){
+                var row = this;
+                if(th_checked) myTable.row(row).select();
+                else  myTable.row(row).deselect();
+            });
+        });
+
+        //select/deselect a row when the checkbox is checked/unchecked
+        $('#dynamic-table').on('click', 'td input[type=checkbox]' , function(){
+            var row = $(this).closest('tr').get(0);
+            if(this.checked) myTable.row(row).deselect();
+            else myTable.row(row).select();
+        });
+
+
+
+        $(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
+            e.stopImmediatePropagation();
+            e.stopPropagation();
+            e.preventDefault();
+        });
+
+
+
+        //And for the first simple table, which doesn't have TableTools or dataTables
+        //select/deselect all rows according to table header checkbox
+        var active_class = 'active';
+        $('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
+            var th_checked = this.checked;//checkbox inside "TH" table header
+
+            $(this).closest('table').find('tbody > tr').each(function(){
+                var row = this;
+                if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
+                else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
+            });
+        });
+
+        //select/deselect a row when the checkbox is checked/unchecked
+        $('#simple-table').on('click', 'td input[type=checkbox]' , function(){
+            var $row = $(this).closest('tr');
+            if($row.is('.detail-row ')) return;
+            if(this.checked) $row.addClass(active_class);
+            else $row.removeClass(active_class);
+        });
+
+        /***************/
+        $('.show-details-btn').on('click', function(e) {
+            e.preventDefault();
+            $(this).closest('tr').next().toggleClass('open');
+            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
+        });
+        /***************/
 
     });
 </script>

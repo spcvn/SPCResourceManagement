@@ -118,11 +118,17 @@ msgstr "Assign"
 msgid "cancel"
 msgstr "Cancel"
 
+msgid "save"
+msgstr "Save"
+
 msgid "answer"
 msgstr "Answer"
 
 msgid "answers"
 msgstr "Answers"
+
+msgid "correct_answer"
+msgstr "Correct Answer"
 
 msgid "alert_checkbox"
 msgstr "Please check in which is correct"
@@ -264,3 +270,9 @@ msgstr "Select a position"
 
 msgid "generate_password"
 msgstr "Generate password"
+
+msgid "Content"
+msgstr "content"
+
+msgid "full_name"
+msgstr "Full Name"

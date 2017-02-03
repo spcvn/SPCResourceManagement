@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php $i=0; foreach ($candidates as $candidate): ?>
+            <?php $i=1; foreach ($candidates as $candidate): ?>
             <tr>
                 <td style="text-align: center;"><?= $i++ ?></td>
                 <td><?= h($candidate->first_name) ?></td>

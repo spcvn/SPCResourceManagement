@@ -36,7 +36,9 @@
     $(document).ready( function() {
         $( ".datepicker" ).datepicker({
             changeYear: true,
-            dateFormat: 'yy-mm-dd'
+            changeMonth: true,
+            dateFormat: 'yy-mm-dd',
+            yearRange: "-100:+0",
         });
         $(".loading").hide();
         $(".content").show('fade');

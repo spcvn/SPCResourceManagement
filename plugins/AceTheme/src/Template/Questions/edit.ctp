@@ -19,10 +19,10 @@
 <div class="questions form form-question content">
     <?= $this->Form->create($question,['id'=>'qForm']) ?>
     <fieldset>
-        <legend><?= __('Edit Question') ?></legend>
+        <legend><?= __('edit_question') ?></legend>
         <?php
         echo $this->Form->input('section', ['type' => 'select', 'options' => $section]);
-        echo $this->Form->label('Content');
+        echo $this->Form->label(__('content'));
         echo $this->Form->input('content',['templates' => [
             'formGroup' => '{{input}}'
         ]]);
@@ -35,7 +35,7 @@
                 ?>
                 <div class="row-answer">
                 <?php
-                echo $this->Form->input(__('Answer ').$i, ['default' => $answer, 'required' => 'true']);
+                echo $this->Form->input(__('answer ').$i, ['default' => $answer, 'required' => 'true']);
                 echo $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'ansdelete', $key],['escape'=>false,'class'=>'btnDelete']);
                 ?>
                 </div>
@@ -44,19 +44,19 @@
             ?>
         </div>
         <div class="actions">
-            <a href="javascript:addAnswer()" class="btn btn-success">Add +</a>
-            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()">Remove -</a>
+            <a href="javascript:addAnswer()" class="btn btn-success"><?= __('add')?> +</a>
+            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()"><?= __('remove')?> -</a>
         </div>
         <div class="input select">
             <?php
-            echo $this->Form->label('Correct Answer');
+            echo $this->Form->label(__('correct_answer'));
             echo $this->Form->select('correct_answer', $answers,['default'=>key($correct_answer)]);
             ?>
         </div>
     </fieldset>
     <div class="Actions-end clearfix">
-        <?= $this->Html->link(__('Preview'),"javascript:review()",['class'=>'btn btn-info btnPreview']) ?>
-        <?= $this->Form->button(__('Submit')) ?>
+        <?= $this->Html->link(__('preview'),"javascript:review()",['class'=>'btn btn-info btnPreview']) ?>
+        <?= $this->Form->button(__('submit')) ?>
     </div>
     <?= $this->Form->end() ?>
 </div>
@@ -64,8 +64,8 @@
     <div class="title">Title</div>
     <div class="body">Body</div>
     <div class="footer">
-        <?=$this->Html->link('Cancel','#',['class'=>'btn btn-cancel','rel'=>'modal:close'])?>
-        <?=$this->Html->link('Save','javascript:submit($("#qForm"))',['class'=>'btn btn-cancel'])?>
+        <?=$this->Html->link(__('cancel'),'#',['class'=>'btn btn-cancel','rel'=>'modal:close'])?>
+        <?=$this->Html->link(__('save'),'javascript:submit($("#qForm"))',['class'=>'btn btn-cancel'])?>
     </div>
 </div>
 <script>

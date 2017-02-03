@@ -12,17 +12,17 @@
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th style="text-align: center;" scope="col"><?= $this->Paginator->sort('No.') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('last_name',['text'=>'Name']) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('birth_date',['text'=>'Birthday Date']) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('provinceid',['text'=>'Province']) ?></th>
+                <th style="text-align: center;" scope="col"><?= $this->Paginator->sort('no',['text'=>'No.']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('last_name',['text'=>__('full_name')]) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('birth_date',['text'=>__('birthday')]) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('provinceid',['text'=>__('province')]) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('dept',['model'=>'Positions']) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col" class="actions"><?= __('actions') ?></th>
             </tr>
             </thead>
             <tbody>
-            <?php $i = 0;
+            <?php $i = 1;
             $province[0] = $province[1] = "-";
             foreach ($users as $user): ;?>
             <?php $name = h($user->last_name ." ". $user->middle_name ." ". $user->first_name);?>
@@ -32,21 +32,21 @@
                     <td><?=  date("Y/m/d",strtotime(h($user->birth_date))) ?></td>
                     <td><?= $province[$user->provinceid] ?></td>
                     <td><?= h($user->position->name)?></td>
-                    <td><?= h($user->status) ?></td>
+                    <td><span class="label arrowed-in arrowed-in-right label-success"><?= h($user->status) ?></span></td>
                     <td class="actions">
                         <div class="btn-group">
                             <?= $this->Html->link(
                                 $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
                                 ['action' => 'view', $user->id],
-                                ['class'=>'btn btn-xs btn-success','title'=>__('Show Details'),'escape'=>false]) ?>
+                                ['class'=>'btn btn-xs btn-success','title'=>__('show_detail'),'escape'=>false]) ?>
                             <?= $this->Html->link(
                                 $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil bigger-120']),
                                 ['action' => 'edit', $user->id],
-                                ['class'=>'btn btn-xs btn-info', 'title'=>'Edit','escape'=>false]) ?>
+                                ['class'=>'btn btn-xs btn-info', 'title'=>__('edit'),'escape'=>false]) ?>
                             <?= $this->Html->link(
                                 $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
                                 ['action' => 'delete', $user->id],
-                                ['class'=>'btn btn-xs btn-danger  btn-delete','data-name'=>$name, 'title'=>'Delete','escape'=>false]) ?>
+                                ['class'=>'btn btn-xs btn-danger  btn-delete','data-name'=>$name, 'title'=>__('delete'),'escape'=>false]) ?>
                         </div>
                     </td>
                 </tr>
@@ -67,23 +67,22 @@
 </div>
 <script>
     $(document).ready(function(){
-        $('.btn-delete').confirm({
-            content: function(){
-                if($('.btn-delete').click){
-                    console.log($(this).attr('data-name'));
-                    return "Are you sure you want to delete  #<span class='exam-name'>"+$(this).attr('data-name')+"</span>?"
+        var name;
+        $( ".btn-delete" ).each(function(index) {
+            name = $(this).attr('data-name');
+            $(this).confirm({
+                content: "Are you sure you want to delete: <span class='exam-name'>"+ name +"</span>?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
                 }
-
-            },
-            title: "",
-            buttons: {
-                yes: {
-                    btnClass:'btn-danger',
-                },
-                no: {
-                    keys: ['N'],
-                },
-            }
+            });
         });
     })
 </script>

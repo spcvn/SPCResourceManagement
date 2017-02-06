@@ -19,7 +19,6 @@
 <div class="questions form form-question content">
     <?= $this->Form->create($question,['id'=>'qForm']) ?>
     <fieldset>
-        <legend><?= __('edit_question') ?></legend>
         <?php
         echo $this->Form->input('section', ['type' => 'select', 'options' => $section]);
         echo $this->Form->label(__('content'));
@@ -56,7 +55,7 @@
     </fieldset>
     <div class="Actions-end clearfix">
         <?= $this->Html->link(__('preview'),"javascript:review()",['class'=>'btn btn-info btnPreview']) ?>
-        <?= $this->Form->button(__('submit')) ?>
+        <?= $this->Form->button(__('save')) ?>
     </div>
     <?= $this->Form->end() ?>
 </div>

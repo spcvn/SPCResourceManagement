@@ -10,6 +10,9 @@ msgstr "Edit"
 msgid "submit"
 msgstr "Submit"
 
+msgid "delete"
+msgstr "Delete"
+
 msgid "confirm_delete"
 msgstr "Are you sure you want to delete"
 

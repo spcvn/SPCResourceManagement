@@ -51,7 +51,7 @@
                                 <?= $this->Html->link(
                                     $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
                                     ['action' => 'delete', $question->id],
-                                    ['class'=>'btn btn-xs btn-danger', 'title'=>__('delete'),'escape'=>false]) ?>
+                                    ['class'=>'btn btn-xs btn-danger btn-delete', 'title'=>__('delete'),'escape'=>false]) ?>
                             </div>
                         </td>
                     </tr>
@@ -72,6 +72,23 @@
     </div>
 </div>
 <script>
+    function deleteAQuestion(){
+        $( ".btn-delete" ).each(function(index) {
+            $(this).confirm({
+                content: "Are you sure you want to delete this question?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
+            });
+        });
+    }
     $(document).ready(function(){
         var check = true;
         $('#check-all .lbl').click(function () {
@@ -91,6 +108,7 @@
             }
 
         });
+        deleteAQuestion();
 
     });
 </script>

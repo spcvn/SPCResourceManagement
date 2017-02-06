@@ -583,6 +583,9 @@ table thead a:hover,
 table thead a:focus{
     text-decoration: none;
 }
+tr.hover{
+    cursor: pointer;
+}
 /*table layout end*/
 @media (min-width: 768px) {
     .form .text input,

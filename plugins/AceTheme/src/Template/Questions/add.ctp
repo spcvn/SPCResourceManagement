@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        <?= __('question')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('add_question')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <style>
 	.no_display{
 		display: none;
@@ -13,10 +22,10 @@
                 'formGroup' => '{{input}}'
             ]]);
         ?>
-        <div id="answer"><h4>Answer <span>(Please check in which is correct.)</span></h4></div>
+        <div id="answer"><h4><?= __('answer');?> <span>(<?= __('alert_checkbox')?>.)</span></h4></div>
         <div class="actions nopd">
-            <a href="javascript:addAnswer()" class="btn btn-success" title="add a new answer">Add +</a>
-            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="remove an answer">Remove -</a>
+            <a href="javascript:addAnswer()" class="btn btn-success" title="<?= __('title_add_answer')?>"><?= __('add')?> +</a>
+            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="remove an answer"><?= __('remove')?> -</a>
         </div>
     </fieldset>
     <div class="Actions text-center">

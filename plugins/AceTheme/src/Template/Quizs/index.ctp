@@ -1,8 +1,17 @@
+<div class="page-header">
+    <h1>
+        Quizs
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            All test
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="quizs index content">
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col" style="width: 60px; text-align: center;"><?= __('No.')?></th>
                 <th scope="col"><?= $this->Paginator->sort('candidate_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('time') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('quiz_date') ?></th>
@@ -13,9 +22,9 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($quizs as $quiz): ?>
+            <?php $i=1; foreach ($quizs as $quiz): ?>
             <tr>
-                <td><?= $this->Number->format($quiz->id) ?></td>
+                <td style="text-align: center;"><?= $i++; ?></td>
                 <td><?= $quiz->has('candidate') ? $this->Html->link($quiz->candidate->id, ['controller' => 'Candidates', 'action' => 'view', $quiz->candidate->id]) : '' ?></td>
                 <td><?= $this->Number->format($quiz->time) ?></td>
                 <td><?= h($quiz->quiz_date) ?></td>
@@ -23,9 +32,16 @@
                 <td><?= $this->Number->format($quiz->score) ?></td>
                 <td><?= $this->Number->format($quiz->total) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $quiz->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $quiz->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $quiz->id], ['confirm' => __('Are you sure you want to delete # {0}?', $quiz->id)]) ?>
+                    <div class="btn-group">
+                        <?= $this->Html->link(
+                            $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
+                            ['action' => 'view', $quiz->id],
+                            ['class'=>'btn btn-xs btn-success','title'=>__('Show Details'),'escape'=>false]) ?>
+                        <?= $this->Html->link(
+                            $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120 btn-delete']),
+                            ['action' => 'delete', $quiz->id],
+                            ['class'=>'btn btn-xs btn-danger', 'title'=>'Delete','escape'=>false]) ?>
+                    </div>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -42,3 +58,22 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $( ".btn-delete" ).each(function(index) {
+            $(this).confirm({
+                content: "Are you sure to delete this item?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y']
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
+            });
+        });
+    })
+</script>

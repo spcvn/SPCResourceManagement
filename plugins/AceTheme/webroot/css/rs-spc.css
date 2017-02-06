@@ -1,15 +1,20 @@
+.page-header{
+    margin-bottom: 25px;
+}
 .btn:hover,
 .btn:focus{
     border-color: transparent;
 }
+/*custom paginator*/
+.paginator{
+    text-align: right;
+}
 .paginator p{
     color: #9d9a9a;
 }
+/*custom paginator end*/
 .ace-settings-container{
     top: 5px;
-}
-.page-content{
-    padding-top: 50px;
 }
 .welcome-logo{
     text-align: center;
@@ -28,6 +33,16 @@ img{
 .required label:after{
     content: " (*)";
     color: #ff2222;
+}
+.required.error{
+    position: relative;
+    padding-bottom: 20px;
+}
+.required.error .error-message{
+    position: absolute;
+    padding-left: 15%;
+    bottom: 0px;
+    font-style: italic;
 }
 .form .text input{
     float: left;
@@ -152,6 +167,7 @@ form button[type=submit]:hover{
     width: 100%;
 }
 /*form register*/
+.form-group select,
 select{
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -159,7 +175,7 @@ select{
     text-overflow: '';
     background: url("../images/arrow_down.png") no-repeat right 5px center;
     height: 34px;
-    padding-right: 30px;
+    padding-right: 16px;
 }
 select::-ms-expand{
     display: none;
@@ -249,6 +265,12 @@ select::-ms-expand{
 .form-add-exam .line-add{
     margin-bottom: 15px;
 }
+.form-add-exam .line-add:not(:last-child) .actions .btn-add{
+    display: none;
+}
+.line-add .percent-section{
+    text-align: center;
+}
 /*form exam add end*/
 /*custom paginator*/
 .pagination{
@@ -312,6 +334,10 @@ select::-ms-expand{
 .content-question{
     padding: 30px 0;
 }
+.content-question article{
+    padding: 15px;
+    border: 1px ridge #1b79b8;
+}
 /*radio custom*/
 .radio-custom{
     margin-bottom: 15px;
@@ -331,7 +357,7 @@ select::-ms-expand{
 .radio-custom label{
     position: relative;
     padding-left: 30px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     transition: all 0.3s;
 }
@@ -523,11 +549,37 @@ select::-ms-expand{
     content: "";
     background-color: rgba(111,179,224,0.3)!important;
     border-color: transparent;
+    text-align: center;
 }
 .form-assignment .row{
     margin-bottom: 15px;
 }
 /*form assignment end*/
+/*custom datepicker*/
+.ui-datepicker{
+    width: 260px;
+}
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year{
+    border: none;
+}
+.ui-datepicker-title select{
+    height: 28px;
+    color: #393939;
+    padding-left: 10px;
+}
+/*custom datepicker end*/
+.error{
+    color: #D15B47;
+}
+/*table layout*/
+table thead a{
+    text-decoration: none;
+}
+table thead a:hover,
+table thead a:focus{
+    text-decoration: none;
+}
+/*table layout end*/
 @media (min-width: 768px) {
     .form .text input,
     .form .email input,
@@ -559,9 +611,6 @@ select::-ms-expand{
     }
 }
 @media (min-width: 1200px) {
-    .page-content{
-        padding: 50px;
-    }
 }
 @media (max-width: 479px) {
     .login-container{

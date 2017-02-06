@@ -1,3 +1,12 @@
+<div class="page-header">
+    <h1>
+        Candidates
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            Edit Candidate
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <div class="candidates form content">
     <?= $this->Form->create($candidate) ?>
     <fieldset>
@@ -5,19 +14,33 @@
             echo $this->Form->input('first_name');
             echo $this->Form->input('middle_name');
             echo $this->Form->input('last_name');
-            echo $this->Form->input('birth_date');
+            echo $this->Form->input('birth_date',['type'=>'text','class'=>'datepicker']);
             echo $this->Form->input('married');
-            echo $this->Form->input('addr01');
+            echo $this->Form->input('addr01',['label'=>'Address']);
             echo $this->Form->input('mobile');
             echo $this->Form->input('expected_salary');
-            echo $this->Form->input('interview_date');
+            echo $this->Form->input('interview_date',['type'=>'text','class'=>'datepicker']);
             echo $this->Form->input('position');
             echo $this->Form->input('score');
             echo $this->Form->input('result');
-            echo $this->Form->input('created_date');
-            echo $this->Form->input('update_date');
+            echo $this->Form->input('created_date',['type'=>'text','class'=>'datepicker']);
+            echo $this->Form->input('update_date',['type'=>'text','class'=>'datepicker']);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('submit')) ?>
     <?= $this->Form->end() ?>
 </div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(document).ready( function() {
+        $( ".datepicker" ).datepicker({
+            changeYear: true,
+            changeMonth: true,
+            dateFormat: 'yy-mm-dd',
+            yearRange: "-100:+0",
+        });
+        $(".loading").hide();
+        $(".content").show('fade');
+    } );
+</script>

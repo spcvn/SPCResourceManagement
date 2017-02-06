@@ -14,7 +14,6 @@
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th scope="col" style="width: 60px; text-align: center;"><?= __('No.')?></th>
                     <th class="center">
                         <label id="check-all" class="checkbox-all">
                             <input type="checkbox" class="ace" />
@@ -28,9 +27,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php $i=1; foreach ($questions as $question): ?>
+                <?php foreach ($questions as $question): ?>
                     <tr>
-                        <td style="text-align: center;"><?= $i++;?></td>
                         <td class="center">
                             <label class="pos-rel">
                                 <input type="checkbox" class="ace" />
@@ -93,67 +91,6 @@
             }
 
         });
-
-        /////////////////////////////////
-        //table checkboxes
-        $('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
-
-        //select/deselect all rows according to table header checkbox
-        $('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
-            var th_checked = this.checked;//checkbox inside "TH" table header
-
-            $('#dynamic-table').find('tbody > tr').each(function(){
-                var row = this;
-                if(th_checked) myTable.row(row).select();
-                else  myTable.row(row).deselect();
-            });
-        });
-
-        //select/deselect a row when the checkbox is checked/unchecked
-        $('#dynamic-table').on('click', 'td input[type=checkbox]' , function(){
-            var row = $(this).closest('tr').get(0);
-            if(this.checked) myTable.row(row).deselect();
-            else myTable.row(row).select();
-        });
-
-
-
-        $(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
-            e.stopImmediatePropagation();
-            e.stopPropagation();
-            e.preventDefault();
-        });
-
-
-
-        //And for the first simple table, which doesn't have TableTools or dataTables
-        //select/deselect all rows according to table header checkbox
-        var active_class = 'active';
-        $('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
-            var th_checked = this.checked;//checkbox inside "TH" table header
-
-            $(this).closest('table').find('tbody > tr').each(function(){
-                var row = this;
-                if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
-                else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
-            });
-        });
-
-        //select/deselect a row when the checkbox is checked/unchecked
-        $('#simple-table').on('click', 'td input[type=checkbox]' , function(){
-            var $row = $(this).closest('tr');
-            if($row.is('.detail-row ')) return;
-            if(this.checked) $row.addClass(active_class);
-            else $row.removeClass(active_class);
-        });
-
-        /***************/
-        $('.show-details-btn').on('click', function(e) {
-            e.preventDefault();
-            $(this).closest('tr').next().toggleClass('open');
-            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-        });
-        /***************/
 
     });
 </script>

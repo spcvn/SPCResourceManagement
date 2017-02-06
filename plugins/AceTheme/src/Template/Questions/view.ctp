@@ -26,7 +26,6 @@
                     <th class="center" width="50" scope="col"><?= __('No.') ?></th>
                     <th scope="col"><?= __('answer') ?></th>
                     <th class="center" width="100" scope="col"><?= __('Is Correct') ?></th>
-                    <th class="center" scope="col" width="100"><?= __('Is Delete') ?></th>
                     <th class="center" scope="col" class="actions"><?= __('actions') ?></th>
                 </tr>
                 </thead>
@@ -37,17 +36,12 @@
                         <td class="center"><?= h($i++) ?></td>
                         <td><?= h($answers->answer) ?></td>
                         <td class="center"><?= ($answers->is_correct==0)?'<i class="f20 text-danger fa fa-remove"></i>':'<i class="f20 text-success fa fa-check"></i>' ?></td>
-                        <td class="center"><?= ($answers->is_delete==0)?'':'<i class="f20 text-success fa fa-check"></i>' ?></td>
                         <td class="actions center">
                             <div class="btn-group">
                                 <?= $this->Html->link(
-                                    $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil']),
-                                    ['controller' => '','action' => '#', $question->id],
-                                    ['class'=>'btn btn-xs btn-info','title'=>__('Edit'),'escape'=>false]) ?>
-                                <?= $this->Html->link(
                                     $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash']),
                                     ['controller' => '','action' => '#', $question->id],
-                                    ['class'=>'btn btn-xs btn-danger','title'=>__('Delete'),'escape'=>false]) ?>
+                                    ['class'=>'btn btn-xs btn-danger btn-delete','title'=>__('Delete'),'escape'=>false]) ?>
                             </div>
                         </td>
                     </tr>

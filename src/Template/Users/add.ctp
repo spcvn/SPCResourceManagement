@@ -1,5 +1,5 @@
 <?php
-    $candidates['-1']=__('Select a candidate...');
+    $candidates['0']=__('Select a candidate...');
     $user->positions['-1'] = __('Select a position...');
 ?>
 <div class="users form-register content">
@@ -41,7 +41,7 @@
                 <?php
                 echo $this->Form->input('birth_date', ['class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
                 echo $this->Form->input('mobile',['type'=>'text']);
-                echo $this->Form->input('dept',['type'=>'select', 'options'=>$user->positions ,'default'=>'-1']);
+                echo $this->Form->input('dept',['type'=>'select', 'options'=>$user->positions ,'default'=>'0']);
                 echo $this->Form->input('start_work',['type'=>'text','class'=>'datepicker','default' => date('Y-m-d')]);
                 $status = ['0' => 'Active', '1' => 'Disable'];
                 echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
@@ -182,8 +182,7 @@
                 $('input[name='+key+']').val(val);
                 if(key=='position')
                     $('select[name=dept]').val(val);
-            })
-            console.log(data);
+            });
         });
     });
     var timer 

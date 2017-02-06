@@ -168,14 +168,18 @@ form button[type=submit]:hover{
 }
 /*form register*/
 .form-group select,
-select{
+select,
+.dataTables_wrapper select{
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;
     text-overflow: '';
-    background: url("../images/arrow_down.png") no-repeat right 5px center;
+    background: url("../images/arrow_down.png") no-repeat right 5px center!important;
     height: 34px;
     padding-right: 16px;
+}
+.dataTables_wrapper select{
+    background-color: #ffffff!important;
 }
 select::-ms-expand{
     display: none;
@@ -336,7 +340,7 @@ select::-ms-expand{
 }
 .content-question article{
     padding: 15px;
-    border: 1px ridge #1b79b8;
+    border: 1px ridge #dddddd;
 }
 /*radio custom*/
 .radio-custom{
@@ -611,6 +615,14 @@ table thead a:focus{
     }
 }
 @media (min-width: 1200px) {
+}
+@media (max-width: 600px) {
+    #dynamic-table_wrapper .row .col-xs-6{
+        width: 100%;
+    }
+    #dynamic-table_filter{
+        text-align: left;
+    }
 }
 @media (max-width: 479px) {
     .login-container{

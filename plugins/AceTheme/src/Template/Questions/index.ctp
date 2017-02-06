@@ -36,7 +36,7 @@
                             </label>
                         </td>
                         <td class="center"><?= $question->section; ?></td>
-                        <td><?= $question->content; ?></td>
+                        <td><?= strtok($question->content, "\n"); ?></td>
                         <td><span class="label label-success arrowed-in arrowed-in-right"><?= $status[$question->status] ?></span></td>
                         <td class="actions">
                             <div class="btn-group">

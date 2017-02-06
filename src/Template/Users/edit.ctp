@@ -44,7 +44,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $(document).ready( function() {
-<<<<<<< HEAD
         var year = (new Date).getFullYear();
         $( ".datepicker" ).datepicker({
             changeYear : true,
@@ -53,13 +52,6 @@
             dateFormat : "yy-mm-dd",
             minDate: new Date(year-60, 0, 1),
             maxDate: new Date(year-13, 11, 31)
-=======
-        $( ".datepicker" ).datepicker({
-            changeYear: true,
-            changeMonth: true,
-            dateFormat: 'yy-mm-dd',
-            yearRange: "-100:+0",
->>>>>>> e4b558dc3044aaf719c4aae99521cc8cecdd38cb
         });
          $(".loading").hide();
          $(".content").show('fade');

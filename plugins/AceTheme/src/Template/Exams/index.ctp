@@ -34,16 +34,16 @@
                                 <span class="lbl"></span>
                             </label>
                         </th>
-                        <th>Template name</th>
-                        <th>Number of question</th>
+                        <th><?= __('template_name')?></th>
+                        <th><?= __('number_of_question')?></th>
                         <th class="hidden-480">
                             <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                            Duration (minute)</th>
+                            <?= __('duration_minute')?></th>
 
                         <th>
-                            Section
+                            <?= __('section')?>
                         </th>
-                        <th class="hidden-480">Tested</th>
+                        <th class="hidden-480"><?= __('tested')?></th>
 
                         <th></th>
                     </tr>

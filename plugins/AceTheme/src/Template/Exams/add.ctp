@@ -147,18 +147,25 @@
         var lost = per - total;
         _this.val(parseInt(_itsval)+ parseInt(lost))
     }
+
+    function removeline(){
+        $(this).parent().parent().remove();
+        removeline();
+    }
     $(document).ready(function(){
-        $('.btn-remove').confirm({
-            content: "Are you sure you want to remove this section?",
-            title: "",
-            buttons: {
-                yes: {
-                    btnClass:'btn-danger',
-                },
-                no: {
-                    keys: ['N'],
-                },
-            }
+        $('.btn-remove').each(function () {
+           $(this).confirm({
+               content: "Are you sure you want to remove this section?",
+               title: "",
+               buttons: {
+                   yes: {
+                       btnClass:'btn-danger',
+                   },
+                   no: {
+                       keys: ['N'],
+                   },
+               }
+           });
         });
 
         addline();
@@ -167,4 +174,5 @@
         console.log(e.val());
         e.addClass('hasChanged');
     }
+    removeline();
 </script>

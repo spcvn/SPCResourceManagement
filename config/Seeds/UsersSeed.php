@@ -29,7 +29,7 @@ class UsersSeed extends AbstractSeed
                 'middle_name' => 'Minh ',
                 'last_name' => 'Nguyen',
                 'addr01' => '5/8A Song Hanh, quan 12',
-                'addr02' => 'TP HCM',
+                'addr02' => 'TP.HCM',
                 'provinceid' => '02',
                 'districtid' => '027',
                 'wardid' => '00781',

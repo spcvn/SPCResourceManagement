@@ -108,4 +108,72 @@ class ProvincesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    /* update by unoTrung */
+    /**
+     * GET* method
+     *
+     * @param string|null $id Province id.
+     * @return type : array()
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function getProvince($id =null){
+        $provinces = $this->Provinces->find('list',['keyField' => 'provinceid',
+                                'valueField' => 'name']);
+        if($id !== null){
+            $provinces = $provinces->where(['provinceid'=>$id]);
+        }        
+        $provinces = $provinces->toArray();
+        return count($provinces)>0?$provinces:array("0"=>"---");
+    }
+    public function getDistrict($provinceId = null,$id = null){
+        $this->loadModel('Districts');
+        $districts = $this->Districts
+                    ->find('list',['keyField'=>'districtid','valueField' => function($dis){
+                        return $dis->type." ".$dis->name;
+                    }]);
+        if($provinceId !== null){
+            $districts = $districts->where(['provinceid'=>$provinceId]);
+        }
+        if($id !== null){
+            $districts = $districts->where(['districtid'=>$id]);
+        }
+        
+        $districts = $districts->toArray();
+        return count($districts)>0?$districts:array("0"=>"---");
+    }
+    public function getWard($districtId = null,$id = null){
+        $this->loadModel('Wards');
+        $wards = $this->Wards
+                    ->find('list',['keyField'=>'wardid','valueField' => function($dis){
+                        return $dis->type." ".$dis->name;
+                    }]);
+        if($districtId !== null){
+            $wards = $wards->where(['districtid'=>$districtId]);
+        }
+        if($id !== null){
+            $wards = $wards->where(['wardid'=>$id]);
+        }
+        $wards = $wards->toArray();
+        return count($wards)>0?$wards:array("0"=>"---");
+    }
+
+    /**
+     * loadAddress method
+     *
+     * @return type : json
+     * Load Address when edit form
+     */
+    public function loadAddress(){
+        $data = [];
+        if ($this->request->is(['post'])) {
+            if(isset($this->request->data['provinceid'])){
+                $data['district'] = $this->getDistrict($this->request->data['provinceid']);
+            }
+            if(isset($this->request->data['districtid']))
+                $data['ward'] = $this->getWard($this->request->data['districtid']);
+        }
+        echo json_encode($data);   
+        die();
+    }
 }

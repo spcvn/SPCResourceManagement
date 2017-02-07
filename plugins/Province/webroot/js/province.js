@@ -1,5 +1,5 @@
 jQuery(function(){
-	var url = "/province/province/load-address";
+	var url = "/province/provinces/load-address";
     $("#provinceid").on('change',function(e){
 			$.post(url,{provinceid:$(this).val()},function(data){
 					var opts = $.parseJSON(data);

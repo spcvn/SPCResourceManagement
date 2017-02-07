@@ -182,79 +182,80 @@
             yearRange: "-100:+0",
         });
     } );
-//    $('select[name=candidate_id]').on('change',function(event){
-//        var id = $(this).val();
-//        var url = "<?//=$this->Url->build(['controller'=>'candidates','action'=>'getCandidate'])?>//"
-//        $.post(url,{"id":id},function(resData){
-//            var data = $.parseJSON(resData);
-//            $.each(data,function(key,val){
-//                $('input[name='+key+']').val(val);
-//                if(key=='position')
-//                    $('select[name=dept]').val(val);
-//            });
-//        });
-//    });
-//    var timer;
-//    $('input[name=username]').on('blur',function(){
-//        var eleUsername = $( this );
-//        var classUsername = $( this ).parent('div.input');
-//        classUsername.find('.error').remove();
-//        classUsername.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
-//        var processing=false;
-//        clearTimeout(timer);
-//        timer = setTimeout( function(){
-//            if (!processing){
-//                processing=true;
-//                var url = "<?//=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>//";
-//                $.post(url,{ username:eleUsername.val() },function(res){
-//                    var data = $.parseJSON(res);
-//                    classUsername.find('.user-loading').remove();
-//                    if(data.status == 'exist'){
-//                        classUsername.addClass('has-error');
-//                        classUsername.append('<i class="error">Username is exist, please pick a another username!</i>');
-//                    }else{
-//                        classUsername.find('.error').remove();
-//                        classUsername.removeClass('has-error');
-//                        classUsername.append('<i class="success"></i>');
-//                    }
-//                });
-//            }
-//        }
-//        ,1000);
-//    });
+   $('select[name=candidate_id]').on('change',function(event){
+       var id = $(this).val();
+       var url = "<?//=$this->Url->build(['controller'=>'candidates','action'=>'getCandidate'])?>//"
+       $.post(url,{"id":id},function(resData){
+           var data = $.parseJSON(resData);
+           $.each(data,function(key,val){
+               $('input[name='+key+']').val(val);
+               if(key=='position')
+                   $('select[name=dept]').val(val);
+           });
+       });
+   });
+   var timer;
+   $('input[name=username]').on('blur',function(){
+       var eleUsername = $( this );
+       var classUsername = $( this ).parent('div.input');
+       classUsername.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
+       var processing=false;
+       clearTimeout(timer);
+       timer = setTimeout( function(){
+           if (!processing){
+               processing=true;
+               var url = "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>";
+               $.post(url,{ username:eleUsername.val() },function(res){
+                   $('i.error').remove();
+                   var data = $.parseJSON(res);
+                   classUsername.find('.user-loading').remove();
+                   if(data.status == 'exist'){
+                       classUsername.addClass('has-error');
+                       classUsername.append('<i class="error">Username is exist, please pick a another username!</i>');
+                   }else{
+                       classUsername.removeClass('has-error');
+                       classUsername.append('<i class="success"></i>');
+                   }
+               });
+           }
+       }
+       ,1000);
+   });
     /*
     *
     *    $('.has-error') : show error to input element
     *
     */
-//    $('input[name=email]').on('blur',function(){
-//
-//        var eleEmail = $( this );
-//        var classEmail = $('.input.email');
-//        classEmail.find('.error').remove();
-//        classEmail.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
-//
-//        var processing=false;
-//        clearTimeout(timer);
-//        timer = setTimeout( function(){
-//            if (!processing){
-//                processing=true;
-//                var url = "<?//=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>//";
-//                $.post(url,{ email:eleEmail.val() },function(res){
-//                    var data = $.parseJSON(res);
-//                    classEmail.find('.user-loading').remove();
-//                    if(data.status == 'exist'){
-//                        classEmail.addClass('has-error');
-//                        classEmail.append('<i class="error">Username is exist, Please pick a another email!</i>');
-//                    }else{
-//                        classEmail.find('.error').remove();
-//                        classEmail.removeClass('has-error');
-//                    }
-//                });
-//            }
-//        }
-//        ,1000);
-//    });
+   $('input[name=email]').on('blur',function(){
+
+       var eleEmail = $( this );
+       var classEmail = $('.input.email');
+       // classEmail.find('.error').remove();
+       classEmail.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
+
+       var processing=false;
+       clearTimeout(timer);
+       timer = setTimeout( function(){
+           if (!processing){
+               processing=true;
+               var url = "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>";
+               $.post(url,{ email:eleEmail.val() },function(res){
+                    $('i.error').remove();
+                   var data = $.parseJSON(res);
+                   classEmail.find('.user-loading').remove();
+                   if(data.status == 'exist'){
+                       classEmail.addClass('has-error');
+                       eleEmail.addClass('error');
+                       classEmail.append('<i class="error">Username is exist, Please pick a another email!</i>');
+                   }else{
+                       eleEmail.removeClass('error');
+                       classEmail.removeClass('has-error');
+                   }
+               });
+           }
+       }
+       ,1000);
+   });
     //load data form to modal preview
     function loadDataModal(){
         $('.form-register input').each(function () {
@@ -278,5 +279,23 @@
     }
     loadDataModal();
 
-    $('.form-register form').validate();
+    $('.form-register form').validate({
+        rules: {
+            mobile: {
+              required: true,
+              number: true
+            },
+            start_work: {
+              required: true,
+              date: true
+            },
+            password: {
+              required: true,
+              minlength: 6
+            },
+            confirm_password: {
+              equalTo: "#password"
+            }
+      }
+    });
 </script>

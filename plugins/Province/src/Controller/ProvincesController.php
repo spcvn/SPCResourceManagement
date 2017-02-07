@@ -122,8 +122,8 @@ class ProvincesController extends AppController
                                 'valueField' => 'name']);
         if($id !== null){
             $provinces = $provinces->where(['provinceid'=>$id]);
-        }        
-        $provinces = $provinces->toArray();
+        }     
+        $provinces = $provinces->order('name','DESC')->toArray();
         return count($provinces)>0?$provinces:array("0"=>"---");
     }
     public function getDistrict($provinceId = null,$id = null){
@@ -139,7 +139,7 @@ class ProvincesController extends AppController
             $districts = $districts->where(['districtid'=>$id]);
         }
         
-        $districts = $districts->toArray();
+        $districts = $districts->order('name','DESC')->toArray();
         return count($districts)>0?$districts:array("0"=>"---");
     }
     public function getWard($districtId = null,$id = null){
@@ -154,7 +154,7 @@ class ProvincesController extends AppController
         if($id !== null){
             $wards = $wards->where(['wardid'=>$id]);
         }
-        $wards = $wards->toArray();
+        $wards = $wards->order('name','DESC')->toArray();
         return count($wards)>0?$wards:array("0"=>"---");
     }
 

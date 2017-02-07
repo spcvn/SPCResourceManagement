@@ -42,6 +42,7 @@
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<?= $this->Html->script('jquery.validate.min.js')?>
 <script>
     $(document).ready( function() {
         var year = (new Date).getFullYear();
@@ -55,5 +56,25 @@
         });
          $(".loading").hide();
          $(".content").show('fade');
+
+        /*
+        * validate form
+        */
+         $('.form form').validate({
+            rules: {
+                mobile: {
+                  required: true,
+                  number: true
+                },
+                start_work: {
+                  required: true,
+                  date: true
+                },
+                birth_date: {
+                  required: true,
+                  date: true
+                }
+          }
+        });
     } );
 </script>

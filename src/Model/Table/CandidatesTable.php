@@ -112,15 +112,6 @@ class CandidatesTable extends Table
             ->requirePresence('result', 'create')
             ->notEmpty('result');*/
 
-        $validator
-            ->date('created_date')
-            ->requirePresence('created_date', 'create')
-            ->notEmpty('created_date');
-
-        $validator
-            ->date('update_date')
-            ->requirePresence('update_date', 'create')
-            ->notEmpty('update_date');
 
         return $validator;
     }

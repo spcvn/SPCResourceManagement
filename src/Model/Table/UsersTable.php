@@ -138,11 +138,6 @@ $validator
             ->requirePresence('role', 'create')
             ->notEmpty('role');
 
-        $validator
-            ->date('start_work')
-            ->requirePresence('start_work', 'create')
-            ->notEmpty('start_work');
-
         $validator->add('password', 'length', 
             ['rule' => ['lengthBetween', 6, 12],
             'message' => 'Your password must be between 6 to 12 characters'

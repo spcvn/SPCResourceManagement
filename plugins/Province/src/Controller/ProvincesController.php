@@ -4,11 +4,11 @@ namespace Province\Controller;
 use Province\Controller\AppController;
 
 /**
- * Province Controller
+ * Provinces Controller
  *
- * @property \Province\Model\Table\ProvinceTable $Province
+ * @property \Province\Model\Table\ProvincesTable $Provinces
  */
-class ProvinceController extends AppController
+class ProvincesController extends AppController
 {
 
     /**
@@ -18,10 +18,10 @@ class ProvinceController extends AppController
      */
     public function index()
     {
-        $province = $this->paginate($this->Province);
+        $provinces = $this->paginate($this->Provinces);
 
-        $this->set(compact('province'));
-        $this->set('_serialize', ['province']);
+        $this->set(compact('provinces'));
+        $this->set('_serialize', ['provinces']);
     }
 
     /**
@@ -33,7 +33,7 @@ class ProvinceController extends AppController
      */
     public function view($id = null)
     {
-        $province = $this->Province->get($id, [
+        $province = $this->Provinces->get($id, [
             'contain' => []
         ]);
 
@@ -48,10 +48,10 @@ class ProvinceController extends AppController
      */
     public function add()
     {
-        $province = $this->Province->newEntity();
+        $province = $this->Provinces->newEntity();
         if ($this->request->is('post')) {
-            $province = $this->Province->patchEntity($province, $this->request->data);
-            if ($this->Province->save($province)) {
+            $province = $this->Provinces->patchEntity($province, $this->request->data);
+            if ($this->Provinces->save($province)) {
                 $this->Flash->success(__('The province has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -72,12 +72,12 @@ class ProvinceController extends AppController
      */
     public function edit($id = null)
     {
-        $province = $this->Province->get($id, [
+        $province = $this->Provinces->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $province = $this->Province->patchEntity($province, $this->request->data);
-            if ($this->Province->save($province)) {
+            $province = $this->Provinces->patchEntity($province, $this->request->data);
+            if ($this->Provinces->save($province)) {
                 $this->Flash->success(__('The province has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -99,8 +99,8 @@ class ProvinceController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $province = $this->Province->get($id);
-        if ($this->Province->delete($province)) {
+        $province = $this->Provinces->get($id);
+        if ($this->Provinces->delete($province)) {
             $this->Flash->success(__('The province has been deleted.'));
         } else {
             $this->Flash->error(__('The province could not be deleted. Please, try again.'));
@@ -108,48 +108,62 @@ class ProvinceController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
     /* update by unoTrung */
+    /**
+     * GET* method
+     *
+     * @param string|null $id Province id.
+     * @return type : array()
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
     public function getProvince($id =null){
-        $this->loadModel('Province');
-        $province = $this->Province->find('list',['keyField' => 'provinceid',
+        $provinces = $this->Provinces->find('list',['keyField' => 'provinceid',
                                 'valueField' => 'name']);
         if($id !== null){
-            $province = $province->where(['provinceid'=>$id]);
-        }        
-        $province = $province->toArray();
-        return count($province)>0?$province:array("0"=>"---");
+            $provinces = $provinces->where(['provinceid'=>$id]);
+        }     
+        $provinces = $provinces->order('name','DESC')->toArray();
+        return count($provinces)>0?$provinces:array("0"=>"---");
     }
     public function getDistrict($provinceId = null,$id = null){
-        $this->loadModel('District');
-        $district = $this->District
+        $this->loadModel('Districts');
+        $districts = $this->Districts
                     ->find('list',['keyField'=>'districtid','valueField' => function($dis){
                         return $dis->type." ".$dis->name;
                     }]);
         if($provinceId !== null){
-            $district = $district->where(['provinceid'=>$provinceId]);
+            $districts = $districts->where(['provinceid'=>$provinceId]);
         }
         if($id !== null){
-            $district = $district->where(['districtid'=>$id]);
+            $districts = $districts->where(['districtid'=>$id]);
         }
         
-        $district = $district->toArray();
-        return count($district)>0?$district:array("0"=>"---");
+        $districts = $districts->order('name','DESC')->toArray();
+        return count($districts)>0?$districts:array("0"=>"---");
     }
     public function getWard($districtId = null,$id = null){
-        $this->loadModel('Ward');
-        $ward = $this->Ward
+        $this->loadModel('Wards');
+        $wards = $this->Wards
                     ->find('list',['keyField'=>'wardid','valueField' => function($dis){
                         return $dis->type." ".$dis->name;
                     }]);
         if($districtId !== null){
-            $ward = $ward->where(['districtid'=>$districtId]);
+            $wards = $wards->where(['districtid'=>$districtId]);
         }
         if($id !== null){
-            $ward = $ward->where(['wardid'=>$id]);
+            $wards = $wards->where(['wardid'=>$id]);
         }
-        $ward = $ward->toArray();
-        return count($ward)>0?$ward:array("0"=>"---");
+        $wards = $wards->order('name','DESC')->toArray();
+        return count($wards)>0?$wards:array("0"=>"---");
     }
+
+    /**
+     * loadAddress method
+     *
+     * @return type : json
+     * Load Address when edit form
+     */
     public function loadAddress(){
         $data = [];
         if ($this->request->is(['post'])) {

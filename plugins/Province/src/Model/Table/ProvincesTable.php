@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Province Model
+ * Provinces Model
  *
  * @method \Province\Model\Entity\Province get($primaryKey, $options = [])
  * @method \Province\Model\Entity\Province newEntity($data = null, array $options = [])
@@ -17,7 +17,7 @@ use Cake\Validation\Validator;
  * @method \Province\Model\Entity\Province[] patchEntities($entities, array $data, array $options = [])
  * @method \Province\Model\Entity\Province findOrCreate($search, callable $callback = null)
  */
-class ProvinceTable extends Table
+class ProvincesTable extends Table
 {
 
     /**
@@ -30,7 +30,7 @@ class ProvinceTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('province');
+        $this->table('provinces');
         $this->displayField('name');
         $this->primaryKey('provinceid');
     }

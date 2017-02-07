@@ -4,8 +4,8 @@
         <li><?= $this->Html->link(__('New Province'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="province index large-9 medium-8 columns content">
-    <h3><?= __('Province') ?></h3>
+<div class="provinces index large-9 medium-8 columns content">
+    <h3><?= __('Provinces') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($province as $province): ?>
+            <?php foreach ($provinces as $province): ?>
             <tr>
                 <td><?= h($province->provinceid) ?></td>
                 <td><?= h($province->name) ?></td>

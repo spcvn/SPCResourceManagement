@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "700869881e827d9019f2d3f794bb478b",
+    "hash": "3cb5977566a463be38632a27fb1450df",
     "content-hash": "aeece4717fa19486b854040acdbd291f",
     "packages": [
         {
@@ -256,16 +256,16 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "1.6.3",
+            "version": "1.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "b683daebb6d0f0ea41546b14f8a9ea591cebedfd"
+                "reference": "e50eafdea2a58e8cad9f14f6a04758242404d894"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/b683daebb6d0f0ea41546b14f8a9ea591cebedfd",
-                "reference": "b683daebb6d0f0ea41546b14f8a9ea591cebedfd",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/e50eafdea2a58e8cad9f14f6a04758242404d894",
+                "reference": "e50eafdea2a58e8cad9f14f6a04758242404d894",
                 "shasum": ""
             },
             "require": {
@@ -302,7 +302,7 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2016-06-23 17:18:29"
+            "time": "2016-12-30 21:05:55"
         },
         {
             "name": "cakephp/plugin-installer",

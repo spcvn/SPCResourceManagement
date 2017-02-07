@@ -2,7 +2,7 @@
 namespace App\Controller;
 use Cake\Event\Event;
 use App\Controller\AppController;
-use Province\Controller\ProvinceController;
+use Province\Controller\ProvincesController;
 use Cake\Mailer\MailerAwareTrait;
 use Cake\Utility\Security;
 /**
@@ -20,7 +20,7 @@ class UsersController extends AppController
     use MailerAwareTrait;
     public function index()
     {
-        $pro = new ProvinceController;
+        $pro = new ProvincesController;
         $users = $this->paginate($this->Users,[
             'contain' => ['Positions'],
             'condition'=>['Users.status'=>0]
@@ -41,7 +41,7 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
-        $pro = new ProvinceController;
+        $pro = new ProvincesController;
         $user = $this->Users->get($id, [
             'contain' => ['Positions']
         ]);

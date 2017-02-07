@@ -2,7 +2,7 @@
 namespace Province\View\Cell;
 
 use Cake\View\Cell;
-use Province\Controller\ProvinceController;
+use Province\Controller\ProvincesController;
 
 /**
  * Province cell
@@ -25,7 +25,7 @@ class ProvinceCell extends Cell
      */
     public function display($config = "all",$type = null,$data = null)
     {
-        $pro = new ProvinceController;
+        $pro = new ProvincesController;
         
         if($config == "all"){
             $this->set('province',true);

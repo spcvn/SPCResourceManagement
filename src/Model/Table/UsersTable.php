@@ -68,6 +68,9 @@ class UsersTable extends Table
         $validator
             ->requirePresence('password', 'create')
             ->notEmpty('password');
+$validator
+            ->requirePresence('confirm_password', 'create')
+            ->notEmpty('confirm_password');
 
         $validator
             ->allowEmpty('salt');
@@ -129,10 +132,6 @@ class UsersTable extends Table
         $validator
             ->requirePresence('avatar', 'create')
             ->notEmpty('avatar');
-
-        $validator
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
 
         $validator
             ->integer('role')

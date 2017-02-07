@@ -84,7 +84,7 @@
                 }
             });
         });
-        $('tr').click( function() {
+        $('tbody tr').click( function() {
             window.location = $(this).find('a[title="Show Detail"]').attr('href');
         }).hover( function() {
             $(this).toggleClass('hover');

@@ -231,3 +231,5 @@ Plugin::load('CsvView');
 Plugin::load('Province', ['bootstrap' => false, 'routes' => true]);
 
 Plugin::load('AceTheme', ['bootstrap' => false, 'routes' => true]);
+
+Plugin::load('Migrations');

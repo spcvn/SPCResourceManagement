@@ -66,7 +66,7 @@
                 <a class="btn btnPreview" data-toggle="modal" data-target="#reviewUser">Preview</a>
             </div>
             <div class="col-sm-6">
-                <?= $this->Form->button(__('Submit')) ?>
+                <?= $this->Form->button(__('Submit'),['class'=>'btn-delete']) ?>
             </div>
         </div>
     </div>
@@ -87,7 +87,7 @@
                             <tr>
                                 <th style="width: 150px;"><?= __('username')?></th>
                                 <td style="width: 10px;">:</td>
-                                <td>thuyph</td>
+                                <td><span id="get_username"></span></td>
                             </tr>
                         </table>
                     </li>
@@ -97,67 +97,62 @@
                             <tr>
                                 <th style="width: 150px;"><?= __('email');?></th>
                                 <td style="width: 10px;">:</td>
-                                <td>username@email.com</td>
+                                <td><span id="get_email"></td>
                             </tr>
                             <tr>
                                 <th><?= __('first_name')?></th>
                                 <td>:</td>
-                                <td>First Name</td>
+                                <td><span id="get_first-name"></td>
                             </tr>
                             <tr>
                                 <th><?= __('middle_name')?></th>
                                 <td>:</td>
-                                <td>Middle Name</td>
+                                <td><span id="get_middle-name"></td>
                             </tr>
                             <tr>
                                 <th><?= __('last_name')?></th>
                                 <td>:</td>
-                                <td>Last Name</td>
+                                <td><span id="get_last-name"></td>
                             </tr>
                             <tr>
                                 <th><?= __('address')?></th>
                                 <td>:</td>
-                                <td>Nguyen Hien Le, Tan Binh, HCM</td>
+                                <td><span id="get_address"></td>
                             </tr>
                             <tr>
                                 <th><?= __('province')?></th>
                                 <td>:</td>
-                                <td></td>
+                                <td><span id="get_provinceid"></td>
                             </tr>
                             <tr>
                                 <th><?= __('district')?></th>
                                 <td>:</td>
-                                <td></td>
+                                <td><span id="get_districtid"></td>
                             </tr>
                             <tr>
-                                <th>Ward</th>
+                                <th><?= __('ward')?></th>
                                 <td>:</td>
-                                <td>Tan Binh</td>
+                                <td><span id="get_wardid"></td>
                             </tr>
                             <tr>
-                                <th>Birthday</th>
+                                <th><?= __('birthday')?></th>
                                 <td>:</td>
-                                <td></td>
+                                <td><span id="get_birth-date"></td>
                             </tr>
                             <tr>
                                 <th><?= __('mobile')?></th>
                                 <td>:</td>
-                                <td></td>
+                                <td><span id="get_mobile"></td>
                             </tr>
                             <tr>
-                                <th>Dept</th>
+                                <th><?= __('department')?></th>
                                 <td>:</td>
-                                <td></td>
+                                <td><span id="get_dept"></td>
                             </tr>
                             <tr>
                                 <th><?= __('start_work')?></th>
                                 <td>:</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <td>:</td>
-                                <td></td>
+                                <td><span id="get_start-work"></td>
                             </tr>
 
                         </table>
@@ -178,6 +173,7 @@
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<?= $this->Html->script('jquery.validate.min.js')?>
 <script>
     $( function() {
         $( ".datepicker" ).datepicker({
@@ -186,77 +182,101 @@
             yearRange: "-100:+0",
         });
     } );
-    $('select[name=candidate_id]').on('change',function(event){
-        var id = $(this).val();
-        var url = "<?=$this->Url->build(['controller'=>'candidates','action'=>'getCandidate'])?>"
-        $.post(url,{"id":id},function(resData){
-            var data = $.parseJSON(resData);
-            $.each(data,function(key,val){
-                $('input[name='+key+']').val(val);
-                if(key=='position')
-                    $('select[name=dept]').val(val);
-            });
-        });
-    });
-    var timer 
-    $('input[name=username]').on('blur',function(){
-        var eleUsername = $( this );
-        var classUsername = $( this ).parent('div.input');
-        classUsername.find('.error').remove();
-        classUsername.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
-        var processing=false;
-        clearTimeout(timer);
-        timer = setTimeout( function(){
-            if (!processing){
-                processing=true;
-                var url = "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>";
-                $.post(url,{ username:eleUsername.val() },function(res){
-                    var data = $.parseJSON(res);
-                    classUsername.find('.user-loading').remove();
-                    if(data.status == 'exist'){
-                        classUsername.addClass('has-error');
-                        classUsername.append('<i class="error">Username is exist, please pick a another username!</i>');
-                    }else{
-                        classUsername.find('.error').remove();
-                        classUsername.removeClass('has-error');
-                        classUsername.append('<i class="success"></i>');
-                    }
-                });
-            }
-        }
-        ,1000);
-    });
+//    $('select[name=candidate_id]').on('change',function(event){
+//        var id = $(this).val();
+//        var url = "<?//=$this->Url->build(['controller'=>'candidates','action'=>'getCandidate'])?>//"
+//        $.post(url,{"id":id},function(resData){
+//            var data = $.parseJSON(resData);
+//            $.each(data,function(key,val){
+//                $('input[name='+key+']').val(val);
+//                if(key=='position')
+//                    $('select[name=dept]').val(val);
+//            });
+//        });
+//    });
+//    var timer;
+//    $('input[name=username]').on('blur',function(){
+//        var eleUsername = $( this );
+//        var classUsername = $( this ).parent('div.input');
+//        classUsername.find('.error').remove();
+//        classUsername.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
+//        var processing=false;
+//        clearTimeout(timer);
+//        timer = setTimeout( function(){
+//            if (!processing){
+//                processing=true;
+//                var url = "<?//=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>//";
+//                $.post(url,{ username:eleUsername.val() },function(res){
+//                    var data = $.parseJSON(res);
+//                    classUsername.find('.user-loading').remove();
+//                    if(data.status == 'exist'){
+//                        classUsername.addClass('has-error');
+//                        classUsername.append('<i class="error">Username is exist, please pick a another username!</i>');
+//                    }else{
+//                        classUsername.find('.error').remove();
+//                        classUsername.removeClass('has-error');
+//                        classUsername.append('<i class="success"></i>');
+//                    }
+//                });
+//            }
+//        }
+//        ,1000);
+//    });
     /*
-    * 
+    *
     *    $('.has-error') : show error to input element
     *
     */
-    $('input[name=email]').on('blur',function(){
+//    $('input[name=email]').on('blur',function(){
+//
+//        var eleEmail = $( this );
+//        var classEmail = $('.input.email');
+//        classEmail.find('.error').remove();
+//        classEmail.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
+//
+//        var processing=false;
+//        clearTimeout(timer);
+//        timer = setTimeout( function(){
+//            if (!processing){
+//                processing=true;
+//                var url = "<?//=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>//";
+//                $.post(url,{ email:eleEmail.val() },function(res){
+//                    var data = $.parseJSON(res);
+//                    classEmail.find('.user-loading').remove();
+//                    if(data.status == 'exist'){
+//                        classEmail.addClass('has-error');
+//                        classEmail.append('<i class="error">Username is exist, Please pick a another email!</i>');
+//                    }else{
+//                        classEmail.find('.error').remove();
+//                        classEmail.removeClass('has-error');
+//                    }
+//                });
+//            }
+//        }
+//        ,1000);
+//    });
+    //load data form to modal preview
+    function loadDataModal(){
+        $('.form-register input').each(function () {
+            $(this).on('change',function () {
+                var iname = $(this).attr('id');
+                var idname = '#get_'+iname;
+                var text = $(this).val();
+                $('#reviewUser').find(idname).html(text);
+            });
+        });
+        $('.form-register select').each(function(){
+            $(this).on('change',function () {
+                var iname = $(this).attr('id');
+                var idname = '#get_'+iname;
+                var text = $(this).find('option:selected').text();
+                $('#reviewUser').find(idname).html(text);
+            });
 
-        var eleEmail = $( this );
-        var classEmail = $('.input.email');
-        classEmail.find('.error').remove();
-        classEmail.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
+        })
 
-        var processing=false;
-        clearTimeout(timer);
-        timer = setTimeout( function(){
-            if (!processing){
-                processing=true;
-                var url = "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>";
-                $.post(url,{ email:eleEmail.val() },function(res){
-                    var data = $.parseJSON(res);
-                    classEmail.find('.user-loading').remove();
-                    if(data.status == 'exist'){
-                        classEmail.addClass('has-error');
-                        classEmail.append('<i class="error">Username is exist, Please pick a another email!</i>');
-                    }else{
-                        classEmail.find('.error').remove();
-                        classEmail.removeClass('has-error');
-                    }
-                });
-            }
-        }
-        ,1000);
-    });
+    }
+    loadDataModal();
+
+    $('.form-register form').validate();
 </script>

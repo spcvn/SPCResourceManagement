@@ -108,7 +108,7 @@ class Initial extends AbstractMigration
             ])
             ->create();
 
-        $this->table('district', ['id' => false, 'primary_key' => ['districtid']])
+        $this->table('districts', ['id' => false, 'primary_key' => ['districtid']])
             ->addColumn('districtid', 'string', [
                 'default' => null,
                 'limit' => 5,
@@ -186,13 +186,13 @@ class Initial extends AbstractMigration
                 'null' => false,
             ])
             ->addColumn('is_delete', 'integer', [
-                'default' => 0,
+                'default' => '0',
                 'limit' => 11,
                 'null' => true,
             ])
             ->create();
 
-        $this->table('province', ['id' => false, 'primary_key' => ['provinceid']])
+        $this->table('provinces', ['id' => false, 'primary_key' => ['provinceid']])
             ->addColumn('provinceid', 'string', [
                 'default' => null,
                 'limit' => 5,
@@ -222,7 +222,7 @@ class Initial extends AbstractMigration
                 'null' => false,
             ])
             ->addColumn('status', 'integer', [
-                'default' => 1,
+                'default' => '1',
                 'limit' => 6,
                 'null' => false,
             ])
@@ -245,7 +245,7 @@ class Initial extends AbstractMigration
                 'null' => false,
             ])
             ->addColumn('is_correct', 'integer', [
-                'default' => 0,
+                'default' => '0',
                 'limit' => 11,
                 'null' => false,
             ])
@@ -288,7 +288,7 @@ class Initial extends AbstractMigration
                 'null' => false,
             ])
             ->addColumn('status', 'integer', [
-                'default' => 0,
+                'default' => '0',
                 'limit' => 6,
                 'null' => false,
             ])
@@ -309,12 +309,7 @@ class Initial extends AbstractMigration
             ])
             ->create();
 
-        $this->table('resetpasswords', ['id' => false, 'primary_key' => ['']])
-            ->addColumn('id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
+        $this->table('resetpasswords')
             ->addColumn('token', 'string', [
                 'default' => null,
                 'limit' => 50,
@@ -463,7 +458,7 @@ class Initial extends AbstractMigration
             ])
             ->create();
 
-        $this->table('ward', ['id' => false, 'primary_key' => ['wardid']])
+        $this->table('wards', ['id' => false, 'primary_key' => ['wardid']])
             ->addColumn('wardid', 'string', [
                 'default' => null,
                 'limit' => 5,
@@ -501,16 +496,16 @@ class Initial extends AbstractMigration
     {
         $this->dropTable('answers');
         $this->dropTable('candidates');
-        $this->dropTable('district');
+        $this->dropTable('districts');
         $this->dropTable('exams');
         $this->dropTable('positions');
-        $this->dropTable('province');
+        $this->dropTable('provinces');
         $this->dropTable('questions');
         $this->dropTable('quiz_details');
         $this->dropTable('quizs');
         $this->dropTable('resetpasswords');
         $this->dropTable('sections');
         $this->dropTable('users');
-        $this->dropTable('ward');
+        $this->dropTable('wards');
     }
 }

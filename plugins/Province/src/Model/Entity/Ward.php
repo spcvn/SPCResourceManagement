@@ -1,18 +1,18 @@
 <?php
-namespace App\Model\Entity;
+namespace Province\Model\Entity;
 
 use Cake\ORM\Entity;
 
 /**
- * District Entity
+ * Ward Entity
  *
- * @property string $districtid
+ * @property string $wardid
  * @property string $name
  * @property string $type
  * @property string $location
- * @property string $provinceid
+ * @property string $districtid
  */
-class District extends Entity
+class Ward extends Entity
 {
 
     /**
@@ -26,6 +26,6 @@ class District extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'districtid' => false
+        'wardid' => false
     ];
 }

@@ -3,11 +3,11 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Province'), ['action' => 'edit', $province->provinceid]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Province'), ['action' => 'delete', $province->provinceid], ['confirm' => __('Are you sure you want to delete # {0}?', $province->provinceid)]) ?> </li>
-        <li><?= $this->Html->link(__('List Province'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('List Provinces'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Province'), ['action' => 'add']) ?> </li>
     </ul>
 </nav>
-<div class="province view large-9 medium-8 columns content">
+<div class="provinces view large-9 medium-8 columns content">
     <h3><?= h($province->name) ?></h3>
     <table class="vertical-table">
         <tr>

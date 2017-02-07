@@ -1,5 +1,5 @@
 <?php
-namespace App\Model\Table;
+namespace Province\Model\Table;
 
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
@@ -7,17 +7,17 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * District Model
+ * Wards Model
  *
- * @method \App\Model\Entity\District get($primaryKey, $options = [])
- * @method \App\Model\Entity\District newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\District[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\District|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\District patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\District[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\District findOrCreate($search, callable $callback = null)
+ * @method \Province\Model\Entity\Ward get($primaryKey, $options = [])
+ * @method \Province\Model\Entity\Ward newEntity($data = null, array $options = [])
+ * @method \Province\Model\Entity\Ward[] newEntities(array $data, array $options = [])
+ * @method \Province\Model\Entity\Ward|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Province\Model\Entity\Ward patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \Province\Model\Entity\Ward[] patchEntities($entities, array $data, array $options = [])
+ * @method \Province\Model\Entity\Ward findOrCreate($search, callable $callback = null)
  */
-class DistrictTable extends Table
+class WardsTable extends Table
 {
 
     /**
@@ -30,9 +30,9 @@ class DistrictTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('district');
+        $this->table('wards');
         $this->displayField('name');
-        $this->primaryKey('districtid');
+        $this->primaryKey('wardid');
     }
 
     /**
@@ -44,7 +44,7 @@ class DistrictTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->allowEmpty('districtid', 'create');
+            ->allowEmpty('wardid', 'create');
 
         $validator
             ->requirePresence('name', 'create')
@@ -59,8 +59,8 @@ class DistrictTable extends Table
             ->notEmpty('location');
 
         $validator
-            ->requirePresence('provinceid', 'create')
-            ->notEmpty('provinceid');
+            ->requirePresence('districtid', 'create')
+            ->notEmpty('districtid');
 
         return $validator;
     }

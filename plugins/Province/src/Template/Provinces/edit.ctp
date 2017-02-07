@@ -7,10 +7,10 @@
                 ['confirm' => __('Are you sure you want to delete # {0}?', $province->provinceid)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Province'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Provinces'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="province form large-9 medium-8 columns content">
+<div class="provinces form large-9 medium-8 columns content">
     <?= $this->Form->create($province) ?>
     <fieldset>
         <legend><?= __('Edit Province') ?></legend>

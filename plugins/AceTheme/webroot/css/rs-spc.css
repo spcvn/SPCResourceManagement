@@ -573,7 +573,14 @@ select::-ms-expand{
 }
 /*custom datepicker end*/
 .error{
-    color: #D15B47;
+    color: #D15B47!important;
+}
+label.error{
+    font-size: 13px;
+    font-style: italic;
+}
+label.error:after{
+    content: ""!important;
 }
 /*table layout*/
 table thead a{
@@ -585,6 +592,9 @@ table thead a:focus{
 }
 tr.hover{
     cursor: pointer;
+}
+form .error{
+
 }
 /*table layout end*/
 @media (min-width: 768px) {

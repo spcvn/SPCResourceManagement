@@ -226,6 +226,12 @@ msgstr "Province"
 msgid "district"
 msgstr "District"
 
+msgid "ward"
+msgstr "Ward"
+
+msgid "department"
+msgstr "Department"
+
 msgid "minute"
 msgstr "minute"
 

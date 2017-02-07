@@ -25,10 +25,12 @@
             <?php $i = 1;
             $province[0] = $province[1] = "-";
             foreach ($users as $user): ;?>
-            <?php $name = h($user->last_name ." ". $user->middle_name ." ". $user->first_name);?>
+                <?php $name = h($user->last_name ." ". $user->middle_name ." ". $user->first_name);?>
                 <tr>
                     <td style="text-align: center;"><?= $i++ ?></td>
-                    <td><?= $name ?></td>
+                    <td><?= $this->Html->link(
+                            $name,
+                            ['action' => 'view', $user->id]) ?></td>
                     <td><?=  date("Y/m/d",strtotime(h($user->birth_date))) ?></td>
                     <td><?= $province[$user->provinceid] ?></td>
                     <td><?= h($user->position->name)?></td>
@@ -84,10 +86,11 @@
                 }
             });
         });
-        $('tbody tr').click( function() {
-            window.location = $(this).find('a[title="Show Detail"]').attr('href');
-        }).hover( function() {
-            $(this).toggleClass('hover');
-        });
+
+//        $('tr').click( function() {
+//            window.location = $(this).find('a[title="Show Detail"]').attr('href');
+//        }).hover( function() {
+//            $(this).toggleClass('hover');
+//        });
     })
 </script>

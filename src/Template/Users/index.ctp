@@ -34,7 +34,7 @@
                     <td><?=  date("Y-m-d",strtotime(h($user->birth_date))) ?></td>
                     <td><?= $province[$user->provinceid] ?></td>
                     <td><?= h($user->position->name)?></td>
-                    <td><span class="label arrowed-in arrowed-in-right label-success"><?= h($status[$user->status]) ?></span></td>
+                    <td><a class="btn-status label arrowed-in arrowed-in-right <?=($user->status == 0)?'label-success':'label-danger'?> "><?= h($status[$user->status]) ?></a></td>
                     <td class="actions">
                         <div class="btn-group">
                             <?= $this->Html->link(
@@ -95,5 +95,45 @@
 //        }).hover( function() {
 //            $(this).toggleClass('hover');
 //        });
+        $( ".btn-status" ).each(function(index) {
+            var currentStatus;
+            if($(this).hasClass('label-danger')){
+                currentStatus = 'Active';
+            }else {
+                currentStatus = 'Deactive';
+            }
+            $(this).confirm({
+                content: "<?=__('Are you sure you want to')?> "+ currentStatus +" this user?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
+            });
+        });
+
+        function changeStatus(){
+            $('.btn-status').each(function () {
+                $(this).stop().hover(function () {
+                    if($(this).hasClass('label-success')){
+                        $(this).removeClass('label-success').addClass('label-danger').html('Deactive');
+                    }else {
+                        $(this).removeClass('label-danger').addClass('label-success').html('Active');
+                    }
+                }, function () {
+                    if($(this).hasClass('label-danger')){
+                        $(this).removeClass('label-danger').addClass('label-success').html('Active');
+                    }else {
+                        $(this).removeClass('label-success').addClass('label-danger').html('Deactive');
+                    }
+                })
+            })
+        }
+        changeStatus();
     })
 </script>

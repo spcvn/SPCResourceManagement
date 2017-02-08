@@ -29,7 +29,7 @@ class UsersController extends AppController
             'conditions'=>['Users.is_delete'=>0],
             'contain' => ['Positions']
         ]);
-        $status = [1 => 'Disable', 0 => 'Active'];
+        $status = [1 => 'Deactive', 0 => 'Active'];
         $this->set('province',$pro->getProvince());
         $this->set(compact('users'));
         $this->set(compact('status'));

@@ -175,11 +175,6 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => false,
             ])
-            ->addColumn('section', 'text', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
             ->addColumn('create_date', 'datetime', [
                 'default' => null,
                 'limit' => null,
@@ -298,7 +293,7 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => false,
             ])
-            ->addColumn('section', 'integer', [
+            ->addColumn('section_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,

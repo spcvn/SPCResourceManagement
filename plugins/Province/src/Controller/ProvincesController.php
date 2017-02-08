@@ -136,7 +136,6 @@ class ProvincesController extends AppController
         if($id !== null){
             $districts = $districts->where(['districtid'=>$id]);
         }
-        
         $districts = $districts->order(['name'=>'ASC'])->toArray();
         return count($districts)>0?$districts:array("0"=>"---");
     }

@@ -66,7 +66,7 @@
                 <a class="btn btnPreview" data-toggle="modal" data-target="#reviewUser">Preview</a>
             </div>
             <div class="col-sm-6">
-                <?= $this->Form->button(__('Submit'),['class'=>'btn-delete']) ?>
+                <?= $this->Form->button(__('Submit'),['class'=>'btn-submit']) ?>
             </div>
         </div>
     </div>

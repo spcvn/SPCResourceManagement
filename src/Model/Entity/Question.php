@@ -7,14 +7,13 @@ use Cake\ORM\Entity;
  * Question Entity
  *
  * @property int $id
- * @property int $question_no
  * @property string $content
- * @property int $section
- * @property int $rank
+ * @property int $section_id
  * @property int $status
  *
  * @property \App\Model\Entity\Answer[] $answers
  * @property \App\Model\Entity\QuizDetail[] $quiz_details
+ * @property \App\Model\Entity\Section $section
  */
 class Question extends Entity
 {

@@ -9,6 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Questions Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Sections
  * @property \Cake\ORM\Association\HasMany $Answers
  * @property \Cake\ORM\Association\HasMany $QuizDetails
  *
@@ -37,6 +38,10 @@ class QuestionsTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 
+        $this->belongsTo('Sections', [
+            'foreignKey' => 'section_id',
+            'joinType' => 'INNER'
+        ]);
         $this->hasMany('Answers', [
             'foreignKey' => 'question_id'
         ]);
@@ -58,23 +63,28 @@ class QuestionsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->integer('question_no')
-            //->requirePresence('question_no', 'create')
-            ->allowEmpty('question_no');
-
-        $validator
             ->requirePresence('content', 'create')
             ->notEmpty('content');
 
         $validator
-            ->integer('section')
-            ->requirePresence('section', 'create')
-            ->notEmpty('section');
-
-        $validator
             ->integer('status')
-            ->requirePresence('status', 'create');
+            ->requirePresence('status', 'create')
+            ->notEmpty('status');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['section_id'], 'Sections'));
+
+        return $rules;
     }
 }

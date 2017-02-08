@@ -137,6 +137,7 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['post','get', 'delete']);
         $user = $this->Users->get($id);
+        $user->status = 1;
         $user->is_delete = 1;
         $user->updated = date("Y-m-d H:i:s");
         if ($this->Users->save($user)) {

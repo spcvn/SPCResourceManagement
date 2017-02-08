@@ -129,7 +129,7 @@
                 <li class="">
                     <?= $this->Html->link(
                         $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('List Exam Template'),
-                        ['controller'=>'exams','action'=>'index'],
+                        ['controller'=>'examstemplates','action'=>'index'],
                         ['escape'=>false])?>
 
                     <b class="arrow"></b>
@@ -137,7 +137,7 @@
                 <li class="">
                     <?= $this->Html->link(
                         $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Exam Assignment'),
-                        ['controller'=>'exams','action'=>'exam_assignment'],
+                        ['controller'=>'examstemplates','action'=>'exam_assignment'],
                         ['escape'=>false])?>
 
                     <b class="arrow"></b>

@@ -81,6 +81,9 @@
                     yes: {
                         btnClass:'btn-danger',
                         keys: ['Y'],
+                        action: function(){
+                            location.href = this.$target.attr('href');
+                        }
                     },
                     no: {
                         keys: ['N'],

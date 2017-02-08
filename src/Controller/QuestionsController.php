@@ -177,7 +177,7 @@ class QuestionsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->request->allowMethod(['post', 'get', 'delete']);
         $question = $this->Questions->get($id);
         $question->is_delete = 1;
         if ($this->Questions->save($question)) {

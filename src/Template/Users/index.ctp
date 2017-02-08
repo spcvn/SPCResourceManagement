@@ -31,10 +31,10 @@
                     <td><?= $this->Html->link(
                             $name,
                             ['action' => 'view', $user->id]) ?></td>
-                    <td><?=  date("Y/m/d",strtotime(h($user->birth_date))) ?></td>
+                    <td><?=  date("Y-m-d",strtotime(h($user->birth_date))) ?></td>
                     <td><?= $province[$user->provinceid] ?></td>
                     <td><?= h($user->position->name)?></td>
-                    <td><span class="label arrowed-in arrowed-in-right label-success"><?= h($user->status) ?></span></td>
+                    <td><span class="label arrowed-in arrowed-in-right label-success"><?= h($status[$user->status]) ?></span></td>
                     <td class="actions">
                         <div class="btn-group">
                             <?= $this->Html->link(
@@ -73,12 +73,15 @@
         $( ".btn-delete" ).each(function(index) {
             name = $(this).attr('data-name');
             $(this).confirm({
-                content: "Are you sure you want to delete: <span class='exam-name'>"+ name +"</span>?",
+                content: "<?=__('Are you sure you want to delete:')?> <span class='exam-name'>"+ name +"</span>?",
                 title: "",
                 buttons: {
                     yes: {
                         btnClass:'btn-danger',
                         keys: ['Y'],
+                        action: function(){
+                            location.href = this.$target.attr('href');
+                        }
                     },
                     no: {
                         keys: ['N'],

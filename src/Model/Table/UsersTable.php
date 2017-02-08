@@ -154,7 +154,8 @@ class UsersTable extends Table
             'allowEmpty' => true, 
             'message'=>'Phone number should be numeric')
         ]);
-
+        $validator
+            ->allowEmpty('is_delete');
         return $validator;
     }
 

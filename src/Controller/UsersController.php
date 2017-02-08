@@ -17,13 +17,17 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
+    public $paginate = [
+    // Other keys here.
+    'maxLimit' => 10
+    ];
     use MailerAwareTrait;
     public function index()
     {
         $pro = new ProvincesController;
         $users = $this->paginate($this->Users,[
-            'contain' => ['Positions'],
-            'condition'=>['Users.status'=>0]
+            'conditions'=>['Users.is_delete'=>0],
+            'contain' => ['Positions']
         ]);
         $status = [1 => 'Disable', 0 => 'Active'];
         $this->set('province',$pro->getProvince());
@@ -124,15 +128,16 @@ class UsersController extends AppController
     /**
      * Delete method
      *
-     * @param string|null $id User id.
+     * @param string|null $id User id, status = 1 : deleted.
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * 
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->request->allowMethod(['post','get', 'delete']);
         $user = $this->Users->get($id);
-        $user->status = 0;
+        $user->is_delete = 1;
         $user->updated = date("Y-m-d H:i:s");
         if ($this->Users->save($user)) {
             $this->Flash->success(__('The user has been deactive.'));

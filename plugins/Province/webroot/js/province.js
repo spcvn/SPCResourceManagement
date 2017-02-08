@@ -6,8 +6,8 @@ jQuery(function(){
 					$('#districtid').html('');
 					$('#wardid').html('');
 	                $.each(opts.district, function(key, val) {
-	                    $('#districtid').append($('<option>', { value : key })
-							          .text(val));
+	                    $('#districtid').append($('<option>', { value : val.districtid })
+							          .text(val.type+" "+val.name));
 	                });
 
 				});
@@ -17,8 +17,8 @@ jQuery(function(){
 					var opts = $.parseJSON(data);
 					$('#wardid').html('');
 	                $.each(opts.ward, function(key, val) {
-	                    $('#wardid').append($('<option>', { value : key })
-							          .text(val)); 
+	                    $('#wardid').append($('<option>', { value : val.wardid })
+							          .text(val.type+" "+val.name)); 
 	                });
 
 				});

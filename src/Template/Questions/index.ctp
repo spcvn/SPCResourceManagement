@@ -1,57 +1,117 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Question') ?></li>
-        <li><?= $this->Html->link(__('New Question'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link('Export Questions', ['action' => 'exportQuestion']) ?></li>
-        <li><?= $this->Html->link('Export Answer', ['action' => 'exportAnswer']) ?></li>
-        <li><?= $this->Html->link('Import', ['action' => 'import']) ?></li>
-    </ul>
-</nav>
-<div class="questions index large-9 medium-8 columns content">
-    <h3><?= __('Questions') ?></h3>
-    <?=$this->Form->create('search')?>
-    <fieldset>
-    <?=$this->Form->input('Search')?>
-    </fieldset>
-    <?=$this->Form->submit(__('Submit'))?>
-    <?=$this->Form->End()?>
-    <table cellpadding="0" cellspacing="0" data-col="questions">
-        <thead>
-            <tr>
-                <th scope="col" style="width: 7%"><?= $this->Paginator->sort('id','No.') ?></th>
-                <th scope="col" style="width: 73%"><?= $this->Paginator->sort('content') ?></th>
-                <th scope="col" style="width: 10%"><?= $this->Paginator->sort('section') ?></th>
-                <th scope="col" style="width: 10%" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-            $cur = $this->Paginator->counter('{{start}}');
-                 foreach ($questions as $question): 
-            ?>
-            <tr>
-                <td class="viewDetail" data-id="<?=$question->id?>"><?= $cur++;?></td>
-                <td class="viewDetail" data-id="<?=$question->id?>"><?=$question->content?></td>
-                <td class="viewDetail" data-id="<?=$question->id?>"><?= $sections[$question->section] ?></td>
-                <td class="actions">
-                    <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-file-text-o']), ['action' => 'view', $question->id],['escape'=>false]) ?>
-                    <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-pencil orange']), ['action' => 'edit', $question->id],['escape'=>false]) ?>
-                    <?php if ($question->status == 1): ?>
-                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'delete', $question->id], ['confirm' => __('Are you sure you want to deactive # {0}?', $question->id),'escape'=>false]) ?>
-                    <?php else: ?>
-                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-check green']), ['action' => 'active', $question->id], ['confirm' => __('Are you sure you want to active # {0}?', $question->id),'escape'=>false]) ?>
-                    <?php endif; ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('First')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->last(__('Last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter('{{start}}') ?></p>
+<div class="page-header">
+    <h1>
+        <?= __('question')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('all_questions')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
+<div class="row">
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="questions content">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th class="center">
+                        <label id="check-all" class="checkbox-all">
+                            <input type="checkbox" class="ace" />
+                            <span class="lbl"></span>
+                        </label>
+                    </th>
+                    <th scope="col" style="text-align: center;"><?= $this->Paginator->sort('section') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('content') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('status') ?></th>
+                    <th scope="col" class="actions col-xs-2"><?= __('Actions') ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($questions as $question): ?>
+                    <tr>
+                        <td class="center">
+                            <label class="pos-rel">
+                                <input type="checkbox" class="ace" />
+                                <span class="lbl"></span>
+                            </label>
+                        </td>
+                        <td class="center"><?= $question->section->name; ?></td>
+                        <td><?= strtok($question->content, "\n"); ?></td>
+                        <td><span class="label label-success arrowed-in arrowed-in-right"><?= $status[$question->status] ?></span></td>
+                        <td class="actions">
+                            <div class="btn-group">
+                                <?= $this->Html->link(
+                                    $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
+                                    ['action' => 'view', $question->id],
+                                    ['class'=>'btn btn-xs btn-success','title'=>__('show_detail'),'escape'=>false]) ?>
+                                <?= $this->Form->postLink(
+                                    $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil bigger-120']),
+                                    ['action' => 'edit', $question->id],
+                                    ['class'=>'btn btn-xs btn-info', 'title'=>__('edit'),'escape'=>false]) ?>
+                                <?= $this->Html->link(
+                                    $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
+                                    ['action' => 'delete', $question->id],
+                                    ['class'=>'btn btn-xs btn-danger btn-delete', 'title'=>__('delete'),'escape'=>false]) ?>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <div class="paginator">
+                <ul class="pagination">
+                    <?= $this->Paginator->first(__('first')) ?>
+                    <?= $this->Paginator->prev(__('previous')) ?>
+                    <?= $this->Paginator->numbers() ?>
+                    <?= $this->Paginator->next(__('next')) ?>
+                    <?= $this->Paginator->last(__('last')) ?>
+                </ul>
+                <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}')]) ?></p>
+            </div>
+        </div>
     </div>
 </div>
+<script>
+    function deleteAQuestion(){
+        $( ".btn-delete" ).each(function(index) {
+            $(this).confirm({
+                content: "Are you sure you want to delete this question?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+                        action: function(){
+                            location.href = this.$target.attr('href');
+                        }
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
+            });
+        });
+    }
+    $(document).ready(function(){
+        var check = true;
+        $('#check-all .lbl').click(function () {
+            if(check){
+                $('.pos-rel').addClass('selected');
+//            $('.pos-rel.select').find('input').prop('checked','checked');
+                $('.pos-rel.selected').each(function () {
+                    $(this).find('input').prop('checked','checked');
+                });
+                check=false;
+            }else {
+                $('.pos-rel').removeClass('selected');
+                $('.pos-rel').each(function () {
+                    $(this).find('input').prop('checked','');
+                });
+                check=true;
+            }
+
+        });
+        deleteAQuestion();
+
+    });
+</script>

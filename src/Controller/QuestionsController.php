@@ -27,8 +27,12 @@ class QuestionsController extends AppController
 
     public function index()
     {
-        $this->paginate = ['limit' => 5, 
-                            'order' => ['id' => 'DESC']];
+        $this->paginate = [
+                            'conditions'=>['Questions.is_delete'=>0],
+                            'contain'=>['Sections'],
+                            'limit' => 5, 
+                            'order' => ['id' => 'DESC']
+                          ];
         $query = $this->Questions->find('all');
         if($this->request->is('post')){
             $query = $query->where([
@@ -36,14 +40,9 @@ class QuestionsController extends AppController
             ]);
         }
         
-    	$this->loadModel('Sections');
-    	$sections = $this->Sections->find('list');
-    	$sections = $sections->toArray();
-    	
-    	$ranks = ['1' => 'Easy', '2' => 'Medium'];
-    	$status = ['0' => 'Unused', '1' => 'Use'];
-    	// echo "<pre>"; print_r($this->paginate($query));exit();
-    	$this->set(compact('sections'));
+        $ranks = ['1' => 'Easy', '2' => 'Medium'];
+        $status = ['0' => 'Unused', '1' => 'Use'];
+
     	$this->set(compact('ranks'));
     	$this->set(compact('status'));
 
@@ -178,9 +177,9 @@ class QuestionsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        $this->request->allowMethod(['post', 'get', 'delete']);
         $question = $this->Questions->get($id);
-        $question->status = 0;
+        $question->is_delete = 1;
         if ($this->Questions->save($question)) {
             $this->Flash->success(__('The question has been deactive.'));
         } else {

@@ -27,7 +27,7 @@
                                 ?>
                                 <li>
                                     <?= $this->Html->link(__(isset($controller)?$controller:''),
-                                        ['controller'=>'users','action'=>'index'])?>
+                                        ['controller'=>$controller,'action'=>'index'])?>
                                 </li>
                                 <li class="active"><?=__(isset($action)?$action:'')?></li>
                                 <?php

@@ -1,30 +1,36 @@
+<div class="page-header">
+    <h1>
+        <?= __('question')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('add_question')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
 <style>
 	.no_display{
 		display: none;
 	}
 </style>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Add Question') ?></li>
-        <li><?= $this->Html->link(__('List Questions'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="questions form large-9 medium-8 columns content">
+<div class="questions form form-question content">
     <?= $this->Form->create($question) ?>
     <fieldset>
-        <legend><?= __('Add Question') ?></legend>
         <?php
             echo $this->Form->input('section', ['type' => 'select', 'options' => $section]);
-			echo $this->Form->input('content');
+            echo $this->Form->label('Content');
+			echo $this->Form->input('content',['templates' => [
+                'formGroup' => '{{input}}'
+            ]]);
         ?>
-        <div id="answer">Answer</div>
-        <a href="javascript:addAnswer()" class="button">+</a>
-        <a class="delete_answer button" href="javascript:removeAnswer()">-</a>
-        <?php
-        	//echo $this->Form->input('correct_answer', ["required" => "true"]);
-        ?>
+        <div id="answer"><h4><?= __('answer');?> <span>(<?= __('alert_checkbox')?>.)</span></h4></div>
+        <div class="actions nopd">
+            <a href="javascript:addAnswer()" class="btn btn-success" title="<?= __('title_add_answer')?>"><?= __('add')?> +</a>
+            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="remove an answer"><?= __('remove')?> -</a>
+        </div>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <div class="Actions text-center">
+        <?= $this->Form->button(__('Save ').$this->Html->tag('i','',['class'=>'fa fa-save'])) ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>
 
@@ -36,17 +42,12 @@
     addAnswer();
     addAnswer();
     addAnswer();
-    
-	$( document ).ready(function() {
-		CKEDITOR.replace( 'content' );
-		checkAnswer(answer_no);
-		$('input[type=text]').on('change',function(e){
-			$(this).val(function(index, value) {
-			   return value.replace(/[a-z].	/, '');
-			});
 
-		});
-	});
+    jQuery(function($) {
+        CKEDITOR.replace( 'content' );
+        checkAnswer(answer_no);
+    });
+
 	
 	function addAnswer() {
 		answer_no++;
@@ -55,10 +56,10 @@
 	    x.setAttribute("type", "text");
 	    x.setAttribute("name", "answer" + answer_no);
 	    x.setAttribute("required", "true");
-	    
+
 	    var y = document.createElement("LABEL");
 	    y.setAttribute("for", "answer" + answer_no);
-	    y.innerHTML = "Answer" + answer_no;
+	    y.innerHTML = "" + answer_no + ".";
 	    
 	    var t = document.createElement("INPUT");
         t.setAttribute("type", "radio");
@@ -67,9 +68,10 @@
 	    
 	    var z = document.createElement("DIV");
 	    z.setAttribute("id", "answer" + answer_no);
-	    
-	    z.appendChild(y);
+        z.setAttribute("class", "radio-custom");
+
 	    z.appendChild(t);
+        z.appendChild(y);
 	    z.appendChild(x);
 	    answer = document.getElementById("answer");
 	    //answer.appendChild(y);
@@ -82,7 +84,7 @@
 		if(answer_no <= 0){
 			return;
 		}else{
-			$('#answer'+answer_no).remove();
+            jQuery('#answer'+answer_no).remove();
 			answer_no--;
 		}
 		checkAnswer(answer_no);
@@ -90,10 +92,10 @@
 	
 	function checkAnswer(answer_no){
 		if(answer_no > 0){
-			$(".delete_answer").removeClass("no_display");
+            jQuery('.delete_answer').removeClass("no_display");
 		}
 		else{
-			$(".delete_answer").addClass("no_display");
+            jQuery('.delete_answer').addClass("no_display");
 		}
 	}
 </script>

@@ -106,6 +106,11 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => false,
             ])
+            ->addColumn('is_delete', 'integer', [
+                'default' => '0',
+                'limit' => 2,
+                'null' => true,
+            ])
             ->create();
 
         $this->table('districts', ['id' => false, 'primary_key' => ['districtid']])
@@ -159,7 +164,7 @@ class Initial extends AbstractMigration
             ])
             ->create();
 
-        $this->table('examstemplate')
+        $this->table('examstemplates')
             ->addColumn('name', 'string', [
                 'default' => null,
                 'limit' => 110,
@@ -168,11 +173,6 @@ class Initial extends AbstractMigration
             ->addColumn('num_questions', 'integer', [
                 'default' => null,
                 'limit' => 11,
-                'null' => false,
-            ])
-            ->addColumn('section', 'text', [
-                'default' => null,
-                'limit' => null,
                 'null' => false,
             ])
             ->addColumn('create_date', 'datetime', [
@@ -293,7 +293,7 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => false,
             ])
-            ->addColumn('section', 'integer', [
+            ->addColumn('section_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
@@ -302,6 +302,21 @@ class Initial extends AbstractMigration
                 'default' => '1',
                 'limit' => 6,
                 'null' => false,
+            ])
+            ->addColumn('create_date', 'timestamp', [
+                'default' => 'CURRENT_TIMESTAMP',
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('update_date', 'timestamp', [
+                'default' => 'CURRENT_TIMESTAMP',
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('is_delete', 'integer', [
+                'default' => null,
+                'limit' => 2,
+                'null' => true,
             ])
             ->create();
 
@@ -377,6 +392,21 @@ class Initial extends AbstractMigration
             ->addColumn('ipaddress', 'string', [
                 'default' => null,
                 'limit' => 20,
+                'null' => true,
+            ])
+            ->addColumn('is_delete', 'integer', [
+                'default' => '0',
+                'limit' => 2,
+                'null' => true,
+            ])
+            ->addColumn('datecreate', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('updatecreate', 'datetime', [
+                'default' => null,
+                'limit' => null,
                 'null' => true,
             ])
             ->create();
@@ -563,7 +593,7 @@ class Initial extends AbstractMigration
             ->addColumn('is_delete', 'integer', [
                 'default' => '0',
                 'limit' => 2,
-                'null' => false,
+                'null' => true,
             ])
             ->create();
 
@@ -633,7 +663,7 @@ class Initial extends AbstractMigration
         $this->dropTable('candidates');
         $this->dropTable('districts');
         $this->dropTable('exams_has_sections');
-        $this->dropTable('examstemplate');
+        $this->dropTable('examstemplates');
         $this->dropTable('groups');
         $this->dropTable('modules');
         $this->dropTable('permissions');

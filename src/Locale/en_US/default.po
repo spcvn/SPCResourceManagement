@@ -217,6 +217,9 @@ msgstr "Information Account"
 msgid "information_user"
 msgstr "INFORMATION USER"
 
+msgid "information_candidate"
+msgstr "INFORMATION CANDIDATE"
+
 msgid "information"
 msgstr "Information"
 

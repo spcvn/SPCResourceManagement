@@ -37,14 +37,14 @@
                         </td>
                         <td class="center"><?= $question->section->name; ?></td>
                         <td><?= strtok($question->content, "\n"); ?></td>
-                        <td><span class="label label-success arrowed-in arrowed-in-right"><?= $status[$question->status] ?></span></td>
+                        <td><span class="label arrowed-in arrowed-in-right <?=($question->status == 1)?'label-success':'label-warning'?>"><?= $status[$question->status] ?></span></td>
                         <td class="actions">
                             <div class="btn-group">
                                 <?= $this->Html->link(
                                     $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
                                     ['action' => 'view', $question->id],
                                     ['class'=>'btn btn-xs btn-success','title'=>__('show_detail'),'escape'=>false]) ?>
-                                <?= $this->Form->postLink(
+                                <?= $this->Html->link(
                                     $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil bigger-120']),
                                     ['action' => 'edit', $question->id],
                                     ['class'=>'btn btn-xs btn-info', 'title'=>__('edit'),'escape'=>false]) ?>

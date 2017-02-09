@@ -63,7 +63,7 @@
     <div class="actions">
         <div class="row">
             <div class="col-sm-6 text-left">
-                <a class="btn btnPreview" data-toggle="modal" data-target="#reviewUser">Preview</a>
+                <a class="btn btnPreview" data-toggle="modal" data-target="#reviewUser"><?= __('preview'); ?></a>
             </div>
             <div class="col-sm-6">
                 <?= $this->Form->button(__('Submit'),['class'=>'btn-submit']) ?>

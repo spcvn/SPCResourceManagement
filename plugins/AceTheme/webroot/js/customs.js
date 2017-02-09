@@ -5,6 +5,7 @@ $(document).ready(function(){
 		console.log()
 		redirectURL(_controller,'view',param);
 	});
+
 	submitForm();
 	/*$('button[type=submit]').click(function() {
           // return confirm('You sure you want to save this?');
@@ -26,6 +27,8 @@ $(document).ready(function(){
             });
     });*/
     
+
+
 });
 jQuery(function(){
     sideBarActive(activeMenu);
@@ -55,6 +58,7 @@ jQuery(function(){
 function redirectURL($controller,$action,$param){
 	window.location = "/"+$controller+"/"+$action+"/"+$param; 
 }
+
 function submitForm(){
         $( "button[type=submit]" ).each(function(index) {
             $(this).confirm({
@@ -76,6 +80,7 @@ function submitForm(){
             });
         });
     }
+
 function generationPassword(){
 	$.post("/users/generate-random-string/8",null,function(res){
 		$('input[name=password]').val(res);
@@ -90,9 +95,4 @@ function sideBarActive($activeMenu){
 			$('#sidebar').find('#'+$activeMenu).addClass('open');
 			$('#sidebar').find('.active').find('ul').find('#'+activeSubMenu).addClass('active');
 		}
-}
-function confirmButton(){
-	$('.btn-submit').confirm({
-		
-	})
 }

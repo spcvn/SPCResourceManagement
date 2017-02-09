@@ -17,7 +17,7 @@
     <fieldset>
         <?php
             echo $this->Form->input('section', ['type' => 'select', 'options' => $section]);
-            echo $this->Form->label('Content');
+            echo $this->Form->label('content');
 			echo $this->Form->input('content',['templates' => [
                 'formGroup' => '{{input}}'
             ]]);
@@ -25,13 +25,52 @@
         <div id="answer"><h4><?= __('answer');?> <span>(<?= __('alert_checkbox')?>.)</span></h4></div>
         <div class="actions nopd">
             <a href="javascript:addAnswer()" class="btn btn-success" title="<?= __('title_add_answer')?>"><?= __('add')?> +</a>
-            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="remove an answer"><?= __('remove')?> -</a>
+            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="<?= __('title_remove_answer')?>"><?= __('remove')?> -</a>
         </div>
     </fieldset>
-    <div class="Actions text-center">
-        <?= $this->Form->button(__('Save ').$this->Html->tag('i','',['class'=>'fa fa-save'])) ?>
+    <div class="row Actions text-center">
+        <div class="col-xs-6">
+            <a class="btnPreview" data-toggle="modal" data-target="#reviewQuestion"><?= __('preview'); ?></a>
+        </div>
+        <div class="col-xs-6">
+            <?= $this->Form->button(__('save ').$this->Html->tag('i','',['class'=>'fa fa-save'])) ?>
+        </div>
+
     </div>
     <?= $this->Form->end() ?>
+</div>
+<div id="reviewQuestion" class="modal fade review-question" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title text-center"><?= __('preview-question')?></h3>
+                <h4><?= __('question')?>:</h4>
+                <article class="content">
+                    <!--//question content here-->
+                    <p>Question content here</p>
+                </article>
+                <h4><?= __('answers') ?>:</h4>
+                <ol class="answerList">
+                    <li class="correct">Answer 1 <i class="fa fa-check text-success"></i></li>
+                    <li>Answer 2</li>
+                    <li>Answer 3</li>
+                    <li>Answer 4</li>
+                </ol>
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <button type="button" class="btn btn-info">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 <script>
@@ -99,4 +138,12 @@
             jQuery('.delete_answer').addClass("no_display");
 		}
 	}
+    previewQuestion();
+	function previewQuestion(){
+
+    }
+    addAnswerCorrect();
+    function addAnswerCorrect(){
+	    $('.radio-custom:first-child input').attr('checked','checked');
+    }
 </script>

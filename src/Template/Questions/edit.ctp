@@ -54,7 +54,6 @@
         </div>
     </fieldset>
     <div class="Actions-end clearfix">
-        <?= $this->Html->link(__('preview'),"javascript:review()",['class'=>'btn btn-info btnPreview']) ?>
         <?= $this->Form->button(__('save')) ?>
     </div>
     <?= $this->Form->end() ?>
@@ -77,30 +76,6 @@
         checkAnswer(answer_no);
         CKEDITOR.replace( 'content' );
     });
-    function review(){
-        $('.title').html('Question reviewing');
-        $('.body').html('<div class="question"><b>Question : </b>'+CKEDITOR.instances.content.getData()+"</div>");
-        var ans = $('#answer').find('input[type=text]');
-        $('.body').append();
-        ans.each(function(index){
-            $('.body').append(
-                '<div class="trow"><div class="col-left">Answer '
-                +(index+1)
-                +': </div><div>'
-                +$(this).val()
-                +'</div></div>'
-            );
-        });
-        var wWidth = $(window).width();
-        var dWidth = wWidth * 0.8;
-        console.log(dWidth);
-        $('#reviewQuestion').modal({
-            escapeClose: false,
-            clickClose: false,
-            showClose: false,
-            width: dWidth
-        });
-    }
     function addAnswer() {
         answer_no++;
         var x = document.createElement("INPUT");

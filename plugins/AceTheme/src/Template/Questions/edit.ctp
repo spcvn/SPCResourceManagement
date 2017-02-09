@@ -36,7 +36,7 @@
                 <div class="row-answer">
                 <?php
                 echo $this->Form->input($key, ['label'=>__('answer ').$i,'default' => $answer, 'required' => 'true']);
-                echo $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'ansdelete', $key],['escape'=>false,'class'=>'btnDelete']);
+                echo $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-trash red']), ['action' => 'ansdelete', $key],['escape'=>false,'class'=>'btnDelete']);
                 ?>
                 </div>
                 <?php

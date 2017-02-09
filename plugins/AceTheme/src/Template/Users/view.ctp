@@ -33,32 +33,32 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
                                 <td><?= h($user->username) ?></td>
                             </tr>
                             <tr>
-                                <th scope="row"><?= __('First Name') ?></th>
+                                <th scope="row"><?= __('first_name') ?></th>
                                 <td>:</td>
                                 <td><?= h($user->first_name) ?></td>
                             </tr>
                             <tr>
-                                <th scope="row"><?= __('Last Name') ?></th>
+                                <th scope="row"><?= __('last_name') ?></th>
                                 <td>:</td>
                                 <td><?= h($user->last_name) ?></td>
                             </tr>
                             <tr>
-                                <th scope="row"><?= __('Birth Date') ?></th>
+                                <th scope="row"><?= __('birthday') ?></th>
                                 <td>:</td>
                                 <td><?= h($user->birth_date->format('Y-m-d')) ?></td>
                             </tr>
                             <tr>
-                                <th scope="row"><?= __('Created') ?></th>
+                                <th scope="row"><?= __('created') ?></th>
                                 <td>:</td>
                                 <td><?=(isset($user->created))?$user->created->format('Y-m-d H:i'):"" ?></td>
                             </tr>
                             <tr>
-                                <th scope="row"><?= __('Updated') ?></th>
+                                <th scope="row"><?= __('updated') ?></th>
                                 <td>:</td>
                                 <td><?= (isset($user->updated))?$user->updated->format('Y-m-d H:i'):"" ?></td>
                             </tr>
                             <tr>
-                                <th scope="row"><?= __('Status') ?></th>
+                                <th scope="row"><?= __('status') ?></th>
                                 <td>:</td>
                                 <td><?= h($arrStatus[$user->status]) ?></td>
                             </tr>
@@ -67,22 +67,22 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
                     <div id="contactUser" class="tab-pane fade">
                         <table class="table-review table-hover vertical-table">
                             <tr>
-                                <th scope="row"><?= __('Email') ?></th>
+                                <th scope="row"><?= __('email') ?></th>
                                 <td>:</td>
                                 <td><?= h($user->email) ?></td>
                             </tr>
                             <tr>
-                                <th scope="row"><?= __('Mobile') ?></th>
+                                <th scope="row"><?= __('mobile') ?></th>
                                 <td>:</td>
                                 <td><?= h($user->mobile) ?></td>
                             </tr>
                             <tr>
-                                <th scope="row"><?= __('Dept') ?></th>
+                                <th scope="row"><?= __('department') ?></th>
                                 <td>:</td>
                                 <td><?= h($user->position->name) ?></td>
                             </tr>
                             <tr>
-                                <th scope="row"><?= __('Region') ?></th>
+                                <th scope="row"><?= __('region') ?></th>
                                 <td>:</td>
                                 <td><?= h($user->addr01) ?></td>
                             </tr>

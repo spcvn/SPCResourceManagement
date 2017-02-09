@@ -32,11 +32,11 @@
         </div>
         <div class="col-md-7">
             <div class="box-form">
-                <h2><?= __('is_candidate')?></h2>
+                <h2><?= __('candidate_exists')?></h2>
                 <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>'-1'])?>            
             </div>
             <div class="box-form">
-                <h2><?= __('information_account')?></h2>
+                <h2><?= __('account_information')?></h2>
                 <?php
                 echo $this->Form->input('email',['type'=>'email']);
                 echo $this->Form->input('first_name',['type'=>'text']);
@@ -48,9 +48,9 @@
                     <?php echo $this->cell("Province.Province",['config'=>'all']);?>
                 </div>
                 <?php
-                echo $this->Form->input('birth_date', ['class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
+                echo $this->Form->input('birthday', ['class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
                 echo $this->Form->input('mobile',['type'=>'text']);
-                echo $this->Form->input('dept',['type'=>'select', 'options'=>$user->positions ,'default'=>'']);
+                echo $this->Form->input('department',['type'=>'select', 'options'=>$user->positions ,'default'=>'']);
                 echo $this->Form->input('start_work',['type'=>'text','class'=>'datepicker','default' => date('Y-m-d')]);
                 $status = ['0' => 'Active', '1' => 'Disable'];
                 echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
@@ -66,7 +66,7 @@
                 <a class="btn btnPreview" data-toggle="modal" data-target="#reviewUser"><?= __('preview'); ?></a>
             </div>
             <div class="col-sm-6">
-                <?= $this->Form->button(__('Submit'),['class'=>'btn-submit']) ?>
+                <?= $this->Form->button(__('submit'),['class'=>'btn-submit']) ?>
             </div>
         </div>
     </div>
@@ -178,6 +178,7 @@
     $( function() {
         $( ".datepicker" ).datepicker({
             changeYear: true,
+            changeMonth: true,
             dateFormat: 'yy-mm-dd',
             yearRange: "-100:+0",
         });

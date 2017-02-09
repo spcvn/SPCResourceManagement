@@ -40,7 +40,7 @@ img{
 }
 .required.error .error-message{
     position: absolute;
-    padding-left: 15%;
+    padding-left: 18%;
     bottom: 0px;
     font-style: italic;
 }
@@ -96,7 +96,9 @@ form button[type=submit],.btnPreview, .btn-reset{
     margin-top: 15px;
     font-size: 16px;
 }
-
+input#start-working-date{
+    max-width: 250px;
+}
 .btnPreview, .form-question .btnPreview{
     height: 53px;
     background-color: #6FB3DF!important;
@@ -342,9 +344,6 @@ select::-ms-expand{
     color: #2679B5;
     margin-bottom: 30px;
 }
-.content-question{
-    padding: 30px 0;
-}
 .content-question article{
     padding: 15px;
     border: 1px ridge #dddddd;
@@ -409,7 +408,7 @@ select::-ms-expand{
 }
 .form-question .actions{
     margin-bottom: 15px;
-    padding-left: 15%;
+    padding-left: 18%;
 }
 .form-question .actions.nopd{
     padding-left: 0;
@@ -612,6 +611,9 @@ form .error{
 /*table layout end*/
 .label.btn-status{
     width: 64px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 /*sidebar shortcuts*/
 .sidebar-shortcuts .ttlsb{
@@ -640,7 +642,7 @@ form .error{
     .form .number label,
     .form .file label,
     .form .textarea label{
-        width: 15%;
+        width: 18%;
     }
     .users.form .wrap-edit .text input,
     .users.form .wrap-edit .email input,
@@ -649,7 +651,7 @@ form .error{
     .users.form .wrap-edit .number input,
     .users.form .wrap-edit .file input,
     .users.form .wrap-edit .textarea textarea{
-        width: 85%;
+        width: 82%;
     }
 }
 @media (min-width: 1200px) {

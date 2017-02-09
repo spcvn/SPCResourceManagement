@@ -20,7 +20,7 @@
             echo $this->Form->input('mobile');
             echo $this->Form->input('expected_salary',['type'=>'text']);
             echo $this->Form->input('interview_date',['type'=>'text','class'=>'datepicker']);
-            echo $this->Form->input('position');
+            echo $this->Form->input('department');
             echo $this->Form->input('score');
             echo $this->Form->input('result');
             echo $this->Form->input('created_date',['type'=>'text','class'=>'datepicker']);

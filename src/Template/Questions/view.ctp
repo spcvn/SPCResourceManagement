@@ -1,53 +1,69 @@
-<div class="page-header">
-    <h1>
-        <?= __('question')?>
-        <small>
-            <i class="ace-icon fa fa-angle-double-right"></i>
-            <?= __('question_detail')?>
-        </small>
-    </h1>
-</div><!-- /.page-header -->
-<div class="row">
-    <div class="col-md-6">
-        <h4><?= __('section')?>: <?= h($question->section); ?> </h4>
-        <div class="content-question">
-            <h4><?= __('question') ?></h4>
-            <article>
-                <?= $this->Text->autoParagraph(h($question->content)); ?>
-            </article>
-        </div>
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('View Question') ?></li>
+        <li><?= $this->Html->link(__('Edit Question'), ['action' => 'edit', $question->id]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete Question'), ['action' => 'delete', $question->id], ['confirm' => __('Are you sure you want to delete # {0}?', $question->id)]) ?> </li>
+        <li><?= $this->Html->link(__('List Questions'), ['action' => 'index']) ?> </li>
+    </ul>
+</nav>
+<div class="questions view large-9 medium-8 columns content">
+    <h3><?= h($question->id) ?></h3>
+    <table class="vertical-table">
+        <tr>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($question->id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Section') ?></th>
+            <td><?= $sections[$question->section] ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Status') ?></th>
+            <td><?= $status[$question->status] ?></td>
+        </tr>
+    </table>
+    <div class="row">
+        <h4><?= __('Content') ?></h4>
+        <?= $question->content; ?>
     </div>
-    <div class="col-md-6">
-        <h4><?= __('answers') ?></h4>
-        <?php $i=1; if (!empty($question->answers)): ?>
-            <table class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th class="center" width="50" scope="col"><?= __('No.') ?></th>
-                    <th scope="col"><?= __('answer') ?></th>
-                    <th class="center" width="100" scope="col"><?= __('Is Correct') ?></th>
-                    <th class="center" scope="col" class="actions"><?= __('actions') ?></th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <?php foreach ($question->answers as $answers): ?>
-                    <tr>
-                        <td class="center"><?= h($i++) ?></td>
-                        <td><?= h($answers->answer) ?></td>
-                        <td class="center"><?= ($answers->is_correct==0)?'<i class="f20 text-danger fa fa-remove"></i>':'<i class="f20 text-success fa fa-check"></i>' ?></td>
-                        <td class="actions center">
-                            <div class="btn-group">
-                                <?= $this->Html->link(
-                                    $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash']),
-                                    ['controller' => '','action' => '#', $question->id],
-                                    ['class'=>'btn btn-xs btn-danger btn-delete','title'=>__('Delete'),'escape'=>false]) ?>
-                            </div>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
+    <div class="related">
+        <h4><?= __('Answers') ?></h4>
+        <?php if (!empty($question->answers)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Answer Id') ?></th>
+                <th scope="col"><?= __('Answer') ?></th>
+                <th scope="col"><?= __('Is Correct') ?></th>
+            </tr>
+            <?php foreach ($question->answers as $answers): ?>
+            <tr  class="<?=($answers->is_correct == 1)?'correctRow':''?>">
+                <td><?= h($answers->id) ?></td> 
+                <td><?= h($answers->answer) ?></td>
+                <td><?= ($answers->is_correct)?'<i class="fa fa-check green" aria-hidden="true"></i>':'<i class="fa fa-times red" aria-hidden="true"></i>' ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Quiz Details') ?></h4>
+        <?php if (!empty($question->quiz_details)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Quiz Id') ?></th>
+                <th scope="col"><?= __('Question Id') ?></th>
+                <th scope="col"><?= __('Answer') ?></th>
+                <th scope="col"><?= __('Is Correct') ?></th>
+            </tr>
+            <?php foreach ($question->quiz_details as $quizDetails): ?>
+            <tr>
+                <td><?= h($quizDetails->quiz_id) ?></td>
+                <td><?= h($quizDetails->question_id) ?></td>
+                <td><?= h($quizDetails->answer) ?></td>
+                <td><?= h($quizDetails->is_correct) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
         <?php endif; ?>
     </div>
 </div>

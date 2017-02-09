@@ -10,10 +10,13 @@ use Cake\ORM\Entity;
  * @property string $content
  * @property int $section_id
  * @property int $status
+ * @property \Cake\I18n\Time $create_date
+ * @property \Cake\I18n\Time $update_date
+ * @property int $is_delete
  *
+ * @property \App\Model\Entity\Section $section
  * @property \App\Model\Entity\Answer[] $answers
  * @property \App\Model\Entity\QuizDetail[] $quiz_details
- * @property \App\Model\Entity\Section $section
  */
 class Question extends Entity
 {

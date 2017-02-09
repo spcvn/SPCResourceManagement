@@ -71,6 +71,18 @@ class QuestionsTable extends Table
             ->requirePresence('status', 'create')
             ->notEmpty('status');
 
+        $validator
+            ->dateTime('create_date')
+            ->allowEmpty('create_date');
+
+        $validator
+            ->dateTime('update_date')
+            ->allowEmpty('update_date');
+
+        $validator
+            ->integer('is_delete')
+            ->allowEmpty('is_delete');
+
         return $validator;
     }
 

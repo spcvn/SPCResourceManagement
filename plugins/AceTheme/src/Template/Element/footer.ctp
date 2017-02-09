@@ -60,8 +60,8 @@
 
 <!-- javascript ckeditor -->
 <?= $this->Html->script('ckeditor/ckeditor.js') ?>
-<?= $this->Html->script('customs.js') ?>
 <?= $this->Html->script('jquery-confirm.js') ?>
+<?= $this->Html->script('customs.js') ?>
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">

@@ -11,7 +11,7 @@
     <div class="action-tabs text-right">
         <?= $this->Html->link(
             __('new_template').' +',
-            ['controller'=>'exams','action'=>'add'],
+            ['controller'=>'examstemplates','action'=>'add'],
             ['class'=>'btn btn-success btn-add-temp']
         ); ?>
     </div>

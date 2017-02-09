@@ -5,9 +5,7 @@ $(document).ready(function(){
 		console.log()
 		redirectURL(_controller,'view',param);
 	});
-	$('button[type=submit]').click(function() {
-          return confirm('You sure you want to save this?');
-    });
+	
     
 });
 jQuery(function(){

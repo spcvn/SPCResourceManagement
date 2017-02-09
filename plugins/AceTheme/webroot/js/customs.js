@@ -5,9 +5,26 @@ $(document).ready(function(){
 		console.log()
 		redirectURL(_controller,'view',param);
 	});
-	$('button[type=submit]').click(function() {
-          return confirm('You sure you want to save this?');
-    });
+	submitForm();
+	/*$('button[type=submit]').click(function() {
+          // return confirm('You sure you want to save this?');
+          $(this).confirm({
+                content: "You sure you want to save this?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+                        action : function() {
+                        	return true;
+                        }
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
+            });
+    });*/
     
 });
 jQuery(function(){
@@ -38,10 +55,27 @@ jQuery(function(){
 function redirectURL($controller,$action,$param){
 	window.location = "/"+$controller+"/"+$action+"/"+$param; 
 }
-function submit(form){
-	console.log(form);
-	form.submit();
-}
+function submitForm(){
+        $( "button[type=submit]" ).each(function(index) {
+            $(this).confirm({
+                content: "Are you sure you want to save this question?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+                        action: function(){
+                        	$('form').submit();
+                            console.log($(this));
+                        }
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
+            });
+        });
+    }
 function generationPassword(){
 	$.post("/users/generate-random-string/8",null,function(res){
 		$('input[name=password]').val(res);

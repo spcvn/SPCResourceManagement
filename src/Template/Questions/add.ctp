@@ -12,7 +12,7 @@
 		display: none;
 	}
 </style>
-<div class="questions form form-question content">
+<div class="questions form form-question content">	
     <?= $this->Form->create($question) ?>
     <fieldset>
         <?php
@@ -64,6 +64,7 @@
 	    var t = document.createElement("INPUT");
         t.setAttribute("type", "radio");
         t.setAttribute("name", "correct_answer");
+        t.setAttribute("required", "true");
         t.setAttribute("value", answer_no);
 	    
 	    var z = document.createElement("DIV");

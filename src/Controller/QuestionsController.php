@@ -73,7 +73,7 @@ class QuestionsController extends AppController
     public function view($id = null)
     {
         $question = $this->Questions->get($id, [
-            'contain' => ['Answers', 'QuizDetails']
+            'contain' => ['Answers'=>['conditions'=>['Answers.is_delete'=>0]], 'QuizDetails']
         ]);
         
         $this->loadModel('Sections');
@@ -106,7 +106,7 @@ class QuestionsController extends AppController
         if ($this->request->is('post')) {
         	$arrDatas = $this->request->data;
             $question->content = $arrDatas['content'];
-            $question->section = $arrDatas['section'];
+            $question->section_id = $arrDatas['section'];
             if ($this->Questions->save($question)) {
                 $question_id = $question->id;
                 if(!$this->registerAnswer($question_id, $arrDatas)){
@@ -133,6 +133,7 @@ class QuestionsController extends AppController
      */
     public function edit($id = null)
     {
+
     	$this->loadModel('Answers');
     	
     	$this->loadModel('Sections');
@@ -180,6 +181,7 @@ class QuestionsController extends AppController
         $this->request->allowMethod(['post', 'get', 'delete']);
         $question = $this->Questions->get($id);
         $question->is_delete = 1;
+        $question->status = 0; // 0 : not used
         if ($this->Questions->save($question)) {
             $this->Flash->success(__('The question has been deactive.'));
         } else {
@@ -231,7 +233,6 @@ class QuestionsController extends AppController
         $answers = $this->Answers->find('all', ['keyField' => 'id'])
                                 ->where(['question_id' => $question_id])
                                 ->toArray();
-        
         $temp = $arrDatas;
         unset($temp['section'],$temp['content'],$temp['correct_answer']);
         $i=1;

@@ -59,7 +59,7 @@
     </div>
     <?= $this->Form->end() ?>
 </div>
-<div id="review" style="display: none">
+<div id="reviewQuestion" class="modal fade review-question" role="dialog">
     <div class="title">Title</div>
     <div class="body">Body</div>
     <div class="footer">
@@ -94,13 +94,12 @@
         var wWidth = $(window).width();
         var dWidth = wWidth * 0.8;
         console.log(dWidth);
-        $('#review').modal({
+        $('#reviewQuestion').modal({
             escapeClose: false,
             clickClose: false,
             showClose: false,
             width: dWidth
         });
-        return false;
     }
     function addAnswer() {
         answer_no++;
@@ -108,6 +107,7 @@
         x.setAttribute("type", "text");
         x.setAttribute("name", "answer" + answer_no);
         x.setAttribute("required", "true");
+        x.setAttribute("onchange", "changeVal($(this),"+answer_no+")");
 
         var y = document.createElement("LABEL");
         y.setAttribute("for", "answer" + answer_no);
@@ -130,6 +130,11 @@
             return;
         }else{
             $('#answer'+answer_no).remove();
+            $('select[name=correct_answer] option').each(function(){
+                if($( this ).val() == answer_no){
+                    $( this ).remove(); 
+                }
+            });
             answer_no--;
         }
         checkAnswer(answer_no);
@@ -142,5 +147,15 @@
         else{
             $(".delete_answer").addClass("no_display");
         }
+    }
+    function changeVal(element,index){
+        var val = element.val().replace(/[a-z]. /, '');
+        if($('select[name=correct_answer] option[value='+index+']').length == 0){
+            // console.log($(this));
+            $('select[name=correct_answer]').append($('<option>', { value : index }).text(val)); 
+        }else{
+            $('select[name=correct_answer] option[value='+index+']').text(val); 
+        }
+        return element.val(val);
     }
 </script>

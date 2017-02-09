@@ -5,10 +5,10 @@ $(document).ready(function(){
 		console.log()
 		redirectURL(_controller,'view',param);
 	});
-	$('button[type=submit]').click(function() {
-          return confirm('You sure you want to save this?');
-    });
-    
+    // $('button[type=submit]').click(function() {
+    //       return confirm('You sure you want to save this?');
+    // });
+    confirmButton();
 });
 jQuery(function(){
     sideBarActive(activeMenu);
@@ -39,7 +39,6 @@ function redirectURL($controller,$action,$param){
 	window.location = "/"+$controller+"/"+$action+"/"+$param; 
 }
 function submit(form){
-	console.log(form);
 	form.submit();
 }
 function generationPassword(){
@@ -59,6 +58,18 @@ function sideBarActive($activeMenu){
 }
 function confirmButton(){
 	$('.btn-submit').confirm({
-		
-	})
+        content: "Are you sure you want to do this?",
+        title: "",
+        buttons: {
+            yes: {
+                btnClass:'btn-danger',
+                keys: ['Y'],
+                action:function () {
+				}
+            },
+            no: {
+                keys: ['N'],
+            },
+        }
+    });
 }

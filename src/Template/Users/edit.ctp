@@ -35,7 +35,7 @@
                 ?>
             </div>
         <div class="actions text-center">
-            <?= $this->Form->button($this->Html->tag('i','',['class'=>'fa fa-save']).__(' Save')) ?>
+            <?= $this->Form->button($this->Html->tag('i','',['class'=>'fa fa-save']).__(' Save'), ['class'=>'btn-submit']) ?>
         </div>
         <?= $this->Form->end() ?>
     </div>

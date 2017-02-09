@@ -25,7 +25,7 @@
         <div id="answer"><h4><?= __('answer');?> <span>(<?= __('alert_checkbox')?>.)</span></h4></div>
         <div class="actions nopd">
             <a href="javascript:addAnswer()" class="btn btn-success" title="<?= __('title_add_answer')?>"><?= __('add')?> +</a>
-            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="remove an answer"><?= __('remove')?> -</a>
+            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="<?= __('title_remove_answer')?>"><?= __('remove')?> -</a>
         </div>
     </fieldset>
     <div class="row Actions text-center">
@@ -140,5 +140,9 @@
     previewQuestion();
 	function previewQuestion(){
 
+    }
+    addAnswerCorrect();
+    function addAnswerCorrect(){
+	    $('.radio-custom:first-child input').attr('checked','checked');
     }
 </script>

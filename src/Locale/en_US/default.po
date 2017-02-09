@@ -286,11 +286,17 @@ msgstr "Select a position"
 msgid "generate_password"
 msgstr "Generate password"
 
-msgid "Content"
-msgstr "content"
+msgid "content"
+msgstr "Content"
 
 msgid "full_name"
 msgstr "Full Name"
 
 msgid "duration_minute"
 msgstr "Duration (minute)"
+
+msgid "preview"
+msgstr "Preview"
+
+msgid "preview-question"
+msgstr "Preview Question"

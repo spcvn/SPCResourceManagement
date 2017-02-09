@@ -119,6 +119,9 @@ form button[type=submit],.btnPreview, .btn-reset{
 form button[type=submit]{
     background-color: #438EB9;
     color: #ffffff;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
 }
 form button[type=submit]:hover{
     background-color: #2c5976;

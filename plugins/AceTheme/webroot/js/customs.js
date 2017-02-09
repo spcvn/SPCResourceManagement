@@ -57,3 +57,8 @@ function sideBarActive($activeMenu){
 			$('#sidebar').find('.active').find('ul').find('#'+activeSubMenu).addClass('active');
 		}
 }
+function confirmButton(){
+	$('.btn-submit').confirm({
+		
+	})
+}

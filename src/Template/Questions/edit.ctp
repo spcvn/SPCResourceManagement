@@ -16,7 +16,8 @@
         margin: -45px -20px auto;
     }
 </style>
-<div class="questions form form-question content">
+<span class="loading" style="display:block"><?=$this->Html->image('../images/loading.gif')?>Loading...</span>
+<div class="questions form form-question content no_display">
     <?= $this->Form->create($question,['id'=>'qForm']) ?>
     <fieldset>
         <?php
@@ -73,8 +74,12 @@
     var answer_no = answer_init;
 
     $( document ).ready(function() {
-        checkAnswer(answer_no);
+        $(".loading").hide();
+         $(".content").show();
+
         CKEDITOR.replace( 'content' );
+        checkAnswer(answer_no);
+        btnDelete();
     });
     function addAnswer() {
         answer_no++;
@@ -132,5 +137,25 @@
             $('select[name=correct_answer] option[value='+index+']').text(val); 
         }
         return element.val(val);
+    }
+    function btnDelete(){
+        $( "a.btnDelete]" ).each(function(index) {
+            $(this).confirm({
+                content: "Do you want to delete it?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+                        action: function(){
+                            location.href = this.$target.attr('href');
+                        }
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
+            });
+        });
     }
 </script>

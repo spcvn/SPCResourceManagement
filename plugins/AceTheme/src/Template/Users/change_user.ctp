@@ -1,17 +1,19 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
+        <li class="heading"><?= __('Create Member SPC') ?></li>
+        <li><?= $this->Html->link(__('List Candidates'), ['action' => 'index']) ?> </li>
     </ul>
 </nav>
 <div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user,['id'=>'frmUsers']) ?>
+    <?= $this->Form->create($candidate,['id'=>'frmUsers']) ?>
     <fieldset>
-        <legend><?= __('Add User') ?></legend>
+        <legend><?= __('Edit User') ?></legend>
         <?php
             echo $this->Form->input('username', ['type'=>'text','required' => true]);
             echo $this->Form->input('password', ['required' => true]);
             echo $this->Form->input('confirm_password',['type'=>'password','required' => true]);
+            echo "<div class='pass'></div>";
+            echo $this->Html->link(__("generate password"),"javascript:generationPassword()",["id"=>"btnPassword"]);
             echo $this->Form->input('email', ['required' => true]);
             $status = ['0' => 'Disable', '1' => 'Active'];
             echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
@@ -19,10 +21,10 @@
             echo $this->Form->input('middle_name', ['type'=>'text']);
             echo $this->Form->input('last_name', ['type'=>'text','required' => true]);
             $arrDept = ['it'=>"IT",'hr'=>"HR",'admin'=>'Admin'];
-            echo $this->Form->input('dept', ['type'=>'select','options'=>$arrDept]);
+            echo $this->Form->input('position', ['type'=>'select','options'=>$arrDept]);
             echo $this->Form->input('mobile',['type'=>'text']);
-              echo $this->Form->input('birth_date', ['minYear' => date("Y")-66, 'maxYear'=> date("Y")-17]);
-            echo $this->cell("Province.Province",['config'=>'all']);
+            echo $this->Form->input('birth_date', ['minYear' => date("Y")-66, 'maxYear'=> date("Y")-17]);
+            echo $this->cell("Province.Province",['config'=>'all',"type"=>"edit",'data'=>$candidate]);
             echo $this->Form->input('addr01',['label'=>'Address']);
         ?>
     </fieldset>
@@ -31,12 +33,8 @@
     <?= $this->Form->end() ?>
 </div>
 <div id="review" style="display: none;">
-    <h3><?= h($user->id) ?></h3>
+    <h3><?= h($candidate->id) ?></h3>
     <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td id="id"></td>
-        </tr>
         <tr>
             <th scope="row"><?= __('Username') ?></th>
             <td id="username"></td>
@@ -125,7 +123,6 @@
             });
             return false;
         }
-        $(function(){
-            $("#province").val($("#province").val()).change();
-        });
-</script>
+
+
+</script>   

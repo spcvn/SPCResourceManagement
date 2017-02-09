@@ -1,139 +1,53 @@
-<div class="page-header">
-    <h1>
-        <?= __('users')?>
-        <small>
-            <i class="ace-icon fa fa-angle-double-right"></i>
-            <?= __('all_users')?>
-        </small>
-    </h1>
-</div><!-- /.page-header -->
-<div class="users index content">
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead>
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('User') ?></li>
+        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="users index large-9 medium-8 columns content">
+    <h3><?= __('User List') ?></h3>
+    <table cellpadding="0" cellspacing="0" data-col="users">
+        <thead>
             <tr>
-                <th style="text-align: center;" scope="col"><?= $this->Paginator->sort('no',['text'=>'No.']) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('last_name',['text'=>__('full_name')]) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('birth_date',['text'=>__('birthday')]) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('provinceid',['text'=>__('province')]) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('dept',['model'=>'Positions']) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
-                <th scope="col" class="actions"><?= __('actions') ?></th>
+                <th scope="col" style="width: 3%"><?= $this->Paginator->sort('id',"No.") ?></th>
+                <th scope="col" style="width: 15%"><?= $this->Paginator->sort('username') ?></th>
+		        <th scope="col" style="width: 25%"><?= $this->Paginator->sort('first_name') ?></th>
+                <th scope="col" style="width: 25%"><?= $this->Paginator->sort('last_name') ?></th>
+                <th scope="col" style="width: 10%"><?= $this->Paginator->sort('dept') ?></th>
+                <th scope="col" style="width: 10%"><?= $this->Paginator->sort('status') ?></th>
+                <th scope="col" style="width: 15%" class="actions"><?= __('Actions') ?></th>
             </tr>
-            </thead>
-            <tbody>
-            <?php $i = 1;
-            $province[0] = $province[1] = "-";
-            foreach ($users as $user): ;?>
-                <?php $name = h($user->last_name ." ". $user->middle_name ." ". $user->first_name);?>
-                <tr>
-                    <td style="text-align: center;"><?= $i++ ?></td>
-                    <td><?= $this->Html->link(
-                            $name,
-                            ['action' => 'view', $user->id]) ?></td>
-                    <td><?=  date("Y-m-d",strtotime(h($user->birth_date))) ?></td>
-                    <td><?= $province[$user->provinceid] ?></td>
-                    <td><?= h($user->position->name)?></td>
-                    <td><a class="btn-status label arrowed-in arrowed-in-right <?=($user->status == 0)?'label-success':'label-danger'?> "><?= h($status[$user->status]) ?></a></td>
-                    <td class="actions">
-                        <div class="btn-group">
-                            <?= $this->Html->link(
-                                $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
-                                ['action' => 'view', $user->id],
-                                ['class'=>'btn btn-xs btn-success','title'=>__('show_detail'),'escape'=>false]) ?>
-                            <?= $this->Html->link(
-                                $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil bigger-120']),
-                                ['action' => 'edit', $user->id],
-                                ['class'=>'btn btn-xs btn-info', 'title'=>__('edit'),'escape'=>false]) ?>
-                            <?= $this->Html->link(
-                                $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
-                                ['action' => 'delete', $user->id],
-                                ['class'=>'btn btn-xs btn-danger  btn-delete','data-name'=>$name, 'title'=>__('delete'),'escape'=>false]) ?>
-                        </div>
-                    </td>
-                </tr>
+        </thead>
+        <tbody>
+            <?php 
+            $cur = $this->Paginator->counter('{{start}}');
+            foreach ($users as $user): ?>
+            <tr>
+                <td class="viewDetail" data-id="<?=$user->id?>"><?= h($cur++) ?></td>
+                <td class="viewDetail" data-id="<?=$user->id?>"><?= h($user->username) ?></td>
+                <td class="viewDetail" data-id="<?=$user->id?>"><?= h($user->first_name) ?></td>
+                <td class="viewDetail" data-id="<?=$user->id?>"><?= h($user->last_name) ?></td>
+                <td class="viewDetail" data-id="<?=$user->id?>"><?= h($user->dept) ?></td>
+                <td class="viewDetail" data-id="<?=$user->id?>"><?= $status[$user->status] ?></td>
+                <td class="actions">
+                    <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-file-text-o']), ['action' => 'view', $user->id],['escape'=>false]) ?>
+                    <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-pencil orange']), ['action' => 'edit', $user->id],['escape'=>false]) ?>
+                    <?php if ($user->status == 1): ?>
+                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-times red','title'=>'Deactive']), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to deactive # {0}?', $user->id),'escape'=>false]) ?>
+                    <?php else: ?>
+                    <?= $this->Form->postLink($this->Html->tag('i','',['class'=>'fa fa-check green','title'=>'Active']), ['action' => 'active', $user->id], ['confirm' => __('Are you sure you want to active # {0}?', $user->id),'escape'=>false]) ?>
+                    <?php endif; ?>
+                </td>
+            </tr>
             <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first( __('first')) ?>
-            <?= $this->Paginator->prev(__('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('First')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next')) ?>
-            <?= $this->Paginator->last(__('last')) ?>
+            <?= $this->Paginator->last(__('Last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>
-<script>
-    $(document).ready(function(){
-        var name;
-        $( ".btn-delete" ).each(function(index) {
-            name = $(this).attr('data-name');
-            $(this).confirm({
-                content: "<?=__('Are you sure you want to delete:')?> <span class='exam-name'>"+ name +"</span>?",
-                title: "",
-                buttons: {
-                    yes: {
-                        btnClass:'btn-danger',
-                        keys: ['Y'],
-                        action: function(){
-                            location.href = this.$target.attr('href');
-                        }
-                    },
-                    no: {
-                        keys: ['N'],
-                    },
-                }
-            });
-        });
-
-//        $('tr').click( function() {
-//            window.location = $(this).find('a[title="Show Detail"]').attr('href');
-//        }).hover( function() {
-//            $(this).toggleClass('hover');
-//        });
-        $( ".btn-status" ).each(function(index) {
-            var currentStatus;
-            if($(this).hasClass('label-danger')){
-                currentStatus = 'Active';
-            }else {
-                currentStatus = 'Deactive';
-            }
-            $(this).confirm({
-                content: "<?=__('Are you sure you want to')?> "+ currentStatus +" this user?",
-                title: "",
-                buttons: {
-                    yes: {
-                        btnClass:'btn-danger',
-                        keys: ['Y'],
-                    },
-                    no: {
-                        keys: ['N'],
-                    },
-                }
-            });
-        });
-
-        function changeStatus(){
-            $('.btn-status').each(function () {
-                $(this).stop().hover(function () {
-                    if($(this).hasClass('label-success')){
-                        $(this).removeClass('label-success').addClass('label-danger').html('Deactive');
-                    }else {
-                        $(this).removeClass('label-danger').addClass('label-success').html('Active');
-                    }
-                }, function () {
-                    if($(this).hasClass('label-danger')){
-                        $(this).removeClass('label-danger').addClass('label-success').html('Active');
-                    }else {
-                        $(this).removeClass('label-success').addClass('label-danger').html('Deactive');
-                    }
-                })
-            })
-        }
-        changeStatus();
-    })
-</script>

@@ -160,6 +160,9 @@ msgstr "New"
 msgid "new_template"
 msgstr "New Template"
 
+msgid "test"
+msgstr "Test"
+
 msgid "tested"
 msgstr "Tested"
 
@@ -315,3 +318,9 @@ msgstr "Preview Question"
 
 msgid "edit_this_question"
 msgstr "Edit this question"
+
+msgid "member_of_spc"
+msgstr "Member of SPC"
+
+msgid "create_test"
+msgstr "Create Test"

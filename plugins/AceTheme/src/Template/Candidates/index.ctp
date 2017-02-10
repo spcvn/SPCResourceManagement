@@ -17,7 +17,8 @@
                 <th scope="col"><?= $this->Paginator->sort('birth_date') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('mobile') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('position') ?></th>
-                <th scope="col" class="actions"><?= __('actions') ?></th>
+                <th scope="col" class="actions"><a><?= __('test') ?></a></th>
+                <th scope="col" class="actions"><a><?= __('actions') ?></a></th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,11 @@
                 <td><?= h($candidate->birth_date->format('Y-m-d')) ?></td>
                 <td><?= h($candidate->mobile) ?></td>
                 <td><?= $candidate->position->name ?></td>
+                <td style="text-align: center;">
+                    <div class="btn-group">
+                        <a class="btn btn-xs btn-info" title="<?= ('create_test')?>"><i class="fa fa-file-text-o"></i></a>
+                    </div>
+                </td>
                 <td class="actions">
                     <div class="btn-group">
                         <?= $this->Html->link(
@@ -43,7 +49,7 @@
                         <?= $this->Form->postLink(
                             $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
                             ['action' => 'delete', $candidate->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $candidate->id),"class"=>'btn btn-xs btn-danger','title'=>'Delete','escape'=>false]) ?>
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $candidate->id),"class"=>'btn btn-xs btn-danger btnDelete','title'=>'Delete','escape'=>false]) ?>
 
                     </div>
 

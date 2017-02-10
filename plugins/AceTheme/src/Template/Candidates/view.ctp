@@ -11,10 +11,14 @@
 <div class="users view content">
     <div class="wrap-review">
         <h3 class="ttl-light"><i class="fa fa-vcard"></i> <?= h($candidate->first_name).' '.h($candidate->last_name); ?>        </h3>
-        <?= $this->Html->link(
-            $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
-            ['action' => 'edit', $candidate->id],
-            ['class'=>'btn-edit-simple', 'title'=>__('edit'),'escape'=>false]) ?>
+        <div class="actions">
+            <?= $this->Html->link(
+                $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
+                ['action' => 'edit', $candidate->id],
+                ['class'=>'btn-edit-simple', 'title'=>__('edit'),'escape'=>false]) ?>
+            <a class="btn-simple btn-create-test" href="#"><i class="fa fa-file-o"></i> <?= __('create_test');?></a>
+            <a class="btn-simple btn-member" title="<?= __('member_of_spc')?>"><?= __('member_of_spc')?></a>
+        </div>
         <div class="row">
             <div class="col-sm-7">
                 <ul class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">

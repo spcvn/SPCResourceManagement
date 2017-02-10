@@ -30,9 +30,9 @@ img{
     overflow: hidden;
     margin-bottom: 10px;
 }
-.form div.input:has( > .datetimepicker){
-    background-color: #ccc;
-}
+/*.form div.input:has( > .datetimepicker){*/
+    /*background-color: #ccc;*/
+/*}*/
 .required label:after{
     content: " (*)";
     color: #ff2222;
@@ -471,6 +471,12 @@ select::-ms-expand{
     border: 1px double #438EB9;
     position: relative;
 }
+.view .wrap-review .actions{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    text-align: right;
+}
 .btn-edit-simple{
     text-align: center;
     border: 1px solid #8089A0;
@@ -482,6 +488,20 @@ select::-ms-expand{
     color: #8089A0;
     opacity: 0.75;
     cursor: pointer;
+    margin-bottom: 5px;
+}
+.btn-simple{
+    text-align: center;
+    border: 1px solid #8089A0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 10px 15px;
+    color: #8089A0;
+    opacity: 1;
+    cursor: pointer;
+    margin-bottom: 5px;
 }
 .btn-edit-simple:hover,
 .btn-edit-simple:focus{
@@ -490,10 +510,19 @@ select::-ms-expand{
     color: #438EB9;
     opacity: 1;
 }
-.users.view .btn-edit-simple{
-    position: absolute;
-    right: 30px;
-    top: 20px;
+.btn-simple:hover,
+.btn-simple:focus{
+    text-decoration: none;
+    border-color: #438EB9;
+    color: #438EB9;
+}
+.btn-create-test{
+    border-color: #82AF6F;
+    color: #82AF6F;
+}
+.btn-member{
+    border-color: #ffb44b;
+    color: #ffb44b;
 }
 .users .wrap-edit{
     width: 80%;

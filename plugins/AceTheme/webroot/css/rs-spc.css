@@ -111,16 +111,44 @@ input#start-working-date{
 .form-question .btnPreview:hover{
     background-color: #438EB9!important;
 }
+/*row-answer*/
+#answer{
+    padding-left: 30px;
+}
 .row-answer{
     position: relative;
 }
 .row-answer .btnDelete{
-    position: absolute;
-    font-size: 24px;
-    z-index: 99;
-    right: 30px;
-    top: 0;
+    font-size: 22px;
     margin: 0;
+    float: none;
+}
+.form-question form .question-action .select,
+.form-question form .question-action .text{
+    position: relative;
+    padding-left: 50px;
+}
+.form-question form .question-action .select{
+    padding-left: 160px;
+}
+
+.form-question form .question-action .select label,
+.form-question form .question-action .text label{
+    width: 50px;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    font-weight: bold;
+}
+.form-question form .question-action .radio-custom {
+    position: relative;
+    padding-left: 80px;
+}
+.form-question form .question-action .radio-custom label{
+    position: absolute;
+    left: 0;
+    top: 3px;
+    z-index: 998;
 }
 form button[type=submit]{
     background-color: #438EB9;
@@ -183,7 +211,7 @@ select,
     -moz-appearance: none;
     text-indent: 1px;
     text-overflow: '';
-    background: url("../images/arrow_down.png") no-repeat right 5px center!important;
+    background: url("../images/arrow_down.png") no-repeat right 3px center!important;
     height: 34px;
     padding-right: 16px;
 }
@@ -282,7 +310,7 @@ select::-ms-expand{
     display: none;
 }
 .line-add .percent-section{
-    text-align: center;
+    text-align: right;
 }
 /*form exam add end*/
 /*custom paginator*/
@@ -408,7 +436,7 @@ select::-ms-expand{
 }
 .form-question .actions{
     margin-bottom: 15px;
-    padding-left: 18%;
+    padding-left: 80px;
 }
 .form-question .actions.nopd{
     padding-left: 0;
@@ -437,7 +465,7 @@ select::-ms-expand{
     border: 1px double #438EB9;
     position: relative;
 }
-.users.view .btn-edit-simple{
+.btn-edit-simple{
     text-align: center;
     border: 1px solid #8089A0;
     -webkit-border-radius: 3px;
@@ -445,18 +473,21 @@ select::-ms-expand{
     border-radius: 3px;
     display: inline-block;
     padding: 10px 15px;
-    position: absolute;
-    right: 30px;
-    top: 20px;
     color: #8089A0;
     opacity: 0.75;
+    cursor: pointer;
 }
-.users.view .btn-edit-simple:hover,
-.users.view .btn-edit-simple:focus{
+.btn-edit-simple:hover,
+.btn-edit-simple:focus{
     text-decoration: none;
     border-color: #438EB9;
     color: #438EB9;
     opacity: 1;
+}
+.users.view .btn-edit-simple{
+    position: absolute;
+    right: 30px;
+    top: 20px;
 }
 .users .wrap-edit{
     width: 80%;
@@ -565,7 +596,7 @@ select::-ms-expand{
     content: "";
     background-color: rgba(111,179,224,0.3)!important;
     border-color: transparent;
-    text-align: center;
+    text-align: right;
 }
 .form-assignment .row{
     margin-bottom: 15px;
@@ -652,6 +683,13 @@ form .error{
     .users.form .wrap-edit .file input,
     .users.form .wrap-edit .textarea textarea{
         width: 82%;
+    }
+    .form-question form .question-action .text input{
+        width: 100%;
+    }
+    .form-question form .question-action .select label{
+        left: 30px;
+        width: 130px;
     }
 }
 @media (min-width: 1200px) {

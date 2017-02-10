@@ -56,10 +56,13 @@
                 </div>
             </div>
             <div class="row form-group">
-                <label class="col-xs-7 text-right">Total</label>
-                <div class="col-xs-2">
-                    <input class="total-percent width-80" type="text" value="100" readonly/> <span>%</span>
+                <div class="col-sm-10 col-sm-push-2">
+                    <label class="col-sm-6 text-right">Total</label>
+                    <div class="col-xs-2">
+                        <input class="total-percent width-80" type="text" value="100" readonly/> <span>%</span>
+                    </div>
                 </div>
+
             </div>
             <div class="row actions">
                 <div class="col-xs-push-2 col-xs-9">
@@ -148,10 +151,10 @@
         _this.val(parseInt(_itsval)+ parseInt(lost))
     }
 
-    function removeline(){
-        $(this).parent().parent().remove();
-        removeline();
-    }
+//    function removeline(){
+//        $(this).parent().parent().remove();
+//        removeline();
+//    }
     $(document).ready(function(){
         $('.btn-remove').each(function () {
            $(this).confirm({
@@ -174,5 +177,5 @@
         console.log(e.val());
         e.addClass('hasChanged');
     }
-    removeline();
+//    removeline();
 </script>

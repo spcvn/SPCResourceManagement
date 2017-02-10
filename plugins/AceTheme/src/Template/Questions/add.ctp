@@ -22,10 +22,27 @@
                 'formGroup' => '{{input}}'
             ]]);
         ?>
-        <div id="answer"><h4><?= __('answer');?> <span>(<?= __('alert_checkbox')?>.)</span></h4></div>
-        <div class="actions nopd">
-            <a href="javascript:addAnswer()" class="btn btn-success" title="<?= __('title_add_answer')?>"><?= __('add')?> +</a>
-            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="<?= __('title_remove_answer')?>"><?= __('remove')?> -</a>
+        <div class="question-action">
+            <h4><?= __('answer');?> <span>(<?= __('alert_checkbox')?>.)</span></h4>
+            <div id="answer">
+                <div class="row-answer row">
+                    <div class="col-xs-10">
+                        <div class="radio-custom">
+                            <input type="radio" name="correct_answer" required="true" value="1" checked="checked">
+                            <label>1.</label>
+                            <input type="text" name="answer1" required="true" checked="checked">
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <a class="btnDelete" href="#"><i class="fa fa-trash red"></i></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="actions">
+                <a href="javascript:addAnswer()" class="btn btn-success" title="<?= __('title_add_answer')?>"><?= __('add')?> +</a>
+                <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="<?= __('title_remove_answer')?>"><?= __('remove')?> -</a>
+            </div>
         </div>
     </fieldset>
     <div class="row Actions text-center">
@@ -46,7 +63,11 @@
         <div class="modal-content">
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title text-center"><?= __('preview-question')?></h3>
+                <h3 class="modal-title text-center"><?= __('preview_question')?></h3>
+                <h4><?= __('section')?></h4>
+                <article class="content">
+                    <p>HTML</p>
+                </article>
                 <h4><?= __('question')?>:</h4>
                 <article class="content">
                     <!--//question content here-->
@@ -59,6 +80,7 @@
                     <li>Answer 3</li>
                     <li>Answer 4</li>
                 </ol>
+
                 <div class="row">
                     <div class="col-sm-6 text-left">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -74,7 +96,7 @@
 </div>
 
 <script>
-	var answer_no = 0;
+	var answer_no = 1;
 	
 	//create 4 answers
     addAnswer();
@@ -146,4 +168,27 @@
     function addAnswerCorrect(){
 	    $('.radio-custom:first-child input').attr('checked','checked');
     }
+    function deleteAnswer(){
+        $('.row-answer').each(function () {
+            $(this).find('.btnDelete').confirm({
+                content: "Do you want to delete it?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+//                        action: function(){
+//                            location.href = this.$target.attr('href');
+//                        }
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
+            });
+        })
+    }
+    $(document).ready(function () {
+        deleteAnswer();
+    })
 </script>

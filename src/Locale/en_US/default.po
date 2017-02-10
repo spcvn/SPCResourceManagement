@@ -307,5 +307,8 @@ msgstr "Duration (minute)"
 msgid "preview"
 msgstr "Preview"
 
-msgid "preview-question"
+msgid "preview_question"
 msgstr "Preview Question"
+
+msgid "edit_this_question"
+msgstr "Edit this question"

@@ -81,7 +81,7 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => false,
             ])
-            ->addColumn('position', 'integer', [
+            ->addColumn('position_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
@@ -314,7 +314,7 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('is_delete', 'integer', [
-                'default' => null,
+                'default' => '0',
                 'limit' => 2,
                 'null' => true,
             ])

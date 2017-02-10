@@ -14,17 +14,30 @@
     <?= $this->Form->create($candidate,['id'=>'frmCandidate']) ?>
     <fieldset>
         <legend><?= __('Edit Candidate') ?></legend>
+         <?php
+            echo $this->Form->input('first_name');
+            echo $this->Form->input('middle_name');
+            echo $this->Form->input('last_name');
+            echo $this->Form->input('birth_date', ['type'=>'text','id' => 'datepicker','value' => $candidate->birth_date->format('Y-m-d')]);
+            echo $this->Form->input('married');
+            echo $this->Form->input('addr01',['label'=>'Address']);
+            echo $this->Form->input('mobile');
+            echo $this->Form->input('expected_salary');
+            echo $this->Form->input('interview_date',['type'=>'text','class'=>'datepicker']);
+            echo $this->Form->input('position_id',['options'=>$positions]);
+            echo $this->Form->input('score');
+            echo $this->Form->input('result');
+        ?>
         <?php
         // print_r($candidate->interview_date);exit();
             echo $this->Form->input('first_name');
             echo $this->Form->input('middle_name');
             echo $this->Form->input('last_name');
             echo $this->Form->input('birth_date', ['type'=>'text','id' => 'datepicker','value' => $candidate->birth_date->format('Y-m-d')]);
-            $marriedStatus = ['0' => 'Single', '1' => 'Married'];
             echo $this->Form->input('married', ['type' => 'select','options'=>$marriedStatus]);
             echo $this->Form->input('addr01',['type'=>'text']);
             echo $this->Form->input('mobile');
-            echo $this->Form->input('position',['type'=>'select','options'=>$select->position]);
+            echo $this->Form->input('position',['type'=>'select','options'=>$positions]);
             echo $this->Form->input('expected_salary',['type'=>'select','options'=>$select->salary]);
             echo $this->Form->input('interview_date',['type'=>'text','id'=>'datetimepicker'
                 ,'value' => date("Y-m-d H:i:s", strtotime($candidate->interview_date))]);

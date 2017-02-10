@@ -19,6 +19,7 @@
     <?= $this->Html->css('jquery-ui.min.css')?>
     <?= $this->Html->css('jquery-ui.custom.min.css')?>
     <?= $this->Html->css('fileinput.css')?>
+    <?= $this->Html->css('bootstrap-datetimepicker.min.css')?>
 
     <!-- page specific plugin styles -->
     <?= $this->Html->css('jquery-ui.custom.min.css')?>

@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 use App\Controller\AppController;
-
+use Cake\Event\Event;
 /**
  * Candidates Controller
  *
@@ -22,12 +22,23 @@ class CandidatesController extends AppController
 
     public function index()
     {
-        $candidates = $this->paginate($this->Candidates);
+        $candidates = $this->paginate($this->Candidates,[
+            'conditions'=>['Positions.is_delete'=>0,'Candidates.is_delete' => 0],
+            'contain' => ['Positions']
+        ]);
 
         $this->set(compact('candidates'));
         $this->set('_serialize', ['candidates']);
     }
 
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+        /*$this->loadModel('Positions');
+        $select = new \stdClass();
+        $select->position = $this->Positions->find('list')->toArray();
+        $this->set(compact('select'));*/
+    }
     /**
      * View method
      *
@@ -38,7 +49,7 @@ class CandidatesController extends AppController
     public function view($id = null)
     {
         $candidate = $this->Candidates->get($id, [
-            'contain' => []
+            'contain' => ['Positions']
         ]);
         $select = new \stdClass();
         $select->position = ['it' => 'IT Position', 'admin' => 'Admin'];
@@ -56,9 +67,6 @@ class CandidatesController extends AppController
     public function add()
     {
         $candidate = $this->Candidates->newEntity();
-        $select = new \stdClass();
-        $select->position = ['it' => 'IT Position', 'admin' => 'Admin'];
-        $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
         if ($this->request->is('post')) {
 
             $candidate = $this->Candidates->patchEntity($candidate, $this->request->data);
@@ -75,7 +83,11 @@ class CandidatesController extends AppController
                 $this->Flash->error(__('The candidate could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('candidate'));
+        $select = new \stdClass();
+
+        $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
+        $positions = $this->Candidates->Positions->find('list');
+        $this->set(compact('candidate', 'positions'));
         $this->set(compact('select'));
         $this->set('_serialize', ['candidate']);
     }
@@ -90,10 +102,9 @@ class CandidatesController extends AppController
     public function edit($id = null)
     {
         $candidate = $this->Candidates->get($id, [
-            'contain' => []
+            'contain' => ['Positions']
         ]);
         $select = new \stdClass();
-        $select->position = ['it' => 'IT Position', 'admin' => 'Admin'];
         $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
         if ($this->request->is(['patch', 'post', 'put'])) {
             $candidate = $this->Candidates->patchEntity($candidate, $this->request->data);
@@ -105,8 +116,11 @@ class CandidatesController extends AppController
                 $this->Flash->error(__('The candidate could not be saved. Please, try again.'));
             }
         }
+        $marriedStatus = ['0' => 'Single', '1' => 'Married'];
+
+        $positions = $this->Candidates->Positions->find('list');
         $this->set(compact('select'));
-        $this->set(compact('candidate'));
+        $this->set(compact('candidate', 'positions','marriedStatus'));
         $this->set('_serialize', ['candidate']);
     }
 
@@ -151,8 +165,9 @@ class CandidatesController extends AppController
         if(!isset($this->request->data['id'])){
             return false;
         }
+        $this->loadModel('Positions');
         $select = new \stdClass();
-        $select->position = ['it' => 'IT Position', 'admin' => 'Admin'];
+        $select->position = $this->Positions->find('list')->toArray();
         $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
         $candidate = $this->Candidates->get($this->request->data['id'], [
             'contain' => []

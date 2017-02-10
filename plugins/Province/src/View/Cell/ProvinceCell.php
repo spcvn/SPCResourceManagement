@@ -44,6 +44,7 @@ class ProvinceCell extends Cell
             $districts = $pro->getDistrict();
             $optionDistrict = [];
             foreach ($districts as $district) {
+                $optionDistrict[''] = __('Choose a item...');
                 $optionDistrict[$district->districtid] = $district->type.' '.$district->name;
             }
 
@@ -53,15 +54,21 @@ class ProvinceCell extends Cell
             $wards = $pro->getWard();
             $optionWard = [];
             foreach ($wards as $ward) {
+                $optionWard[''] = __('Choose a item...');
                 $optionWard[$ward->wardid] = $ward->type.' '.$ward->name;
             }
             $this->set("provinceData",$pro->getProvince());
             $this->set("districtData",$optionDistrict);
             $this->set("wardData",$optionWard);      
         }else{
-            $this->set('provinceData',$pro->getProvince());
-            $this->set("districtData",[]);
-            $this->set("wardData",[]); 
+            $provinceData = $pro->getProvince();
+            $provinceData[''] = __('Choose a item...');
+
+            $optionDistrict[''] = __('Choose a item...');
+            $optionWard[''] = __('Choose a item...');
+            $this->set('provinceData',$provinceData);
+            $this->set("districtData",$optionDistrict);
+            $this->set("wardData",$optionWard); 
         }
         $this->set("data",$data);  
     }

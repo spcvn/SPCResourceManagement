@@ -42,6 +42,11 @@
                                 <td><?= h($candidate->last_name) ?></td>
                             </tr>
                             <tr>
+                                <th scope="row"><?= __('position') ?></th>
+                                <td>:</td>
+                                <td><?= h($candidate->position->name) ?></td>
+                            </tr>
+                            <tr>
                                 <th scope="row"><?= __('married_status') ?></th>
                                 <td>:</td>
                                 <td><?= h($candidate->married==0?"Single":"Married") ?></td>

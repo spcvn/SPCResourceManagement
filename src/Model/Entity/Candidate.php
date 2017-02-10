@@ -16,14 +16,16 @@ use Cake\ORM\Entity;
  * @property string $mobile
  * @property string $expected_salary
  * @property \Cake\I18n\Time $interview_date
- * @property int $position
+ * @property int $position_id
  * @property int $score
  * @property string $result
  * @property \Cake\I18n\Time $created_date
  * @property \Cake\I18n\Time $update_date
+ * @property int $is_delete
  *
  * @property \App\Model\Entity\Quiz[] $quizs
  * @property \App\Model\Entity\User[] $users
+ * @property \App\Model\Entity\Position $position
  */
 class Candidate extends Entity
 {

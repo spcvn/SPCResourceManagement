@@ -9,6 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Candidates Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Positions
  * @property \Cake\ORM\Association\HasMany $Quizs
  * @property \Cake\ORM\Association\HasMany $Users
  *
@@ -37,6 +38,10 @@ class CandidatesTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 
+        $this->belongsTo('Positions', [
+            'foreignKey' => 'position_id',
+            'joinType' => 'INNER'
+        ]);
         $this->hasMany('Quizs', [
             'foreignKey' => 'candidate_id'
         ]);
@@ -71,10 +76,6 @@ class CandidatesTable extends Table
         $validator
             ->date('birth_date')
             ->requirePresence('birth_date', 'create')
-            ->add('birth_date','custom',[
-                    'rule'=>[$this,'birth_dateValidation'],
-                    'message'=>'Your Age have just over 13!'
-                ])
             ->notEmpty('birth_date');
 
         $validator
@@ -99,26 +100,20 @@ class CandidatesTable extends Table
             ->requirePresence('interview_date', 'create')
             ->notEmpty('interview_date');
 
-        $validator
-            ->integer('position')
-            ->requirePresence('position', 'create')
-            ->notEmpty('position');
-
-        /*$validator
-            ->integer('score')
-            ->allowEmpty('score');*/
-
-        /*$validator
-            ->requirePresence('result', 'create')
-            ->notEmpty('result');*/
-
-
         return $validator;
     }
-    public function birth_dateValidation($birthDate,$context){
-          $age = (date("md", date("U", mktime(0, 0, 0, $birthDate['day'], $birthDate['month'], $birthDate['year']))) > date("md")
-            ? ((date("Y") - $birthDate['year']) - 1)
-            : (date("Y") - $birthDate['year']));
-          return $age>13?true:false;
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['position_id'], 'Positions'));
+
+        return $rules;
     }
 }

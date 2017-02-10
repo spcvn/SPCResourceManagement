@@ -13,28 +13,23 @@
             <tr>
                 <th scope="col" style="text-align: center;"><?= __('No').'.'?></th>
                 <th scope="col"><?= $this->Paginator->sort('first_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('middle_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('birth_date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('married') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('mobile') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('interview_date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('score') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('position') ?></th>
                 <th scope="col" class="actions"><?= __('actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php $i=1; foreach ($candidates as $candidate): ?>
+            <?php
+             $i=1; foreach ($candidates as $candidate): ?>
             <tr>
                 <td style="text-align: center;"><?= $i++ ?></td>
                 <td><?= h($candidate->first_name) ?></td>
-                <td><?= h($candidate->middle_name) ?></td>
                 <td><?= h($candidate->last_name) ?></td>
                 <td><?= h($candidate->birth_date->format('Y-m-d')) ?></td>
-                <td><?= h($candidate->married==0?"Single":"Married") ?></td>
                 <td><?= h($candidate->mobile) ?></td>
-                <td><?= h($candidate->interview_date->format('Y-m-d')) ?></td>
-                <td><?= $this->Number->format($candidate->score) ?></td>
+                <td><?= $candidate->position->name ?></td>
                 <td class="actions">
                     <div class="btn-group">
                         <?= $this->Html->link(

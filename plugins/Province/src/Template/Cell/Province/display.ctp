@@ -2,7 +2,7 @@
 $this->Form->create($data);
 if($province){
 	echo '<div class="col-md-4">';
-		echo $this->Form->input('provinceid',['label'=>"Province",'type'=>'select','options'=>$provinceData,'id'=>'provinceid']);
+		echo $this->Form->input('provinceid',['label'=>"Province",'type'=>'select','options'=>$provinceData,'id'=>'provinceid', 'default'=>'']);
 	echo '</div>';
 }
 if($district){

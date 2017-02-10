@@ -1,6 +1,7 @@
 jQuery(function(){
 	var url = "/province/provinces/load-address";
     $("#provinceid").on('change click',function(e){
+    	if($(this).val() == '') return;
 			$.post(url,{provinceid:$(this).val()},function(data){
 					var opts = $.parseJSON(data);
 					$('#districtid').html('');
@@ -13,6 +14,7 @@ jQuery(function(){
 				});
 		});
 		$("#districtid").on('change click',function(e){
+			if($(this).val() == '') return;
 			$.post(url,{districtid:$(this).val()},function(data){
 					var opts = $.parseJSON(data);
 					$('#wardid').html('');

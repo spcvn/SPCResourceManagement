@@ -30,6 +30,9 @@ img{
     overflow: hidden;
     margin-bottom: 10px;
 }
+.form div.input:has( > .datetimepicker){
+    background-color: #ccc;
+}
 .required label:after{
     content: " (*)";
     color: #ff2222;

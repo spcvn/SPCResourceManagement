@@ -68,7 +68,7 @@ class UsersTable extends Table
         $validator
             ->requirePresence('password', 'create')
             ->notEmpty('password');
-$validator
+        $validator
             ->requirePresence('confirm_password', 'create')
             ->notEmpty('confirm_password');
 
@@ -100,7 +100,7 @@ $validator
             ->notEmpty('addr01');
 
 
-        $validator
+        /*$validator
             ->integer('provinceid')
             ->requirePresence('provinceid', 'create')
             ->notEmpty('provinceid');
@@ -114,7 +114,7 @@ $validator
             ->integer('wardid')
             ->requirePresence('wardid', 'create')
             ->notEmpty('wardid');
-
+*/
         $validator
             ->date('birth_date')
             ->requirePresence('birth_date', 'create')

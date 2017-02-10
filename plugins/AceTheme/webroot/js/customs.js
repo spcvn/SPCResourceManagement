@@ -61,8 +61,9 @@ function redirectURL($controller,$action,$param){
 
 function submitForm(){
         $( "button[type=submit]" ).each(function(index) {
+        	var btn = $( this );
             $(this).confirm({
-                content: "Are you sure you want to save this question?",
+                content: "Are you sure you want to "+btn.text()+" this?",
                 title: "",
                 buttons: {
                     yes: {

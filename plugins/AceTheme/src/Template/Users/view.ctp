@@ -89,7 +89,7 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
                             <tr>
                                 <th scope="row"><?= __('Address') ?></th>
                                 <td>:</td>
-                                <td><?= h($user->province[0].", ".$user->district[0]->type.' '.$user->district[0]->name.", ".$user->ward[0]->type.' '.$user->ward[0]->name) ?></td>
+                                <td><?= h(@$user->province[0].", ".@$user->district[0]->type.' '.@$user->district[0]->name.", ".@$user->ward[0]->type.' '.@$user->ward[0]->name) ?></td>
                             </tr>
                         </table>
                     </div>

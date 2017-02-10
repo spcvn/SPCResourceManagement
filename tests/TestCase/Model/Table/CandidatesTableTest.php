@@ -28,8 +28,10 @@ class CandidatesTableTest extends TestCase
         'app.quizs',
         'app.quiz_details',
         'app.questions',
+        'app.sections',
         'app.answers',
-        'app.users'
+        'app.users',
+        'app.positions'
     ];
 
     /**
@@ -72,6 +74,16 @@ class CandidatesTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test birth_dateValidation method
+     *
+     * @return void
+     */
+    public function testBirthDateValidation()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

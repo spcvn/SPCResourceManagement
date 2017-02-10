@@ -148,6 +148,9 @@ msgstr "Please check in which is correct"
 msgid "template_name"
 msgstr "Template name"
 
+msgid "template_type"
+msgstr "Template Type"
+
 msgid "template"
 msgstr "Template"
 

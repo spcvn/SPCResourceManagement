@@ -11,7 +11,7 @@
     <div class="form-add-exam">
         <form>
             <div class="row form-group">
-                <label  class="col-xs-12 col-sm-2 control-label"><?= __('exam_name')?></label>
+                <label  class="col-xs-12 col-sm-2 control-label"><?= __('template_name')?></label>
                 <div class="col-xs-12 col-sm-5">
                     <input type="text" class="width-100" />
                 </div>

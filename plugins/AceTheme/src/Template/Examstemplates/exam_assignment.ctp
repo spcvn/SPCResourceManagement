@@ -13,21 +13,17 @@
             <div class="row input select required">
                 <label class="col-sm-2"><?= __('candidate_name')?>:</label>
                 <div class="col-sm-10">
-                    <select>
-                        <option>Nguyen Van A</option>
-                        <option>Nguyen Van B</option>
-                        <option>Pham Thuy</option>
-                    </select>
+                    <div class="autocomplete_wrap">
+                        <input id="autoCandidate" placeholder="Please select...">
+                    </div>
                 </div>
             </div>
             <div class="row input select required">
-                <label class="col-sm-2"><?= __('exam_template')?>:</label>
+                <label class="col-sm-2"><?= __('template_type')?>:</label>
                 <div class="col-sm-10">
-                    <select>
-                        <option>Front-end Development</option>
-                        <option>Back-end Development</option>
-                        <option>Design</option>
-                    </select>
+                    <div class="autocomplete_wrap">
+                        <input id="autoTemplate" placeholder="Please select...">
+                    </div>
                 </div>
             </div>
             <div class="row input text">
@@ -48,10 +44,41 @@
             </div>
             <div class="row actions">
                 <div class="col-sm-10 col-sm-push-2">
+                    <button type="button" class="btn btn-default"><?= __('cancle')?></button>
                     <button type="submit" class="btn btn-info"><?= __('assign')?></button>
-                    <button type="submit" class="btn btn-default"><?= __('cancle')?></button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script>
+    function autoSelectSearch(e,data){
+        $(e).autocomplete({
+            source: data,
+            minLength:0
+        }).bind('focus', function(){ $(this).autocomplete("search"); } );
+    }
+    $(document).ready(function () {
+        var availableCandiadte = [
+            'Nguyen Ngoc Thao',
+            'Nguyen Hoai Duc',
+            'Nguyen Minh Son',
+            'Ta Minh Trung',
+            'Pham Thuy',
+            'Nguyen Thanh Sang',
+            'Vo Nhan '
+        ];
+        var availableTemplate = [
+            'Front-end Developer',
+            'Back-end Developer',
+            'Designer',
+            'Admin'
+        ];
+        var idc= '#autoCandidate';
+        var idt= '#autoTemplate';
+        autoSelectSearch(idc, availableCandiadte);
+        autoSelectSearch(idt, availableTemplate);
+    });
+</script>

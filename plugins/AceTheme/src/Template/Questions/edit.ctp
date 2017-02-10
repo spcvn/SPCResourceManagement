@@ -27,31 +27,37 @@
             'formGroup' => '{{input}}'
         ]]);
         ?>
-        <div id="answer">
-            <?php
-            $i = 0;
-            foreach($answers as $key =>$answer){
-                $i++;
-                ?>
-                <div class="row-answer">
+        <div class="question-action">
+            <h3>Answers</h3>
+            <div id="answer">
                 <?php
-                echo $this->Form->input($key, ['label'=>__('answer ').$i,'default' => $answer, 'required' => 'true']);
-                echo $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-times red']), ['action' => 'ansdelete', $key],['escape'=>false,'class'=>'btnDelete']);
+                $i = 0;
+                foreach($answers as $key =>$answer){
+                    $i++;
+                    ?>
+                    <div class="row-answer row">
+                        <div class="col-xs-10">
+                            <?php
+                            echo $this->Form->input($key, ['label'=>$i.'. ','default' => $answer]);?>
+                        </div>
+                        <div class="col-xs-2">
+                            <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-trash red']), ['action' => 'ansdelete', $key],['escape'=>false,'class'=>'btnDelete']);?>
+                        </div>
+                    </div>
+                    <?php
+                }
                 ?>
-                </div>
+            </div>
+            <div class="actions">
+                <a href="javascript:addAnswer()" class="btn btn-success"><?= __('add')?> +</a>
+                <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()"><?= __('remove')?> -</a>
+            </div>
+            <div class="input select">
                 <?php
-            }
-            ?>
-        </div>
-        <div class="actions">
-            <a href="javascript:addAnswer()" class="btn btn-success"><?= __('add')?> +</a>
-            <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()"><?= __('remove')?> -</a>
-        </div>
-        <div class="input select">
-            <?php
-            echo $this->Form->label(__('correct_answer'));
-            echo $this->Form->select('correct_answer', $answers,['default'=>key($correct_answer)]);
-            ?>
+                echo $this->Form->label(__('correct_answer'));
+                echo $this->Form->select('correct_answer', $answers,['default'=>key($correct_answer)]);
+                ?>
+            </div>
         </div>
     </fieldset>
     <div class="Actions-end clearfix">
@@ -68,8 +74,6 @@
     </div>
 </div>
 <script>
-
-
     var answer_init = <?php echo count($answers); ?>;
     var answer_no = answer_init;
 
@@ -79,7 +83,7 @@
 
         CKEDITOR.replace( 'content' );
         checkAnswer(answer_no);
-        btnDelete();
+        deleteAnswer();
     });
     function addAnswer() {
         answer_no++;
@@ -91,7 +95,7 @@
 
         var y = document.createElement("LABEL");
         y.setAttribute("for", "answer" + answer_no);
-        y.innerHTML = "Answer " + answer_no;
+        y.innerHTML = answer_no + ". ";
 
         var z = document.createElement("div");
         z.setAttribute("id", "answer" + answer_no);
@@ -132,15 +136,15 @@
         var val = element.val().replace(/[a-z]. /, '');
         if($('select[name=correct_answer] option[value='+index+']').length == 0){
             // console.log($(this));
-            $('select[name=correct_answer]').append($('<option>', { value : index }).text(val)); 
+            $('select[name=correct_answer]').append($('<option>', { value : index }).text(val));
         }else{
-            $('select[name=correct_answer] option[value='+index+']').text(val); 
+            $('select[name=correct_answer] option[value='+index+']').text(val);
         }
         return element.val(val);
     }
-    function btnDelete(){
-        $( "a.btnDelete]" ).each(function(index) {
-            $(this).confirm({
+    function deleteAnswer(){
+        $('.row-answer').each(function () {
+            $(this).find('.btnDelete').confirm({
                 content: "Do you want to delete it?",
                 title: "",
                 buttons: {
@@ -156,6 +160,6 @@
                     },
                 }
             });
-        });
+        })
     }
 </script>

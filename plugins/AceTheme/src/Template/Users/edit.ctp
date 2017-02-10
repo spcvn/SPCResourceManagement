@@ -24,10 +24,10 @@
                     <?php echo $this->cell("Province.Province",['config'=>'all',"type"=>"edit",'data'=>$user]);?>
                 </div>
                 <?php
-                echo $this->Form->input('birth_date', ['class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
+                echo $this->Form->input('birthday', ['class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
                 echo $this->Form->input('mobile',['type'=>'text']);
-                echo $this->Form->input('position',['type'=>'select','name'=>'dept','default'=>$user->dept,'options'=>$user->positions]);
-                echo $this->Form->input('start_work',['type'=>'text','class'=>'datepicker','format' => 'Y-m-d','value'=>!empty($user->start_work)?$user->start_work->format('Y-m-d'):""]);
+                echo $this->Form->input('department',['type'=>'select','name'=>'dept','default'=>$user->dept,'options'=>$user->positions]);
+                echo $this->Form->input('start_working_date',['type'=>'text','class'=>'datepicker','format' => 'Y-m-d','value'=>!empty($user->start_work)?$user->start_work->format('Y-m-d'):""]);
                 $status = ['0' => 'Active', '1' => 'Disable'];
                 echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
                 echo $this->Form->input('role', ['type' => 'hidden', 'value'=>'0']);
@@ -35,7 +35,12 @@
                 ?>
             </div>
         <div class="actions text-center">
-            <?= $this->Form->button($this->Html->tag('i','',['class'=>'fa fa-save']).__(' Save'), ['class'=>'btn-submit']) ?>
+            <div class="col-xs-6">
+
+            </div>
+            <div class="col-xs-6">
+                <?= $this->Form->button($this->Html->tag('i','',['class'=>'fa fa-save']).' '.__('save'), ['class'=>'btn-submit']) ?>
+            </div>
         </div>
         <?= $this->Form->end() ?>
     </div>

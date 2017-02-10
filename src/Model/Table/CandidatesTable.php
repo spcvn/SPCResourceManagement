@@ -91,9 +91,9 @@ class CandidatesTable extends Table
             ->requirePresence('mobile', 'create')
             ->notEmpty('mobile');
 
-        $validator
-            ->requirePresence('expected_salary', 'create')
-            ->notEmpty('expected_salary');
+//        $validator
+//            ->requirePresence('expected_salary', 'create')
+//            ->notEmpty('expected_salary');
 
         $validator
             ->dateTime('interview_date')

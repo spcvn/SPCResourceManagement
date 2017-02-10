@@ -70,6 +70,9 @@ msgstr "Result"
 msgid "created"
 msgstr "Created"
 
+msgid "updated"
+msgstr "Updated"
+
 msgid "position"
 msgstr "Position"
 
@@ -78,6 +81,9 @@ msgstr "Interview Date"
 
 msgid "start_work"
 msgstr "Start Work"
+
+msgid "start_working_date"
+msgstr "Start Working date"
 
 msgid "exam_name"
 msgstr "Exam Name"
@@ -141,6 +147,9 @@ msgstr "Please check in which is correct"
 
 msgid "template_name"
 msgstr "Template name"
+
+msgid "template_type"
+msgstr "Template Type"
 
 msgid "template"
 msgstr "Template"
@@ -208,20 +217,23 @@ msgstr "Account"
 msgid "create_an_account"
 msgstr "Create An Account"
 
-msgid "is_candidate"
-msgstr "Is Candidate"
+msgid "candidate_exists"
+msgstr "Candidates exists"
 
-msgid "information_account"
-msgstr "Information Account"
+msgid "account_information"
+msgstr "Account Information"
 
-msgid "information_user"
-msgstr "INFORMATION USER"
+msgid "user_information"
+msgstr "USER INFORMATION"
+
+msgid "candidate_information"
+msgstr "CANDIDATE INFORMATION"
 
 msgid "information"
 msgstr "Information"
 
 msgid "province"
-msgstr "Province"
+msgstr "Province/City"
 
 msgid "district"
 msgstr "District"
@@ -298,5 +310,8 @@ msgstr "Duration (minute)"
 msgid "preview"
 msgstr "Preview"
 
-msgid "preview-question"
+msgid "preview_question"
 msgstr "Preview Question"
+
+msgid "edit_this_question"
+msgstr "Edit this question"

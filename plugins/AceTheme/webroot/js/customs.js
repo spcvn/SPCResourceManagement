@@ -70,7 +70,7 @@ function submitForm(){
                         btnClass:'btn-danger',
                         keys: ['Y'],
                         action: function(){
-                        	$('form').submit();
+                        	$('.content form').submit();
                             console.log($(this));
                         }
                     },

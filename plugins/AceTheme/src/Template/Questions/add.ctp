@@ -27,10 +27,49 @@
             <div id="answer">
                 <div class="row-answer row">
                     <div class="col-xs-10">
-                        <div class="radio-custom">
-                            <input type="radio" name="correct_answer" required="true" value="1" checked="checked">
+                        <div class="input text">
+<!--                            <input type="radio" name="correct_answer" required="true" value="1" checked="checked">-->
                             <label>1.</label>
-                            <input type="text" name="answer1" required="true" checked="checked">
+                            <input type="text" name="answer1" required="true">
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <a class="btnDelete" href="#"><i class="fa fa-trash red"></i></a>
+                    </div>
+
+                </div>
+                <div class="row-answer row">
+                    <div class="col-xs-10">
+                        <div class="input text">
+                            <!--                            <input type="radio" name="correct_answer" required="true" value="1" checked="checked">-->
+                            <label>2.</label>
+                            <input type="text" name="answer1" required="true">
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <a class="btnDelete" href="#"><i class="fa fa-trash red"></i></a>
+                    </div>
+
+                </div>
+                <div class="row-answer row">
+                    <div class="col-xs-10">
+                        <div class="input text">
+                            <!--                            <input type="radio" name="correct_answer" required="true" value="1" checked="checked">-->
+                            <label>3.</label>
+                            <input type="text" name="answer1" required="true">
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <a class="btnDelete" href="#"><i class="fa fa-trash red"></i></a>
+                    </div>
+
+                </div>
+                <div class="row-answer row">
+                    <div class="col-xs-10">
+                        <div class="input text">
+                            <!--                            <input type="radio" name="correct_answer" required="true" value="1" checked="checked">-->
+                            <label>4.</label>
+                            <input type="text" name="answer1" required="true">
                         </div>
                     </div>
                     <div class="col-xs-2">
@@ -42,6 +81,15 @@
             <div class="actions">
                 <a href="javascript:addAnswer()" class="btn btn-success" title="<?= __('title_add_answer')?>"><?= __('add')?> +</a>
                 <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()" title="<?= __('title_remove_answer')?>"><?= __('remove')?> -</a>
+            </div>
+            <div class="input select">
+                <label>Correct answer:</label>
+                <select>
+                    <option>Anwser 1</option>
+                    <option>Anwser 2</option>
+                    <option>Anwser 3</option>
+                    <option>Anwser 4</option>
+                </select>
             </div>
         </div>
     </fieldset>
@@ -69,7 +117,7 @@
                     <p>HTML</p>
                 </article>
                 <h4><?= __('question')?>:</h4>
-                <article class="content">
+                <article class="content" id="content_question">
                     <!--//question content here-->
                     <p>Question content here</p>
                 </article>
@@ -96,13 +144,13 @@
 </div>
 
 <script>
-	var answer_no = 1;
+	var answer_no = 4;
 	
 	//create 4 answers
-    addAnswer();
-    addAnswer();
-    addAnswer();
-    addAnswer();
+//    addAnswer();
+//    addAnswer();
+//    addAnswer();
+//    addAnswer();
 
     jQuery(function($) {
         CKEDITOR.replace( 'content' );
@@ -122,17 +170,17 @@
 	    y.setAttribute("for", "answer" + answer_no);
 	    y.innerHTML = "" + answer_no + ".";
 	    
-	    var t = document.createElement("INPUT");
-        t.setAttribute("type", "radio");
-        t.setAttribute("name", "correct_answer");
-        t.setAttribute("required", "true");
-        t.setAttribute("value", answer_no);
+//	    var t = document.createElement("INPUT");
+//        t.setAttribute("type", "radio");
+//        t.setAttribute("name", "correct_answer");
+//        t.setAttribute("required", "true");
+//        t.setAttribute("value", answer_no);
 	    
 	    var z = document.createElement("DIV");
 	    z.setAttribute("id", "answer" + answer_no);
-        z.setAttribute("class", "radio-custom");
+        z.setAttribute("class", "input text");
 
-	    z.appendChild(t);
+//	    z.appendChild(t);
         z.appendChild(y);
 	    z.appendChild(x);
 	    answer = document.getElementById("answer");
@@ -171,7 +219,7 @@
     function deleteAnswer(){
         $('.row-answer').each(function () {
             $(this).find('.btnDelete').confirm({
-                content: "Do you want to delete it?",
+                content: "Do you want to delete this?",
                 title: "",
                 buttons: {
                     yes: {

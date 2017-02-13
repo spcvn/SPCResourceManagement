@@ -630,7 +630,7 @@ select::-ms-expand{
 .form-group input.total-percent, input[readonly]{
     content: "";
     background-color: rgba(111,179,224,0.3)!important;
-    border-color: transparent;
+    border-color:  rgba(111,179,224,0.3);
     text-align: right;
 }
 .form-assignment .row{

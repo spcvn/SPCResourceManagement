@@ -22,8 +22,18 @@
             echo $this->Form->input('mobile',['label'=>'Contact No.']);
             echo $this->Form->input('position_id',['label'=>'Position','type'=>'select','options'=>$positions]);
             echo $this->Form->input('expected_salary',['label'=>'Salary','type'=>'select','options'=>$select->salary]);
-            echo $this->Form->input('interview_date',['type'=>'text','class'=>'datetimepicker']);
+//            echo $this->Form->input('interview_date',['type'=>'text','class'=>'datetimepicker']);
         ?>
+        <div class="form-group datetimepk">
+            <label><?= __('interview_date'); ?></label>
+            <div class='input-group date' id='interview-date'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </fieldset>
     <div class="action">
         <div class="col-sm-6">

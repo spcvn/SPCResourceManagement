@@ -697,6 +697,11 @@ form .error{
     padding: 0 15px 0 5px;
     border: 1px solid #D5D5D5;
 }
+/*custom datetimepicker*/
+.datetimepk label{
+    float: left;
+    width: 18%;
+}
 @media (min-width: 768px) {
     .form .text input,
     .form .email input,
@@ -732,6 +737,13 @@ form .error{
     .form-question form .question-action .select label{
         left: 30px;
         width: 130px;
+    }
+    .datetimepk label{
+        float: left;
+        width: 18%;
+    }
+    .datetimepk .input-group.date{
+        width: 280px;
     }
 }
 @media (min-width: 1200px) {

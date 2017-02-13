@@ -71,7 +71,6 @@ function submitForm(){
                         keys: ['Y'],
                         action: function(){
                         	$('.content form').submit();
-                            console.log($(this));
                         }
                     },
                     no: {
@@ -90,8 +89,15 @@ function generationPassword(){
 	});
 }
 function sideBarActive($activeMenu){
-		$('#sidebar').find('li').removeClass('active open');
-		$('#sidebar').find('#'+$activeMenu).addClass('active');
+        if($activeMenu == 'Examstemplates') {
+            $activeMenu = 'Quizs';
+            if(activeSubMenu == 'index'){
+                activeSubMenu = 'list';
+            }
+            console.log(activeSubMenu);
+        }
+        $('#sidebar').find('li').removeClass('active open');
+        $('#sidebar').find('#'+$activeMenu).addClass('active');
 		if($('#sidebar').find('.active').find('ul').hasClass('submenu')){
 			$('#sidebar').find('#'+$activeMenu).addClass('open');
 			$('#sidebar').find('.active').find('ul').find('#'+activeSubMenu).addClass('active');

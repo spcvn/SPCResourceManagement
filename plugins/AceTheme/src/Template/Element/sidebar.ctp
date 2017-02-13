@@ -100,7 +100,7 @@
 
                     <b class="arrow"></b>
                 </li>
-                <li class="">
+                <li id="list">
                     <?= $this->Html->link(
                         $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('List Exam Template'),
                         ['controller'=>'examstemplates','action'=>'index'],
@@ -108,7 +108,7 @@
 
                     <b class="arrow"></b>
                 </li>
-                <li class="">
+                <li class="" id="examAssignment">
                     <?= $this->Html->link(
                         $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Exam Assignment'),
                         ['controller'=>'examstemplates','action'=>'exam_assignment'],

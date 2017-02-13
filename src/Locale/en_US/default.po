@@ -58,9 +58,6 @@ msgstr "Address"
 msgid "birthday"
 msgstr "Birthday"
 
-msgid "expected_salary"
-msgstr "Expected Salary"
-
 msgid "score"
 msgstr "Score"
 
@@ -324,3 +321,21 @@ msgstr "Member of SPC"
 
 msgid "create_test"
 msgstr "Create Test"
+
+msgid "single"
+msgstr "Single"
+
+msgid "married"
+msgstr "Married"
+
+msgid "marriage_status"
+msgstr "Marriage status"
+
+msgid "contact_no"
+msgstr "Contact No."
+
+msgid "contact_no"
+msgstr "Contact No."
+
+msgid "salary"
+msgstr "Salary"

@@ -148,8 +148,7 @@
 
         });
         $('#reviewCandidate').find('#get_interview-date').html($('#datetimepicker').find('input').val());
-        $('#reviewCandidate').find('#get_interview-date').on('change',)
-        .html($('#datetimepicker').find('input').val());
+
 
 
     }

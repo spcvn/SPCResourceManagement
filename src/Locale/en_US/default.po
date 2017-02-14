@@ -339,3 +339,6 @@ msgstr "Contact No."
 
 msgid "salary"
 msgstr "Salary"
+
+msgid "stop"
+msgstr "Stop"

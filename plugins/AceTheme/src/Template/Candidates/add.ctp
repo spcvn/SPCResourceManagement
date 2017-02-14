@@ -26,8 +26,8 @@
         ?>
         <div class="form-group datetimepk">
             <label><?= __('interview_date'); ?></label>
-            <div class='input-group date' id='interview-date'>
-                <input type='text' class="form-control" />
+            <div class='input-group date' id="datetimepicker">
+                <input type='text' class="form-control" id='interview-date'/>
                 <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -130,11 +130,13 @@
     function loadDataModal(){
         $('.candidates form input').each(function () {
             $(this).on('change',function () {
+                console.log($(this));
                 var iname = $(this).attr('id');
                 var idname = '#get_'+iname;
                 var text = $(this).val();
                 $('#reviewCandidate').find(idname).html(text);
             });
+
         });
         $('.candidates form select').each(function(){
             $(this).on('change',function () {
@@ -145,6 +147,10 @@
             });
 
         });
+        $('#reviewCandidate').find('#get_interview-date').html($('#datetimepicker').find('input').val());
+        $('#reviewCandidate').find('#get_interview-date').on('change',)
+        .html($('#datetimepicker').find('input').val());
+
 
     }
     $(document).ready( function() {
@@ -154,7 +160,7 @@
             dateFormat: 'yy-mm-dd',
             yearRange: "-100:+0",
         });
-        $('#interview-date').datetimepicker({
+        $('#datetimepicker').datetimepicker({
              format: 'YYYY-MM-DD h:mm:ss A',//use this option to display seconds
              icons: {
                 time: 'fa fa-clock-o',

@@ -70,7 +70,7 @@ class AppController extends Controller
 	];
     public function beforeFilter(Event $event)
     {
-        //$this->Auth->allow(['test', 'complete']);
+        $this->Auth->allow(['test', 'complete']);
     }
     //...
     public function beforeRender(Event $event)

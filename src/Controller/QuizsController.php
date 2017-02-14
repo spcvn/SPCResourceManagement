@@ -156,7 +156,7 @@ class QuizsController extends AppController
     	
     	// show list questions
     	$candidate_id = $this->Quizs->get($quiz_id, ['fields' => 'candidate_id'])->toArray();
-    	$total = $this->Quizs->get($quiz_id, ['fields' => 'total'])->toArray();
+    	$total = 1;//$this->Quizs->get($quiz_id, ['fields' => 'total'])->toArray();
     	
     	$candidate_info = $this->Candidates->get($candidate_id)->toArray();
     	$candidate_name = 
@@ -215,6 +215,7 @@ class QuizsController extends AppController
 		$this->set('time', $time);
     	$this->set(compact('candidate_info'));
     	$this->set(compact('arrQuestions'));
+        $this->viewBuilder()->layout('test-layout');
     }
     
     public function randomCode(){

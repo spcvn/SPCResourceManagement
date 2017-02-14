@@ -89,17 +89,15 @@ function generationPassword(){
 	});
 }
 function sideBarActive($activeMenu){
-        if($activeMenu == 'Examstemplates') {
-            $activeMenu = 'Quizs';
-            if(activeSubMenu == 'index'){
-                activeSubMenu = 'list';
-            }
+        if($activeMenu == 'Quizs') {
+            $activeMenu = 'Examstemplates';
+            activeSubMenu = 'Quizs_index';
             console.log(activeSubMenu);
         }
         $('#sidebar').find('li').removeClass('active open');
-        $('#sidebar').find('#'+$activeMenu).addClass('active');
+        $('#sidebar').find('.'+$activeMenu).addClass('active');
 		if($('#sidebar').find('.active').find('ul').hasClass('submenu')){
-			$('#sidebar').find('#'+$activeMenu).addClass('open');
+			$('#sidebar').find('.'+$activeMenu).addClass('open');
 			$('#sidebar').find('.active').find('ul').find('#'+activeSubMenu).addClass('active');
 		}
 }

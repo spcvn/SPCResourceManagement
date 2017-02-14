@@ -8,7 +8,7 @@
     </div><!-- /.sidebar-shortcuts -->
 
     <ul class="nav nav-list">
-        <li class="" id="Pages">
+        <li class="Pages" id="">
             <a href="/">
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text"> Dashboard </span>
@@ -16,7 +16,7 @@
 
             <b class="arrow"></b>
         </li>
-        <li class="" id="Questions">
+        <li class="Questions">
             <?= $this->Html->link(
                     $this->Html->tag('i','',['class'=>'menu-icon fa fa-question-circle'])
                     .$this->Html->tag('span',__('Question'),['class'=>'menu-text'])
@@ -81,7 +81,7 @@
                 </li>
             </ul>
         </li>
-        <li class="" id="Quizs">
+        <li class="Examstemplates">
             <?= $this->Html->link(
                 $this->Html->tag('i','',['class'=>'menu-icon fa fa-list-alt'])
                 .$this->Html->tag('span',__('Exam'),
@@ -92,7 +92,7 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
-                <li class="" id="index">
+                <li class="" id="Quizs_index">
                     <?= $this->Html->link(
                         $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Test List'),
                         ['controller'=>'quizs','action'=>'index'],
@@ -100,13 +100,32 @@
 
                     <b class="arrow"></b>
                 </li>
-                <li id="list">
+                <li class="Examstemplates">
                     <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('List Exam Template'),
-                        ['controller'=>'examstemplates','action'=>'index'],
-                        ['escape'=>false])?>
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right'])
+                        .$this->Html->tag('span',__('Exam Template'),['class'=>'menu-text'])
+                        .$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
+                        [],
+                        ['class'=>'dropdown-toggle','escape'=>false])?>
 
                     <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="" id="index">
+                            <?= $this->Html->link(
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('List '),
+                                ['controller'=>'examstemplates','action'=>'index'],
+                                ['escape'=>false])?>
+
+                            <b class="arrow"></b>
+                        </li><li class="" id="add">
+                            <?= $this->Html->link(
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Add '),
+                                ['controller'=>'examstemplates','action'=>'add'],
+                                ['escape'=>false])?>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
                 </li>
                 <li class="" id="examAssignment">
                     <?= $this->Html->link(
@@ -120,7 +139,7 @@
             </ul>
         </li>
 
-        <li class="" id="Candidates">
+        <li class="Candidates" id="">
             <?= $this->Html->link(
                 $this->Html->tag('i','',['class'=>'menu-icon fa fa-users'])
                 .$this->Html->tag('span',__('Candidate'),
@@ -149,7 +168,7 @@
                 </li>
             </ul>
         </li>
-        <li class="" id="Users">
+        <li class="Users" id="">
             <?= $this->Html->link(
                     $this->Html->tag('i','',['class'=>'menu-icon fa fa-user-o'])
                     .$this->Html->tag('span',__('User'),

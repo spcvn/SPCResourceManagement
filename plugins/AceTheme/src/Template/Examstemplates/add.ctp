@@ -9,23 +9,23 @@
 </div><!-- /.page-header -->
 <div class="exams area-add content">
     <div class="form-add-exam">
-        <form>
+        <?= $this->Form->create($examstemplate) ?>
             <div class="row form-group">
                 <label  class="col-xs-12 col-sm-2 control-label"><?= __('template_name')?></label>
                 <div class="col-xs-12 col-sm-5">
-                    <input type="text" class="width-100" />
+                    <input type="text" name="name" class="width-100" />
                 </div>
             </div>
             <div class="row form-group">
                 <label  class="col-xs-12 col-sm-2 control-label"><?= __('number_of_question')?></label>
                 <div class="col-xs-12 col-sm-5">
-                    <input type="text" class="width-100" />
+                    <input type="text" name="num_questions" class="width-100" />
                 </div>
             </div>
             <div class="row form-group">
                 <label  class="col-xs-12 col-sm-2 control-label"><?= __('duration')?></label>
                 <div class="col-xs-12 col-sm-5">
-                    <input type="text" class="width-100" />
+                    <input type="text" name="duration" class="width-100" />
                 </div>
                 <div class="col-sm-3">
                     <span><?= __('minute')?>(s)</span>
@@ -36,16 +36,16 @@
                 <div class="col-xs-12 col-sm-10 section-add">
                     <div class="row line-add">
                         <div class="col-sm-6">
-                            <select class="width-100">
-                                <option>HTML</option>
-                                <option>CSS</option>
-                                <option>Php</option>
-                                <option>Photoshop</option>
-                                <option>Adobe Illustrator</option>
+                            <select class="width-100" name='sections[_ids][]'>
+                                <?php
+                                    foreach ($sections as $key=>$value) {
+                                        echo "<option value='$key'>$value</option>";
+                                    }
+                                ?>
                             </select>
                         </div>
                         <div class="col-sm-2">
-                            <input type="text" class="width-80 percent-section" value="100"/>
+                            <input type="text" class="width-80 percent-section" name="sections[ratio][]" value="100"/>
                             <span>%</span>
                         </div>
                         <div class="col-sm-4 actions">
@@ -70,7 +70,7 @@
                     <button type="submit" class="btn btn-info">Save</button>
                 </div>
             </div>
-        </form>
+        <?= $this->Form->end() ?>
 
 
     </div>
@@ -81,16 +81,16 @@
     function addline(){
         var str = '<div class="row line-add">'+
             '<div class="col-sm-6">'+
-            '<select class="width-100">'+
-            '<option>HTML</option>'+
-            '<option>CSS</option>'+
-            '<option>Php</option>'+
-            '<option>Photoshop</option>'+
-            '<option>Adobe Illustrator</option>'+
+            '<select class="width-100" name="sections[_ids][]">'+
+            '<?php
+                            foreach ($sections as $key=>$value) {
+                                echo "<option value=\'$key\'>$value</option>";
+                            }
+                        ?>'+
             '</select>'+
             '</div>'+
             '<div class="col-sm-2">'+
-            '<input type="text" class="width-80 percent-section" onchange="hasChanged($(this))" />'+
+            '<input type="text" name="sections[ratio][]" class="width-80 percent-section" onchange="hasChanged($(this))" />'+
             ' <span>%</span>'+
             '</div>'+
             '<div class="col-sm-4 actions">'+

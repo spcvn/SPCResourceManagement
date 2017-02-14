@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\SectionsTable;
+use App\Model\Table\ExamstemplatesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\SectionsTable Test Case
+ * App\Model\Table\ExamstemplatesTable Test Case
  */
-class SectionsTableTest extends TestCase
+class ExamstemplatesTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\SectionsTable
+     * @var \App\Model\Table\ExamstemplatesTable
      */
-    public $Sections;
+    public $Examstemplates;
 
     /**
      * Fixtures
@@ -24,11 +24,11 @@ class SectionsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'app.examstemplates',
         'app.sections',
         'app.questions',
         'app.answers',
         'app.quiz_details',
-        'app.examstemplates',
         'app.examstemplates_sections'
     ];
 
@@ -40,8 +40,8 @@ class SectionsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Sections') ? [] : ['className' => 'App\Model\Table\SectionsTable'];
-        $this->Sections = TableRegistry::get('Sections', $config);
+        $config = TableRegistry::exists('Examstemplates') ? [] : ['className' => 'App\Model\Table\ExamstemplatesTable'];
+        $this->Examstemplates = TableRegistry::get('Examstemplates', $config);
     }
 
     /**
@@ -51,7 +51,7 @@ class SectionsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Sections);
+        unset($this->Examstemplates);
 
         parent::tearDown();
     }

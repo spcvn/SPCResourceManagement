@@ -9,6 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Sections Model
  *
+ * @property \Cake\ORM\Association\HasMany $Questions
+ * @property \Cake\ORM\Association\BelongsToMany $Examstemplates
+ *
  * @method \App\Model\Entity\Section get($primaryKey, $options = [])
  * @method \App\Model\Entity\Section newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Section[] newEntities(array $data, array $options = [])
@@ -33,6 +36,15 @@ class SectionsTable extends Table
         $this->table('sections');
         $this->displayField('name');
         $this->primaryKey('id');
+
+        $this->hasMany('Questions', [
+            'foreignKey' => 'section_id'
+        ]);
+        $this->belongsToMany('Examstemplates', [
+            'foreignKey' => 'section_id',
+            'targetForeignKey' => 'examstemplate_id',
+            'joinTable' => 'examstemplates_sections'
+        ]);
     }
 
     /**
@@ -50,6 +62,10 @@ class SectionsTable extends Table
         $validator
             ->requirePresence('name', 'create')
             ->notEmpty('name');
+
+        $validator
+            ->requirePresence('position', 'create')
+            ->notEmpty('position');
 
         return $validator;
     }

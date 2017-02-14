@@ -4,16 +4,20 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Section Entity
+ * Examstemplate Entity
  *
  * @property int $id
  * @property string $name
- * @property string $position
+ * @property int $num_questions
+ * @property \Cake\I18n\Time $create_date
+ * @property \Cake\I18n\Time $update_date
+ * @property int $is_delete
+ * @property int $id_user
+ * @property int $duration
  *
- * @property \App\Model\Entity\Question[] $questions
- * @property \App\Model\Entity\Examstemplate[] $examstemplates
+ * @property \App\Model\Entity\Section[] $sections
  */
-class Section extends Entity
+class Examstemplate extends Entity
 {
 
     /**

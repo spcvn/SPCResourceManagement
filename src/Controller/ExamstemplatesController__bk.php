@@ -18,9 +18,7 @@ class ExamstemplatesController extends AppController
      */
     public function index()
     {
-        $examstemplates = $this->paginate($this->Examstemplates,[
-            'contain' => ['Sections']
-        ]);
+        $examstemplates = $this->paginate($this->Examstemplates);
 
         $this->set(compact('examstemplates'));
         $this->set('_serialize', ['examstemplates']);
@@ -36,7 +34,7 @@ class ExamstemplatesController extends AppController
     public function view($id = null)
     {
         $examstemplate = $this->Examstemplates->get($id, [
-            'contain' => ['Sections']
+            'contain' => []
         ]);
 
         $this->set('examstemplate', $examstemplate);
@@ -53,9 +51,9 @@ class ExamstemplatesController extends AppController
         $examstemplate = $this->Examstemplates->newEntity();
         if ($this->request->is('post')) {
             $examstemplate = $this->Examstemplates->patchEntity($examstemplate, $this->request->data);
-            $resExamstemplate = $this->Examstemplates->save($examstemplate);
-            if ($resExamstemplate) {
-                foreach ($resExamstemplate->sections as $key=>$objSection) {
+            $res = $this->Examstemplates->save($examstemplate);
+            if ($res) {
+                foreach ($res->sections as $key=>$objSection) {
                     $exam_section = $this->Examstemplates->ExamstemplatesSections->patchEntity($objSection->_joinData,['ratio'=>$this->request->data['sections']['ratio'][$key]]);
                     $ratio = $this->Examstemplates->ExamstemplatesSections->save($exam_section);
                 }
@@ -81,12 +79,11 @@ class ExamstemplatesController extends AppController
     public function edit($id = null)
     {
         $examstemplate = $this->Examstemplates->get($id, [
-            'contain' => ['Sections']
+            'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $examstemplate = $this->Examstemplates->patchEntity($examstemplate, $this->request->data);
-            $resExamstemplate = $this->Examstemplates->save($examstemplate);
-            if ($resExamstemplate) {
+            if ($this->Examstemplates->save($examstemplate)) {
                 $this->Flash->success(__('The examstemplate has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -94,8 +91,7 @@ class ExamstemplatesController extends AppController
                 $this->Flash->error(__('The examstemplate could not be saved. Please, try again.'));
             }
         }
-        $sections = $this->Examstemplates->Sections->find('list', ['limit' => 200]);
-        $this->set(compact('examstemplate', 'sections'));
+        $this->set(compact('examstemplate'));
         $this->set('_serialize', ['examstemplate']);
     }
 
@@ -108,7 +104,7 @@ class ExamstemplatesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post','get', 'delete']);
+        $this->request->allowMethod(['post', 'delete']);
         $examstemplate = $this->Examstemplates->get($id);
         if ($this->Examstemplates->delete($examstemplate)) {
             $this->Flash->success(__('The examstemplate has been deleted.'));
@@ -119,15 +115,11 @@ class ExamstemplatesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    /**
-     * examAssignment method
-     *
-     * @param null.
-     * @return \Cake\Network\Response|null Redirects to exam_assignment.ctp.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function examAssignment()
-    {
+    /*
+    * Function Exam Assignment
+    *
+    */
+    public function examAssignment(){
 
     }
 }

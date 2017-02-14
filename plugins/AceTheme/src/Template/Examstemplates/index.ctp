@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="table-header">
-                Results for "Latest Template"
+                <?=__('Results for "Latest Template"')?>
             </div>
 
             <!-- div.table-responsive -->
@@ -50,182 +50,77 @@
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td class="center">
-                            <label class="pos-rel">
-                                <input type="checkbox" class="ace" />
-                                <span class="lbl"></span>
-                            </label>
-                        </td>
+                    <?php
+                    // echo "<pre>";print_r($examstemplates);
+                        foreach ($examstemplates as $examstemplate) {
+                            ?>
+                                <tr>
+                                    <td class="center">
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace" />
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
 
-                        <td>
-                            <a href="#">Front-end Developer</a>
-                        </td>
-                        <td>10</td>
-                        <td class="hidden-480">15</td>
-                        <td>HTML: 50%; CSS: 25%; JAVASCRIPT: 25%</td>
+                                    <td>
+                                        <a href="#"><?=$examstemplate->name?></a>
+                                    </td>
+                                    <td><?=$examstemplate->num_questions?></td>
+                                    <td class="hidden-480"><?=$examstemplate->duration?></td>
+                                    <td>
+                                    <?php
+                                    foreach ($examstemplate->sections as $section) {
+                                         echo " $section->name : ".$section->_joinData->ratio." %;";
+                                     } 
+                                    ?>
+                                    </td>
 
-                        <td class="hidden-480">
-                            0/10
-                        </td>
+                                    <td class="hidden-480">
+                                        0/10
+                                    </td>
 
-                        <td>
-                            <div class="hidden-sm hidden-xs action-buttons">
+                                    <td>
+                                        <div class="hidden-sm hidden-xs action-buttons">
 
-                                <a class="green" href="#">
-                                    <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                </a>
-
-                                <a class="red btn-delete" href="#" data-name="Front-end developer">
-                                    <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                </a>
-                            </div>
-
-                            <div class="hidden-md hidden-lg">
-                                <div class="inline pos-rel">
-                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                        <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                    </button>
-
-                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                        <li>
-                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																				<span class="green">
-																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																				</span>
+                                            <a class="green" href="<?=$this->Url->build(['action'=>'edit',$examstemplate->id])?>">
+                                                <i class="ace-icon fa fa-pencil bigger-130"></i>
                                             </a>
-                                        </li>
 
-                                        <li>
-                                            <a href="#" class="tooltip-error btn-delete" data-rel="tooltip" title="Delete" data-name="Front-end developer">
-																				<span class="red">
-																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																				</span>
+                                            <a class="red btn-delete" href="<?=$this->Url->build(['action'=>'delete',$examstemplate->id])?>" data-name="Front-end developer">
+                                                <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                             </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                                        </div>
 
-                    <tr>
-                        <td class="center">
-                            <label class="pos-rel">
-                                <input type="checkbox" class="ace" />
-                                <span class="lbl"></span>
-                            </label>
-                        </td>
+                                        <div class="hidden-md hidden-lg">
+                                            <div class="inline pos-rel">
+                                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                    <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                                </button>
 
-                        <td>
-                            <a href="#">Back-end Developer</a>
-                        </td>
-                        <td>30</td>
-                        <td class="hidden-480">20</td>
-                        <td>PHP: 45%; SERVER: 20%; SQL: 20%; HOSTING: 15%</td>
+                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                    <li>
+                                                        <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+            																				<span class="green">
+            																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+            																				</span>
+                                                        </a>
+                                                    </li>
 
-                        <td class="hidden-480">
-                            1/10
-                        </td>
-
-                        <td>
-                            <div class="hidden-sm hidden-xs action-buttons">
-
-                                <a class="green" href="#">
-                                    <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                </a>
-
-                                <a class="red btn-delete" href="#" data-name="Back-end developer">
-                                    <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                </a>
-                            </div>
-
-                            <div class="hidden-md hidden-lg">
-                                <div class="inline pos-rel">
-                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                        <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                    </button>
-
-                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                        <li>
-                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																				<span class="green">
-																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																				</span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#" class="tooltip-error btn-delete" data-rel="tooltip" title="Delete" data-name="Back-end developer">
-																				<span class="red">
-																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																				</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="center">
-                            <label class="pos-rel">
-                                <input type="checkbox" class="ace" />
-                                <span class="lbl"></span>
-                            </label>
-                        </td>
-
-                        <td>
-                            <a href="#">Designer</a>
-                        </td>
-                        <td>10</td>
-                        <td class="hidden-480">15</td>
-                        <td>Photoshop: 50%; Adobe Illustrator: 30%; Html: 10%; Css:10%;</td>
-
-                        <td class="hidden-480">
-                            0/10
-                        </td>
-
-                        <td>
-                            <div class="hidden-sm hidden-xs action-buttons">
-
-                                <a class="green" href="#">
-                                    <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                </a>
-
-                                <a class="red  btn-delete" href="#" data-name="Designer">
-                                    <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                </a>
-                            </div>
-
-                            <div class="hidden-md hidden-lg">
-                                <div class="inline pos-rel">
-                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                        <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                                    </button>
-
-                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                        <li>
-                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                <span class="green">
-                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#" class="tooltip-error btn-delete" data-rel="tooltip" title="Delete" data-name="Designer">
-                                                <span class="red">
-                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                                                    <li>
+                                                        <a href="#" class="tooltip-error btn-delete" data-rel="tooltip" title="Delete" data-name="Front-end developer">
+            																				<span class="red">
+            																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
+            																				</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php
+                        }
+                    ?>
 
 
                     </tbody>
@@ -271,6 +166,9 @@
                     yes: {
                         btnClass:'btn-danger',
                         keys: ['Y'],
+                        action : function(){
+                            location.href = this.$target.attr('href');
+                        }
                     },
                     no: {
                         keys: ['N'],

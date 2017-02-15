@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,YAAY;EACV,aAAa,EAAE,IAAI;;AAGnB,sBACO;EACL,YAAY,EAAE,WAAW;;AAG7B,UAAU;EACR,UAAU,EAAE,KAAK;EACjB,YAAC;IACC,KAAK,EAAE,OAAO;;AAGlB,uBAAuB;EACrB,GAAG,EAAE,GAAG;;AAEV,aAAa;EACX,UAAU,EAAE,MAAM;EAClB,iBAAG;IACD,SAAS,EAAE,GAAG",
+"sources": ["../scss/rm_spc.scss"],
 "names": [],
 "file": "rm_spc.css"
 }

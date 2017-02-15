@@ -1,3 +1,20 @@
+.page-header {
+  margin-bottom: 25px; }
 
+.btn:hover, .btn:focus {
+  border-color: transparent; }
+
+.paginator {
+  text-align: right; }
+  .paginator p {
+    color: #9d9a9a; }
+
+.ace-settings-container {
+  top: 5px; }
+
+.welcome-logo {
+  text-align: center; }
+  .welcome-logo img {
+    max-width: 60%; }
 
 /*# sourceMappingURL=rm_spc.css.map */

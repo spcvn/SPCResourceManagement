@@ -342,3 +342,6 @@ msgstr "Salary"
 
 msgid "stop"
 msgstr "Stop"
+
+msgid "alert_delete_candidate"
+msgstr "Are you sure you want to delete this candidate?"

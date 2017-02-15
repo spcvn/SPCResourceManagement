@@ -49,7 +49,7 @@
                         <?= $this->Form->postLink(
                             $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
                             ['action' => 'delete', $candidate->id],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $candidate->id),"class"=>'btn btn-xs btn-danger btnDelete','title'=>'Delete','escape'=>false]) ?>
+                            ["class"=>'btn btn-xs btn-danger btnDelete','title'=>'Delete','escape'=>false]) ?>
 
                     </div>
 
@@ -69,3 +69,26 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".btn-group .btnDelete").each(function(index) {
+            $(this).click(function(){
+                $(this).confirm({
+                    content: "<?=__('Are you sure you want to delete this candidate?')?> ",
+                    title: "",
+                    buttons: {
+                        yes: {
+                            btnClass:'btn-danger',
+                            keys: ['Y'],
+                        },
+                        no: {
+                            keys: ['N'],
+                        },
+                    }
+                });
+            });
+        });
+    });
+</script>

@@ -93,6 +93,8 @@ img{
 form button[type=submit],
 form button[type=button],
 .btnPreview,
+.btn-cancel,
+.btn-stop,
 .btn-reset{
     padding: 15px 30px;
     text-align: center;
@@ -630,7 +632,7 @@ select::-ms-expand{
 .form-group input.total-percent, input[readonly]{
     content: "";
     background-color: rgba(111,179,224,0.3)!important;
-    border-color: transparent;
+    border-color:  rgba(111,179,224,0.3);
     text-align: right;
 }
 .form-assignment .row{
@@ -697,6 +699,89 @@ form .error{
     padding: 0 15px 0 5px;
     border: 1px solid #D5D5D5;
 }
+/*custom datetimepicker*/
+.datetimepk label{
+    float: left;
+    width: 18%;
+}
+/*area clock style*/
+.area-clock{
+    display: table;
+    width: 160px;
+    height: 160px;
+    background-color: #ffffff;
+    text-align: center;
+    color: #438EB9;
+    border: 2px solid #438EB9;
+    position: fixed;
+    right: 15px;
+    top: 30px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    -o-box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+.area-clock .text{
+    display: table-cell;
+    vertical-align: middle;
+}
+.area-clock span,
+.area-clock label{
+    display: block;
+    font-size: 16px;
+}
+.area-clock #timer{
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+/*area clock style end*/
+/*style content test*/
+.test-header{
+    margin-bottom: 45px;
+}
+.test-header h2 {
+    font-size: 14px;
+}
+.test-header h2 span{
+    color: #438EB9;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+.wrapper-test .main-content{
+    position: relative;
+    background-color: #ffffff;
+    margin: 15px 0;
+    padding: 15px 175px 15px 30px;
+    font-size: 14px;
+
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+.wrapper-test .main-content p{
+    font-size: 14px;
+}
+.wrapper-test .question_index{
+    margin-bottom: 30px;
+    border: 1px solid #dddddd;
+    padding: 15px;
+}
+.wrapper-test .question_index legend{
+    position: relative;
+    margin-top: -30px;
+    padding: 0 15px;
+    display: inline-block;
+    width: auto;
+    border: none;
+    font-size: 18px;
+    background-color: #ffffff;
+}
+/*style content test end*/
 @media (min-width: 768px) {
     .form .text input,
     .form .email input,
@@ -732,6 +817,13 @@ form .error{
     .form-question form .question-action .select label{
         left: 30px;
         width: 130px;
+    }
+    .datetimepk label{
+        float: left;
+        width: 18%;
+    }
+    .datetimepk .input-group.date{
+        width: 280px;
     }
 }
 @media (min-width: 1200px) {

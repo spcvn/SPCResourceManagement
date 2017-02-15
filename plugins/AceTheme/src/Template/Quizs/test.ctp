@@ -6,47 +6,67 @@
 	    left: 84%;
 	}
 </style>
-<h2><?= $candidate_info['first_name'] . ' ' . $candidate_info['last_name']; ?></h2>
-<span class="position">Applied Position: <?= $candidate_info['position'] ?></span>
-<div class="sidebars" style="float: right; padding-right: 10%; font-size: 50px">
-    <label for="timer">Time : </label>
-	<span id="timer"></span>
-    <label id="statusAnswer">Status : 0/20</label>
-</div>
-<div class="questions form large-9 medium-8 columns content">
-    <?= $this->Form->create('Quiz', ['id' => 'quiz', 'name' => 'quiz', 'onSubmit' => 'return confirmfrmSubmit();']) ?>
-    <fieldset>
-        <?php $i=1; 
-            
-        ?>
-        <?php foreach ($arrQuestions as $arrQuestion): ?>
-            <div class="question_index" data-ans="uncheck">
-        	<legend><?= __('Question'. $i) ?></legend>
-        	<div><?= nl2br(htmlspecialchars($arrQuestion['content'])); ?></div>
-        	<?php 
-        		echo $this->Form->input('question_id'.$i, ['type' => 'hidden', 'value' => $arrQuestion['id']]);
-        	?>
-        	<?php $j=1; ?>
-        	<?php foreach ($arrQuestion['answer'] as $key => $answer): ?>
-        		<input type="radio" name=<?= 'answer'.$i ?> id=<?= 'answer'.$i.$j ?> value=<?= $key ?>>
-        		<label for=<?= 'answer'.$i.$j ?>><?= nl2br(htmlspecialchars($answer)); ?></label>
-        		<br />
-        		<?php $j++; ?>
-        	<?php endforeach; ?>
-        	<?php $i++; ?>
-        	</div>
-        <?php endforeach; ?>
-    </fieldset>
-    <?= $this->Form->input('status',['type'=>"hidden","value"=>"1"])?>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Html->link(__('Cancel'),"javascript:cancel()",["id"=>"btnCancel"]) ?>
-    <?= $this->Form->end() ?>
+<div class="container">
+    <div class="main-content">
+        <div class="test-header">
+            <h2>Candidate Name: <span><?= $candidate_info['first_name'] . ' '.$candidate_info['middle_name'].' '. $candidate_info['last_name']; ?></span></h2>
+            <p class="position">Applied Position: <strong>IT</strong></p>
+            <p>Total question: <strong>50</strong></p>
+            <p>Total time: <strong>1000</strong> (minute)</p>
+        </div>
+        <div class="area-clock">
+            <div class="text">
+                <label for="timer">Time</label>
+                <span id="timer"></span>
+                <label id="statusAnswer">Status : 0/20</label>
+            </div>
+        </div>
+        <div class="questions form content">
+            <?= $this->Form->create('Quiz', ['id' => 'quiz', 'name' => 'quiz', 'onSubmit' => 'return confirmfrmSubmit();']) ?>
+            <fieldset>
+                <?php $i=1;
+
+                ?>
+                <?php foreach ($arrQuestions as $arrQuestion): ?>
+                    <div class="question_index" data-ans="uncheck">
+                        <legend><?= __('question').' '. $i ?></legend>
+                        <article>
+                            <p><?= $arrQuestion['content']; ?></p>
+                            <?php
+                            echo $this->Form->input('question_id'.$i, ['type' => 'hidden', 'value' => $arrQuestion['id']]);
+                            ?>
+                            <?php $j=1; ?>
+                            <?php foreach ($arrQuestion['answer'] as $key => $answer): ?>
+                                <input type="radio" name=<?= 'answer'.$i ?> id=<?= 'answer'.$i.$j ?> value=<?= $key ?>>
+                                <label for=<?= 'answer'.$i.$j ?>><?= nl2br(htmlspecialchars($answer)); ?> </label>
+                                <br />
+                                <?php $j++; ?>
+                            <?php endforeach; ?>
+                            <?php $i++; ?>
+                        </article>
+                    </div>
+                <?php endforeach; ?>
+            </fieldset>
+            <?= $this->Form->input('status',['type'=>"hidden","value"=>"1"])?>
+            <div class="row Actions">
+                <div class="col-xs-6">
+                    <?= $this->Html->link(__('stop'),"javascript:cancel()",["id"=>"btnCancel", 'class'=>'btn btn-stop btn-danger'])?>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <?= $this->Form->button(__('Submit')) ?>
+                </div>
+
+            </div>
+            <?= $this->Form->end() ?>
+        </div>
+    </div>
+
 </div>
 <script type="text/javascript">
-    
+
 	// auto submit when timeout
     var count=<?php echo $time; ?>;
-    
+
     var counter=setInterval(timer, 1000);
 
     function timer()
@@ -61,21 +81,23 @@
       }
       count = count - 1;
     }
-    
+
     // fixed timer
-    $(document).ready(function () {  
+    $(document).ready(function () {
 	    $(window).bind("scroll", function(e) {
 	        var top = $(window).scrollTop();
-	      if (top > 150) { 
+	      if (top > 150) {
 	        $(".sidebars").addClass("fix-box");
 	      } else {
 	        $(".sidebars").removeClass("fix-box");
-	      } 
+	      }
 	    });
         $('input[type=radio]').on('click',function(e){
             $(this).parent('div[data-ans=uncheck]').attr('data-ans','checked');
             $("#statusAnswer").html("Status : "+$('.question_index[data-ans=checked]').length+"/"+"<?=$i-1?>");
         });
+        setPostionClock();
+        setConfirmStop();
     });
     function cancel(){
         if(confirm('You sure you want to CANCEL this test?')){
@@ -87,7 +109,7 @@
     }
     /**
     * Edit : Uno Trung
-    * date : 2016-28-12     
+    * date : 2016-28-12
     * @function validate submit test
     * - check not yet answer
     * - scroll to not yet answer
@@ -96,17 +118,57 @@
     function confirmfrmSubmit(){
         var question = $('.question_index[data-ans=uncheck]');
         if(question.length>0){
-            if(confirm('Some questions not yet answer! Do you want stop this test???')){
-                return true;
-            }
-            $('html, body').animate({
-                scrollTop: question.first().offset().top-100
-            }, 2000);
-            return false;
+            $('button[type=submit]').confirm({
+                content: "<?=__('Are you sure you want to submit')?>",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+                        action:function(){
+                            return true;
+                        }
+                    },
+                    no: {
+                        keys: ['N'],
+                        action:function(){
+                            $('html, body').animate({
+                                scrollTop: question.first().offset().top-100
+                            }, 2000);
+                            return false;
+                        }
+                    },
+                }
+            });
         }
         return true;
     }
+    function setPostionClock(){
+        var _this = $('.area-clock');
+        var wsc = $(window).innerWidth();
+        var wct = $('.main-content').innerWidth();
+        var point = (wsc-wct)/2 + 5;
+        $(_this).css('right',point)
+    };
+
+    function setConfirm(){
+        $('button[type=submit]').on('click',function(){
+            confirmfrmSubmit();
+        });
+    }
+    function setConfirmStop(){
+        $('.btn-stop').confirm({
+            content: "<?=__('Are you sure you want to submit')?>",
+            title: "",
+            buttons: {
+                yes: {
+                    btnClass:'btn-danger',
+                    keys: ['Y'],
+                },
+                no: {
+                    keys: ['N'],
+                },
+            }
+        });
+    }
 </script>
-<bottom>
-<bottom>
-<bottom>

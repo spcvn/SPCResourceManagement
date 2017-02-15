@@ -156,10 +156,10 @@ class QuizsController extends AppController
     	
     	// show list questions
     	$candidate_id = $this->Quizs->get($quiz_id, ['fields' => 'candidate_id'])->toArray();
-    	$total = 1;//$this->Quizs->get($quiz_id, ['fields' => 'total'])->toArray();
+
+    	$total = 0;//$this->Quizs->get($quiz_id, ['fields' => 'total'])->toArray();
     	
     	$candidate_info = $this->Candidates->get($candidate_id)->toArray();
-    	$candidate_name = 
     	
     	$arrQuestions = [];
     	$question_ids = $this->QuizDetails->find('all', ['fields' => 'question_id'])
@@ -282,6 +282,7 @@ class QuizsController extends AppController
     }
     
     public function complete(){
+        $this->viewBuilder()->layout('test-layout');
     	
     }
     

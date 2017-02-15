@@ -15,15 +15,25 @@
             echo $this->Form->input('first_name',['label'=>'First Name']);
             echo $this->Form->input('middle_name',['label'=>'Middle Name']);
             echo $this->Form->input('last_name',['label'=>'Last Name']);
-            echo $this->Form->input("birth_date", ['type'=>'text','class' => 'datepicker']);
-            $marriedStatus = ['0' => 'Single', '1' => 'Married'];
-            echo $this->Form->input('married',['label'=>'Marriage status','type'=>'select','options'=>$marriedStatus]);
-            echo $this->Form->input('addr01',['label'=>'Address','type'=>'text']);
-            echo $this->Form->input('mobile',['label'=>'Contact No.']);
-            echo $this->Form->input('position_id',['label'=>'Position','type'=>'select','options'=>$positions]);
-            echo $this->Form->input('expected_salary',['label'=>'Salary','type'=>'select','options'=>$select->salary]);
-            echo $this->Form->input('interview_date',['type'=>'text','class'=>'datetimepicker']);
+            echo $this->Form->input('birthday', ['type'=>'text','class' => 'datepicker']);
+            $marriedStatus = ['0' => __('single'), '1' => __('married')];
+            echo $this->Form->input('married',['label'=>__('marriage_status'),'type'=>'select','options'=>$marriedStatus]);
+            echo $this->Form->input('addr01',['label'=>__('address'),'type'=>'text']);
+            echo $this->Form->input('mobile',['label'=>__('contact_no')]);
+            echo $this->Form->input('position_id',['label'=>__('position'),'type'=>'select','options'=>$positions]);
+            echo $this->Form->input('expected_salary',['label'=>__('salary'),'type'=>'select','options'=>$select->salary]);
+//            echo $this->Form->input('interview_date',['type'=>'text','class'=>'datetimepicker']);
         ?>
+        <div class="form-group datetimepk">
+            <label><?= __('interview_date'); ?></label>
+            <div class='input-group date' id="datetimepicker">
+                <input type='text' class="form-control" id='interview-date'/>
+                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </fieldset>
     <div class="action">
         <div class="col-sm-6">
@@ -42,7 +52,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title text-center"><?= __('information_candidate')?></h3>
+                <h3 class="modal-title text-center"><?= __('candidate_information')?></h3>
                 <ul class="ulnostyle">
                     <li>
                         <table class="table">
@@ -54,7 +64,7 @@
                             <tr>
                                 <th><?= __('middle_name')?></th>
                                 <td>:</td>
-                                <td><span id="get_first-name"></td>
+                                <td><span id="get_middle-name"></td>
                             </tr>
                             <tr>
                                 <th><?= __('last_name')?></th>
@@ -62,34 +72,19 @@
                                 <td><span id="get_last-name"></td>
                             </tr>
                             <tr>
-                                <th><?= __('birth_date')?></th>
-                                <td>:</td>
-                                <td><span id="get_last-name"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('married')?></th>
-                                <td>:</td>
-                                <td><span id="get_address"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('province')?></th>
-                                <td>:</td>
-                                <td><span id="get_provinceid"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('district')?></th>
-                                <td>:</td>
-                                <td><span id="get_districtid"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('ward')?></th>
-                                <td>:</td>
-                                <td><span id="get_wardid"></td>
-                            </tr>
-                            <tr>
                                 <th><?= __('birthday')?></th>
                                 <td>:</td>
-                                <td><span id="get_birth-date"></td>
+                                <td><span id="get_birthday"></td>
+                            </tr>
+                            <tr>
+                                <th><?= __('marriage_status')?></th>
+                                <td>:</td>
+                                <td><span id="get_married"></td>
+                            </tr>
+                            <tr>
+                                <th><?= __('address')?></th>
+                                <td>:</td>
+                                <td><span id="get_addr01"></td>
                             </tr>
                             <tr>
                                 <th><?= __('mobile')?></th>
@@ -99,12 +94,17 @@
                             <tr>
                                 <th><?= __('department')?></th>
                                 <td>:</td>
-                                <td><span id="get_dept"></td>
+                                <td><span id="get_position-id"></td>
                             </tr>
                             <tr>
-                                <th><?= __('start_work')?></th>
+                                <th><?= __('salary')?></th>
                                 <td>:</td>
-                                <td><span id="get_start-work"></td>
+                                <td><span id="get_expected-salary"></td>
+                            </tr>
+                            <tr>
+                                <th><?= __('interview_date')?></th>
+                                <td>:</td>
+                                <td><span id="get_interview-date"></td>
                             </tr>
 
                         </table>
@@ -126,6 +126,32 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+    //load data form to modal preview
+    function loadDataModal(){
+        $('.candidates form input').each(function () {
+            $(this).on('change',function () {
+                console.log($(this));
+                var iname = $(this).attr('id');
+                var idname = '#get_'+iname;
+                var text = $(this).val();
+                $('#reviewCandidate').find(idname).html(text);
+            });
+
+        });
+        $('.candidates form select').each(function(){
+            $(this).on('change',function () {
+                var iname = $(this).attr('id');
+                var idname = '#get_'+iname;
+                var text = $(this).find('option:selected').text();
+                $('#reviewCandidate').find(idname).html(text);
+            });
+
+        });
+        $('#reviewCandidate').find('#get_interview-date').html($('#datetimepicker').find('input').val());
+
+
+
+    }
     $(document).ready( function() {
         $( ".datepicker" ).datepicker({
             changeYear: true,
@@ -133,7 +159,7 @@
             dateFormat: 'yy-mm-dd',
             yearRange: "-100:+0",
         });
-        $('#interview-date').datetimepicker({
+        $('#datetimepicker').datetimepicker({
              format: 'YYYY-MM-DD h:mm:ss A',//use this option to display seconds
              icons: {
                 time: 'fa fa-clock-o',
@@ -153,5 +179,6 @@
         });
         $(".loading").hide();
         $(".content").show('fade');
+        loadDataModal();
     } );
 </script>

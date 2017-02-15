@@ -146,24 +146,6 @@ class Initial extends AbstractMigration
             )
             ->create();
 
-        $this->table('exams_has_sections', ['id' => false, 'primary_key' => ['exams_id', 'sections_id']])
-            ->addColumn('exams_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
-            ->addColumn('sections_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
-            ->addColumn('ratio', 'float', [
-                'default' => null,
-                'limit' => null,
-                'null' => true,
-            ])
-            ->create();
-
         $this->table('examstemplates')
             ->addColumn('name', 'string', [
                 'default' => null,
@@ -199,6 +181,24 @@ class Initial extends AbstractMigration
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
+            ])
+            ->create();
+
+        $this->table('examstemplates_sections', ['id' => false, 'primary_key' => ['examstemplate_id', 'section_id']])
+            ->addColumn('examstemplate_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addColumn('section_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addColumn('ratio', 'float', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
             ])
             ->create();
 
@@ -662,8 +662,8 @@ class Initial extends AbstractMigration
         $this->dropTable('answers');
         $this->dropTable('candidates');
         $this->dropTable('districts');
-        $this->dropTable('exams_has_sections');
         $this->dropTable('examstemplates');
+        $this->dropTable('examstemplates_sections');
         $this->dropTable('groups');
         $this->dropTable('modules');
         $this->dropTable('permissions');

@@ -1,24 +1,2 @@
-.page-header{
-  margin-bottom: 25px;
-}
-.btn{
-  &:hover,
-  &:focus{
-    border-color: transparent;
-  }
-}
-.paginator{
-  text-align: right;
-  p{
-    color: #9d9a9a;
-  }
-}
-.ace-settings-container{
-  top: 5px;
-}
-.welcome-logo{
-  text-align: center;
-  img{
-    max-width: 60%;
-  }
-}
+@import "form";
+@import "body";

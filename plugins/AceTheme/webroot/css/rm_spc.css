@@ -1,20 +1,2 @@
-.page-header {
-  margin-bottom: 25px; }
-
-.btn:hover, .btn:focus {
-  border-color: transparent; }
-
-.paginator {
-  text-align: right; }
-  .paginator p {
-    color: #9d9a9a; }
-
-.ace-settings-container {
-  top: 5px; }
-
-.welcome-logo {
-  text-align: center; }
-  .welcome-logo img {
-    max-width: 60%; }
-
+.form .input{overflow:hidden;margin-bottom:10px}.form .text input{float:left;width:100%}.form .text label,.form .email label,.form .password label,.form .number label,.form .file label{float:left}.form .text input,.form .email input,.form .password input,.form .number input,.form .file input{color:#393939}.form .select label{float:left}.form .select select{color:#393939}.form .textarea label{float:left}.form .textarea textarea{color:#393939;min-height:150px}.form-question form .question-action .select,.form-question form .question-action .text{position:relative;padding-left:50px}.form-question form .question-action .select{padding-left:160px}.required label:after{content:" (*)";color:#ff2222}.required.error{position:relative;padding-bottom:20px}.required.error .error-message{position:absolute;padding-left:18%;bottom:0px;font-style:italic}.page-header{margin-bottom:25px}.btn:hover,.btn:focus{border-color:transparent}.paginator{text-align:right}.paginator p{color:#9d9a9a}.ace-settings-container{top:5px}img{max-width:100%;height:auto}.welcome-logo{text-align:center}.welcome-logo img{max-width:60%}.ace-nav>li>a{background-color:transparent}.ace-nav>li:first-child{border-left:1px solid #E1E1E1}.ace-nav>li.open>a,.ace-nav>li>a:focus,.ace-nav>li>a:hover{background-color:#2c5976}.spc-side-nav{padding:0;margin:0 0 15px}.spc-side-nav>li{list-style-type:none}#answer{padding-left:30px}.row-answer{position:relative}.row-answer .btnDelete{font-size:22px;margin:0;float:none}
 /*# sourceMappingURL=rm_spc.css.map */

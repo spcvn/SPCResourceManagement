@@ -74,7 +74,6 @@
             </div>
             <div class="row actions">
                 <div class="col-xs-push-2 col-xs-9">
-                    <button type="reset" class="btn btn-default btn-reset">Reset</button>
                     <button type="submit" class="btn btn-info">Save</button>
                 </div>
             </div>

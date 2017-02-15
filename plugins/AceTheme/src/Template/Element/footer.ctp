@@ -64,6 +64,7 @@
 <?= $this->Html->script('moment.min.js') ?>
 <?= $this->Html->script('bootstrap-datetimepicker.min.js') ?>
 <?= $this->Html->script('customs.js') ?>
+<?= $this->Html->script('rm-custom.js') ?>
 
 
 <!-- inline scripts related to this page -->

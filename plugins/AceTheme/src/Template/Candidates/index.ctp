@@ -33,7 +33,7 @@
                 <td><?= $candidate->position->name ?></td>
                 <td style="text-align: center;">
                     <div class="btn-group">
-                        <a class="btn btn-xs btn-info" title="<?= ('create_test')?>"><i class="fa fa-file-text-o"></i></a>
+                        <a class="btn btn-xs btn-info" title="<?= __('create_test')?>"><i class="fa fa-file-text-o"></i></a>
                     </div>
                 </td>
                 <td class="actions">
@@ -46,8 +46,7 @@
                             $this->Html->tag('i','',['class'=>'ace-icon fa fa-pencil bigger-120']),
                             ['action' => 'edit', $candidate->id],
                             ['class'=>'btn btn-xs btn-info', 'title'=>__('edit'),'escape'=>false]) ?>
-                        <?= $this->Form->postLink(
-                            $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
+                        <?= $this->Html->link($this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
                             ['action' => 'delete', $candidate->id],
                             ["class"=>'btn btn-xs btn-danger btnDelete','title'=>'Delete','escape'=>false]) ?>
 
@@ -73,21 +72,22 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $(document).ready(function(){
-        $(".btn-group .btnDelete").each(function(index) {
-            $(this).click(function(){
-                $(this).confirm({
-                    content: "<?=__('alert_delete_candidate')?> ",
-                    title: "",
-                    buttons: {
-                        yes: {
-                            btnClass:'btn-danger',
-                            keys: ['Y'],
-                        },
-                        no: {
-                            keys: ['N'],
-                        },
-                    }
-                });
+        $('.actions .btn-group .btnDelete').each(function(index) {
+            $( this ).confirm({
+                content: "<?=__('alert_delete_candidate')?> ",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+                        action : function () {
+                            location.href = this.$target.attr('href');
+                        }
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
             });
         });
     });

@@ -86,7 +86,7 @@
                                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                                             </a>
 
-                                            <a class="red btn-delete" href="<?=$this->Url->build(['action'=>'delete',$examstemplate->id])?>" data-name="Front-end developer">
+                                            <a class="red btn-delete" href="<?=$this->Url->build(['action'=>'delete',$examstemplate->id])?>" data-name="<?=$examstemplate->name?>">
                                                 <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                             </a>
                                         </div>
@@ -194,24 +194,6 @@
                     ],
                     "aaSorting": [],
 
-
-                    //"bProcessing": true,
-                    //"bServerSide": true,
-                    //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-                    //,
-                    //"sScrollY": "200px",
-                    //"bPaginate": false,
-
-                    //"sScrollX": "100%",
-                    //"sScrollXInner": "120%",
-                    //"bScrollCollapse": true,
-                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                    //"iDisplayLength": 50
-
-
                     select: {
                         style: 'multi'
                     }
@@ -221,7 +203,7 @@
 
         $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
 
-        new $.fn.dataTable.Buttons( myTable, {
+        /*new $.fn.dataTable.Buttons( myTable, {
             buttons: [
                 {
                     "extend": "colvis",
@@ -257,7 +239,7 @@
                     message: 'This print was produced using the Print button for DataTables'
                 }
             ]
-        } );
+        } );*/
         myTable.buttons().container().appendTo( $('.tableTools-container') );
 
         //style the message box

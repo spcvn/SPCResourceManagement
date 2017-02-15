@@ -76,7 +76,7 @@
         $(".btn-group .btnDelete").each(function(index) {
             $(this).click(function(){
                 $(this).confirm({
-                    content: "<?=__('Are you sure you want to delete this candidate?')?> ",
+                    content: "<?=__('alert_delete_candidate')?> ",
                     title: "",
                     buttons: {
                         yes: {

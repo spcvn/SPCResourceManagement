@@ -342,3 +342,45 @@ msgstr "Salary"
 
 msgid "stop"
 msgstr "Stop"
+
+msgid "alert_delete_candidate"
+msgstr "Are you sure you want to delete this candidate?"
+
+msgid "export_answer"
+msgstr "Export Answer"
+
+msgid "import"
+msgstr "Import"
+
+msgid "export_question"
+msgstr "Export Question"
+
+msgid "new_question"
+msgstr "New Question"
+
+msgid "list_question"
+msgstr "List Question"
+
+msgid "test_list"
+msgstr "Test List"
+
+msgid "list"
+msgstr "List"
+
+msgid "exam_assignment"
+msgstr "Exam Assignment"
+
+msgid "list_candidate"
+msgstr "Candidate List"
+
+msgid "add_candidate"
+msgstr "Add Candidate"
+
+msgid "list_user"
+msgstr "User List"
+
+msgid "add_user"
+msgstr "Add User"
+
+msgid "user"
+msgstr "User"

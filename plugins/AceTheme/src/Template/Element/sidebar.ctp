@@ -29,7 +29,7 @@
             <ul class="submenu" >
                 <li id="index">
                     <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).'  List Question',
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('list_question'),
                         ['controller'=>'questions','action'=>'index'],
                         ['escape'=>false])?>
 
@@ -37,7 +37,7 @@
                 </li>
                 <li id="add">
                     <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).'  New Question',
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('new_question'),
                         ['controller'=>'questions','action'=>'add'],
                         ['escape'=>false])?>
 
@@ -56,7 +56,7 @@
                     <ul class="submenu">
                         <li class="">
                             <?= $this->Html->link(
-                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('  Export Question'),
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('export_question'),
                                 ['controller'=>'questions','action'=>'exportQuestion'],
                                 ['escape'=>false])?>
 
@@ -64,7 +64,7 @@
                         </li>
                         <li class="">
                             <?= $this->Html->link(
-                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('  Export Answer'),
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('export_answer'),
                                 ['controller'=>'questions','action'=>'exportAnswer'],
                                 ['escape'=>false])?>
 
@@ -72,7 +72,7 @@
                         </li>
                         <li class="">
                             <?= $this->Html->link(
-                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('  Import'),
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('import'),
                                 ['controller'=>'questions','action'=>'import'],
                                 ['escape'=>false])?>
 
@@ -94,7 +94,7 @@
             <ul class="submenu">
                 <li class="" id="Quizs_index">
                     <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Test List'),
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('test_list'),
                         ['controller'=>'quizs','action'=>'index'],
                         ['escape'=>false])?>
 
@@ -103,7 +103,7 @@
                 <li class="Examstemplates">
                     <?= $this->Html->link(
                         $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right'])
-                        .$this->Html->tag('span',__('Exam Template'),['class'=>'menu-text'])
+                        .$this->Html->tag('span',__('exam_template'),['class'=>'menu-text'])
                         .$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
                         [],
                         ['class'=>'dropdown-toggle','escape'=>false])?>
@@ -112,14 +112,14 @@
                     <ul class="submenu">
                         <li class="" id="index">
                             <?= $this->Html->link(
-                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('List '),
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('list'),
                                 ['controller'=>'examstemplates','action'=>'index'],
                                 ['escape'=>false])?>
 
                             <b class="arrow"></b>
                         </li><li class="" id="add">
                             <?= $this->Html->link(
-                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Add '),
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('add'),
                                 ['controller'=>'examstemplates','action'=>'add'],
                                 ['escape'=>false])?>
 
@@ -129,7 +129,7 @@
                 </li>
                 <li class="" id="examAssignment">
                     <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Exam Assignment'),
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('exam_assignment'),
                         ['controller'=>'examstemplates','action'=>'exam_assignment'],
                         ['escape'=>false])?>
 
@@ -142,7 +142,7 @@
         <li class="Candidates" id="">
             <?= $this->Html->link(
                 $this->Html->tag('i','',['class'=>'menu-icon fa fa-users'])
-                .$this->Html->tag('span',__('Candidate'),
+                .$this->Html->tag('span',__('candidate'),
                     ['class'=>'menu-text']).$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
                 '',
                 ['class'=>'dropdown-toggle','escape'=>false])?>
@@ -152,7 +152,7 @@
             <ul class="submenu">
                 <li class="" id="index">
                     <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('List Candidate'),
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('list_candidate'),
                         ['controller'=>'candidates','action'=>'index'],
                         ['escape'=>false])?>
 
@@ -160,7 +160,7 @@
                 </li>
                 <li class="" id="add">
                     <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Add Candidate'),
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('add_candidate'),
                         ['controller'=>'candidates','action'=>'add'],
                         ['escape'=>false])?>
 
@@ -171,7 +171,7 @@
         <li class="Users" id="">
             <?= $this->Html->link(
                     $this->Html->tag('i','',['class'=>'menu-icon fa fa-user-o'])
-                    .$this->Html->tag('span',__('User'),
+                    .$this->Html->tag('span',__('user'),
                         ['class'=>'menu-text']).$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
                 ['controller'=>'users','action'=>'#'],
                 ['class'=>'dropdown-toggle','escape'=>false])?>
@@ -181,7 +181,7 @@
             <ul class="submenu">
                 <li class="" id="index">
                     <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('List User'),
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('list_user'),
                         ['controller'=>'users','action'=>'index'],
                         ['escape'=>false])?>
 
@@ -189,7 +189,7 @@
                 </li>
                 <li class="" id="add">
                     <?= $this->Html->link(
-                            $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('Add User'),
+                            $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('add_user'),
                         ['controller'=>'users','action'=>'add'],
                         ['escape'=>false])?>
 

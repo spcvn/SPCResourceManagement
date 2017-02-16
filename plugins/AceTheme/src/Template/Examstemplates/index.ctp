@@ -51,7 +51,7 @@
 
                     <tbody>
                     <?php
-                    // echo "<pre>";print_r($examstemplates);
+                    // echo "<pre>";print_r($quizs_group);
                         foreach ($examstemplates as $examstemplate) {
                             ?>
                                 <tr>
@@ -76,7 +76,7 @@
                                     </td>
 
                                     <td class="hidden-480">
-                                        0/10
+                                        0/<?=$quizs_group[$examstemplate->id]?>
                                     </td>
 
                                     <td>

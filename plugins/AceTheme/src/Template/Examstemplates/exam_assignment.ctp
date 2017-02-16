@@ -7,14 +7,15 @@
         </small>
     </h1>
 </div><!-- /.page-header -->
-<div class="assignment">
+<div class="assignment content">
     <div class="form-assignment">
-        <form>
+        <form method="post" action="<?=$this->Url->build(['controller'=>'quizs', 'action'=>'generate'])?>">
             <div class="row input select required">
                 <label class="col-sm-2"><?= __('candidate_name')?>:</label>
                 <div class="col-sm-10">
                     <div class="autocomplete_wrap">
                         <input id="autoCandidate" placeholder="Please select...">
+                        <input type="hidden" name="candidate_id" id="autoCandidate_hidden" value="" />
                     </div>
                 </div>
             </div>
@@ -23,20 +24,21 @@
                 <div class="col-sm-10">
                     <div class="autocomplete_wrap">
                         <input id="autoTemplate" placeholder="Please select...">
+                        <input type="hidden" name="template_id" id="autoTemplate_hidden" value="" />
                     </div>
                 </div>
             </div>
             <div class="row input text">
                 <label class="col-sm-2"><?= __('duration')?>:</label>
-                <label class="col-sm-10">20 minutes</label>
+                <label class="col-sm-10"><strong id="duration">0</strong> minutes</label>
             </div>
             <div class="row input text">
                 <label class="col-sm-2"><?= __('number_of_question')?>:</label>
-                <label class="col-sm-10">20 questions</label>
+                <label class="col-sm-10"><strong id="num_questions">0</strong> questions</label>
             </div>
             <div class="row input text">
                 <label class="col-sm-2"><?= __('question')?>:</label>
-                <label class="col-sm-10">HTML: 50%; CSS: 25%; JAVASCRIPT: 25</label>
+                <label class="col-sm-10"><strong id="ratio">---</strong></label>
             </div>
             <div class="row input text">
                 <label class="col-sm-2"><?= __('description')?>:</label>
@@ -51,31 +53,68 @@
         </form>
     </div>
 </div>
+<?php
+    function cvExamtemplate($templates){
+        $str = '[';
+        foreach ($templates as $val) {
+            $ratio = "";
+            foreach ($val->sections as $section) {
+                $ratio .= $section->name.': '.$section->_joinData->ratio.'%; ';
+            }
+            $str.= '{ 
+                label: "'.$val->name.'", 
+                value: "'.$val->id.'",
+                duration: "'.$val->duration.'",
+                num_questions: "'.$val->num_questions.'",
+                ratio: "'.$ratio.'",
+            },';
+        }
+        $str .= ' ]';
+        $str = str_replace(", ]", "]", $str);
+        return $str;
+    }
+    function cvCandidates($templates){
+        $str = '[';
+        foreach ($templates as $key=>$val) {
+            $str.= '{ label: "'.$val.'", value: "'.$key.'" },';
+        }
+        $str .= ' ]';
+        $str = str_replace(", ]", "]", $str);
+        return $str;
+    }
+?>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <script>
     function autoSelectSearch(e,data){
         $(e).autocomplete({
             source: data,
-            minLength:0
+            minLength:0,
+            select: function( event, ui ) {
+                $(e).val(ui.item.label);
+                $(e+'_hidden').val(ui.item.value);
+                if(e=='#autoTemplate'){
+                    $('strong#duration').text(ui.item.duration);
+                    $('strong#num_questions').text(ui.item.num_questions);
+                    $('strong#ratio').text(ui.item.ratio);
+                }
+                return false;
+            },
+            focus: function( event, ui ) {
+                $(e).val(ui.item.label);
+                $(e+'_hidden').val(ui.item.value);
+                if(e=='#autoTemplate'){
+                    $('strong#duration').text(ui.item.duration);
+                    $('strong#num_questions').text(ui.item.num_questions);
+                    $('strong#ratio').text(ui.item.ratio);
+                }
+                return false;
+            }
         }).bind('focus', function(){ $(this).autocomplete("search"); } );
     }
     $(document).ready(function () {
-        var availableCandiadte = [
-            'Nguyen Ngoc Thao',
-            'Nguyen Hoai Duc',
-            'Nguyen Minh Son',
-            'Ta Minh Trung',
-            'Pham Thuy',
-            'Nguyen Thanh Sang',
-            'Vo Nhan '
-        ];
-        var availableTemplate = [
-            'Front-end Developer',
-            'Back-end Developer',
-            'Designer',
-            'Admin'
-        ];
+        var availableCandiadte = <?=cvCandidates($candidates)?>;
+        var availableTemplate = <?=cvExamtemplate($examstemplates)?>;
         var idc= '#autoCandidate';
         var idt= '#autoTemplate';
         autoSelectSearch(idc, availableCandiadte);

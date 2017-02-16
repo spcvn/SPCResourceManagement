@@ -19,15 +19,17 @@ class QuizsController extends AppController
      */
 	public function index(){
 		$this->paginate = ['limit' => 5, 'order' => ['id' => 'DESC']];
-		$quiz = $this->Quizs->find()->contain([
+		/*$quiz = $this->Quizs->find()->contain([
 		        'Candidates' => function($q){
 		            return $q->select(['first_name', 'last_name'])
 		                      ->autoFields(false);
 		        }
-		]);
+		]);*/
         
-		$quizs = $this->paginate($quiz);
-		$status = ['0' => 'New', '1' => 'Completed','2' => 'Testing'];
+		$quizs = $this->paginate($this->Quizs,[
+            'contain' => 'Candidates'
+        ]);
+		$status = [0 => 'New', 1 => 'Completed',2 => 'Testing'];
 		
 		$this->set(compact('quizs'));
 		$this->set(compact('status'));
@@ -48,65 +50,89 @@ class QuizsController extends AppController
 	        return $this->redirect(['controller' => 'Error', 'action' => 'error404']);
 	    }
 	    // get Quiz information
-	    $quizs = $this->Quizs->get($id);
-	    
-	    $candidates = $this->Candidates->get($quizs->candidate_id);
+	    $quizs = $this->Quizs->get($id,['contain'=>['Candidates']]);
 	    
 	    // get questions detail
 	    $quiz_details = $this->QuizDetails->find()->contain(['Questions' => ['Answers']])
                                                ->where(['QuizDetails.quiz_id' => $id]);
 	    $quiz_details = $quiz_details->all();
 	    // echo "<pre>";print_r($quiz_details);exit();
-	    $this->set('quizs', $quizs);
-	    $this->set('candidates', $candidates);
+	    $this->set('quiz', $quizs);
 	    $this->set('quiz_details', $quiz_details);
 	}
-	
+
 	/**
-	 * Generate method
-	 *
-	 * @return \Cake\Network\Response|null
-	 */
+     * Generate method
+     *
+     * @return \Cake\Network\Response|null
+     */
     public function generate($id = null)
     {
-    	if($id == null){
-    	    $this->Flash->error(__('Do not exist candidate. Please, try again.'));
-    	    return $this->redirect(['controller' => 'Error', 'action' => 'error404']);
-    	}
         $this->loadModel('Quizs');
         $this->loadModel('Questions');
-    	if ($this->request->is('post')){
-            $max = $this->Questions->find('all')->count();
-            $quizs = $this->Quizs->newEntity();
-    		
-            $arrDatas = $this->request->data;
-    		if($arrDatas['number_questions'] > $max){
-    		    $this->Flash->error(__('Limit questions. Please, try again.'));
-    		    return $this->redirect(['controller' => 'quizs', 'action' => 'generate', $id]);
-    		}
-			$quizs->candidate_id = $id;
-			$quizs->total = $arrDatas['number_questions'];
-			$quizs->time = $arrDatas['time'];
-			
-			// $date_array = $arrDatas['quiz_date'];
-			// $quizs->quiz_date = date('Y-m-d H:i:s', mktime($date_array['hour'], $date_array['minute'], 0,
-// 									$date_array['month'], $date_array['day'], $date_array['year']));
-			$quizs->code = $this->randomCode();
-			$quizs->url = $this->randomURL();
-			
-			if($this->Quizs->save($quizs)){
-				$quiz_id = $quizs->id;
-				$this->registerQuizDetail($quiz_id, $arrDatas['number_questions']);
-				$linkURL = $quizs->url;
-				return $this->redirect(['action' => 'generate_done', $linkURL]);
-			}
-			else{
-				$this->Flash->error(__('The quizs could not be saved. Please, try again.'));
-			}
-    	}
-    	
+        $this->loadModel('Examstemplates');
+        if ($this->request->is('post')){
+            $datas = $this->request->data;
+            $examstemplates = $this->Examstemplates->get(
+                $datas['template_id'],
+                [
+                    'contain' => ['Sections'],
+                    'conditions'=>['is_delete'=>0]
+                ]
+            );
+            if(!$this->checkQuestion($examstemplates->num_questions) || count($examstemplates) < 1){
+                $this->Flash->error(__('Limit questions. Please, try again.'));
+                return $this->redirect(['controller' => 'examstemplates', 'action' => 'examAssignment']);
+            }
+
+            $quiz = $this->Quizs->newEntity();
+            
+            $quiz->candidate_id = $datas['candidate_id'];
+            $quiz->template_id = $datas['template_id'];
+            $quiz->time = $examstemplates->duration;
+            $quiz->code = $this->randomCode();
+            $quiz->url = $this->randomURL();
+            
+            if($this->Quizs->save($quiz)){
+                //get question follow template
+                $this->registerQuizDetail($quiz->id, $examstemplates);
+                $linkURL = $quiz->url;
+                return $this->redirect(['action' => 'generate_done', $linkURL]);
+            }
+            else{
+                $this->Flash->error(__('The quizs could not be saved. Please, try again.'));
+            }
+        }
+        
     }
-    
+    /*
+    *  count question from ratio template Method
+    *
+    * @param : $section = {'HTML,PHP,CSS...'}; $ratio = {10%,20%,30%};
+    */
+    private function countQuestionFromRatio($section,$ratio){
+
+    }
+    /*
+    *  check question from ratio template Method
+    *
+    * @param : $assign = [candidate_id,template_id]
+    */
+    private function checkQuestion($numberQuestions){
+        $this->loadModel('Questions');
+        $this->loadModel('Examstemplates');
+        $cQuestions = $this->Questions->find('all')->where(['is_delete'=>0])->count();
+        if($cQuestions < $numberQuestions){
+            return false;
+        }
+        return true;
+        
+    }
+    /*
+    * Test Function
+    * status [0:unTest, 1:Finish, 2:Testing]
+    *
+    */
     // Do Quiz
     public function test($url){
     	$this->loadModel('Quizs');
@@ -237,31 +263,39 @@ class QuizsController extends AppController
     	return $result;
     }
     
-    public function registerQuizDetail($quiz_id, $num){
+    public function registerQuizDetail($quiz_id, $examstemplate){
     	$this->loadModel('Questions');
     	$this->loadModel('QuizDetails');
     	
-    	$arrQuestions = $this->Questions->find('list', ['fields' => 'id'])
-    									->where(['status' => 1])
+        $section_num_questions  = $examstemplate->num_questions;
+        foreach ($examstemplate->sections as $section) {
+            $section_id             = $section->id;
+            $section_ratio          = $section->_joinData->ratio;
+
+            $ratio = round( ($section_ratio/$section_num_questions)*100, 1, PHP_ROUND_HALF_UP);
+
+
+            $arrQuestions = $this->Questions->find('list')
+                                        ->where(['is_delete' => 0,'section_id'=>$section_id])
                                         ->order('rand()')
-                                        ->limit($num)
+                                        ->limit($ratio)
                                         ->toArray();
-    	$arrQuestionQuizs = [];
-    	
-    	while(count($arrQuestionQuizs) < $num){
-    		$id = $arrQuestions[array_rand($arrQuestions)];
-    		if(!in_array($id, $arrQuestionQuizs)){
-    			$arrQuestionQuizs[] = $id;
-    		}
-    	}
-    	foreach($arrQuestionQuizs as $arrQuestionQuiz){
-    		$arrQuizDetail = $this->QuizDetails->newEntity();
-    		$arrQuizDetail->quiz_id = $quiz_id;
-    		$arrQuizDetail->question_id = $arrQuestionQuiz;
-    		
-    		$this->QuizDetails->save($arrQuizDetail);
-    	}
-        // exit();
+            $arrQuestionQuizs = [];
+            
+            while(count($arrQuestionQuizs) < count($arrQuestions)){
+                $id = $arrQuestions[array_rand($arrQuestions)];
+                if(!in_array($id, $arrQuestionQuizs)){
+                    $arrQuestionQuizs[] = $id;
+                }
+            }                                      
+            foreach($arrQuestionQuizs as $arrQuestionQuiz){
+                $arrQuizDetail = $this->QuizDetails->newEntity();
+                $arrQuizDetail->quiz_id = $quiz_id;
+                $arrQuizDetail->question_id = $arrQuestionQuiz;
+                
+                $this->QuizDetails->save($arrQuizDetail);
+            }
+        }
     }
     
     public function updateAnswer($quiz_id, $question_id, $answer_id){

@@ -39,7 +39,7 @@
                     ?>
                         <div class="row line-add">
                             <div class="col-sm-6">
-                                <select class="width-100" name='sections[<?=$objSection->id?>][id]' >
+                                <select class="width-100" name='sections[<?=$key?>][id]' >
                                     <?php
                                         foreach ($sections as $sKey=>$value) {
                                             $selected = ($sKey == $objSection->id)?"selected='selected'":"";
@@ -49,7 +49,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" class="width-80 percent-section" name="sections[<?=$objSection->id?>][_joinData][ratio]" value="<?=$objSection->_joinData->ratio?>"/>
+                                <input type="text" class="width-80 percent-section" name="sections[<?=$key?>][_joinData][ratio]" value="<?=$objSection->_joinData->ratio?>"/>
                                 <span>%</span>
                             </div>
                             <div class="col-sm-4 actions">
@@ -86,10 +86,13 @@
 <script>
     var line = 1;
     var per = 100;
+    var numSections = <?=count($examstemplate->sections)?>;
+    console.log(numSections);
     function addline(){
+        numSections = numSections + 1;
         var str = '<div class="row line-add">'+
             '<div class="col-sm-6">'+
-            '<select class="width-100" name="sections[_ids][]">'+
+            '<select class="width-100" name="sections['+numSections+'][id]">'+
             '<?php
                             foreach ($sections as $key=>$value) {
                                 echo "<option value=\'$key\'>$value</option>";
@@ -98,7 +101,7 @@
             '</select>'+
             '</div>'+
             '<div class="col-sm-2">'+
-            '<input type="text" name="sections[ratio][]" class="width-80 percent-section" onchange="hasChanged($(this))" />'+
+            '<input type="text" name="sections['+numSections+'][_joinData][ratio]" class="width-80 percent-section" onchange="hasChanged($(this))" />'+
             ' <span>%</span>'+
             '</div>'+
             '<div class="col-sm-4 actions">'+

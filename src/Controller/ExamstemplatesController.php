@@ -21,8 +21,15 @@ class ExamstemplatesController extends AppController
         $examstemplates = $this->paginate($this->Examstemplates,[
             'contain' => ['Sections']
         ]);
-
-        $this->set(compact('examstemplates'));
+        $this->loadModel('Quizs');
+        $quizs_group = $this->Quizs->find('list',[
+            'keyField' => 'template_id',
+            'valueField'=> 'count',
+        ])->select([
+            'template_id',
+            'count' => 'COUNT(quizs.id)'
+        ])->group('template_id')->toArray();
+        $this->set(compact('examstemplates','quizs_group'));
         $this->set('_serialize', ['examstemplates']);
     }
 
@@ -128,6 +135,15 @@ class ExamstemplatesController extends AppController
      */
     public function examAssignment()
     {
+        $examstemplates = $this->Examstemplates->find('all',['contain' => ['Sections']])->where(['is_delete'=>0])->toArray();
+        //Load candidates
+        $this->loadModel('Candidates');
+        $candidates = $this->Candidates->find('list',['keyField'=>'id','valueField'=>function($val){
+            return $val->last_name.' '.$val->first_name;
+        }])->where(['is_delete'=>0])->toArray();
 
+        $this->set(compact('examstemplates','candidates'));
+        $this->set('_serialize', ['examstemplates']);
     }
+    
 }

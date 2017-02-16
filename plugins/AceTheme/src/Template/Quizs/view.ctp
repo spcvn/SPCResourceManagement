@@ -1,4 +1,4 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Quiz'), ['action' => 'edit', $quiz->id]) ?> </li>
@@ -10,13 +10,13 @@
         <li><?= $this->Html->link(__('List Quiz Details'), ['controller' => 'QuizDetails', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Quiz Detail'), ['controller' => 'QuizDetails', 'action' => 'add']) ?> </li>
     </ul>
-</nav>
+</nav> -->
 <div class="quizs view large-9 medium-8 columns content">
     <h3><?= h($quiz->id) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Candidate') ?></th>
-            <td><?= $quiz->has('candidate') ? $this->Html->link($quiz->candidate->id, ['controller' => 'Candidates', 'action' => 'view', $quiz->candidate->id]) : '' ?></td>
+            <td><?= $quiz->candidate->id? $this->Html->link($quiz->candidate->first_name.' '.$quiz->candidate->last_name, ['controller' => 'Candidates', 'action' => 'view', $quiz->candidate->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
@@ -49,7 +49,7 @@
     </div>
     <div class="row">
         <h4><?= __('Url') ?></h4>
-        <?= $this->Text->autoParagraph(h($quiz->url)); ?>
+        <?= $this->Html->link($quiz->url,['controller'=>'Quizs','action'=>'test',$quiz->url],['target'=>'_blank']); ?>
     </div>
     <div class="related">
         <h4><?= __('Related Quiz Details') ?></h4>

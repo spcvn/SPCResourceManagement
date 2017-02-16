@@ -12,5 +12,4 @@
     	<h1> Welcome to SPCVN</h1>
     	<?=$this->Html->image('logo.png')?>
     </div>
-    
 </div>

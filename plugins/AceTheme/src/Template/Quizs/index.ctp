@@ -22,13 +22,14 @@
             </tr>
         </thead>
         <tbody>
-            <?php $i=1; foreach ($quizs as $quiz): ?>
+            <?php 
+            $i=1; foreach ($quizs as $quiz): ?>
             <tr>
                 <td style="text-align: center;"><?= $i++; ?></td>
-                <td><?= $quiz->has('candidate') ? $this->Html->link($quiz->candidate->id, ['controller' => 'Candidates', 'action' => 'view', $quiz->candidate->id]) : '' ?></td>
+                <td><?= $quiz->has('candidate') ? $this->Html->link($quiz->candidate->first_name.' '.$quiz->candidate->last_name, ['controller' => 'Quizs', 'action' => 'view', $quiz->id]) : '' ?></td>
                 <td><?= $this->Number->format($quiz->time) ?></td>
                 <td><?= h($quiz->quiz_date) ?></td>
-                <td><?= $this->Number->format($quiz->status) ?></td>
+                <td><?= $status[$quiz->status] ?></td>
                 <td><?= $this->Number->format($quiz->score) ?></td>
                 <td><?= $this->Number->format($quiz->total) ?></td>
                 <td class="actions">

@@ -2,3 +2,4 @@
 <section class="wrapper-test">
     <?= $this->fetch('content') ?>
 </section>
+<?= $this->element('footer') ?>

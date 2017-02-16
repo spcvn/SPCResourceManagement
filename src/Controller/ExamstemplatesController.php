@@ -29,6 +29,9 @@ class ExamstemplatesController extends AppController
             'template_id',
             'count' => 'COUNT(quizs.id)'
         ])->group('template_id')->toArray();
+        /*$quizs_group = $this->Quizs->find('all',[
+            'fields'
+        ]);*/
         $this->set(compact('examstemplates','quizs_group'));
         $this->set('_serialize', ['examstemplates']);
     }

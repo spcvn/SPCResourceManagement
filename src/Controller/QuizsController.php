@@ -163,7 +163,8 @@ class QuizsController extends AppController
     	// check time duration
     	$quiz_date = $this->Quizs->get($quiz_id, ['fields' => 'quiz_date'])->toArray();
     	$time = $this->Quizs->get($quiz_id, ['fields' => 'time'])->toArray();
-    	$time = $time['time'] * 60;
+        $totalTime = $time['time'];
+    	$time = $totalTime * 60;
     	$now = date("Y-m-d H:i:s");
     	if(isset($quiz_date['quiz_date'])){
     		$quiz_date = $quiz_date['quiz_date']->i18nFormat('yyyy-MM-dd HH:mm:ss');
@@ -240,7 +241,7 @@ class QuizsController extends AppController
 
 		$this->set('time', $time);
     	$this->set(compact('candidate_info'));
-    	$this->set(compact('arrQuestions'));
+    	$this->set(compact('arrQuestions','totalTime'));
         $this->viewBuilder()->layout('test-layout');
     }
     

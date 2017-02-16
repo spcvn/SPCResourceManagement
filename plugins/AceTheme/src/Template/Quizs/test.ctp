@@ -6,27 +6,29 @@
 	    left: 84%;
 	}
 </style>
+<?php 
+    $i=1;
+    $total = count($arrQuestions);
+
+?>
 <div class="container">
     <div class="main-content">
         <div class="test-header">
             <h2>Candidate Name: <span><?= $candidate_info['first_name'] . ' '.$candidate_info['middle_name'].' '. $candidate_info['last_name']; ?></span></h2>
             <p class="position">Applied Position: <strong>IT</strong></p>
-            <p>Total question: <strong>50</strong></p>
-            <p>Total time: <strong>1000</strong> (minute)</p>
+            <p>Total question: <strong><?=$total?></strong></p>
+            <p>Total time: <strong><?=$totalTime?></strong> (minute)</p>
         </div>
         <div class="area-clock">
             <div class="text">
                 <label for="timer">Time</label>
                 <span id="timer"></span>
-                <label id="statusAnswer">Status : 0/20</label>
+                <label id="statusAnswer">Status : 0/<?=$total?></label>
             </div>
         </div>
         <div class="questions form content">
             <?= $this->Form->create('Quiz', ['id' => 'quiz', 'name' => 'quiz', 'onSubmit' => 'return confirmfrmSubmit();']) ?>
             <fieldset>
-                <?php $i=1;
-
-                ?>
                 <?php foreach ($arrQuestions as $arrQuestion): ?>
                     <div class="question_index" data-ans="uncheck">
                         <legend><?= __('question').' '. $i ?></legend>
@@ -93,7 +95,7 @@
 	      }
 	    });
         $('input[type=radio]').on('click',function(e){
-            $(this).parent('div[data-ans=uncheck]').attr('data-ans','checked');
+            $(this).parent().parent('div[data-ans=uncheck]').attr('data-ans','checked');
             $("#statusAnswer").html("Status : "+$('.question_index[data-ans=checked]').length+"/"+"<?=$i-1?>");
         });
         setPostionClock();
@@ -119,7 +121,7 @@
         var question = $('.question_index[data-ans=uncheck]');
         if(question.length>0){
             $('button[type=submit]').confirm({
-                content: "<?=__('Are you sure you want to submit')?>",
+                content: "<?=__('Are you sure you want to finish this test')?>",
                 title: "",
                 buttons: {
                     yes: {

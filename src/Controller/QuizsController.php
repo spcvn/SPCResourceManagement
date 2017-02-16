@@ -272,7 +272,7 @@ class QuizsController extends AppController
             $section_id             = $section->id;
             $section_ratio          = $section->_joinData->ratio;
 
-            $ratio = round( ($section_ratio/$section_num_questions)*100, 1, PHP_ROUND_HALF_UP);
+            $ratio = round( ($section_ratio/100)*$section_num_questions, 0, PHP_ROUND_HALF_UP);
 
 
             $arrQuestions = $this->Questions->find('list')
@@ -281,7 +281,7 @@ class QuizsController extends AppController
                                         ->limit($ratio)
                                         ->toArray();
             $arrQuestionQuizs = [];
-            
+            // echo "<pre>"; print_r(count($arrQuestions)); exit();
             while(count($arrQuestionQuizs) < count($arrQuestions)){
                 $id = $arrQuestions[array_rand($arrQuestions)];
                 if(!in_array($id, $arrQuestionQuizs)){

@@ -76,7 +76,7 @@
                                     </td>
 
                                     <td class="hidden-480">
-                                        0/<?=$quizs_group[$examstemplate->id]?>
+                                        0/<?=isset($quizs_group[$examstemplate->id])?$quizs_group[$examstemplate->id]:0?>
                                     </td>
 
                                     <td>

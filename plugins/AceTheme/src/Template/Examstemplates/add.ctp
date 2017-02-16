@@ -45,7 +45,7 @@
                             </select>
                         </div>
                         <div class="col-sm-2">
-                            <input onchange="hasChanged($(this))" type="text" min="0" max="100" class="width-80 num percent-section" name="sections[ratio][]" value="100"/>
+                            <input onchange="hasChanged($(this))" type="text" min="0" max="100" class="width-80 num percent-section noChange" name="sections[ratio][]" value="100"/>
                             <span>%</span>
                         </div>
                         <div class="col-sm-4 actions">
@@ -69,7 +69,7 @@
             <div class="row actions">
                 <div class="col-xs-push-2 col-xs-9">
                     <button type="reset" class="btn btn-default btn-reset">Reset</button>
-                    <button type="submit" class="btn btn-info">Save</button>
+                    <button type="submit" name="save" class="btn btn-info">Save</button>
                 </div>
             </div>
         <?= $this->Form->end() ?>
@@ -77,7 +77,7 @@
 
     </div>
 </div>
-<script>
+<script type="text/javascript">
     var line = 1;
 
     var per = 100;
@@ -93,7 +93,7 @@
             '</select>'+
             '</div>'+
             '<div class="col-sm-2">'+
-            '<input type="text" name="sections[ratio][]" class="width-80 percent-section" onchange="hasChanged($(this))" />'+
+            '<input type="text" name="sections[ratio][]" class="width-80 percent-section noChange" onchange="hasChanged($(this))" />'+
             ' <span>%</span>'+
             '</div>'+
             '<div class="col-sm-4 actions">'+
@@ -107,18 +107,18 @@
                 e.preventDefault();
                 line++;
                 $('.section-add').append(str);
-                if($(this).is(':focus')){
-
-                }else {
-                    /*$('.percent-section').each(function(){
-                        if($( this ).hasClass('hasChanged')){
-                            console.log($(this).val());
-                        }else{
-                            $( this ).val(Math.round(per/line));
-                        }
-                    });*/
-
-                }
+//                if($(this).is(':focus')){
+//
+//                }else {
+//                    /*$('.percent-section').each(function(){
+//                        if($( this ).hasClass('hasChanged')){
+//                            console.log($(this).val());
+//                        }else{
+//                            $( this ).val(Math.round(per/line));
+//                        }
+//                    });*/
+//
+//                }
                 addline();
 
                 resetPercent();
@@ -178,6 +178,10 @@
             }
         });
     }
+//    function check if print value bigger than value total
+    function validateMax(){
+
+    }
 
 //    function removeline(){
 //        $(this).parent().parent().remove();
@@ -185,20 +189,23 @@
 //    }
 
     function validateEmpty(){
-        $(".form-add-exam form").submit(function(){
+        $(".form-add-exam form").on('submit',function(){
             var isFormValid = true;
-            $(this).find('.error').hide();
-            $(".required input").each(function(){
-                if ($.trim($(this).val()).length == 0){
-                    /*$(this).parent().addClass("error");*/
-                    $(this).parent().append('<p class="error">Please fill in all the required fields (indicated by *)</p>');
+            $(this).find('.error').remove();
+            $(".required input").each(function(i, e){
+                if ($(e).val() === ""){
+                    $(this).parent().append('<p class="error">Please fill in all the required fields (*)</p>');
+                    if(i==0){
+                        $(e).focus();
+                    }
                     isFormValid = false;
                 }
                 else{
-                    $(this).parent().find('.error').hide();
+                    $(this).parent().find('.error').remove();
                 }
             });
 
+//            $(".required input").first().focus();/*????*/
             return isFormValid;
         });
     }
@@ -206,7 +213,6 @@
         var __this = $('.percent-section');
         __this.each(function(){
             $(this).blur(function(){
-                var input = $(this);
                 var percent = parseInt($(this).val());
                     $('.percent-section').each(function () {
                         console.log($(this));
@@ -238,6 +244,7 @@
     function hasChanged(e) {
         console.log(e.val());
         e.addClass('hasChanged');
+        e.removeClass('noChange');
         resetPercent();
         finishCount();
     }

@@ -45,7 +45,7 @@
                             </select>
                         </div>
                         <div class="col-sm-2">
-                            <input onchange="hasChanged($(this))" type="text" min="0" max="100" class="width-80 num percent-section noChange" name="sections[ratio][]" value="100"/>
+                            <input onkeyup="hasChanged($(this))" type="text" min="0" max="100" class="width-80 num percent-section noChange" name="sections[ratio][]" value="100"/>
                             <span>%</span>
                         </div>
                         <div class="col-sm-4 actions">
@@ -79,7 +79,7 @@
 </div>
 <script type="text/javascript">
     var line = 1;
-
+    var _Per_input_change = 0;
     var per = 100;
     function addline(){
         var str = '<div class="row line-add">'+
@@ -93,7 +93,7 @@
             '</select>'+
             '</div>'+
             '<div class="col-sm-2">'+
-            '<input type="text" name="sections[ratio][]" class="width-80 percent-section noChange" onchange="hasChanged($(this))" />'+
+            '<input type="text" name="sections[ratio][]" class="width-80 percent-section noChange" onkeyup="hasChanged($(this))" />'+
             ' <span>%</span>'+
             '</div>'+
             '<div class="col-sm-4 actions">'+
@@ -102,27 +102,16 @@
             '</div>'+
             '</div>';
 
-        $('.line-add .btn-add').each(function (index) {
-            $(this).click(function(e){
+        $('.section-add').each(function (index) {
+            $(this).on('click','.btn-add',function(e){
                 e.preventDefault();
                 line++;
                 $('.section-add').append(str);
-//                if($(this).is(':focus')){
-//
-//                }else {
-//                    /*$('.percent-section').each(function(){
-//                        if($( this ).hasClass('hasChanged')){
-//                            console.log($(this).val());
-//                        }else{
-//                            $( this ).val(Math.round(per/line));
-//                        }
-//                    });*/
-//
-//                }
-                addline();
+//                addline();
 
                 resetPercent();
                 finishCount();
+//                removeline();
             });
         });
     }
@@ -161,7 +150,7 @@
     }
     function resetPercent(){
 
-        stillPer= 100;
+        stillPer = 100;
         var cHasChanged = $('.section-add').find('.hasChanged').length;
         var numLine = $('.section-add').find('.percent-section').length;
 
@@ -172,6 +161,9 @@
         });
         var lineNotChanged = numLine - cHasChanged;
         var valInput = stillPer/lineNotChanged;
+        _Per_input_change = valInput;
+
+
         $('.percent-section').each(function (e) {
             if(!$( this ).hasClass('hasChanged')){
                 $( this ).val(Math.round(valInput));
@@ -183,21 +175,24 @@
 
     }
 
-//    function removeline(){
-//        $(this).parent().parent().remove();
-//        removeline();
-//    }
+    function removeline(){
+        $('.section-add').each(function(){
+            $(this).on('click','.btn-remove',function () {
+                $(this).parent().parent().remove();
+                resetPercent();
+                finishCount();
+            });
+        });
+    }
 
     function validateEmpty(){
         $(".form-add-exam form").on('submit',function(){
             var isFormValid = true;
             $(this).find('.error').remove();
-            $(".required input").each(function(i, e){
+            $(".required :input").each(function(i, e){
                 if ($(e).val() === ""){
                     $(this).parent().append('<p class="error">Please fill in all the required fields (*)</p>');
-                    if(i==0){
-                        $(e).focus();
-                    }
+                    console.log('index '+ i + ' '+$(e));
                     isFormValid = false;
                 }
                 else{
@@ -205,7 +200,6 @@
                 }
             });
 
-//            $(".required input").first().focus();/*????*/
             return isFormValid;
         });
     }
@@ -229,6 +223,9 @@
                buttons: {
                    yes: {
                        btnClass:'btn-danger',
+                       action: function () {
+                           
+                       }
                    },
                    no: {
                        keys: ['N'],
@@ -238,15 +235,24 @@
         });
 
         addline();
+        removeline();
         validateEmpty();
         validatePercent();
     });
     function hasChanged(e) {
-        console.log(e.val());
+
+        if( e.val() < 0 || e.val() === ''){
+            return;
+        }
         e.addClass('hasChanged');
         e.removeClass('noChange');
         resetPercent();
         finishCount();
+        if(e.val() > 100 || _Per_input_change < 0){
+            e.val(0);
+            resetPercent();
+            finishCount();
+        }
     }
 
 </script>

@@ -136,8 +136,9 @@ class ExamstemplatesController extends AppController
      * @return \Cake\Network\Response|null Redirects to exam_assignment.ctp.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function examAssignment()
+    public function examAssignment($id = null)
     {
+
         $examstemplates = $this->Examstemplates->find('all',['contain' => ['Sections']])->where(['is_delete'=>0])->toArray();
         //Load candidates
         $this->loadModel('Candidates');
@@ -145,6 +146,7 @@ class ExamstemplatesController extends AppController
             return $val->last_name.' '.$val->first_name;
         }])->where(['is_delete'=>0])->toArray();
 
+        $this->set('assign_candidate_id',$id);
         $this->set(compact('examstemplates','candidates'));
         $this->set('_serialize', ['examstemplates']);
     }

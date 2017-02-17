@@ -52,6 +52,7 @@
             </div>
         </form>
     </div>
+    <?=$assign_candidate_id?>
 </div>
 <?php
     function cvExamtemplate($templates){
@@ -109,9 +110,17 @@
                     $('strong#ratio').text(ui.item.ratio);
                 }
                 return false;
-            }
+            },
+            create: function( event, ui ) {
+                if(e=='#autoCandidate'){
+                    console.log(data);
+                    $(e).val(ui.item);
+                    $(e+'_hidden').val(<?=$assign_candidate_id?>);
+                }
+                return false;
+            },
         }).bind('focus', function(){ $(this).autocomplete("search"); } );
-    }
+    }//assign_candidate_id
     $(document).ready(function () {
         var availableCandiadte = <?=cvCandidates($candidates)?>;
         var availableTemplate = <?=cvExamtemplate($examstemplates)?>;

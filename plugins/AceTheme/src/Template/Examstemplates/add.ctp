@@ -115,6 +115,7 @@
             });
         });
     }
+
     function finishCount(){
         //tinh total :
         var total = countval();
@@ -186,21 +187,20 @@
     }
 
     function validateEmpty(){
-        $(".form-add-exam form").on('submit',function(){
-            var isFormValid = true;
+        $(document).on('submit','.form-add-exam form', function(e){
+            e.preventDefault();
             $(this).find('.error').remove();
-            $(".required :input").each(function(i, e){
-                if ($(e).val() === ""){
+            $(".required input[type=text]").each(function(){
+
+                if ($(this).val() === ""){
+//                    $(this).focus();return false;
                     $(this).parent().append('<p class="error">Please fill in all the required fields (*)</p>');
-                    console.log('index '+ i + ' '+$(e));
-                    isFormValid = false;
+                    return false;
                 }
                 else{
                     $(this).parent().find('.error').remove();
                 }
             });
-
-            return isFormValid;
         });
     }
     function validatePercent(){

@@ -2,8 +2,7 @@
     <div class="footer-inner">
         <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Resource Management</span>
-							Application &copy; 2016-2017
+                            Copyright &copy; 2016-2017 <span class="blue bolder">Powered by SPC-VN</span>
 						</span>
 
             &nbsp; &nbsp;

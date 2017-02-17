@@ -14,7 +14,7 @@
         <div class="actions">
             <?= $this->Html->link(
                 $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
-                ['controller'=>'examstemplates','action' => 'examAssignment', $candidate->id],
+                ['action' => 'edit', $candidate->id],
                 ['class'=>'btn-edit-simple', 'title'=>__('edit'),'escape'=>false]) ?>
             <a class="btn-simple btn-create-test" href="#"><i class="fa fa-file-o"></i> <?= __('create_test');?></a>
             <a class="btn-simple btn-member" title="<?= __('member_of_spc')?>"><?= __('member_of_spc')?></a>
@@ -78,12 +78,12 @@
                             <tr>
                                 <th scope="row"><?= __('region') ?></th>
                                 <td>:</td>
-                                <td><?= h($candidate->province[0].", ".$candidate->district[0].", ".$candidate->ward[0]) ?></td>
+                                <td><?= h($candidate->addr01.", ".$candidate->province[0].", ".$candidate->district[0].", ".$candidate->ward[0]) ?></td>
                             </tr>
                             <tr>
                                 <th scope="row"><?= __('address') ?></th>
                                 <td>:</td>
-                                <td><?= h($candidate->addr01) ?></td>
+                                <td></td>
                             </tr>
 
                         </table>
@@ -106,11 +106,11 @@
                                 <td>:</td>
                                 <td><?= h($candidate->expected_salary) ?></td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <th scope="row"><?= __('start_work') ?></th>
                                 <td>:</td>
                                 <td><?= h($candidate->start_work) ?></td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <th scope="row"><?= __('result') ?></th>
                                 <td>:</td>

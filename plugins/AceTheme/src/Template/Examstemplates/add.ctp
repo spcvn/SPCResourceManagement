@@ -188,12 +188,12 @@
 
     function validateEmpty(){
         $(document).on('submit','.form-add-exam form', function(e){
-            e.preventDefault();
+
             $(this).find('.error').remove();
             $(".required input[type=text]").each(function(){
 
                 if ($(this).val() === ""){
-//                    $(this).focus();return false;
+                    e.preventDefault();
                     $(this).parent().append('<p class="error">Please fill in all the required fields (*)</p>');
                     return false;
                 }

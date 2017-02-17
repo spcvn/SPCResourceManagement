@@ -14,7 +14,7 @@
         <div class="actions">
             <?= $this->Html->link(
                 $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
-                ['action' => 'edit', $candidate->id],
+                ['controller'=>'examstemplates','action' => 'examAssignment', $candidate->id],
                 ['class'=>'btn-edit-simple', 'title'=>__('edit'),'escape'=>false]) ?>
             <a class="btn-simple btn-create-test" href="#"><i class="fa fa-file-o"></i> <?= __('create_test');?></a>
             <a class="btn-simple btn-member" title="<?= __('member_of_spc')?>"><?= __('member_of_spc')?></a>

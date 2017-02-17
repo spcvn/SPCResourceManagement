@@ -33,7 +33,10 @@
                 <td><?= $candidate->position->name ?></td>
                 <td style="text-align: center;">
                     <div class="btn-group">
-                        <a class="btn btn-xs btn-info" title="<?= __('create_test')?>"><i class="fa fa-file-text-o"></i></a>
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'fa fa-file-text-o']),
+                        ['controller'=>'examstemplates','action' => 'examAssignment', $candidate->id],
+                        ['class'=>'btn btn-xs btn-info','title'=>__('create_test'),'escape'=>false]) ?>
                     </div>
                 </td>
                 <td class="actions">

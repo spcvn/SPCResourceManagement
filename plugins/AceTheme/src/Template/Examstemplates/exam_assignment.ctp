@@ -114,7 +114,13 @@
             create: function( event, ui ) {
                 if(e=='#autoCandidate'){
                     console.log(data);
-                    $(e).val(ui.item);
+                    var id = <?=$assign_candidate_id?>;
+                    $.each(data,function(key,value){
+                        if(id == value.value){
+                            $(e).val(value.label);
+                        }    
+                    });
+                    
                     $(e+'_hidden').val(<?=$assign_candidate_id?>);
                 }
                 return false;

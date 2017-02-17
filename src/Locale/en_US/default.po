@@ -384,3 +384,19 @@ msgstr "Add User"
 
 msgid "user"
 msgstr "User"
+
+msgid "quiz_date"
+msgstr "Quiz date"
+
+msgid "total"
+msgstr "Total"
+
+msgid "time"
+msgstr "Time"
+
+msgid "quiz"
+msgstr "Quiz"
+
+msgid "code"
+msgstr "Code"
+

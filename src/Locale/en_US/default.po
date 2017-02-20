@@ -1,4 +1,7 @@
 msgid "view"
+msgstr "View"
+
+msgid "detail"
 msgstr "Detail"
 
 msgid "show_detail"

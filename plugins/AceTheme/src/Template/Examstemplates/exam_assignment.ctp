@@ -11,8 +11,8 @@
     <div class="form-assignment">
         <form method="post" action="<?=$this->Url->build(['controller'=>'quizs', 'action'=>'generate'])?>">
             <div class="row input select required">
-                <label class="col-sm-2"><?= __('candidate_name')?>:</label>
-                <div class="col-sm-10">
+                <label class="col-sm-3 col-lg-2"><?= __('candidate_name')?>:</label>
+                <div class="col-sm-9 col-lg-10">
                     <div class="autocomplete_wrap">
                         <input id="autoCandidate" placeholder="Please select...">
                         <input type="hidden" name="candidate_id" id="autoCandidate_hidden" value="" />
@@ -20,8 +20,8 @@
                 </div>
             </div>
             <div class="row input select required">
-                <label class="col-sm-2"><?= __('template_type')?>:</label>
-                <div class="col-sm-10">
+                <label class="col-sm-3 col-lg-2"><?= __('template_type')?>:</label>
+                <div class="col-sm-9 col-lg-10">
                     <div class="autocomplete_wrap">
                         <input id="autoTemplate" placeholder="Please select...">
                         <input type="hidden" name="template_id" id="autoTemplate_hidden" value="" />
@@ -29,8 +29,8 @@
                 </div>
             </div>
             <div class="row input text">
-                <label class="col-sm-2"><?= __('duration')?>:</label>
-                <label class="col-sm-10"><strong id="duration">0</strong> minutes</label>
+                <label class="col-sm-3"><?= __('duration')?>:</label>
+                <label class="col-sm-9"><strong id="duration">0</strong> minutes</label>
             </div>
             <div class="row input text">
                 <label class="col-sm-2"><?= __('number_of_question')?>:</label>
@@ -114,7 +114,7 @@
             create: function( event, ui ) {
                 if(e=='#autoCandidate'){
                     console.log(data);
-                    var id = <?=$assign_candidate_id?>;
+                    var id = <?= isset($assign_candidate_id)?$assign_candidate_id:0 ?>;
                     $.each(data,function(key,value){
                         if(id == value.value){
                             $(e).val(value.label);

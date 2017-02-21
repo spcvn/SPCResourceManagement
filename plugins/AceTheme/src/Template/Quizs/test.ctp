@@ -26,8 +26,8 @@
                 <label id="statusAnswer">Status : 0/<?=$total?></label>
             </div>
         </div>
-        <div class="questions form content">
-            <?= $this->Form->create('Quiz', ['id' => 'quiz', 'name' => 'quiz', 'onSubmit' => 'return confirmfrmSubmit();']) ?>
+        <div class="questions form">
+            <?= $this->Form->create('Quiz', ['id' => 'quiz', 'name' => 'quiz']) ?>
             <fieldset>
                 <?php foreach ($arrQuestions as $arrQuestion): ?>
                     <div class="question_index" data-ans="uncheck">
@@ -51,11 +51,11 @@
             </fieldset>
             <?= $this->Form->input('status',['type'=>"hidden","value"=>"1"])?>
             <div class="row Actions">
-                <div class="col-xs-6">
+                <!-- <div class="col-xs-6">
                     <?= $this->Html->link(__('stop'),"javascript:cancel()",["id"=>"btnCancel", 'class'=>'btn btn-stop btn-danger'])?>
-                </div>
-                <div class="col-xs-6 text-right">
-                    <?= $this->Form->button(__('Submit')) ?>
+                </div> -->
+                <div class="text-center">
+                    <?= $this->Form->button(__('finish'),['class'=>'btn btn-stop btn-danger']) ?>
                 </div>
 
             </div>
@@ -73,17 +73,29 @@
 
     function timer()
     {
-      $("#timer").html(Math.floor(count/60) + ":" + count%60);
-      if (count <= 0)
-      {
+        $("#timer").html(secondsTimeSpanToHMS(count));
+        console.log($("#timer").width());
+        if($("#timer").width() >= 160){
+            $('.area-clock #timer').css('font-size','29px');
+        }else{
+            $('.area-clock #timer').css('font-size','36px');
+        }
+        if (count <= 0)
+        {
         //time out
         $("input[name=status]").val(2);
          clearInterval(counter);
          $('#quiz').submit();
-      }
-      count = count - 1;
+        }
+        count = count - 1;
     }
-
+    function secondsTimeSpanToHMS(s) {
+        var h = Math.floor(s/3600);
+        s -= h*3600;
+        var m = Math.floor(s/60);
+        s -= m*60;
+        return h+":"+(m < 10 ? '0'+m : m)+":"+(s < 10 ? '0'+s : s); 
+    }
     // fixed timer
     $(document).ready(function () {
 	    $(window).bind("scroll", function(e) {
@@ -99,16 +111,9 @@
             $("#statusAnswer").html("Status : "+$('.question_index[data-ans=checked]').length+"/"+"<?=$i-1?>");
         });
         setPostionClock();
-        setConfirmStop();
+        btnSubmit();
+
     });
-    function cancel(){
-        if(confirm('You sure you want to CANCEL this test?')){
-            //cancel
-                $("input[name=status]").val(3);
-                clearInterval(counter);
-                $('#quiz').submit();
-            }
-    }
     /**
     * Edit : Uno Trung
     * date : 2016-28-12
@@ -117,33 +122,31 @@
     * - scroll to not yet answer
     * - count answered
     */
-    function confirmfrmSubmit(){
-        var question = $('.question_index[data-ans=uncheck]');
-        if(question.length>0){
-            $('button[type=submit]').confirm({
-                content: "<?=__('Are you sure you want to finish this test')?>",
-                title: "",
+    function btnSubmit(){
+        $('button[type=submit]').confirm({
+                content: function(){
+                    return contentConfirm();
+                }, 
+                title : "",
                 buttons: {
-                    yes: {
+                    finish: {
                         btnClass:'btn-danger',
                         keys: ['Y'],
                         action:function(){
-                            return true;
+                            $('#quiz').submit();
                         }
                     },
-                    no: {
+                    back: {
                         keys: ['N'],
                         action:function(){
+                            var question = $('.question_index[data-ans=uncheck]');
                             $('html, body').animate({
                                 scrollTop: question.first().offset().top-100
                             }, 2000);
-                            return false;
                         }
                     },
                 }
             });
-        }
-        return true;
     }
     function setPostionClock(){
         var _this = $('.area-clock');
@@ -152,25 +155,14 @@
         var point = (wsc-wct)/2 + 5;
         $(_this).css('right',point)
     };
-
-    function setConfirm(){
-        $('button[type=submit]').on('click',function(){
-            confirmfrmSubmit();
-        });
+    function contentConfirm(){
+        var question = $('.question_index[data-ans=uncheck]');
+        if(question.length>0){
+            return "<?=__('Some questions is answer, are you sure??? ')?>";
+        }else{
+            return "<?=__('Are you sure to finish this test?')?>";
+        }
     }
-    function setConfirmStop(){
-        $('.btn-stop').confirm({
-            content: "<?=__('Are you sure you want to submit')?>",
-            title: "",
-            buttons: {
-                yes: {
-                    btnClass:'btn-danger',
-                    keys: ['Y'],
-                },
-                no: {
-                    keys: ['N'],
-                },
-            }
-        });
-    }
+    
+    
 </script>

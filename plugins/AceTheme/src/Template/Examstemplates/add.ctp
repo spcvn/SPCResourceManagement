@@ -81,6 +81,7 @@
     var line = 1;
     var _Per_input_change = 0;
     var per = 100;
+    var countSections = <?=$sections->count()?>;
     function addline(){
         var str = '<div class="row line-add">'+
             '<div class="col-sm-6">'+
@@ -104,6 +105,15 @@
 
         $('.section-add').each(function (index) {
             $(this).on('click','.btn-add',function(e){
+                /*
+                * Count section to append 
+                */
+                if(countSections < 2) {
+                    $.alert('Not enought section for this exam template!');
+                    return;
+                }
+                countSections--;
+
                 e.preventDefault();
                 line++;
                 $('.section-add').append(str);

@@ -21,18 +21,11 @@ class ExamstemplatesController extends AppController
         $examstemplates = $this->paginate($this->Examstemplates,[
             'contain' => ['Sections']
         ]);
-        $this->loadModel('Quizs');
-        $quizs_group = $this->Quizs->find('list',[
-            'keyField' => 'template_id',
-            'valueField'=> 'count',
-        ])->select([
-            'template_id',
-            'count' => 'COUNT(quizs.id)'
-        ])->group('template_id')->toArray();
-        /*$quizs_group = $this->Quizs->find('all',[
-            'fields'
-        ]);*/
-        $this->set(compact('examstemplates','quizs_group'));
+        $quizs_test = $this->report_temp_test();
+        $quizs_status = $this->report_temp_status();
+
+        
+        $this->set(compact('examstemplates','quizs_test','quizs_status'));
         $this->set('_serialize', ['examstemplates']);
     }
 
@@ -150,5 +143,46 @@ class ExamstemplatesController extends AppController
         $this->set(compact('examstemplates','candidates'));
         $this->set('_serialize', ['examstemplates']);
     }
-    
+    private function report_temp_status(){
+        $this->loadModel('Quizs');
+        $quizs_group = $this->Quizs->find('list',[
+            'keyField' => 'template_id'
+ ,           'valueField'=> 'count',
+        ])->select([
+            'template_id',
+            'count' => 'COUNT(quizs.id)'
+        ])->where(['quizs.status > 0'])->group('template_id,status')->toArray();
+        return $quizs_group;
+    }
+
+    private function report_temp_test(){
+        $this->loadModel('Quizs');
+        $quizs_group = $this->Quizs->find('list',[
+            'keyField' => 'template_id',
+            'valueField'=> 'count',
+        ])->select([
+            'template_id',
+            'count' => 'COUNT(quizs.id)'
+        ])->group('template_id')->toArray();
+        return $quizs_group;
+    }
+    private function _cvExamtemplate($templates){
+        $str = '[';
+        foreach ($templates as $val) {
+            $ratio = "";
+            foreach ($val->sections as $section) {
+                $ratio .= $section->name.': '.$section->_joinData->ratio.'%; ';
+            }
+            $str.= '{ 
+                label: "'.$val->name.'", 
+                value: "'.$val->id.'",
+                duration: "'.$val->duration.'",
+                num_questions: "'.$val->num_questions.'",
+                ratio: "'.$ratio.'",
+            },';
+        }
+        $str .= ' ]';
+        $str = str_replace(", ]", "]", $str);
+        return $str;
+    }
 }

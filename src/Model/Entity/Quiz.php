@@ -8,16 +8,20 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $candidate_id
+ * @property int $template_id
  * @property string $code
  * @property string $url
  * @property int $time
  * @property \Cake\I18n\Time $quiz_date
  * @property int $status
  * @property int $score
- * @property int $total
  * @property string $ipaddress
+ * @property int $is_delete
+ * @property \Cake\I18n\Time $datecreate
+ * @property \Cake\I18n\Time $updatecreate
  *
  * @property \App\Model\Entity\Candidate $candidate
+ * @property \App\Model\Entity\Template $template
  * @property \App\Model\Entity\QuizDetail[] $quiz_details
  */
 class Quiz extends Entity

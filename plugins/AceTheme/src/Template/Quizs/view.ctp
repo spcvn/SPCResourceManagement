@@ -17,11 +17,11 @@
 <!--        </tr>-->
         <tr>
             <th scope="row"><?= __('quiz_date') ?></th>
-            <td><?= h($quiz->quiz_date) ?></td>
+            <td><?= (!is_null($quiz->quiz_date))?$quiz->quiz_date->format('Y-m-d h:i:s'):"---" ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('template_name') ?></th>
-            <td><?= h($quiz->quiz_date) ?></td>
+            <td><?= $quiz->examstemplate->name ?></td>
         </tr>
 
         <tr>
@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('total') ?></th>
-            <td><?= $this->Number->format($quiz->total) ?></td>
+            <td><?= $quiz->examstemplate->num_questions ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('score') ?></th>
@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('status') ?></th>
-            <td><?= $this->Number->format($quiz->status) ?></td>
+            <td><?= $this->IndexHelper->status($quiz->status) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('code') ?></th>
@@ -46,7 +46,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Url') ?></th>
-            <td><?= $this->Html->link($quiz->url,['controller'=>'Quizs','action'=>'test',$quiz->url],['target'=>'_blank']); ?></td>
+            <td><?= $quiz->url//$this->Html->link($quiz->url,['controller'=>'Quizs','action'=>'test',$quiz->url],['target'=>'_blank']); ?></td>
         </tr>
     </table>
 </div>

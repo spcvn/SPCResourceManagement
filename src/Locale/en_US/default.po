@@ -1,4 +1,7 @@
 msgid "view"
+msgstr "View"
+
+msgid "detail"
 msgstr "Detail"
 
 msgid "show_detail"
@@ -14,7 +17,7 @@ msgid "delete"
 msgstr "Delete"
 
 msgid "confirm_delete"
-msgstr "Are you sure you want to delete"
+msgstr "Are you sure to delete?"
 
 msgid "username"
 msgstr "Username"
@@ -41,7 +44,7 @@ msgid "status"
 msgstr "Status"
 
 msgid "married_status"
-msgstr "Married Status"
+msgstr "Marriage Status"
 
 msgid "email"
 msgstr "Email"
@@ -77,16 +80,16 @@ msgid "interview_date"
 msgstr "Interview Date"
 
 msgid "start_work"
-msgstr "Start Work"
+msgstr "Start Working Date"
 
 msgid "start_working_date"
 msgstr "Start Working date"
 
 msgid "exam_name"
-msgstr "Exam Name"
+msgstr "Exam Template Name"
 
 msgid "number_of_question"
-msgstr "Number of question"
+msgstr "No. question"
 
 msgid "question"
 msgstr "Question"
@@ -140,7 +143,7 @@ msgid "correct_answer"
 msgstr "Correct Answer"
 
 msgid "alert_checkbox"
-msgstr "Please check in which is correct"
+msgstr "Please select the correct answer"
 
 msgid "template_name"
 msgstr "Template name"
@@ -161,7 +164,7 @@ msgid "test"
 msgstr "Test"
 
 msgid "tested"
-msgstr "Tested"
+msgstr "Tested/Assign"
 
 msgid "action"
 msgstr "Action"
@@ -194,16 +197,16 @@ msgid "search"
 msgstr "Search"
 
 msgid "title_add_answer"
-msgstr "Add a new answer"
+msgstr "Add new answer"
 
 msgid "title_remove_answer"
-msgstr "Remove an answer"
+msgstr "Remove answer"
 
 msgid "related_answers"
 msgstr "Related Answers"
 
 msgid "is_correct"
-msgstr "Is Correct"
+msgstr "Is correct"
 
 msgid "expected_salary"
 msgstr "Expected Salary"
@@ -215,10 +218,10 @@ msgid "account"
 msgstr "Account"
 
 msgid "create_an_account"
-msgstr "Create An Account"
+msgstr "Create New Account"
 
 msgid "candidate_exists"
-msgstr "Candidates exists"
+msgstr "Existed Candidates"
 
 msgid "account_information"
 msgstr "Account Information"
@@ -251,10 +254,10 @@ msgid "exam"
 msgstr "Exam"
 
 msgid "create_a_template"
-msgstr "Create a template"
+msgstr "Create new template"
 
 msgid "all_exam"
-msgstr "All Exam"
+msgstr "All Exams"
 
 msgid "add_exam"
 msgstr "Add Exam"
@@ -278,7 +281,7 @@ msgid "users"
 msgstr "Users"
 
 msgid "profile_user"
-msgstr "Profile user"
+msgstr "User Profile"
 
 msgid "edit_user"
 msgstr "Edit user"
@@ -290,10 +293,10 @@ msgid "all_users"
 msgstr "All users"
 
 msgid "select_a_candidate"
-msgstr "Select a candidate"
+msgstr "Select existed candidate"
 
 msgid "select_a_position"
-msgstr "Select a position"
+msgstr "Select existed position"
 
 msgid "generate_password"
 msgstr "Generate password"
@@ -386,7 +389,7 @@ msgid "user"
 msgstr "User"
 
 msgid "quiz_date"
-msgstr "Quiz date"
+msgstr "Test date"
 
 msgid "total"
 msgstr "Total"
@@ -395,7 +398,7 @@ msgid "time"
 msgstr "Time"
 
 msgid "quiz"
-msgstr "Quiz"
+msgstr "Test"
 
 msgid "code"
 msgstr "Code"

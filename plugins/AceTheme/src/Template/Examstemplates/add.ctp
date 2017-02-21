@@ -187,8 +187,13 @@
     }
 
     function removeline(){
+        
+
         $('.section-add').each(function(){
             $(this).on('click','.btn-remove',function () {
+                if(line <=1) return;
+                line--;
+                countSections++;
                 $(this).parent().parent().remove();
                 resetPercent();
                 finishCount();

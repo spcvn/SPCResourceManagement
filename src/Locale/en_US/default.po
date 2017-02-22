@@ -320,7 +320,7 @@ msgid "edit_this_question"
 msgstr "Edit this question"
 
 msgid "member_of_spc"
-msgstr "Member of SPC"
+msgstr "Create user"
 
 msgid "create_test"
 msgstr "Create Test"

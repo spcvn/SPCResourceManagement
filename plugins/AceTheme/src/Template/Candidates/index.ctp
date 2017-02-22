@@ -17,7 +17,6 @@
                 <th scope="col"><?= $this->Paginator->sort('birth_date') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('mobile') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('position') ?></th>
-                <th scope="col" class="actions"><a><?= __('test') ?></a></th>
                 <th scope="col" class="actions"><a><?= __('actions') ?></a></th>
             </tr>
         </thead>
@@ -31,16 +30,12 @@
                 <td><?= h($candidate->birth_date->format('Y-m-d')) ?></td>
                 <td><?= h($candidate->mobile) ?></td>
                 <td><?= $candidate->position->name ?></td>
-                <td style="text-align: center;">
+                <td class="actions">
                     <div class="btn-group">
                     <?= $this->Html->link(
                         $this->Html->tag('i','',['class'=>'fa fa-file-text-o']),
                         ['controller'=>'examstemplates','action' => 'examAssignment', $candidate->id],
                         ['class'=>'btn btn-xs btn-info','title'=>__('create_test'),'escape'=>false]) ?>
-                    </div>
-                </td>
-                <td class="actions">
-                    <div class="btn-group">
                         <?= $this->Html->link(
                             $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
                             ['action' => 'view', $candidate->id],

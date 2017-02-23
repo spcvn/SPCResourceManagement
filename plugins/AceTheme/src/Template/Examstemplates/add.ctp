@@ -11,31 +11,31 @@
     <div class="form-add-exam">
         <?= $this->Form->create($examstemplate) ?>
             <div class="row form-group required">
-                <label  class="col-xs-12 col-sm-2 control-label"><?= __('template_name')?></label>
-                <div class="col-xs-12 col-sm-5">
+                <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('template_name')?></label>
+                <div class="col-xs-10 col-sm-5">
                     <input type="text" name="name" class="width-100" />
                 </div>
             </div>
             <div class="row form-group required">
-                <label  class="col-xs-12 col-sm-2 control-label"><?= __('number_of_question')?></label>
-                <div class="col-xs-12 col-sm-5">
+                <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('number_of_question')?></label>
+                <div class="col-xs-10 col-sm-5">
                     <input type="text" name="num_questions" class="width-100 num" />
                 </div>
             </div>
             <div class="row form-group required">
-                <label  class="col-xs-12 col-sm-2 control-label"><?= __('duration')?></label>
-                <div class="col-xs-12 col-sm-5">
+                <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('duration')?></label>
+                <div class="col-xs-10 col-sm-5">
                     <input type="text" name="duration" class="width-100 num" />
                 </div>
-                <div class="col-sm-3">
+                <div class="col-xs-2 col-sm-3">
                     <span><?= __('minute')?>(s)</span>
                 </div>
             </div>
             <div class="row form-group">
-                <label  class="col-xs-12 col-sm-2 control-label"><?= __('section')?></label>
-                <div class="col-xs-12 col-sm-10 section-add">
+                <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('section')?></label>
+                <div class="col-xs-12 col-sm-9 col-md-9 section-add">
                     <div class="row line-add">
-                        <div class="col-sm-6">
+                        <div class="col-xs-6 col-sm-7">
                             <select class="width-100" name='sections[_ids][]' onChange="enableSeleced()">
                                 <?php
                                     foreach ($sections as $key=>$value) {
@@ -44,11 +44,11 @@
                                 ?>
                             </select>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-xs-3 col-sm-2">
                             <input onkeyup="hasChanged($(this))" type="text" min="0" max="100" class="width-80 num percent-section noChange" name="sections[ratio][]" value="100"/>
                             <span>%</span>
                         </div>
-                        <div class="col-sm-4 actions">
+                        <div class="col-xs-3 col-sm-3 actions">
                             <a class="btn btn-remove"><i class="fa fa-remove"></i></a>
                             <a class="btn btn-add">+</i></a>
                         </div>
@@ -56,10 +56,10 @@
                 </div>
             </div>
             <div class="row form-group">
-                <div class="col-sm-10 col-sm-push-2">
+                <div class="col-xs-12 col-sm-9 col-lg-9 col-sm-push-3 col-lg-push-2">
                     <div class="row">
-                        <label class="col-sm-6 text-right">Total</label>
-                        <div class="col-xs-2">
+                        <label class="col-xs-6 col-sm-7 text-right">Total</label>
+                        <div class="col-xs-3 col-sm-2">
                             <input class="total-percent width-80" type="text" value="100" readonly/> <span>%</span>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
 
             </div>
             <div class="row actions">
-                <div class="col-xs-push-2 col-xs-9">
+                <div class="col-xs-push-3 col-lg-push-2 col-xs-9">
                     <button type="reset" class="btn btn-default btn-reset">Reset</button>
                     <button type="submit" name="save" class="btn btn-info">Save</button>
                 </div>
@@ -86,7 +86,7 @@
 
     function addline(){
         var str = '<div class="row line-add">'+
-            '<div class="col-sm-6">'+
+            '<div class="col-xs-6 col-sm-7">'+
             '<select class="width-100" name="sections[_ids][]" onChange="enableSeleced()">'+
             '<?php
                             foreach ($sections as $key=>$value) {
@@ -95,11 +95,11 @@
                         ?>'+
             '</select>'+
             '</div>'+
-            '<div class="col-sm-2">'+
+            '<div class="col-xs-3 col-sm-2">'+
             '<input type="text" name="sections[ratio][]" class="width-80 percent-section noChange" onkeyup="hasChanged($(this))" />'+
             ' <span>%</span>'+
             '</div>'+
-            '<div class="col-sm-4 actions">'+
+            '<div class="col-xs-3 col-sm-3 actions">'+
             '<a class="btn btn-remove"><i class="fa fa-remove"></i></a>'+
             ' <a class="btn btn-add">+</i></a>'+
             '</div>'+

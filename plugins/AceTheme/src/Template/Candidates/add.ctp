@@ -13,9 +13,10 @@
         <fieldset>
             <?php
 
-            echo $this->Form->input('first_name',['label'=>'First Name']);
-            echo $this->Form->input('middle_name',['label'=>'Middle Name']);
-            echo $this->Form->input('last_name',['label'=>'Last Name']);
+            echo $this->Form->input('first_name',['label'=>__('first_name')]);
+            echo $this->Form->input('middle_name',['label'=>__('middle_name')]);
+            echo $this->Form->input('last_name',['label'=>__('last_name')]);
+            echo $this->Form->input('email',['required'=>true]);
             echo $this->Form->input('birth_date', ['type'=>'text','class' => 'datepicker', 'label'=>__('birthday')]);
             $marriedStatus = ['0' => __('single'), '1' => __('married')];
             echo $this->Form->input('married',['label'=>__('marriage_status'),'type'=>'select','options'=>$marriedStatus]);
@@ -75,6 +76,11 @@
                                 <th><?= __('last_name')?></th>
                                 <td>:</td>
                                 <td><span id="get_last-name"></td>
+                            </tr>
+                            <tr>
+                                <th><?= __('email')?></th>
+                                <td>:</td>
+                                <td><span id="get_email"></td>
                             </tr>
                             <tr>
                                 <th><?= __('birthday')?></th>
@@ -159,7 +165,7 @@
 
     }
     function addRequired(idi) {
-        $(idi).addClass('required');
+        $(idi).parent().addClass('required');
     };
     $(document).ready( function() {
         $( ".datepicker" ).datepicker({

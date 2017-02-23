@@ -798,17 +798,7 @@ form .error{
    margin: 0 !important;
 }
 /*style content test end*/
-@media (min-width: 768px) {
-    .form .text input,
-    .form .email input,
-    .form .password input,
-    .form .select input,
-    .form .number input,
-    .form .file input,
-    .form .textarea textarea{
-        width: 65%;
-        resize: none;
-    }
+@media (min-width: 1200px) {
     .form .text label,
     .form .email label,
     .form .password label,
@@ -817,6 +807,16 @@ form .error{
     .form .file label,
     .form .textarea label{
         width: 18%;
+    }
+    .form .text label.error,
+    .form .email label.error,
+    .form .password label.error,
+    .form .select label.error,
+    .form .number label.error,
+    .form .file label.error,
+    .form .textarea label.error{
+        width: 100%;
+        padding-left: 18%;
     }
     .users.form .wrap-edit .text input,
     .users.form .wrap-edit .email input,
@@ -834,6 +834,19 @@ form .error{
     .candidates.form .wrap-edit .textarea textarea{
         width: 82%;
     }
+}
+@media (min-width: 991px) {
+    .form .text input,
+    .form .email input,
+    .form .password input,
+    .form .select input,
+    .form .number input,
+    .form .file input,
+    .form .textarea textarea{
+        width: 65%;
+        resize: none;
+    }
+
     .form-question form .question-action .text input{
         width: 100%;
     }
@@ -849,8 +862,49 @@ form .error{
         width: 280px;
     }
 }
-@media (max-width: 1200px) {
-    
+@media (max-width: 1199px) {
+    .users .wrap-edit,
+    .candidates .wrap-edit{
+        width: 90%;
+    }
+    .form .text label,
+    .form .email label,
+    .form .password label,
+    .form .select label,
+    .form .number label,
+    .form .file label,
+    .form .textarea label{
+        width: 22%;
+    }
+    .form .text label.error,
+    .form .email label.error,
+    .form .password label.error,
+    .form .select label.error,
+    .form .number label.error,
+    .form .file label.error,
+    .form .textarea label.error{
+        padding-left: 22%;
+    }
+    .users.form .wrap-edit .text input,
+    .users.form .wrap-edit .email input,
+    .users.form .wrap-edit .password input,
+    .users.form .wrap-edit .select input,
+    .users.form .wrap-edit .number input,
+    .users.form .wrap-edit .file input,
+    .users.form .wrap-edit .textarea textarea,
+    .candidates.form .wrap-edit .text input,
+    .candidates.form .wrap-edit .email input,
+    .candidates.form .wrap-edit .password input,
+    .candidates.form .wrap-edit .select input,
+    .candidates.form .wrap-edit .number input,
+    .candidates.form .wrap-edit .file input,
+    .candidates.form .wrap-edit .textarea textarea{
+        width: 78%;
+    }
+    .datetimepk label{
+        float: left;
+        width: 22%;
+    }
 }
 @media (max-width: 991px) {
 

@@ -92,7 +92,6 @@ class QuizsController extends AppController
             $quiz->time = $examstemplates->duration;
             $quiz->code = $this->randomCode();
             $quiz->url = $this->randomURL();
-            
             if($this->Quizs->save($quiz)){
                 //get question follow template
                 $this->registerQuizDetail($quiz->id, $examstemplates);

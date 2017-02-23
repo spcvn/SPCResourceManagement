@@ -55,6 +55,7 @@ class ExamstemplatesController extends AppController
     {
         $examstemplate = $this->Examstemplates->newEntity();
         if ($this->request->is('post')) {
+            // echo "<pre>"; print_r($this->request->data); exit();
             $examstemplate = $this->Examstemplates->patchEntity($examstemplate, $this->request->data);
             $resExamstemplate = $this->Examstemplates->save($examstemplate);
             if ($resExamstemplate) {

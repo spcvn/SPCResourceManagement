@@ -271,6 +271,12 @@
            });
         });
 
+        $('form').submit(function(){
+            $('.section-add select option[disabled=disabled]').each(function(){
+                $(this).removeAttr('disabled');
+            });
+        });
+
         addline();
         removeline();
         validateEmpty();

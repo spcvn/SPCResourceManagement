@@ -28,7 +28,7 @@
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $quiz->candidate->last_name ." ". $quiz->candidate->first_name ?></td>
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $quiz->url ?></td>
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $this->Number->format($quiz->time). ' mins' ?></td>
-                <td class="viewDetail" data-id="<?=$quiz->id?>"><?= (!is_null($quiz->quiz_date))?$quiz->quiz_date:"Not yet" ?></td>
+                <td class="viewDetail" data-id="<?=$quiz->id?>"><?= (!is_null($quiz->quiz_date))?$quiz->quiz_date:"---" ?></td>
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $this->Number->format($quiz->score). "/" . $this->Number->format($quiz->total) ?></td>
                 <td class="viewDetail" data-id="<?=$quiz->id?>"><?= $status[$quiz->status] ?></td>
                 <td class="actions">

@@ -15,10 +15,7 @@
                 <thead>
                 <tr>
                     <th class="center">
-                        <label id="check-all" class="checkbox-all">
-                            <input type="checkbox" class="ace" />
-                            <span class="lbl"></span>
-                        </label>
+                        <?= $this->Paginator->sort('id',__('No.')) ?>
                     </th>
                     <th scope="col" style="text-align: center;"><?= $this->Paginator->sort('section') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('content') ?></th>
@@ -27,13 +24,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($questions as $question): ?>
+
+                <?php 
+                $cur = $this->Paginator->counter('{{start}}');
+                foreach ($questions as $question): ?>
                     <tr>
                         <td class="center">
-                            <label class="pos-rel">
-                                <input type="checkbox" class="ace" />
-                                <span class="lbl"></span>
-                            </label>
+                            <?=$cur++?>
                         </td>
                         <td class="center"><?= $question->section->name; ?></td>
                         <td><?= strtok($question->content, "\n"); ?></td>

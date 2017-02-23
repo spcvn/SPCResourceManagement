@@ -117,7 +117,8 @@
                                 ['escape'=>false])?>
 
                             <b class="arrow"></b>
-                        </li><li class="" id="add">
+                        </li>
+                        <li class="" id="add">
                             <?= $this->Html->link(
                                 $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('add'),
                                 ['controller'=>'examstemplates','action'=>'add'],

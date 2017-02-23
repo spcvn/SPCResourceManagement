@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Quizs Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Candidates
+ * @property \Cake\ORM\Association\BelongsTo $Templates
  * @property \Cake\ORM\Association\HasMany $QuizDetails
  *
  * @method \App\Model\Entity\Quiz get($primaryKey, $options = [])
@@ -39,6 +40,10 @@ class QuizsTable extends Table
 
         $this->belongsTo('Candidates', [
             'foreignKey' => 'candidate_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Examstemplates', [
+            'foreignKey' => 'template_id',
             'joinType' => 'INNER'
         ]);
         $this->hasMany('QuizDetails', [
@@ -86,13 +91,6 @@ class QuizsTable extends Table
             ->requirePresence('score', 'create')
             ->notEmpty('score');
 
-//        $validator
-//            ->integer('total')
-//            ->requirePresence('total', 'create')
-//            ->notEmpty('total');
-
-        $validator
-            ->allowEmpty('ipaddress');
 
         return $validator;
     }
@@ -107,6 +105,7 @@ class QuizsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['candidate_id'], 'Candidates'));
+        $rules->add($rules->existsIn(['template_id'], 'Examstemplates'));
 
         return $rules;
     }

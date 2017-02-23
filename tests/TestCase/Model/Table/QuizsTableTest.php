@@ -26,9 +26,14 @@ class QuizsTableTest extends TestCase
     public $fixtures = [
         'app.quizs',
         'app.candidates',
+        'app.positions',
         'app.users',
+        'app.templates',
         'app.quiz_details',
         'app.questions',
+        'app.sections',
+        'app.examstemplates',
+        'app.examstemplates_sections',
         'app.answers'
     ];
 

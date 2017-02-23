@@ -8,36 +8,32 @@
     </h1>
 </div><!-- /.page-header -->
 <div class="exams index content">
-    <div class="action-tabs text-right">
-        <?= $this->Html->link(
-            __('new_template').' +',
-            ['controller'=>'examstemplates','action'=>'add'],
-            ['class'=>'btn btn-success btn-add-temp']
-        ); ?>
-    </div>
+    
     <div class="row">
         <div class="col-xs-12">
             <div class="table-header">
-                <?=__('Results for "Latest Template"')?>
+
+                <span><?=__('Results for "Latest Template"')?></span>
+                <span class="widget-toolbar">
+                    <?= $this->Html->link($this->Html->tag('i','',['class'=>'icon-only ace-icon fa glyphicon-plus bigger-125']),
+                        ['controller'=>'examstemplates','action'=>'add'],
+                        ['class'=>'btn btn-primary','title'=>'Add a Exam Template','escape'=>false]
+                    ); ?>                
+                </span>
             </div>
 
             <!-- div.table-responsive -->
-
             <!-- div.dataTables_borderWrap -->
             <div>
                 <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                     <thead>
                     <tr>
                         <th class="center">
-                            <label class="pos-rel">
-                                <input type="checkbox" class="ace" />
-                                <span class="lbl"></span>
-                            </label>
+                            <?= $this->Paginator->sort('id',__('No.')) ?>
                         </th>
                         <th><?= __('template_name')?></th>
                         <th><?= __('number_of_question')?></th>
                         <th class="hidden-480">
-                            <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
                             <?= __('duration_minute')?></th>
 
                         <th>
@@ -45,38 +41,35 @@
                         </th>
                         <th class="hidden-480"><?= __('tested')?></th>
 
-                        <th></th>
+                        <th><?=__('action')?></th>
                     </tr>
                     </thead>
 
                     <tbody>
                     <?php
-                    // echo "<pre>";print_r($quizs_group);
+                        $cur = $this->Paginator->counter('{{start}}');
                         foreach ($examstemplates as $examstemplate) {
                             ?>
                                 <tr>
                                     <td class="center">
-                                        <label class="pos-rel">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
+                                        <?=$cur++?>
                                     </td>
 
                                     <td>
-                                        <a href="#"><?=$examstemplate->name?></a>
+                                        <!-- <?=$examstemplate->name?> -->
+                                        <?= $this->Html->link($examstemplate->name,
+                                            ['controller'=>'examstemplates','action'=>'view',$examstemplate->id],
+                                            ['title'=>'View a Exam Template']
+                                        ); ?> 
                                     </td>
                                     <td><?=$examstemplate->num_questions?></td>
-                                    <td class="hidden-480"><?=$examstemplate->duration?></td>
+                                    <td class="hidden-480"><?=$examstemplate->duration.' '.__('minutes')?></td>
                                     <td>
-                                    <?php
-                                    foreach ($examstemplate->sections as $section) {
-                                         echo " $section->name : ".$section->_joinData->ratio." %;";
-                                     } 
-                                    ?>
+                                    <?= $this->IndexHelper->sections($examstemplate->sections); ?>
                                     </td>
 
                                     <td class="hidden-480">
-                                        0/<?=isset($quizs_group[$examstemplate->id])?$quizs_group[$examstemplate->id]:0?>
+                                        <?=isset($quizs_status[$examstemplate->id])?$quizs_status[$examstemplate->id]:0?>/<?=isset($quizs_test[$examstemplate->id])?$quizs_test[$examstemplate->id]:0?>
                                     </td>
 
                                     <td>
@@ -100,17 +93,17 @@
                                                 <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                                     <li>
                                                         <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-            																				<span class="green">
-            																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-            																				</span>
+															<span class="green">
+																<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+															</span>
                                                         </a>
                                                     </li>
 
                                                     <li>
                                                         <a href="#" class="tooltip-error btn-delete" data-rel="tooltip" title="Delete" data-name="Front-end developer">
-            																				<span class="red">
-            																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
-            																				</span>
+															<span class="red">
+																<i class="ace-icon fa fa-trash-o bigger-120"></i>
+															</span>
                                                         </a>
                                                     </li>
                                                 </ul>

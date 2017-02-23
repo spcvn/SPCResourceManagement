@@ -1,46 +1,36 @@
 <div class="page-header">
     <h1>
-        <?= __('exam')?>
+        <?= __('quiz')?>
         <small>
             <i class="ace-icon fa fa-angle-double-right"></i>
-            All question
+            <?= __('view')?>
         </small>
     </h1>
 </div><!-- /.page-header -->
-<div class="exams view content">
-    <h3><?= h($exam->name) ?></h3>
-    <table class="vertical-table">
+<div class="quizs view content">
+    <h3><?= h($examstemplate->name) ?></h3>
+    <br/>
+    <table class="table vertical-table">
         <tr>
             <th scope="row"><?= __('Name') ?></th>
-            <td><?= h($exam->name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($exam->id) ?></td>
+            <td><?= h($examstemplate->name) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Num Questions') ?></th>
-            <td><?= $this->Number->format($exam->num_questions) ?></td>
+            <td><?= $this->Number->format($examstemplate->num_questions) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Is Delete') ?></th>
-            <td><?= $this->Number->format($exam->is_delete) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id User') ?></th>
-            <td><?= $this->Number->format($exam->id_user) ?></td>
+            <th scope="row"><?= __('Duration') ?></th>
+            <td><?= $this->Number->format($examstemplate->duration) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Create Date') ?></th>
-            <td><?= h($exam->create_date) ?></td>
+            <td><?= $examstemplate->create_date?$examstemplate->create_date->format('Y-m-d h:i:s'):'---' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Update Date') ?></th>
-            <td><?= h($exam->update_date) ?></td>
+            <td><?= $examstemplate->update_date?$examstemplate->update_date->format('Y-m-d h:i:s'):'---' ?></td>
         </tr>
     </table>
-    <div class="row">
-        <h4><?= __('Section') ?></h4>
-        <?= $this->Text->autoParagraph(h($exam->section)); ?>
-    </div>
 </div>
+

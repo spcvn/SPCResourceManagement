@@ -60,7 +60,7 @@ function redirectURL($controller,$action,$param){
 }
 
 function submitForm(){
-        $( "button[type=submit]" ).each(function(index) {
+        $( ".content button[type=submit]" ).each(function(index) {
         	var btn = $( this );
             $(this).confirm({
                 content: "Are you sure you want to "+btn.text()+" this?",

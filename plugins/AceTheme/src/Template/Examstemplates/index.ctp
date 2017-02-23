@@ -8,18 +8,18 @@
     </h1>
 </div><!-- /.page-header -->
 <div class="exams index content">
-    
+    <div class="row">
+        <div class="col-xs-12 tableTools-container">
+            <?= $this->Html->link($this->Html->tag('i','',['class'=>'ace-icon fa fa-plus bigger-125'])." Add ",
+                ['controller'=>'examstemplates','action'=>'add'],
+                ['class'=>'btn btn-success','title'=>'Add a Exam Template','escape'=>false]
+            ); ?> 
+        </div>       
+    </div>        
     <div class="row">
         <div class="col-xs-12">
             <div class="table-header">
-
                 <span><?=__('Results for "Latest Template"')?></span>
-                <span class="widget-toolbar">
-                    <?= $this->Html->link($this->Html->tag('i','',['class'=>'icon-only ace-icon fa glyphicon-plus bigger-125']),
-                        ['controller'=>'examstemplates','action'=>'add'],
-                        ['class'=>'btn btn-primary','title'=>'Add a Exam Template','escape'=>false]
-                    ); ?>                
-                </span>
             </div>
 
             <!-- div.table-responsive -->
@@ -73,13 +73,13 @@
                                     </td>
 
                                     <td>
-                                        <div class="hidden-sm hidden-xs action-buttons">
+                                        <div class="hidden-sm hidden-xs action-buttons btn-group">
 
-                                            <a class="green" href="<?=$this->Url->build(['action'=>'edit',$examstemplate->id])?>">
+                                            <a class="btn btn-xs btn-success " href="<?=$this->Url->build(['action'=>'edit',$examstemplate->id])?>">
                                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                                             </a>
 
-                                            <a class="red btn-delete" href="<?=$this->Url->build(['action'=>'delete',$examstemplate->id])?>" data-name="<?=$examstemplate->name?>">
+                                            <a class="btn btn-xs btn-danger btn-delete" href="<?=$this->Url->build(['action'=>'delete',$examstemplate->id])?>" data-name="<?=$examstemplate->name?>">
                                                 <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                             </a>
                                         </div>

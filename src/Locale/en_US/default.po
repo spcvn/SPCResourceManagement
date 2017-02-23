@@ -308,7 +308,7 @@ msgid "full_name"
 msgstr "Full Name"
 
 msgid "duration_minute"
-msgstr "Duration (minute)"
+msgstr "Duration"
 
 msgid "preview"
 msgstr "Preview"

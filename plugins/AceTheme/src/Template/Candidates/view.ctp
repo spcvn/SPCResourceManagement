@@ -10,17 +10,22 @@
 <?php $results = ['0' => 'Fail', '2' => 'Pass',''=>'---']; ?>
 <div class="users view content">
     <div class="wrap-review">
-        <h3 class="ttl-light"><i class="fa fa-vcard"></i> <?= h($candidate->first_name).' '.h($candidate->last_name); ?>        </h3>
-        <div class="actions">
-            <?= $this->Html->link(
-                $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
-                ['action' => 'edit', $candidate->id],
-                ['class'=>'btn-edit-simple', 'title'=>__('edit'),'escape'=>false]) ?>
-            <a class="btn-simple btn-create-test" href="#"><i class="fa fa-file-o"></i> <?= __('create_test');?></a>
-            <a class="btn-simple btn-member" title="<?= __('member_of_spc')?>"><?= __('member_of_spc')?></a>
+        <div class="col-sm-7 nopadding">
+            <div class="actions">
+                <?= $this->Html->link(
+                    $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
+                    ['action' => 'edit', $candidate->id],
+                    ['class'=>'btn-edit-simple', 'title'=>__('edit'),'escape'=>false]) ?>
+                <a class="btn-simple btn-create-test" href="#"><i class="fa fa-file-o"></i> <?= __('create_test');?></a>
+                <a class="btn-simple btn-member" title="<?= __('member_of_spc')?>"><i class="fa fa-user-o"></i> <?= __('member_of_spc')?></a>
+            </div>    
         </div>
+        <div class="col-sm-5 nopadding">
+            <h3 class="ttl-light"><i class="fa fa-vcard"></i> <?= h($candidate->first_name).' '.h($candidate->last_name); ?>        </h3>
+        </div>
+        
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-7 col-sm-push-5">
                 <ul class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
                     <li class="active"><a href="#generalCan" data-toggle="tab" data-target="#generalCan" aria-expanded="true">General</a></li>
                     <li><a href="#contactCan" data-toggle="tab" data-target="#contactCan" aria-expanded="true">Contact</a></li>
@@ -121,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-5 col-sm-pull-7">
                 <?= $this->Html->image('/images/avatars/avatar_user.png',['alt'=>''])?>
             </div>
         </div>

@@ -20,7 +20,7 @@ class IndexHelperHelper extends Helper
     public function sections($sections){
     	$str = "";
     	foreach ($sections as $section) {
-	         $str .= " $section->name : <strong>".$section->_joinData->ratio." %</strong>;<br/>";
+	         $str .= " $section->name : <strong>".$section->_joinData->ratio." %</strong><br/>";
 	     } 
 	    echo $str;
     }

@@ -384,6 +384,7 @@ select::-ms-expand{
     font-weight: 300;
     color: #2679B5;
     margin-bottom: 30px;
+    text-align: right;
 }
 .content-question article{
     padding: 15px;
@@ -480,7 +481,6 @@ select::-ms-expand{
 }
 .view .wrap-review .actions{
     position: absolute;
-    right: 30px;
     top: 20px;
     text-align: right;
 }
@@ -788,6 +788,10 @@ form .error{
     border: none;
     font-size: 18px;
     background-color: #ffffff;
+}
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
 }
 /*style content test end*/
 @media (min-width: 768px) {

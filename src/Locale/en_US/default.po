@@ -308,7 +308,7 @@ msgid "full_name"
 msgstr "Full Name"
 
 msgid "duration_minute"
-msgstr "Duration (minute)"
+msgstr "Duration"
 
 msgid "preview"
 msgstr "Preview"
@@ -320,7 +320,7 @@ msgid "edit_this_question"
 msgstr "Edit this question"
 
 msgid "member_of_spc"
-msgstr "Member of SPC"
+msgstr "Create user"
 
 msgid "create_test"
 msgstr "Create Test"

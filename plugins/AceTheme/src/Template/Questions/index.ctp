@@ -34,7 +34,7 @@
                         </td>
                         <td class="center"><?= $question->section->name; ?></td>
                         <td><?= strtok($question->content, "\n"); ?></td>
-                        <td><span class="label arrowed-in arrowed-in-right <?=($question->status == 1)?'label-success':'label-warning'?>"><?= $status[$question->status] ?></span></td>
+                        <td style="width: 110px;"><span class="label btn-status <?=($question->status == 1)?'label-success':'label-warning'?>"><?= $status[$question->status] ?></span></td>
                         <td class="actions">
                             <div class="btn-group">
                                 <?= $this->Html->link(
@@ -57,11 +57,11 @@
             </table>
             <div class="paginator">
                 <ul class="pagination">
-                    <?= $this->Paginator->first(__('first')) ?>
-                    <?= $this->Paginator->prev(__('previous')) ?>
+                    <?= $this->Paginator->first(''.$this->Html->tag('i','',['class'=>'fa fa-angle-double-left']),['title'=>__('first'),'escape'=>false]) ?>
+                    <?= $this->Paginator->prev(''.$this->Html->tag('i','',['class'=>'fa fa-angle-left']),['title'=>__('previous'),'escape'=>false]) ?>
                     <?= $this->Paginator->numbers() ?>
-                    <?= $this->Paginator->next(__('next')) ?>
-                    <?= $this->Paginator->last(__('last')) ?>
+                    <?= $this->Paginator->next(''.$this->Html->tag('i','',['class'=>'fa fa-angle-right']),['title'=>__('next'),'escape'=>false]) ?>
+                    <?= $this->Paginator->last(''.$this->Html->tag('i','',['class'=>'fa fa-angle-double-right']),['title'=>__('last'),'escape'=>false]) ?>
                 </ul>
                 <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}')]) ?></p>
             </div>

@@ -28,7 +28,6 @@
                 <div class="row-answer row">
                     <div class="col-xs-10">
                         <div class="input text">
-<!--                            <input type="radio" name="correct_answer" required="true" value="1" checked="checked">-->
                             <label>1.</label>
                             <input type="text" name="answer1" required="true">
                         </div>
@@ -41,7 +40,6 @@
                 <div class="row-answer row">
                     <div class="col-xs-10">
                         <div class="input text">
-                            <!--                            <input type="radio" name="correct_answer" required="true" value="1" checked="checked">-->
                             <label>2.</label>
                             <input type="text" name="answer1" required="true">
                         </div>
@@ -54,7 +52,6 @@
                 <div class="row-answer row">
                     <div class="col-xs-10">
                         <div class="input text">
-                            <!--                            <input type="radio" name="correct_answer" required="true" value="1" checked="checked">-->
                             <label>3.</label>
                             <input type="text" name="answer1" required="true">
                         </div>
@@ -67,7 +64,6 @@
                 <div class="row-answer row">
                     <div class="col-xs-10">
                         <div class="input text">
-                            <!--                            <input type="radio" name="correct_answer" required="true" value="1" checked="checked">-->
                             <label>4.</label>
                             <input type="text" name="answer1" required="true">
                         </div>
@@ -93,13 +89,8 @@
             </div>
         </div>
     </fieldset>
-    <div class="row Actions text-center">
-        <div class="col-xs-6">
-            <a class="btnPreview" data-toggle="modal" data-target="#reviewQuestion"><?= __('preview'); ?></a>
-        </div>
-        <div class="col-xs-6">
-            <?= $this->Form->button(__('save ').$this->Html->tag('i','',['class'=>'fa fa-save'])) ?>
-        </div>
+    <div class="Actions text-center">
+        <?= $this->Form->button(__('submit')) ?>
 
     </div>
     <?= $this->Form->end() ?>

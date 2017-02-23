@@ -1,6 +1,9 @@
 msgid "view"
 msgstr "View"
 
+msgid "menu"
+msgstr "Menu"
+
 msgid "detail"
 msgstr "Detail"
 

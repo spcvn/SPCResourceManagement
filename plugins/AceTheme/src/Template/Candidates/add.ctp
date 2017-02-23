@@ -19,6 +19,9 @@
             $marriedStatus = ['0' => __('single'), '1' => __('married')];
             echo $this->Form->input('married',['label'=>__('marriage_status'),'type'=>'select','options'=>$marriedStatus]);
             echo $this->Form->input('addr01',['label'=>__('address'),'type'=>'text']);
+            echo "<div class='input text requied'>";
+                echo $this->cell("Province.Province",['config'=>'all']);
+            echo "</div>";
             echo $this->Form->input('mobile',['label'=>__('contact_no')]);
             echo $this->Form->input('position_id',['label'=>__('position'),'type'=>'select','options'=>$positions]);
             echo $this->Form->input('expected_salary',['label'=>__('salary'),'type'=>'select','options'=>$select->salary]);

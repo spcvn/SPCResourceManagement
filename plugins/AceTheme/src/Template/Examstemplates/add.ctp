@@ -77,11 +77,13 @@
 
     </div>
 </div>
+
 <script type="text/javascript">
     var line = 1;
     var _Per_input_change = 0;
     var per = 100;
     var countSections = <?=$sections->count()?>;
+
     function addline(){
         var str = '<div class="row line-add">'+
             '<div class="col-sm-6">'+
@@ -103,8 +105,8 @@
             '</div>'+
             '</div>';
 
-        $('.section-add').each(function (index) {
-            $(this).on('click','.btn-add',function(e){
+
+            $('.section-add').on('click','.btn-add',function(e){
                 /*
                 * Count section to append 
                 */
@@ -117,13 +119,11 @@
                 e.preventDefault();
                 line++;
                 $('.section-add').append(str);
-//                addline();
 
                 resetPercent();
                 finishCount();
-//                removeline();
+                disableSection();
             });
-        });
     }
 
     function finishCount(){
@@ -181,14 +181,9 @@
             }
         });
     }
-//    function check if print value bigger than value total
-    function validateMax(){
-
-    }
 
     function removeline(){
         
-
         $('.section-add').each(function(){
             $(this).on('click','.btn-remove',function () {
                 if(line <=1) return;
@@ -230,6 +225,31 @@
             })
         })
     }
+
+    /* 
+    * function disableSection
+    * Disable section choosed
+    */
+    function disableSection(){
+        var i = 1;
+        $('.section-add select option:selected').each(function(){
+                $('.section-add select:last option:selected').removeAttr('selected').next().attr('selected','selected');
+                return;
+        });
+    }
+
+    function eventSelectSection(){
+        $('.section-add').on('change','select',function(){
+            var thisEle = $(this);
+            $('.section-add select').each(function(){
+                var valOfSelect = $(this).val();
+                if(thisEle.val() == valOfSelect){
+
+                }
+            });
+
+        });
+    }
     $(document).ready(function(){
         $('.btn-remove').each(function () {
            $(this).confirm({
@@ -253,6 +273,7 @@
         removeline();
         validateEmpty();
         validatePercent();
+        eventSelectSection();
     });
     function hasChanged(e) {
 

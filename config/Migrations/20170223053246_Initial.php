@@ -111,6 +111,21 @@ class Initial extends AbstractMigration
                 'limit' => 2,
                 'null' => true,
             ])
+            ->addColumn('province_id', 'string', [
+                'default' => null,
+                'limit' => 5,
+                'null' => true,
+            ])
+            ->addColumn('district_id', 'string', [
+                'default' => null,
+                'limit' => 5,
+                'null' => true,
+            ])
+            ->addColumn('ward_id', 'string', [
+                'default' => null,
+                'limit' => 5,
+                'null' => true,
+            ])
             ->create();
 
         $this->table('districts', ['id' => false, 'primary_key' => ['districtid']])
@@ -405,6 +420,11 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('updatecreate', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('description', 'text', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,

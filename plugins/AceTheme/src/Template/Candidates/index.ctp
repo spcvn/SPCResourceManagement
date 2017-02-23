@@ -30,8 +30,12 @@
                 <td><?= h($candidate->birth_date->format('Y-m-d')) ?></td>
                 <td><?= h($candidate->mobile) ?></td>
                 <td><?= $candidate->position->name ?></td>
-                <td class="actions">
+                <td class="actions" style="width: 160px;">
                     <div class="btn-group">
+                        <?= $this->Html->link(
+                            $this->Html->tag('i','',['class'=>'fa fa-file-text-o']),
+                            ['controller'=>'examstemplates','action' => 'examAssignment', $candidate->id],
+                            ['class'=>'btn btn-xs btn-info','title'=>__('create_test'),'escape'=>false]) ?>
                         <?= $this->Html->link(
                             $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
                             ['action' => 'view', $candidate->id],
@@ -43,10 +47,6 @@
                         <?= $this->Html->link($this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120']),
                             ['action' => 'delete', $candidate->id],
                             ["class"=>'btn btn-xs btn-danger btnDelete','title'=>'Delete','escape'=>false]) ?>
-                        <?= $this->Html->link(
-                            $this->Html->tag('i','',['class'=>'fa fa-file-text-o']),
-                            ['controller'=>'examstemplates','action' => 'examAssignment', $candidate->id],
-                            ['class'=>'btn btn-xs btn-info','title'=>__('create_test'),'escape'=>false]) ?>
 
                     </div>
 

@@ -14,20 +14,10 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
 <div class="users view content">
     <div class="wrap-review">
         <div class="row">
-            <div class="col-sm-4">
-                <div class="actions">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
-                        ['action' => 'edit', $user->id],
-                        ['class'=>'btn-edit-simple', 'title'=>'Edit Detail','escape'=>false]) ?>
-                </div>
-
-            </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 col-sm-push-4">
                 <h3 class="ttl-light"><i class="fa fa-vcard"></i> <?= h($user->first_name).' '.h($user->last_name); ?> </h3>
             </div>
         </div>
-
         <div class="row">
             <div class="col-sm-4">
                 <?= $this->Html->image('/images/avatars/avatar_user.png',['alt'=>''])?>
@@ -104,6 +94,16 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
                     </div>
                 </div>
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-push-4">
+                <div class="actions">
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
+                        ['action' => 'edit', $user->id],
+                        ['class'=>'btn-edit-simple', 'title'=>'Edit Detail','escape'=>false]) ?>
+                </div>
             </div>
         </div>
 

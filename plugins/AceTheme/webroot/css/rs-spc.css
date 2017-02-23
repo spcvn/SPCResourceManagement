@@ -524,14 +524,14 @@ select::-ms-expand{
     border-color: #438EB9;
     color: #438EB9;
 }
-.btn-create-test{
-    border-color: #82AF6F;
-    color: #82AF6F;
-}
-.btn-member{
-    border-color: #ffb44b;
-    color: #ffb44b;
-}
+/*.btn-create-test{*/
+    /*border-color: #82AF6F;*/
+    /*color: #82AF6F;*/
+/*}*/
+/*.btn-member{*/
+    /*border-color: #ffb44b;*/
+    /*color: #ffb44b;*/
+/*}*/
 .users .wrap-edit,
 .candidates .wrap-edit{
     width: 80%;

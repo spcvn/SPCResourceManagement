@@ -16,7 +16,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-8 col-sm-push-4">
+            <div class="col-sm-4">
+                <?= $this->Html->image('/images/avatars/avatar_user.png',['alt'=>''])?>
+            </div>
+            <div class="col-sm-8">
                 <ul class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
                     <li class="active"><a href="#generalCan" data-toggle="tab" data-target="#generalCan" aria-expanded="true">General</a></li>
                     <li><a href="#contactCan" data-toggle="tab" data-target="#contactCan" aria-expanded="true">Contact</a></li>
@@ -86,22 +89,16 @@
                                 <td style="width: 10px;">:</td>
                                 <td><?= h($candidate->interview_date->format('Y-m-d H:i')) ?></td>
                             </tr>
-
-                            <tr>
-                                <th scope="row"><?= __('score') ?></th>
-                                <td>:</td>
-                                <td><?= h($candidate->score) ?></td>
-                            </tr>
                             <tr>
                                 <th scope="row"><?= __('expected_salary') ?></th>
                                 <td>:</td>
                                 <td><?= h($candidate->expected_salary) ?></td>
                             </tr>
-                            <!-- <tr>
-                                <th scope="row"><?= __('start_work') ?></th>
+                            <tr>
+                                <th scope="row"><?= __('score') ?></th>
                                 <td>:</td>
-                                <td><?= h($candidate->start_work) ?></td>
-                            </tr> -->
+                                <td><?= h($candidate->score) ?></td>
+                            </tr>
                             <tr>
                                 <th scope="row"><?= __('result') ?></th>
                                 <td>:</td>
@@ -112,13 +109,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 col-sm-pull-8">
-                <?= $this->Html->image('/images/avatars/avatar_user.png',['alt'=>''])?>
-            </div>
 
         </div>
         <div class="row">
-            <div class="col-sm-8 col-md-push-4">
+            <div class="col-sm-8 col-sm-push-4">
                 <div class="actions">
                     <?= $this->Html->link(
                         $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),

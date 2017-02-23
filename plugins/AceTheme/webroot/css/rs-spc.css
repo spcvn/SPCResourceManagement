@@ -37,16 +37,15 @@ img{
     content: " (*)";
     color: #ff2222;
 }
-.required.error{
-    position: relative;
-    padding-bottom: 20px;
-}
-.required.error .error-message{
-    position: absolute;
-    padding-left: 18%;
-    bottom: 0px;
-    font-style: italic;
-}
+/*.required.error{*/
+    /*position: relative;*/
+/*}*/
+/*.required.error .error-message{*/
+    /*position: absolute;*/
+    /*padding-left: 18%;*/
+    /*bottom: 0px;*/
+    /*font-style: italic;*/
+/*}*/
 .form .text input{
     float: left;
     width: 100%;

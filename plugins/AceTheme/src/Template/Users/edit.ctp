@@ -35,12 +35,7 @@
                 ?>
             </div>
         <div class="actions text-center">
-            <div class="col-xs-6">
-
-            </div>
-            <div class="col-xs-6">
-                <?= $this->Form->button($this->Html->tag('i','',['class'=>'fa fa-save']).' '.__('save'), ['class'=>'btn-submit']) ?>
-            </div>
+            <?= $this->Form->button(__('save')) ?>
         </div>
         <?= $this->Form->end() ?>
     </div>

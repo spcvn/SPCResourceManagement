@@ -69,6 +69,9 @@ img{
 .form .textarea textarea{
     color: #393939;
 }
+.form .select select{
+    min-width: 65px;
+}
 .form .textarea textarea{
     min-height: 150px;
 }
@@ -384,7 +387,7 @@ select::-ms-expand{
     font-weight: 300;
     color: #2679B5;
     margin-bottom: 30px;
-    text-align: right;
+    /*text-align: right;*/
 }
 .content-question article{
     padding: 15px;
@@ -480,9 +483,10 @@ select::-ms-expand{
     position: relative;
 }
 .view .wrap-review .actions{
-    position: absolute;
-    top: 20px;
+    /*position: absolute;*/
+    /*top: 20px;*/
     text-align: right;
+    padding: 15px 0;
 }
 .btn-edit-simple{
     text-align: center;
@@ -531,13 +535,15 @@ select::-ms-expand{
     border-color: #ffb44b;
     color: #ffb44b;
 }
-.users .wrap-edit{
+.users .wrap-edit,
+.candidates .wrap-edit{
     width: 80%;
     margin: 0 auto;
     padding: 30px;
     border: 1px double #438EB9;
 }
-.users .wrap-edit h2{
+.users .wrap-edit h2,
+.candidates .wrap-edit h2{
     position: relative;
     top: -45px;
     left: -5px;
@@ -547,10 +553,12 @@ select::-ms-expand{
     margin: 0;
     font-size: 20px;
 }
-.users.form .col-3 .select label {
+.users.form .col-3 .select label ,
+.candidates.form .col-3 .select label {
     width: 100%;
 }
-.users.form .col-3 .select select{
+.users.form .col-3 .select select,
+.candidates.form .col-3 .select select{
     width: 100%;
 }
 /*end radio custom*/
@@ -820,7 +828,14 @@ form .error{
     .users.form .wrap-edit .select input,
     .users.form .wrap-edit .number input,
     .users.form .wrap-edit .file input,
-    .users.form .wrap-edit .textarea textarea{
+    .users.form .wrap-edit .textarea textarea,
+    .candidates.form .wrap-edit .text input,
+    .candidates.form .wrap-edit .email input,
+    .candidates.form .wrap-edit .password input,
+    .candidates.form .wrap-edit .select input,
+    .candidates.form .wrap-edit .number input,
+    .candidates.form .wrap-edit .file input,
+    .candidates.form .wrap-edit .textarea textarea{
         width: 82%;
     }
     .form-question form .question-action .text input{
@@ -838,7 +853,11 @@ form .error{
         width: 280px;
     }
 }
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
+    
+}
+@media (max-width: 991px) {
+
 }
 @media (max-width: 600px) {
     #dynamic-table_wrapper .row .col-xs-6{

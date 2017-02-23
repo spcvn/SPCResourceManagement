@@ -59,14 +59,6 @@ class SectionsTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
-
-        $validator
-            ->requirePresence('position', 'create')
-            ->notEmpty('position');
-
         return $validator;
     }
 }

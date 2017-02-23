@@ -483,9 +483,6 @@ select::-ms-expand{
     position: relative;
 }
 .view .wrap-review .actions{
-    /*position: absolute;*/
-    /*top: 20px;*/
-    text-align: right;
     padding: 15px 0;
 }
 .btn-edit-simple{

@@ -124,8 +124,8 @@
                         $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
                         ['action' => 'edit', $candidate->id],
                         ['class'=>'btn-edit-simple', 'title'=>__('edit'),'escape'=>false]) ?>
-                    <a class="btn-simple btn-create-test" href="#"><i class="fa fa-file-o"></i> <?= __('create_test');?></a>
-                    <a class="btn-simple btn-member" title="<?= __('member_of_spc')?>"><i class="fa fa-user-o"></i> <?= __('member_of_spc')?></a>
+                    <a href="#" class="btn-simple btn-create-test" title="<?= __('create_test');?>"><i class="fa fa-file-o"></i></a>
+                    <a href="#" class="btn-simple btn-member" title="<?= __('member_of_spc')?>" ><i class="fa fa-user-o"></i></a>
                 </div>
             </div>
         </div>

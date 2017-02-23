@@ -36,7 +36,7 @@
                 <div class="col-xs-12 col-sm-10 section-add">
                     <div class="row line-add">
                         <div class="col-sm-6">
-                            <select class="width-100" name='sections[_ids][]'>
+                            <select class="width-100" name='sections[_ids][]' onChange="enableSeleced()">
                                 <?php
                                     foreach ($sections as $key=>$value) {
                                         echo "<option value='$key'>$value</option>";
@@ -87,7 +87,7 @@
     function addline(){
         var str = '<div class="row line-add">'+
             '<div class="col-sm-6">'+
-            '<select class="width-100" name="sections[_ids][]">'+
+            '<select class="width-100" name="sections[_ids][]" onChange="enableSeleced()">'+
             '<?php
                             foreach ($sections as $key=>$value) {
                                 echo "<option value=\'$key\'>$value</option>";
@@ -230,24 +230,26 @@
     * function disableSection
     * Disable section choosed
     */
+    var m = [];
     function disableSection(){
+        enableSeleced();
+        $('.section-add select:last option:not([disabled])').first().attr("selected", "selected");
+        enableSeleced();
+    }
+    function enableSeleced(){
+        $('.section-add select option[disabled=disabled]').each(function(){
+            $(this).removeAttr('disabled');
+        });
         var i = 1;
         $('.section-add select option:selected').each(function(){
-                $('.section-add select:last option:selected').removeAttr('selected').next().attr('selected','selected');
-                return;
+            m[i++]= $(this).val();
         });
-    }
-
-    function eventSelectSection(){
-        $('.section-add').on('change','select',function(){
-            var thisEle = $(this);
-            $('.section-add select').each(function(){
-                var valOfSelect = $(this).val();
-                if(thisEle.val() == valOfSelect){
-
-                }
-            });
-
+        $('.section-add select').each(function(){
+           $.each(m,function(key,val){
+            if(typeof(val) != "undefined"){
+                $('.section-add select option[value='+val+']').attr('disabled','disabled');
+            }
+           }); 
         });
     }
     $(document).ready(function(){
@@ -273,7 +275,6 @@
         removeline();
         validateEmpty();
         validatePercent();
-        eventSelectSection();
     });
     function hasChanged(e) {
 

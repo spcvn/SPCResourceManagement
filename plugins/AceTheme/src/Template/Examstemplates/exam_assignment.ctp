@@ -11,26 +11,26 @@
     <div class="form-assignment">
         <form method="post" action="<?=$this->Url->build(['controller'=>'quizs', 'action'=>'generate'])?>">
             <div class="row input select required">
-                <label class="col-sm-2"><?= __('candidate_name')?>:</label>
-                <div class="col-sm-10">
+                <label class="col-sm-3 col-lg-2"><?= __('candidate_name')?>:</label>
+                <div class="col-sm-9 col-lg-10">
                     <div class="autocomplete_wrap">
-                        <input id="autoCandidate" name="candidate_name" placeholder="Please select..." required />
+                        <input id="autoCandidate" placeholder="Please select...">
                         <input type="hidden" name="candidate_id" id="autoCandidate_hidden" value="" />
                     </div>
                 </div>
             </div>
             <div class="row input select required">
-                <label class="col-sm-2"><?= __('template_type')?>:</label>
-                <div class="col-sm-10">
+                <label class="col-sm-3 col-lg-2"><?= __('template_type')?>:</label>
+                <div class="col-sm-9 col-lg-10">
                     <div class="autocomplete_wrap">
-                        <input id="autoTemplate" name="template_name" placeholder="Please select..." required />
+                        <input id="autoTemplate" placeholder="Please select...">
                         <input type="hidden" name="template_id" id="autoTemplate_hidden" value="" />
                     </div>
                 </div>
             </div>
             <div class="row input text">
-                <label class="col-sm-2"><?= __('duration')?>:</label>
-                <label class="col-sm-10"><strong id="duration">0</strong> minutes</label>
+                <label class="col-sm-3"><?= __('duration')?>:</label>
+                <label class="col-sm-9"><strong id="duration">0</strong> minutes</label>
             </div>
             <div class="row input text">
                 <label class="col-sm-2"><?= __('number_of_question')?>:</label>
@@ -42,11 +42,11 @@
             </div>
             <div class="row input text">
                 <label class="col-sm-2"><?= __('description')?>:</label>
-                <label class="col-sm-10"><textarea name="description"></textarea></label>
+                <label class="col-sm-10">Description content</label>
             </div>
             <div class="row actions">
                 <div class="col-sm-10 col-sm-push-2">
-                    <!-- <button type="button" class="btn btn-default"><?= __('cancle')?></button> -->
+                    <button type="button" class="btn btn-default"><?= __('cancle')?></button>
                     <button type="submit" class="btn btn-info"><?= __('assign')?></button>
                 </div>
             </div>
@@ -86,7 +86,6 @@
 ?>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-<?= $this->Html->script('jquery.validate.min.js')?>
 <script>
     function autoSelectSearch(e,data){
         $(e).autocomplete({
@@ -102,10 +101,20 @@
                 }
                 return false;
             },
+            focus: function( event, ui ) {
+                $(e).val(ui.item.label);
+                $(e+'_hidden').val(ui.item.value);
+                if(e=='#autoTemplate'){
+                    $('strong#duration').text(ui.item.duration);
+                    $('strong#num_questions').text(ui.item.num_questions);
+                    $('strong#ratio').text(ui.item.ratio);
+                }
+                return false;
+            },
             create: function( event, ui ) {
                 if(e=='#autoCandidate'){
                     console.log(data);
-                    var id = <?=isset($assign_candidate_id)?$assign_candidate_id:0?>;
+                    var id = <?= isset($assign_candidate_id)?$assign_candidate_id:0 ?>;
                     $.each(data,function(key,value){
                         if(id == value.value){
                             $(e).val(value.label);
@@ -125,6 +134,5 @@
         var idt= '#autoTemplate';
         autoSelectSearch(idc, availableCandiadte);
         autoSelectSearch(idt, availableTemplate);
-        $('.form-assignment form').validate();
     });
 </script>

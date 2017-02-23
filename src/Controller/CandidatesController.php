@@ -84,7 +84,7 @@ class CandidatesController extends AppController
         }
         $select = new \stdClass();
 
-        $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
+        $select->salary = ['< 300' => '< 300', '300$ ~ 500$' => '300$ ~ 500$', '500$ ~ 750$' => '500$ ~ 750$', '> 700' => '> 700'];
         $positions = $this->Candidates->Positions->find('list');
         $this->set(compact('candidate', 'positions'));
         $this->set(compact('select'));

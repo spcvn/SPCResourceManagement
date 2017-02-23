@@ -15,7 +15,7 @@
             echo $this->Form->input('first_name',['label'=>'First Name']);
             echo $this->Form->input('middle_name',['label'=>'Middle Name']);
             echo $this->Form->input('last_name',['label'=>'Last Name']);
-            echo $this->Form->input('birth_date', ['type'=>'text','class' => 'datepicker']);
+            echo $this->Form->input('birth_date', ['type'=>'text','class' => 'datepicker', 'label'=>__('birthday')]);
             $marriedStatus = ['0' => __('single'), '1' => __('married')];
             echo $this->Form->input('married',['label'=>__('marriage_status'),'type'=>'select','options'=>$marriedStatus]);
             echo $this->Form->input('addr01',['label'=>__('address'),'type'=>'text']);

@@ -33,20 +33,19 @@ img{
 /*.form div.input:has( > .datetimepicker){*/
     /*background-color: #ccc;*/
 /*}*/
-.required label:before{
-    content: "(*) ";
+.required label:after{
+    content: " (*)";
     color: #ff2222;
 }
-.required.error{
-    position: relative;
-    padding-bottom: 20px;
-}
-.required.error .error-message{
-    position: absolute;
-    padding-left: 18%;
-    bottom: 0px;
-    font-style: italic;
-}
+/*.required.error{*/
+    /*position: relative;*/
+/*}*/
+/*.required.error .error-message{*/
+    /*position: absolute;*/
+    /*padding-left: 18%;*/
+    /*bottom: 0px;*/
+    /*font-style: italic;*/
+/*}*/
 .form .text input{
     float: left;
     width: 100%;
@@ -68,6 +67,9 @@ img{
 .form .file input,
 .form .textarea textarea{
     color: #393939;
+}
+.form .select select{
+    min-width: 65px;
 }
 .form .textarea textarea{
     min-height: 150px;
@@ -384,7 +386,7 @@ select::-ms-expand{
     font-weight: 300;
     color: #2679B5;
     margin-bottom: 30px;
-    text-align: right;
+    /*text-align: right;*/
 }
 .content-question article{
     padding: 15px;
@@ -480,9 +482,7 @@ select::-ms-expand{
     position: relative;
 }
 .view .wrap-review .actions{
-    position: absolute;
-    top: 20px;
-    text-align: right;
+    padding: 15px 0;
 }
 .btn-edit-simple{
     text-align: center;
@@ -523,21 +523,23 @@ select::-ms-expand{
     border-color: #438EB9;
     color: #438EB9;
 }
-.btn-create-test{
-    border-color: #82AF6F;
-    color: #82AF6F;
-}
-.btn-member{
-    border-color: #ffb44b;
-    color: #ffb44b;
-}
-.users .wrap-edit{
+/*.btn-create-test{*/
+    /*border-color: #82AF6F;*/
+    /*color: #82AF6F;*/
+/*}*/
+/*.btn-member{*/
+    /*border-color: #ffb44b;*/
+    /*color: #ffb44b;*/
+/*}*/
+.users .wrap-edit,
+.candidates .wrap-edit{
     width: 80%;
     margin: 0 auto;
     padding: 30px;
     border: 1px double #438EB9;
 }
-.users .wrap-edit h2{
+.users .wrap-edit h2,
+.candidates .wrap-edit h2{
     position: relative;
     top: -45px;
     left: -5px;
@@ -547,10 +549,12 @@ select::-ms-expand{
     margin: 0;
     font-size: 20px;
 }
-.users.form .col-3 .select label {
+.users.form .col-3 .select label ,
+.candidates.form .col-3 .select label {
     width: 100%;
 }
-.users.form .col-3 .select select{
+.users.form .col-3 .select select,
+.candidates.form .col-3 .select select{
     width: 100%;
 }
 /*end radio custom*/
@@ -794,7 +798,44 @@ form .error{
    margin: 0 !important;
 }
 /*style content test end*/
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
+    .form .text label,
+    .form .email label,
+    .form .password label,
+    .form .select label,
+    .form .number label,
+    .form .file label,
+    .form .textarea label{
+        width: 18%;
+    }
+    .form .text label.error,
+    .form .email label.error,
+    .form .password label.error,
+    .form .select label.error,
+    .form .number label.error,
+    .form .file label.error,
+    .form .textarea label.error{
+        width: 100%;
+        padding-left: 18%;
+    }
+    .users.form .wrap-edit .text input,
+    .users.form .wrap-edit .email input,
+    .users.form .wrap-edit .password input,
+    .users.form .wrap-edit .select input,
+    .users.form .wrap-edit .number input,
+    .users.form .wrap-edit .file input,
+    .users.form .wrap-edit .textarea textarea,
+    .candidates.form .wrap-edit .text input,
+    .candidates.form .wrap-edit .email input,
+    .candidates.form .wrap-edit .password input,
+    .candidates.form .wrap-edit .select input,
+    .candidates.form .wrap-edit .number input,
+    .candidates.form .wrap-edit .file input,
+    .candidates.form .wrap-edit .textarea textarea{
+        width: 82%;
+    }
+}
+@media (min-width: 991px) {
     .form .text input,
     .form .email input,
     .form .password input,
@@ -805,24 +846,7 @@ form .error{
         width: 65%;
         resize: none;
     }
-    .form .text label,
-    .form .email label,
-    .form .password label,
-    .form .select label,
-    .form .number label,
-    .form .file label,
-    .form .textarea label{
-        width: 18%;
-    }
-    .users.form .wrap-edit .text input,
-    .users.form .wrap-edit .email input,
-    .users.form .wrap-edit .password input,
-    .users.form .wrap-edit .select input,
-    .users.form .wrap-edit .number input,
-    .users.form .wrap-edit .file input,
-    .users.form .wrap-edit .textarea textarea{
-        width: 82%;
-    }
+
     .form-question form .question-action .text input{
         width: 100%;
     }
@@ -838,7 +862,52 @@ form .error{
         width: 280px;
     }
 }
-@media (min-width: 1200px) {
+@media (max-width: 1199px) {
+    .users .wrap-edit,
+    .candidates .wrap-edit{
+        width: 90%;
+    }
+    .form .text label,
+    .form .email label,
+    .form .password label,
+    .form .select label,
+    .form .number label,
+    .form .file label,
+    .form .textarea label{
+        width: 22%;
+    }
+    .form .text label.error,
+    .form .email label.error,
+    .form .password label.error,
+    .form .select label.error,
+    .form .number label.error,
+    .form .file label.error,
+    .form .textarea label.error{
+        padding-left: 22%;
+    }
+    .users.form .wrap-edit .text input,
+    .users.form .wrap-edit .email input,
+    .users.form .wrap-edit .password input,
+    .users.form .wrap-edit .select input,
+    .users.form .wrap-edit .number input,
+    .users.form .wrap-edit .file input,
+    .users.form .wrap-edit .textarea textarea,
+    .candidates.form .wrap-edit .text input,
+    .candidates.form .wrap-edit .email input,
+    .candidates.form .wrap-edit .password input,
+    .candidates.form .wrap-edit .select input,
+    .candidates.form .wrap-edit .number input,
+    .candidates.form .wrap-edit .file input,
+    .candidates.form .wrap-edit .textarea textarea{
+        width: 78%;
+    }
+    .datetimepk label{
+        float: left;
+        width: 22%;
+    }
+}
+@media (max-width: 991px) {
+
 }
 @media (max-width: 600px) {
     #dynamic-table_wrapper .row .col-xs-6{

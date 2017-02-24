@@ -4,7 +4,7 @@
     </script>
 
     <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-        <h5 class="ttlsb"">Menu Actions</h5>
+        <h5 class="ttlsb""><?= __('menu')?></h5>
     </div><!-- /.sidebar-shortcuts -->
 
     <ul class="nav nav-list">

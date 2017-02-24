@@ -30,12 +30,12 @@
                 <td><?= h($candidate->birth_date->format('Y-m-d')) ?></td>
                 <td><?= h($candidate->mobile) ?></td>
                 <td><?= $candidate->position->name ?></td>
-                <td class="actions">
+                <td class="actions" style="width: 160px;">
                     <div class="btn-group">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'fa fa-file-text-o']),
-                        ['controller'=>'examstemplates','action' => 'examAssignment', $candidate->id],
-                        ['class'=>'btn btn-xs btn-info','title'=>__('create_test'),'escape'=>false]) ?>
+                        <?= $this->Html->link(
+                            $this->Html->tag('i','',['class'=>'fa fa-file-text-o']),
+                            ['controller'=>'examstemplates','action' => 'examAssignment', $candidate->id],
+                            ['class'=>'btn btn-xs btn-info','title'=>__('create_test'),'escape'=>false]) ?>
                         <?= $this->Html->link(
                             $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
                             ['action' => 'view', $candidate->id],
@@ -57,13 +57,13 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first(__('first')) ?>
-            <?= $this->Paginator->prev(__('previous')) ?>
+            <?= $this->Paginator->first(''.$this->Html->tag('i','',['class'=>'fa fa-angle-double-left']),['title'=>__('first'),'escape'=>false]) ?>
+            <?= $this->Paginator->prev(''.$this->Html->tag('i','',['class'=>'fa fa-angle-left']),['title'=>__('previous'),'escape'=>false]) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next')) ?>
-            <?= $this->Paginator->last(__('last')) ?>
+            <?= $this->Paginator->next(''.$this->Html->tag('i','',['class'=>'fa fa-angle-right']),['title'=>__('next'),'escape'=>false]) ?>
+            <?= $this->Paginator->last(''.$this->Html->tag('i','',['class'=>'fa fa-angle-double-right']),['title'=>__('last'),'escape'=>false]) ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}')]) ?></p>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

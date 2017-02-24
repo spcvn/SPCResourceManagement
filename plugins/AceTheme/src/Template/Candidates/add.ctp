@@ -8,45 +8,48 @@
     </h1>
 </div><!-- /.page-header -->
 <div class="candidates form content">
-    <?= $this->Form->create($candidate) ?>
-    <fieldset>
-        <?php
+    <div class="wrap-edit">
+        <?= $this->Form->create($candidate) ?>
+        <fieldset>
+            <?php
 
-            echo $this->Form->input('first_name',['label'=>'First Name']);
-            echo $this->Form->input('middle_name',['label'=>'Middle Name']);
-            echo $this->Form->input('last_name',['label'=>'Last Name']);
-            echo $this->Form->input('birth_date', ['type'=>'text','class' => 'datepicker']);
+            echo $this->Form->input('first_name',['label'=>__('first_name')]);
+            echo $this->Form->input('middle_name',['label'=>__('middle_name')]);
+            echo $this->Form->input('last_name',['label'=>__('last_name')]);
+            echo $this->Form->input('email',['required'=>true]);
+            echo $this->Form->input('birth_date', ['type'=>'text','class' => 'datepicker', 'label'=>__('birthday')]);
             $marriedStatus = ['0' => __('single'), '1' => __('married')];
             echo $this->Form->input('married',['label'=>__('marriage_status'),'type'=>'select','options'=>$marriedStatus]);
             echo $this->Form->input('addr01',['label'=>__('address'),'type'=>'text']);
-            echo "<div class='input text requied'>";
-                echo $this->cell("Province.Province",['config'=>'all']);
+            echo "<div class='row col-3'>";
+            echo $this->cell("Province.Province",['config'=>'all']);
             echo "</div>";
             echo $this->Form->input('mobile',['label'=>__('contact_no')]);
             echo $this->Form->input('position_id',['label'=>__('position'),'type'=>'select','options'=>$positions]);
             echo $this->Form->input('expected_salary',['label'=>__('salary'),'type'=>'select','options'=>$select->salary]);
-//            echo $this->Form->input('interview_date',['type'=>'text','class'=>'datetimepicker']);
-        ?>
-        <div class="form-group datetimepk">
-            <label><?= __('interview_date'); ?></label>
-            <div class='input-group date' id="datetimepicker">
-                <input type='text' class="form-control" id='interview-date' name="interview_date" />
-                <span class="input-group-addon">
+            //            echo $this->Form->input('interview_date',['type'=>'text','class'=>'datetimepicker']);
+            ?>
+            <div class="form-group datetimepk">
+                <label><?= __('interview_date'); ?></label>
+                <div class='input-group date' id="datetimepicker">
+                    <input type='text' class="form-control" id='interview-date' name="interview_date" />
+                    <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="clearfix"></div>
+        </fieldset>
+        <div class="row action">
+            <div class="col-sm-6">
+                <a class="btn btnPreview" data-toggle="modal" data-target="#reviewCandidate"><?= __('preview'); ?></a>
+            </div>
+            <div class="col-sm-6 text-right">
+                <?= $this->Form->button(__('submit'),['class'=>'btn-submit']) ?>
+            </div>
         </div>
-    </fieldset>
-    <div class="action">
-        <div class="col-sm-6">
-            <a class="btn btnPreview" data-toggle="modal" data-target="#reviewCandidate"><?= __('preview'); ?></a>
-        </div>
-        <div class="col-sm-6 text-right">
-            <?= $this->Form->button(__('submit'),['class'=>'btn-submit']) ?>
-        </div>
+        <?= $this->Form->end() ?>
     </div>
-    <?= $this->Form->end() ?>
 </div>
 <div id="reviewCandidate" class="modal fade review-candidate" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -73,6 +76,11 @@
                                 <th><?= __('last_name')?></th>
                                 <td>:</td>
                                 <td><span id="get_last-name"></td>
+                            </tr>
+                            <tr>
+                                <th><?= __('email')?></th>
+                                <td>:</td>
+                                <td><span id="get_email"></td>
                             </tr>
                             <tr>
                                 <th><?= __('birthday')?></th>
@@ -128,6 +136,7 @@
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<?= $this->Html->script('jquery.validate.min.js'); ?>
 <script>
     //load data form to modal preview
     function loadDataModal(){
@@ -155,6 +164,9 @@
 
 
     }
+    function addRequired(idi) {
+        $(idi).parent().addClass('required');
+    };
     $(document).ready( function() {
         $( ".datepicker" ).datepicker({
             changeYear: true,
@@ -183,5 +195,8 @@
         $(".loading").hide();
         $(".content").show('fade');
         loadDataModal();
+        addRequired('#provinceid');
+        addRequired('#districtid');
+        $(".candidates form").validate();
     } );
 </script>

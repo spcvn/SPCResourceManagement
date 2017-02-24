@@ -8,17 +8,25 @@
     </h1>
 </div><!-- /.page-header -->
 <div class="candidates form content">
-    <?= $this->Form->create($candidate) ?> 
-    <fieldset>
-        <?php
-        // print_r($candidate->interview_date);exit();
+    <div class="wrap-edit">
+        <h2>Edit Information</h2>
+        <?= $this->Form->create($candidate) ?>
+        <fieldset>
+            <?php
+            // print_r($candidate->interview_date);exit();
             echo $this->Form->input('first_name');
             echo $this->Form->input('middle_name');
             echo $this->Form->input('last_name');
-            echo $this->Form->input('birth_date', ['type'=>'text','class' => 'datepicker','value' => $candidate->birth_date->format('Y-m-d')]);
+            echo $this->Form->input('birth_date', ['type'=>'text','label'=>__('birthday'),'class' => 'datepicker','value' => $candidate->birth_date->format('Y-m-d')]);
             $marriedStatus = ['0' => 'Single', '1' => 'Married'];
-            echo $this->Form->input('married', ['type' => 'select','options'=>$marriedStatus]);
-            echo $this->Form->input('addr01',['type'=>'text']);
+            echo $this->Form->input('married', ['type' => 'select','options'=>$marriedStatus, 'label'=>'Married Status']);
+            echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
+            ?>
+            <div class="row col-3">
+                <?php
+                echo $this->cell("Province.Province",['config'=>'all']);?>
+            </div>
+            <?php
             echo $this->Form->input('mobile');
             echo $this->Form->input('position_id',['options'=>$positions]);
             echo $this->Form->input('expected_salary',['type'=>'select','options'=>$select->salary]);
@@ -26,11 +34,14 @@
                 ,'value' => date("Y-m-d H:i:s", strtotime($candidate->interview_date))]);
             $results = ['0' => 'Fail', '2' => 'Pass',''=>'---'];
             echo $this->Form->input('result', ['type' => 'select', 'options' => $results, '']);
-        ?>
-        
-    </fieldset>
-    <?= $this->Form->button(__('submit')) ?>
-    <?= $this->Form->end() ?>
+            ?>
+
+        </fieldset>
+        <div class="Actions text-center">
+            <?= $this->Form->button(__('save')) ?>
+        </div>
+        <?= $this->Form->end() ?>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

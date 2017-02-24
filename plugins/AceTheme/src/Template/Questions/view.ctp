@@ -43,7 +43,7 @@
                     <tr>
                         <td class="center"><?= h($i++) ?></td>
                         <td><?= h($answers->answer) ?></td>
-                        <td class="center"><?= ($answers->is_correct==0)?'<i class="f20 text-danger fa fa-remove"></i>':'<i class="f20 text-success fa fa-check"></i>' ?></td>
+                        <td class="center"><?= ($answers->is_correct==0)?'':'<i class="f20 text-success fa fa-check"></i>' ?></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>

@@ -34,7 +34,7 @@
                         </td>
                         <td class="center"><?= $question->section->name; ?></td>
                         <td><?= strtok($question->content, "\n"); ?></td>
-                        <td style="width: 110px;"><span class="label btn-status <?=($question->status == 1)?'label-success':'label-warning'?>"><?= $status[$question->status] ?></span></td>
+                        <td style="width: 110px; vertical-align: middle;"><span class="label btn-status <?=($question->status == 1)?'label-success':'label-warning'?>"><?= $status[$question->status] ?></span></td>
                         <td class="actions">
                             <div class="btn-group">
                                 <?= $this->Html->link(

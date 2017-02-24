@@ -122,9 +122,6 @@ input#start-working-date{
     background-color: #438EB9!important;
 }
 /*row-answer*/
-#answer{
-    padding-left: 30px;
-}
 .row-answer{
     position: relative;
 }
@@ -136,10 +133,10 @@ input#start-working-date{
 .form-question form .question-action .select,
 .form-question form .question-action .text{
     position: relative;
-    padding-left: 50px;
+    /*padding-left: 50px;*/
 }
 .form-question form .question-action .select{
-    padding-left: 160px;
+    /*padding-left: 160px;*/
 }
 
 .form-question form .question-action .select label,
@@ -159,6 +156,21 @@ input#start-working-date{
     left: 0;
     top: 3px;
     z-index: 998;
+}
+.form-question form .question-action{
+    border: 1px solid #dddddd;
+    margin-top: 25px;
+}
+.form-question form .question-action h4{
+    position: relative;
+    top: -22px;
+    padding-right: 15px;
+    margin-left: 5px;
+    background: #ffffff;
+    display: inline-block;
+}
+.form-question form .question-action .line-add:not(:last-child) .btn-add{
+    display: none;
 }
 form button[type=submit]{
     background-color: #438EB9;
@@ -443,16 +455,15 @@ select::-ms-expand{
 .radio-custom input[type=radio]:checked + label:after{
     display: block;
 }
-.form-question .btn{
-    min-width: 60px;
-    height: 42px;
-}
-.form-question .btn:hover{
-    border-color: transparent;
-}
 .form-question .actions{
     margin-bottom: 15px;
     padding-left: 80px;
+}
+.form-question .line-add {
+    margin-bottom: 10px;
+}
+.form-question .line-add input{
+    width: 100%;
 }
 .form-question .actions.nopd{
     padding-left: 0;
@@ -586,11 +597,13 @@ select::-ms-expand{
     font-weight: bold;
 }
 /*add exam template*/
+.question-action .btn-remove,
 .exams .btn-remove{
     padding: 0 5px;
     background-color: #D15B47!important;
     border-color: transparent;
 }
+.question-action .btn-add,
 .exams .btn-add{
     font-size: 20px;
     line-height: 1;

@@ -69,7 +69,11 @@ class UsersController extends AppController
             // echo "<pre>"; print_r($user); exit();
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-                $this->getMailer('User')->send('memberOfSpc', [$user,$this->request->data['password']]);
+                try{
+                    $this->getMailer('User')->send('memberOfSpc', [$user,$this->request->data['password']]);
+                } catch (PDOException $e) {
+                    debug($e);
+                }
                 return $this->redirect(['action' => 'index']);
             } else {
                 if($user->errors()){

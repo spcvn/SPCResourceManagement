@@ -19,7 +19,8 @@ class ExamstemplatesController extends AppController
     public function index()
     {
         $examstemplates = $this->paginate($this->Examstemplates,[
-            'contain' => ['Sections']
+            'contain' => ['Sections'],
+            'conditions'=> ['is_delete'=>0]
         ]);
         $quizs_test = $this->report_temp_test();
         $quizs_status = $this->report_temp_status();
@@ -113,7 +114,9 @@ class ExamstemplatesController extends AppController
     {
         $this->request->allowMethod(['post','get', 'delete']);
         $examstemplate = $this->Examstemplates->get($id);
-        if ($this->Examstemplates->delete($examstemplate)) {
+        $examstemplate->is_delete = 1;
+        $examstemplate->update_date = date("Y-m-d H:i:s");
+        if ($this->Examstemplates->save($examstemplate)) {
             $this->Flash->success(__('The examstemplate has been deleted.'));
         } else {
             $this->Flash->error(__('The examstemplate could not be deleted. Please, try again.'));

@@ -1,3 +1,11 @@
+<style type="text/css">
+  .nodisplay{
+    display: none;
+  }
+  .show{
+    display: block;
+  }
+</style>
 <div class="page-header">
     <h1>
         <?= __('users')?>
@@ -8,18 +16,43 @@
     </h1>
 </div><!-- /.page-header -->
 <?php
-    $candidates['0']=__('Select a candidate...');
+    $candidates['']=__('Select a candidate...');
+    asort($candidates);
     $user->positions[''] = __('Select a position...');
 ?>
+  <div class="modal-header">
+    <ul class="steps">
+      <li data-step="1" class="active">
+        <span class="step">1</span>
+        <span class="title">Validation states</span>
+      </li>
+
+      <li data-step="2">
+        <span class="step">2</span>
+        <span class="title">Alerts</span>
+      </li>
+
+      <li data-step="3">
+        <span class="step">3</span>
+        <span class="title">Payment Info</span>
+      </li>
+
+      <li data-step="4">
+        <span class="step">4</span>
+        <span class="title">Other Info</span>
+      </li>
+    </ul>
+  </div>
 <div class="users form-register content">
     <?= $this->Form->create($user) ?>
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-10 col-md-push-1">
+          <section id="step1">
             <div class="box-form">
                 <h2><?= __('create_an_account')?>t</h2>
                 <?php
-                echo $this->Form->error('error');
-                echo $this->Form->input('username',['type'=>'text']);
+                // echo $this->Form->error('error');
+                echo $this->Form->input('username',['type'=>'text','required'=>true]);
                 echo "<span class='text-error'>";
                 echo $this->Html->image('../images/loading.gif',['class'=>'user-loading hidden']);
                 echo "</span>";
@@ -29,12 +62,14 @@
                 echo $this->Html->link(__('generate_password'),"javascript:generationPassword()",["id"=>"btnPassword"]);
                 ?>
             </div>
-        </div>
-        <div class="col-md-7">
+          </section>
+          <section id="step2" class="nodisplay">
             <div class="box-form">
                 <h2><?= __('candidate_exists')?></h2>
-                <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>'-1'])?>            
+                <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>''])?>            
             </div>
+          </section>
+          <section id="step3" class="nodisplay">
             <div class="box-form">
                 <h2><?= __('account_information')?></h2>
                 <?php
@@ -48,9 +83,9 @@
                     <?php echo $this->cell("Province.Province",['config'=>'all']);?>
                 </div>
                 <?php
-                echo $this->Form->input('birthday', ['class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
+                echo $this->Form->input('birthday', ['name'=>'  birth_date','class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
                 echo $this->Form->input('mobile',['type'=>'text']);
-                echo $this->Form->input('department',['type'=>'select', 'options'=>$user->positions ,'default'=>'']);
+                echo $this->Form->input('department',['name'=>'dept','type'=>'select', 'options'=>$user->positions ,'default'=>'']);
                 echo $this->Form->input('start_work',['type'=>'text','class'=>'datepicker','default' => date('Y-m-d')]);
                 $status = ['0' => 'Active', '1' => 'Disable'];
                 echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
@@ -58,6 +93,13 @@
                 echo $this->Form->input('avatar', ['type' => 'hidden', 'value'=>'default.png']);
                 ?>
             </div>
+          </section>
+          <button id="btn-back" class="nodisplay">Back</button>
+          <button id="btn-step">Next</button>
+        </div>
+        <div class="col-md-7">
+            
+            
         </div>
     </div>
     <div class="actions">
@@ -182,10 +224,57 @@
             dateFormat: 'yy-mm-dd',
             yearRange: "-100:+0",
         });
+
+         $('.form-register form').validate({
+            rules: {
+                mobile: {
+                  required: true,
+                  number: true
+                },
+                start_work: {
+                  required: true,
+                  date: true
+                },
+                password: {
+                  required: true,
+                  minlength: 6
+                },
+                confirm_password: {
+                  equalTo: "#password"
+                }
+          },
+          submitHandler:function(form){
+            var cur = $('form').find('section:visible');
+            cur.hide();
+            cur.next('section').first().show('fade');
+            btnshow();
+          }
+        });
+
+
+        $('#btn-back').on('click',function(e){
+          e.preventDefault();
+          var cur = $(this).parent().find('section:visible');
+          cur.hide();
+          cur.prev('section').first().show('fade');
+          btnshow();
+        });
     } );
+    function btnshow(){
+      if($('section').first().is(':visible')){
+        $('#btn-back').hide();
+      }else{
+        $('#btn-back').show();
+      }
+      if($('section').last().is(':visible')){
+        $('#btn-step').hide();
+      }else{
+        $('#btn-step').show();
+      }
+    }
    $('select[name=candidate_id]').on('change',function(event){
        var id = $(this).val();
-       var url = "<?//=$this->Url->build(['controller'=>'candidates','action'=>'getCandidate'])?>//"
+       var url = "<?=$this->Url->build(['controller'=>'candidates','action'=>'getCandidate'])?>"
        $.post(url,{"id":id},function(resData){
            var data = $.parseJSON(resData);
            $.each(data,function(key,val){
@@ -198,6 +287,7 @@
    var timer;
    $('input[name=username]').on('blur',function(){
        var eleUsername = $( this );
+       if(eleUsername.val() == '' || eleUsername.val() == null) return;
        var classUsername = $( this ).parent('div.input');
        classUsername.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
        var processing=false;
@@ -231,7 +321,7 @@
 
        var eleEmail = $( this );
        var classEmail = $('.input.email');
-       // classEmail.find('.error').remove();
+       if(eleEmail.val() == '' || eleEmail.val() == null) return;
        classEmail.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
 
        var processing=false;
@@ -280,23 +370,6 @@
     }
     loadDataModal();
 
-    $('.form-register form').validate({
-        rules: {
-            mobile: {
-              required: true,
-              number: true
-            },
-            start_work: {
-              required: true,
-              date: true
-            },
-            password: {
-              required: true,
-              minlength: 6
-            },
-            confirm_password: {
-              equalTo: "#password"
-            }
-      }
-    });
+   
+
 </script>

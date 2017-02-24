@@ -369,7 +369,7 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => false,
             ])
-            ->addColumn('id_template', 'integer', [
+            ->addColumn('template_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,

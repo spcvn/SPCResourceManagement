@@ -39,7 +39,7 @@
                     ?>
                         <div class="row line-add">
                             <div class="col-sm-6">
-                                <select class="width-100" name='sections[<?=$key?>][id]' >
+                                <select class="width-100" name='sections[<?=$key?>][id]' onChange="enableSeleced()">
                                     <?php
                                         foreach ($sections as $sKey=>$value) {
                                             $selected = ($sKey == $objSection->id)?"selected='selected'":"";
@@ -82,7 +82,228 @@
 
     </div>
 </div>
-<script>
+<script type="text/javascript">
+    var line = 1;
+    var _Per_input_change = 0;
+    var per = 100;
+    var countSections = <?=$sections->count()?>;
+
+    function addline(){
+        var str = '<div class="row line-add">'+
+            '<div class="col-sm-6">'+
+            '<select class="width-100" name="sections['+numSections+'][id]" onChange="enableSeleced()">'+
+            '<?php
+                            foreach ($sections as $key=>$value) {
+                                echo "<option value=\'$key\'>$value</option>";
+                            }
+                        ?>'+
+            '</select>'+
+            '</div>'+
+            '<div class="col-sm-2">'+
+            '<input type="text" name="sections['+numSections+'][_joinData][ratio]" class="width-80 percent-section" onchange="hasChanged($(this))" />'+
+            ' <span>%</span>'+
+            '</div>'+
+            '<div class="col-sm-4 actions">'+
+            '<a class="btn btn-remove"><i class="fa fa-remove"></i></a>'+
+            ' <a class="btn btn-add">+</i></a>'+
+            '</div>'+
+            '</div>';
+
+
+            $('.section-add').on('click','.btn-add',function(e){
+                /*
+                * Count section to append 
+                */
+                if(countSections < 2) {
+                    $.alert('Not enought section for this exam template!');
+                    return;
+                }
+                countSections--;
+
+                e.preventDefault();
+                line++;
+                $('.section-add').append(str);
+
+                resetPercent();
+                finishCount();
+                disableSection();
+            });
+    }
+
+    function finishCount(){
+        //tinh total :
+        var total = countval();
+        if(total>100){
+            setvaluelastchildex(total);
+            countval();
+        }else {
+            setvaluelastchildsu(total);
+            countval();
+        }
+    }
+    function countval() {
+        var sum = 0;
+        $('.line-add').each(function() {
+            $(this).find('input').each(function(){
+                sum += parseInt($(this).val());
+            });
+            $('.total-percent').val(sum);
+        });
+        return sum;
+    }
+    function setvaluelastchildex(total) {
+        var _this = $('.line-add:last-child .percent-section');
+        var _itsval = _this.val();
+        var lost =  total - per;
+        _this.val(_itsval-lost);
+    }
+    function setvaluelastchildsu(total) {
+        var _this = $('.line-add:last-child .percent-section');
+        var _itsval = _this.val();
+        var lost = per - total;
+        _this.val(parseInt(_itsval)+ parseInt(lost))
+    }
+    function resetPercent(){
+
+        stillPer = 100;
+        var cHasChanged = $('.section-add').find('.hasChanged').length;
+        var numLine = $('.section-add').find('.percent-section').length;
+
+        $('.percent-section').each(function (e) {
+            if($( this ).hasClass('hasChanged')){
+                stillPer = stillPer - $(this).val();
+            }
+        });
+        var lineNotChanged = numLine - cHasChanged;
+        var valInput = stillPer/lineNotChanged;
+        _Per_input_change = valInput;
+
+
+        $('.percent-section').each(function (e) {
+            if(!$( this ).hasClass('hasChanged')){
+                $( this ).val(Math.round(valInput));
+            }
+        });
+    }
+
+    function removeline(){
+        
+        $('.section-add').each(function(){
+            $(this).on('click','.btn-remove',function () {
+                if(line <=1) return;
+                line--;
+                countSections++;
+                $(this).parent().parent().remove();
+                resetPercent();
+                finishCount();
+            });
+        });
+    }
+
+    function validateEmpty(){
+        $(document).on('submit','.form-add-exam form', function(e){
+
+            $(this).find('.error').remove();
+            $(".required input[type=text]").each(function(){
+
+                if ($(this).val() === ""){
+                    e.preventDefault();
+                    $(this).parent().append('<p class="error">Please fill in all the required fields (*)</p>');
+                    return false;
+                }
+                else{
+                    $(this).parent().find('.error').remove();
+                }
+            });
+        });
+    }
+    function validatePercent(){
+        var __this = $('.percent-section');
+        __this.each(function(){
+            $(this).blur(function(){
+                var percent = parseInt($(this).val());
+                    $('.percent-section').each(function () {
+                        console.log($(this));
+                    });
+
+            })
+        })
+    }
+
+    /* 
+    * function disableSection
+    * Disable section choosed
+    */
+    var m = [];
+    function disableSection(){
+        enableSeleced();
+        $('.section-add select:last option:not([disabled])').first().attr("selected", "selected");
+        enableSeleced();
+    }
+    function enableSeleced(){
+        $('.section-add select option[disabled=disabled]').each(function(){
+            $(this).removeAttr('disabled');
+        });
+        var i = 1;
+        $('.section-add select option:selected').each(function(){
+            m[i++]= $(this).val();
+        });
+        $('.section-add select').each(function(){
+           $.each(m,function(key,val){
+            if(typeof(val) != "undefined"){
+                $('.section-add select option[value='+val+']').attr('disabled','disabled');
+            }
+           }); 
+        });
+    }
+    $(document).ready(function(){
+        $('.btn-remove').each(function () {
+           $(this).confirm({
+               content: "Are you sure you want to remove this section?",
+               title: "",
+               buttons: {
+                   yes: {
+                       btnClass:'btn-danger',
+                       action: function () {
+                           
+                       }
+                   },
+                   no: {
+                       keys: ['N'],
+                   },
+               }
+           });
+        });
+
+        $('form').submit(function(){
+            $('.section-add select option[disabled=disabled]').each(function(){
+                $(this).removeAttr('disabled');
+            });
+        });
+
+        addline();
+        removeline();
+        validateEmpty();
+        validatePercent();
+    });
+    function hasChanged(e) {
+
+        if( e.val() < 0 || e.val() === ''){
+            return;
+        }
+        e.addClass('hasChanged');
+        e.removeClass('noChange');
+        resetPercent();
+        finishCount();
+        if(e.val() > 100 || _Per_input_change < 0){
+            e.val(0);
+            resetPercent();
+            finishCount();
+        }
+    }
+
+</script>
+<!-- <script>
     var line = 1;
     var per = 100;
     var numSections = <?=count($examstemplate->sections)?>;
@@ -188,4 +409,4 @@
         e.addClass('hasChanged');
     }
 //    removeline();
-</script>
+</script> -->

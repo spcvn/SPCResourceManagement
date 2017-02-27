@@ -871,7 +871,9 @@ form .error{
         float: left;
         width: 18%;
     }
-    .datetimepk .input-group.date{
+
+    .datetimepk .input-group.date,
+    #birth-date{
         width: 280px;
     }
 }

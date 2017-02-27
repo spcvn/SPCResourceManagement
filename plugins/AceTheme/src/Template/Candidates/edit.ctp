@@ -17,7 +17,18 @@
             echo $this->Form->input('first_name');
             echo $this->Form->input('middle_name');
             echo $this->Form->input('last_name');
-            echo $this->Form->input('birth_date', ['type'=>'text','label'=>__('birthday'),'class' => 'datepicker','value' => $candidate->birth_date->format('Y-m-d')]);
+            ?>
+            <div class="form-group datetimepk">
+                <label><?= __('birthday'); ?></label>
+                <div class='input-group date' id="">
+                    <input type='text' class="form-control datepicker" id='birth-date' name="birth-datee" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <?php
             $marriedStatus = ['0' => 'Single', '1' => 'Married'];
             echo $this->Form->input('married', ['type' => 'select','options'=>$marriedStatus, 'label'=>'Married Status']);
             echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
@@ -47,12 +58,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $(document).ready( function() {
-        $( ".datepicker" ).datepicker({
-            changeYear: true,
-            changeMonth: true,
-            dateFormat: 'yy-mm-dd',
-            yearRange: "-100:+0",
-        });
         $('#interview-date').datetimepicker({
              format: 'YYYY-MM-DD h:mm:ss A',//use this option to display seconds
              icons: {
@@ -71,6 +76,15 @@
         }).next().on(ace.click_event, function(){
             $(this).prev().focus();
         });
+        var year = (new Date).getFullYear();
+        $('#birth-date').datetimepicker({
+            format: 'YYYY-MM-DD',
+            minDate: new Date(year-65, 0, 1),
+            maxDate: new Date(year-16, 11, 31)
+        }).next().on(ace.click_event, function(){
+            $(this).prev().focus();
+        });
+
         $(".loading").hide();
         $(".content").show('fade');
     } );

@@ -17,7 +17,18 @@
             echo $this->Form->input('middle_name',['label'=>__('middle_name')]);
             echo $this->Form->input('last_name',['label'=>__('last_name')]);
             echo $this->Form->input('email',['required'=>true]);
-            echo $this->Form->input('birth_date', ['type'=>'text','class' => 'datepicker', 'label'=>__('birthday')]);
+            ?>
+            <div class="form-group datetimepk">
+                <label><?= __('birthday'); ?></label>
+                <div class='input-group date' id="">
+                    <input type='text' class="form-control datepicker" id='birth-date' name="birth-datee" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <?php
             $marriedStatus = ['0' => __('single'), '1' => __('married')];
             echo $this->Form->input('married',['label'=>__('marriage_status'),'type'=>'select','options'=>$marriedStatus]);
             echo $this->Form->input('addr01',['label'=>__('address'),'type'=>'text']);
@@ -165,15 +176,9 @@
 
     }
     function addRequired(idi) {
-        $(idi).parent().addClass('required');
+        $(idi).addClass('required').parent().addClass('required');
     };
     $(document).ready( function() {
-        $( ".datepicker" ).datepicker({
-            changeYear: true,
-            changeMonth: true,
-            dateFormat: 'yy-mm-dd',
-            yearRange: "-100:+0",
-        });
         $('#datetimepicker').datetimepicker({
              format: 'YYYY-MM-DD h:mm:ss A',//use this option to display seconds
              icons: {
@@ -192,11 +197,23 @@
         }).next().on(ace.click_event, function(){
             $(this).prev().focus();
         });
+        var year = (new Date).getFullYear();
+        $('#birth-date').datetimepicker({
+            format: 'YYYY-MM-DD',
+            minDate: new Date(year-65, 0, 1),
+            maxDate: new Date(year-16, 11, 31)
+        }).next().on(ace.click_event, function(){
+            $(this).prev().focus();
+        });
+
         $(".loading").hide();
         $(".content").show('fade');
         loadDataModal();
         addRequired('#provinceid');
         addRequired('#districtid');
-        $(".candidates form").validate();
+        $(".candidates form").validate({
+            focusInvalid: false,
+        });
     } );
+
 </script>

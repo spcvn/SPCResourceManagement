@@ -83,7 +83,7 @@
     function removeAnwser(){
         $('#answer').on('click','.btn-remove',function(e){
             e.preventDefault();
-            if(num < 1){
+            if(num < 2){
                 return;
             }
             num--;

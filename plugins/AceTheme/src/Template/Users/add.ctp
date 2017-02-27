@@ -20,35 +20,60 @@
     asort($candidates);
     $user->positions[''] = __('Select a position...');
 ?>
-  <div class="modal-header">
-    <ul class="steps">
-      <li data-step="1" class="active">
-        <span class="step">1</span>
-        <span class="title">Validation states</span>
-      </li>
-
-      <li data-step="2">
-        <span class="step">2</span>
-        <span class="title">Alerts</span>
-      </li>
-
-      <li data-step="3">
-        <span class="step">3</span>
-        <span class="title">Payment Info</span>
-      </li>
-
-      <li data-step="4">
-        <span class="step">4</span>
-        <span class="title">Other Info</span>
-      </li>
-    </ul>
-  </div>
 <div class="users form-register content">
     <?= $this->Form->create($user) ?>
-    <div class="row">
-        <div class="col-md-10 col-md-push-1">
-          <section id="step1">
-            <div class="box-form">
+<div class="modal-content">
+      <div id="modal-wizard-container">
+        <div class="modal-header">
+          <ul class="steps">
+            <li data-step="1" class="active">
+              <span class="step">1</span>
+              <span class="title"><?=__('Select candidate')?></span>
+            </li>
+
+            <li data-step="2">
+              <span class="step">2</span>
+              <span class="title"><?=__('Account infomation')?></span>
+            </li>
+
+            <li data-step="3">
+              <span class="step">3</span>
+              <span class="title"><?=__('Create account')?></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="modal-body step-content">
+          <div class="step-pane active" data-step="1">
+                <h2><?= __('candidate_exists')?></h2>
+                <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>''])?>            
+          </div>
+
+          <div class="step-pane" data-step="2">
+                  <h2><?= __('account_information')?></h2>
+                  <?php
+                  echo $this->Form->input('email',['type'=>'email']);
+                  echo $this->Form->input('first_name',['type'=>'text']);
+                  echo $this->Form->input('middle_name',['type'=>'text']);
+                  echo $this->Form->input('last_name',['type'=>'text']);
+                  echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
+                  ?>
+                  <div class="row col-3">
+                      <?php echo $this->cell("Province.Province",['config'=>'all']);?>
+                  </div>
+                  <?php
+                  echo $this->Form->input('birthday', ['name'=>'  birth_date','class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
+                  echo $this->Form->input('mobile',['type'=>'text']);
+                  echo $this->Form->input('department',['name'=>'dept','type'=>'select', 'options'=>$user->positions ,'default'=>'']);
+                  echo $this->Form->input('start_work',['type'=>'text','class'=>'datepicker','default' => date('Y-m-d')]);
+                  $status = ['0' => 'Active', '1' => 'Disable'];
+                  echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
+                  echo $this->Form->input('role', ['type' => 'hidden', 'value'=>'0']);
+                  echo $this->Form->input('avatar', ['type' => 'hidden', 'value'=>'default.png']);
+                  ?>
+          </div>
+
+          <div class="step-pane" data-step="3">
                 <h2><?= __('create_an_account')?>t</h2>
                 <?php
                 // echo $this->Form->error('error');
@@ -61,60 +86,27 @@
                 echo "<div class='pass'>&nbsp;</div>";
                 echo $this->Html->link(__('generate_password'),"javascript:generationPassword()",["id"=>"btnPassword"]);
                 ?>
-            </div>
-          </section>
-          <section id="step2" class="nodisplay">
-            <div class="box-form">
-                <h2><?= __('candidate_exists')?></h2>
-                <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>''])?>            
-            </div>
-          </section>
-          <section id="step3" class="nodisplay">
-            <div class="box-form">
-                <h2><?= __('account_information')?></h2>
-                <?php
-                echo $this->Form->input('email',['type'=>'email']);
-                echo $this->Form->input('first_name',['type'=>'text']);
-                echo $this->Form->input('middle_name',['type'=>'text']);
-                echo $this->Form->input('last_name',['type'=>'text']);
-                echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
-                ?>
-                <div class="row col-3">
-                    <?php echo $this->cell("Province.Province",['config'=>'all']);?>
-                </div>
-                <?php
-                echo $this->Form->input('birthday', ['name'=>'  birth_date','class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
-                echo $this->Form->input('mobile',['type'=>'text']);
-                echo $this->Form->input('department',['name'=>'dept','type'=>'select', 'options'=>$user->positions ,'default'=>'']);
-                echo $this->Form->input('start_work',['type'=>'text','class'=>'datepicker','default' => date('Y-m-d')]);
-                $status = ['0' => 'Active', '1' => 'Disable'];
-                echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
-                echo $this->Form->input('role', ['type' => 'hidden', 'value'=>'0']);
-                echo $this->Form->input('avatar', ['type' => 'hidden', 'value'=>'default.png']);
-                ?>
-            </div>
-          </section>
-          <button id="btn-back" class="nodisplay">Back</button>
-          <button id="btn-step">Next</button>
+          </div>
         </div>
-        <div class="col-md-7">
-            
-            
-        </div>
-    </div>
-    <div class="actions">
-        <div class="row">
-            <div class="col-sm-6 text-left">
-                <a class="btn btnPreview" data-toggle="modal" data-target="#reviewUser"><?= __('preview'); ?></a>
-            </div>
-            <div class="col-sm-6">
-                <?= $this->Form->button(__('submit'),['class'=>'btn-submit']) ?>
-            </div>
-        </div>
+      </div>
+
+      <div class="modal-footer wizard-actions">
+        <button class="btn btn-sm btn-prev">
+          <i class="ace-icon fa fa-arrow-left"></i>
+          Prev
+        </button>
+
+        <button class="btn btn-success btn-sm btn-next" data-last="Finish">
+          Next
+          <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+        </button>
+      </div>
     </div>
     <?= $this->Form->end() ?>
+  </div>
 </div>
-<div id="reviewUser" class="modal fade review-user" role="dialog">
+
+    <div id="reviewUser" class="modal fade review-user" role="dialog">
     <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->
@@ -213,11 +205,31 @@
 
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<?= $this->Html->script('jquery.validate.min.js')?>
+<div id="dialog" title="" class="modal">
+  <?=__("Do you want to save this?")?>
+</div>​
+<?= $this->Html->script('wizard.min.js')?>
 <script>
     $( function() {
+      
+      $('#modal-wizard-container').ace_wizard()
+        .on('actionclicked.fu.wizard' , function(e, info){
+          if(!$('.form-register form').valid()){
+            e.preventDefault();
+          }
+          if(info.direction == "prevert"){
+            e.preventDefault();
+          }
+          console.log($('.form-register form').valid());
+          console.log("actionclicked");
+        })
+        .on('finished.fu.wizard', function(e) {
+          
+          // $('.form-register form').submit();
+        }).on('stepclick.fu.wizard', function(e){
+          console.log("step head");
+          //e.preventDefault();//this will prevent clicking and selecting steps
+        });
         $( ".datepicker" ).datepicker({
             changeYear: true,
             changeMonth: true,
@@ -231,6 +243,15 @@
                   required: true,
                   number: true
                 },
+                dept: {
+                  required: true
+                },
+                provinceid: {
+                  required: true
+                },
+                districtid: {
+                  required: true
+                },
                 start_work: {
                   required: true,
                   date: true
@@ -241,37 +262,79 @@
                 },
                 confirm_password: {
                   equalTo: "#password"
+                },
+                username:{
+                  required:true,
+                  minlength: 5,
+                  uniqueUserName:true
+                },
+                email:{
+                  required:true,
+                  uniqueEmail:true,
+                  email:true
                 }
           },
           submitHandler:function(form){
-            var cur = $('form').find('section:visible');
-            cur.hide();
-            cur.next('section').first().show('fade');
-            btnshow();
+            
+            $("#dialog").dialog({
+               modal: true,
+               buttons : {
+                    "Yes" : function() {
+                        $(this).html('<?=__("Please wating...")?>');
+                        form.submit();        
+                    },
+                    "No" : function() {
+                      $(this).dialog("close");
+                    }
+                  }
+              });
           }
         });
+         var response;
+         var timer;
+          $.validator.addMethod(
+              "uniqueUserName", 
+              function(value, element) {
+                clearTimeout(timer);
+                  timer = setTimeout(function(){
+                  $.ajax({
+                      type: "POST",
+                      url: "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>",
+                      data: {'username':value},
+                      dataType:"json",
+                      success: function(data)
+                      {
+                          response = ( data.status == 'exist' ) ? false : true ;
+                      }
+                   });
+                  },1000);
+                  return response;
+              },
+              "Username is Already Taken"
+          );
+          $.validator.addMethod(
+              "uniqueEmail", 
+              function(value, element) {
+                clearTimeout(timer);
+                  timer = setTimeout(function(){
+                    $.ajax({
+                        type: "POST",
+                        url: "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>",
+                        data: {'email':value},
+                        dataType:"json",
+                        success: function(data)
+                        {
+                            response = ( data.status == 'exist' ) ? false : true ;
+                        }
+                     });
+                  },1000);
+                    return response;
+              },
+              "Email address is Already Taken"
+          );
 
-
-        $('#btn-back').on('click',function(e){
-          e.preventDefault();
-          var cur = $(this).parent().find('section:visible');
-          cur.hide();
-          cur.prev('section').first().show('fade');
-          btnshow();
-        });
     } );
-    function btnshow(){
-      if($('section').first().is(':visible')){
-        $('#btn-back').hide();
-      }else{
-        $('#btn-back').show();
-      }
-      if($('section').last().is(':visible')){
-        $('#btn-step').hide();
-      }else{
-        $('#btn-step').show();
-      }
-    }
+    
    $('select[name=candidate_id]').on('change',function(event){
        var id = $(this).val();
        var url = "<?=$this->Url->build(['controller'=>'candidates','action'=>'getCandidate'])?>"
@@ -284,69 +347,7 @@
            });
        });
    });
-   var timer;
-   $('input[name=username]').on('blur',function(){
-       var eleUsername = $( this );
-       if(eleUsername.val() == '' || eleUsername.val() == null) return;
-       var classUsername = $( this ).parent('div.input');
-       classUsername.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
-       var processing=false;
-       clearTimeout(timer);
-       timer = setTimeout( function(){
-           if (!processing){
-               processing=true;
-               var url = "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>";
-               $.post(url,{ username:eleUsername.val() },function(res){
-                   $('i.error').remove();
-                   var data = $.parseJSON(res);
-                   classUsername.find('.user-loading').remove();
-                   if(data.status == 'exist'){
-                       classUsername.addClass('has-error');
-                       classUsername.append('<i class="error">Username is exist, please pick a another username!</i>');
-                   }else{
-                       classUsername.removeClass('has-error');
-                       classUsername.append('<i class="success"></i>');
-                   }
-               });
-           }
-       }
-       ,1000);
-   });
-    /*
-    *
-    *    $('.has-error') : show error to input element
-    *
-    */
-   $('input[name=email]').on('blur',function(){
-
-       var eleEmail = $( this );
-       var classEmail = $('.input.email');
-       if(eleEmail.val() == '' || eleEmail.val() == null) return;
-       classEmail.append('<img src="/ace_theme/img/../images/loading.gif" class="user-loading"/>');
-
-       var processing=false;
-       clearTimeout(timer);
-       timer = setTimeout( function(){
-           if (!processing){
-               processing=true;
-               var url = "<?=$this->Url->build(['controller'=>'Users','action'=>'checkExistUserName'])?>";
-               $.post(url,{ email:eleEmail.val() },function(res){
-                    $('i.error').remove();
-                   var data = $.parseJSON(res);
-                   classEmail.find('.user-loading').remove();
-                   if(data.status == 'exist'){
-                       classEmail.addClass('has-error');
-                       eleEmail.addClass('error');
-                       classEmail.append('<i class="error">Username is exist, Please pick a another email!</i>');
-                   }else{
-                       eleEmail.removeClass('error');
-                       classEmail.removeClass('has-error');
-                   }
-               });
-           }
-       }
-       ,1000);
-   });
+   
     //load data form to modal preview
     function loadDataModal(){
         $('.form-register input').each(function () {

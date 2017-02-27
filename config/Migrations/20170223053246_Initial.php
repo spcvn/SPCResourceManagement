@@ -111,17 +111,17 @@ class Initial extends AbstractMigration
                 'limit' => 2,
                 'null' => true,
             ])
-            ->addColumn('province_id', 'string', [
+            ->addColumn('provinceid', 'string', [
                 'default' => null,
                 'limit' => 5,
                 'null' => true,
             ])
-            ->addColumn('district_id', 'string', [
+            ->addColumn('districtid', 'string', [
                 'default' => null,
                 'limit' => 5,
                 'null' => true,
             ])
-            ->addColumn('ward_id', 'string', [
+            ->addColumn('wardid', 'string', [
                 'default' => null,
                 'limit' => 5,
                 'null' => true,

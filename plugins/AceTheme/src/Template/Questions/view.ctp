@@ -54,6 +54,13 @@
 <script type="text/javascript">
     $(document).ready(function(){
         deleteAnswer();
+        setTimeout(function() {
+            $($('.action-render')).find('a.btn-edit-simple').each(function() {
+                var div = $(this).find(' > div').first();
+                if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
+                else $(this).tooltip({container: 'body', title: $(this).text()});
+            });
+        }, 500);
     });
     function deleteAnswer(){
         $( ".btn-delete" ).each(function(index) {

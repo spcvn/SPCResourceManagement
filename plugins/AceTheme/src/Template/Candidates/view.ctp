@@ -77,7 +77,7 @@
                             <tr>
                                 <th scope="row"><?= __('address') ?></th>
                                 <td>:</td>
-                                <td><?= h($candidate->addr01.", ".$candidate->province[0].", ".$candidate->district[0].", ".$candidate->ward[0]) ?></td>
+                                <td><?= h($candidate->addr01) ?> <?= h(@$candidate->province[0].", ".@$candidate->district[0]->type.' '.@$candidate->district[0]->name.", ".@$candidate->ward[0]->type.' '.@$candidate->ward[0]->name) ?></td>
                             </tr>
 
                         </table>

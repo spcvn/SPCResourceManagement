@@ -42,7 +42,9 @@
             </div>
             <div class="row input text">
                 <label class="col-sm-2"><?= __('description')?>:</label>
-                <label class="col-sm-10">Description content</label>
+                <label class="col-sm-3 col-xs-10">
+                    <textarea class="form-control" name="description" id="form-field-1" placeholder="Description "></textarea>
+                </label>
             </div>
             <div class="row actions">
                 <div class="col-sm-10 col-sm-push-2">

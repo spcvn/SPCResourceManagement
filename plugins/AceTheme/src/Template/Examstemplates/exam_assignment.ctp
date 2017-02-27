@@ -29,8 +29,8 @@
                 </div>
             </div>
             <div class="row input text">
-                <label class="col-sm-3"><?= __('duration')?>:</label>
-                <label class="col-sm-9"><strong id="duration">0</strong> minutes</label>
+                <label class="col-sm-2"><?= __('duration')?>:</label>
+                <label class="col-sm-10"><strong id="duration">0</strong> minutes</label>
             </div>
             <div class="row input text">
                 <label class="col-sm-2"><?= __('number_of_question')?>:</label>

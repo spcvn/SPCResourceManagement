@@ -61,11 +61,32 @@
                   <div class="row col-3">
                       <?php echo $this->cell("Province.Province",['config'=>'all']);?>
                   </div>
+
+                  <div class="form-group datetimepk">
+                      <label><?= __('birthday'); ?></label>
+                      <div class='input-group date' id="">
+                          <input type='text' class="form-control datepicker" id='birth-date' name="birth-datee" />
+                          <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
                   <?php
-                  echo $this->Form->input('birthday', ['name'=>'  birth_date','class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
                   echo $this->Form->input('mobile',['type'=>'text']);
                   echo $this->Form->input('department',['name'=>'dept','type'=>'select', 'options'=>$user->positions ,'default'=>'']);
-                  echo $this->Form->input('start_work',['type'=>'text','class'=>'datepicker','default' => date('Y-m-d')]);
+                  ?>
+                  <div class="form-group datetimepk">
+                      <label><?= __('start_working_date'); ?></label>
+                      <div class='input-group date'>
+                          <input type='text' class="form-control datepicker" id='start-work' name="start_work" />
+                          <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+                  <?php
                   $status = ['0' => 'Active', '1' => 'Disable'];
                   echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
                   echo $this->Form->input('role', ['type' => 'hidden', 'value'=>'0']);
@@ -230,12 +251,31 @@
           console.log("step head");
           //e.preventDefault();//this will prevent clicking and selecting steps
         });
-        $( ".datepicker" ).datepicker({
-            changeYear: true,
-            changeMonth: true,
-            dateFormat: 'yy-mm-dd',
-            yearRange: "-100:+0",
+        var d = new Date();
+
+        var month = d.getMonth()+1;
+        var day = d.getDate();
+        var year = d.getFullYear();
+        var output = d.getFullYear() + '-' +
+            (month<10 ? '0' : '') + month + '-' +
+            (day<10 ? '0' : '') + day;
+        $('#birth-date').datetimepicker({
+            format: 'YYYY-MM-DD',
+            minDate: new Date(year-65, 0, 1),
+            maxDate: new Date(year-16, 11, 31)
+        }).next().on(ace.click_event, function(){
+            $(this).prev().focus();
         });
+
+        $('#start-work').datetimepicker({
+            format: 'YYYY-MM-DD',
+            minDate: new Date(year, month-6, 1),
+            maxDate: new Date(year, month+6, 31)
+        }).next().on(ace.click_event, function(){
+            $(this).prev().focus();
+        });
+
+        $('#start-work input').val(output);
 
          $('.form-register form').validate({
             rules: {
@@ -251,10 +291,6 @@
                 },
                 districtid: {
                   required: true
-                },
-                start_work: {
-                  required: true,
-                  date: true
                 },
                 password: {
                   required: true,
@@ -333,6 +369,9 @@
               "Email address is Already Taken"
           );
 
+        addRequired('#provinceid');
+        addRequired('#districtid');
+
     } );
     
    $('select[name=candidate_id]').on('change',function(event){
@@ -347,6 +386,9 @@
            });
        });
    });
+    function addRequired(idi) {
+        $(idi).addClass('required').parent().addClass('required');
+    };
    
     //load data form to modal preview
     function loadDataModal(){

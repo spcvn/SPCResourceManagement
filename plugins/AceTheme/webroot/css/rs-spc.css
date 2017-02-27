@@ -497,16 +497,18 @@ select::-ms-expand{
 }
 .btn-edit-simple{
     text-align: center;
-    border: 1px solid #8089A0;
+    border: 1px solid #6FB3E0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
     display: inline-block;
     padding: 10px 15px;
-    color: #8089A0;
-    opacity: 0.75;
+    /*color: #8089A0;*/
+    opacity: 1;
     cursor: pointer;
     margin-bottom: 5px;
+    background-color: #6FB3E0;
+    color: #ffffff;
 }
 .btn-simple{
     text-align: center;
@@ -516,23 +518,27 @@ select::-ms-expand{
     border-radius: 3px;
     display: inline-block;
     padding: 10px 15px;
-    color: #8089A0;
+    /*color: #8089A0;*/
     opacity: 1;
     cursor: pointer;
     margin-bottom: 5px;
 }
+.btn-simple.btn-member{
+    background-color: #87B87F;
+    color: #ffffff;
+    border: 1px solid #87B87F;
+}
 .btn-edit-simple:hover,
 .btn-edit-simple:focus{
     text-decoration: none;
-    border-color: #438EB9;
-    color: #438EB9;
-    opacity: 1;
+    /*color: #438EB9;*/
+    opacity: 0.85;
+    color: #ffffff;
 }
 .btn-simple:hover,
 .btn-simple:focus{
     text-decoration: none;
-    border-color: #438EB9;
-    color: #438EB9;
+    opacity: 0.8;
 }
 /*.btn-create-test{*/
     /*border-color: #82AF6F;*/
@@ -867,13 +873,12 @@ form .error{
         left: 30px;
         width: 130px;
     }
-    .datetimepk label{
+    .datetimepk > label{
         float: left;
         width: 18%;
     }
 
-    .datetimepk .input-group.date,
-    #birth-date{
+    .datetimepk .input-group.date{
         width: 280px;
     }
 }

@@ -11,16 +11,24 @@
 <div class="users view content">
     <div class="wrap-review">
         <div class="row">
-            <div class="col-sm-8 col-sm-push-4">
+            <div class="col-xs-12">
                 <h3 class="ttl-light"><i class="fa fa-vcard"></i> <?= h($candidate->first_name).' '.h($candidate->last_name); ?></h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-center">
                 <?= $this->Html->image('/images/avatars/avatar_user.png',['alt'=>''])?>
+                <div class="actions">
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
+                        ['action' => 'edit', $candidate->id],
+                        ['class'=>'btn-edit-simple', 'title'=>__('edit'),'escape'=>false]) ?>
+                    <a href="#" class="btn-simple btn-create-test" title="<?= __('create_test');?>"><i class="fa fa-file-o"></i></a>
+                    <a href="#" class="btn-simple btn-member" title="<?= __('member_of_spc')?>" ><i class="fa fa-user-o"></i></a>
+                </div>
             </div>
             <div class="col-sm-8">
-                <ul class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
+                <ul class="inbox-tabs nav nav-tabs tab-size-bigger tab-space-1">
                     <li class="active"><a href="#generalCan" data-toggle="tab" data-target="#generalCan" aria-expanded="true">General</a></li>
                     <li><a href="#contactCan" data-toggle="tab" data-target="#contactCan" aria-expanded="true">Contact</a></li>
                     <li><a href="#interviewCan" data-toggle="tab" data-target="#interviewCan" aria-expanded="true">Interview Info</a></li>
@@ -110,18 +118,6 @@
                 </div>
             </div>
 
-        </div>
-        <div class="row">
-            <div class="col-sm-8 col-sm-push-4">
-                <div class="actions">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
-                        ['action' => 'edit', $candidate->id],
-                        ['class'=>'btn-edit-simple', 'title'=>__('edit'),'escape'=>false]) ?>
-                    <a href="#" class="btn-simple btn-create-test" title="<?= __('create_test');?>"><i class="fa fa-file-o"></i></a>
-                    <a href="#" class="btn-simple btn-member" title="<?= __('member_of_spc')?>" ><i class="fa fa-user-o"></i></a>
-                </div>
-            </div>
         </div>
 
     </div>

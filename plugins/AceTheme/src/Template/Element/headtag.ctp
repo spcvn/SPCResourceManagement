@@ -9,7 +9,8 @@
     <?= $this->Html->meta(['name'=>'viewport', 'content'=>'width=device-width, initial-scale=1.0, maximum-scale=1.0'])?>
     <!--[if !IE]> -->
     <?= $this->Html->script('jquery-2.1.4.min.js') ?>
-
+    <?= $this->Html->script('jquery-1.12.4.js') ?>
+    <?= $this->Html->script('jquery-ui.js') ?>
     <!-- <![endif]-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&amp;subset=vietnamese" rel="stylesheet">
     <!-- bootstrap & fontawesome -->
@@ -20,6 +21,8 @@
     <?= $this->Html->css('jquery-ui.custom.min.css')?>
     <?= $this->Html->css('fileinput.css')?>
     <?= $this->Html->css('bootstrap-datetimepicker.min.css')?>
+
+    <?= $this->Html->script('jquery.validate.min.js')?>
 
     <!-- page specific plugin styles -->
     <?= $this->Html->css('jquery-ui.custom.min.css')?>

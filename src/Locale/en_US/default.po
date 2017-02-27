@@ -406,5 +406,11 @@ msgstr "Quiz"
 msgid "code"
 msgstr "Code"
 
+msgid "Please wating..."
+msgstr "Please wating..."
+
+msgid "Do you want to save this?"
+msgstr "Do you want to save this?"
+
 msgid "option"
 msgstr "Option"

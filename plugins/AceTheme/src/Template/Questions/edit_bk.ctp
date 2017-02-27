@@ -28,46 +28,35 @@
         ]]);
         ?>
         <div class="question-action">
-            <h4><?= __('answer');?>:</h4>
+            <h3>Answers</h3>
             <div id="answer">
                 <?php
                 $i = 0;
                 foreach($answers as $key =>$answer){
-                $i++;
-                ?>
-                <div class="row line-add">
-                    <div class="col-xs-3 col-sm-2 text-right">
-                        <label> <?= __('option').$i.': ';?></label>
+                    $i++;
+                    ?>
+                    <div class="row-answer row">
+                        <div class="col-xs-10">
+                            <?php
+                            echo $this->Form->input($key, ['label'=>$i.'. ','default' => $answer]);?>
+                        </div>
+                        <div class="col-xs-2">
+                            <?= $this->Html->link($this->Html->tag('i','',['class'=>'fa fa-trash red']), ['action' => 'ansdelete', $key],['escape'=>false,'class'=>'btnDelete']);?>
+                        </div>
                     </div>
-                    <div class="col-xs-6 col-sm-8">
-                        <?php
-                        echo $this->Form->input($key, ['label'=>false,'default' => $answer]);?>
-                    </div>
-                    <div class="col-xs-3 col-sm-2">
-                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a>
-                        <?php if($i==count($answers)){?>
-                        <a class="btn btn-add">+</i></a>
-                        <?php }?>
-                    </div>
-                </div>
                     <?php
                 }
                 ?>
-
             </div>
-            <div class="row">
-                <div class="col-sm-2 col-xs-3 text-right">
-                    <?php
-                    echo $this->Form->label(__('correct_answer'));
-                    ?>
-                </div>
-                <div class="col-sm-8 col-xs-8">
-                    <div class="input select">
-                        <?php
-                        echo $this->Form->select('correct_answer', $answers,['default'=>key($correct_answer)]);
-                        ?>
-                    </div>
-                </div>
+            <div class="actions">
+                <a href="javascript:addAnswer()" class="btn btn-success"><?= __('add')?> +</a>
+                <a class="delete_answer btn btn-danger" href="javascript:removeAnswer()"><?= __('remove')?> -</a>
+            </div>
+            <div class="input select">
+                <?php
+                echo $this->Form->label(__('correct_answer'));
+                echo $this->Form->select('correct_answer', $answers,['default'=>key($correct_answer)]);
+                ?>
             </div>
         </div>
     </fieldset>
@@ -94,44 +83,45 @@
 
         CKEDITOR.replace( 'content' );
         checkAnswer(answer_no);
-        addAnswer();
-        removeAnwser();
+        deleteAnswer();
     });
-    var num = $('#answer .line-add').length;
-    var __mainHtml = function () {
-        num++;
-        var __htmlAns = '<div class="row line-add">'
-            +'<div class="col-xs-3 col-sm-2 text-right">'
-            +'<label>Option '+ num +'.</label>'
-            +'</div>'
-            +'<div class="col-xs-6 col-sm-8">'
-            +'<input type="text" name="answer'+num+'" required>'
-            +'</div>'
-            +'<div class="col-xs-3 col-sm-2">'
-            +'<a class="btn btn-remove"><i class="fa fa-remove"></i></a> <a class="btn btn-add">+</i></a>'
-            +'</div>'
-            +'</div>';
-        $('#answer').append(__htmlAns);
-    }
     function addAnswer() {
-        $('#answer').on('click','.btn-add',function(e){
-            e.preventDefault();
-            if(num > 9) return;
-            $(this).remove();
-            __mainHtml();
-        });
+        answer_no++;
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "text");
+        x.setAttribute("name", "answer" + answer_no);
+        x.setAttribute("required", "true");
+        x.setAttribute("onchange", "changeVal($(this),"+answer_no+")");
+
+        var y = document.createElement("LABEL");
+        y.setAttribute("for", "answer" + answer_no);
+        y.innerHTML = answer_no + ". ";
+
+        var z = document.createElement("div");
+        z.setAttribute("id", "answer" + answer_no);
+        z.setAttribute("class","input text")
+        z.appendChild(y);
+        z.appendChild(x);
+        answer = document.getElementById("answer");
+        //answer.appendChild(y);
+        answer.appendChild(z);
+
+        checkAnswer(answer_no);
     }
-    function removeAnwser(){
-        $('#answer').on('click','.btn-remove',function(e){
-            e.preventDefault();
-            if(num < 1){
-                return;
-            }
-            num--;
-            if($(this).parent().parent().is(':last-children')) return;
-            $(this).parent().parent().remove();
-            $('#answer .line-add:last-child').addClass('last');
-        });
+
+    function removeAnswer(){
+        if(answer_no <= 0){
+            return;
+        }else{
+            $('#answer'+answer_no).remove();
+            $('select[name=correct_answer] option').each(function(){
+                if($( this ).val() == answer_no){
+                    $( this ).remove(); 
+                }
+            });
+            answer_no--;
+        }
+        checkAnswer(answer_no);
     }
 
     function checkAnswer(answer_no){

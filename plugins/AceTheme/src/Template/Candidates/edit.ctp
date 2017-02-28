@@ -1,9 +1,9 @@
 <div class="page-header">
     <h1>
-        Candidates
+        <?= __('candidates')?>
         <small>
             <i class="ace-icon fa fa-angle-double-right"></i>
-            Edit Candidate
+            <?= __('edit_candidate')?>
         </small>
     </h1>
 </div><!-- /.page-header -->
@@ -41,8 +41,18 @@
             echo $this->Form->input('mobile',['required'=>true]);
             echo $this->Form->input('position_id',['options'=>$positions]);
             echo $this->Form->input('expected_salary',['type'=>'select','options'=>$select->salary]);
-            echo $this->Form->input('interview_date',['type'=>'text','class'=>'datetimepicker'
-                ,'value' => date("Y-m-d H:i:s", strtotime($candidate->interview_date))]);
+            ?>
+            <div class="form-group datetimepk">
+                <label><?= __('interview_date'); ?></label>
+                <div class='input-group date' id="">
+                    <input type='text' class="form-control datepicker" id='interview-date' name="interview_date" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <?php
             $results = ['0' => 'Fail', '2' => 'Pass',''=>'---'];
             echo $this->Form->input('result', ['type' => 'select', 'options' => $results, '']);
             ?>
@@ -60,17 +70,6 @@
     $(document).ready( function() {
         $('#interview-date').datetimepicker({
              format: 'YYYY-MM-DD h:mm:ss A',//use this option to display seconds
-             icons: {
-                time: 'fa fa-clock-o',
-                date: 'fa fa-calendar',
-                up: 'fa fa-chevron-up',
-                down: 'fa fa-chevron-down',
-                previous: 'fa fa-chevron-left',
-                next: 'fa fa-chevron-right',
-                today: 'fa fa-arrows ',
-                clear: 'fa fa-trash',
-                close: 'fa fa-times'
-             },
              useCurrent : true,
              defaultDate : "moment"
         }).next().on(ace.click_event, function(){
@@ -78,9 +77,7 @@
         });
         var year = (new Date).getFullYear();
         $('#birth-date').datetimepicker({
-            format: 'YYYY-MM-DD',
-            minDate: new Date(year-65, 0, 1),
-            maxDate: new Date(year-16, 11, 31)
+            format: 'YYYY-MM-DD'
         }).next().on(ace.click_event, function(){
             $(this).prev().focus();
         });

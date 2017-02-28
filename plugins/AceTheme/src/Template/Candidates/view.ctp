@@ -73,7 +73,7 @@
                     <div id="contactCan" class="tab-pane fade">
                         <table class="table-review table-hover vertical-table">
                             <tr>
-                                <th style="width: 90px;" scope="row"><?= __('email') ?></th>
+                                <th style="width: 80px;" scope="row"><?= __('email') ?></th>
                                 <td style="width: 10px;">:</td>
                                 <td><?= h($candidate->email) ?></td>
                             </tr>

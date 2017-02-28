@@ -50,7 +50,7 @@
           </div>
 
           <div class="step-pane" data-step="2">
-                  <h2><?= __('account_information')?></h2>
+                  <h2 class="text-center"><?= __('account_information')?></h2>
                   <?php
                   echo $this->Form->input('email',['type'=>'email']);
                   echo $this->Form->input('first_name',['type'=>'text']);
@@ -95,7 +95,7 @@
           </div>
 
           <div class="step-pane" data-step="3">
-                <h2><?= __('create_an_account')?>t</h2>
+                <h2 class="text-center"><?= __('create_an_account')?>t</h2>
                 <?php
                 // echo $this->Form->error('error');
                 echo $this->Form->input('username',['type'=>'text','required'=>true]);

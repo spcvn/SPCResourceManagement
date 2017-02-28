@@ -64,8 +64,8 @@
 <?= $this->Html->script('bootstrap-datetimepicker.min.js') ?>
 <?= $this->Html->script('customs.js') ?>
 <?= $this->Html->script('rm-custom.js') ?>
-
-
+<!-- Script of page -->
+<?php $this->fetch('end-script') ?>
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
         var activeMenu = '<?=$this->request->params['controller']?>';

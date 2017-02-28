@@ -50,6 +50,11 @@ class Initial extends AbstractMigration
                 'limit' => 110,
                 'null' => false,
             ])
+            ->addColumn('email', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
             ->addColumn('birth_date', 'date', [
                 'default' => null,
                 'limit' => null,

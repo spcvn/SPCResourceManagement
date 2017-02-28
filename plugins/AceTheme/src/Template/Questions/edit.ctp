@@ -21,7 +21,7 @@
     <?= $this->Form->create($question,['id'=>'qForm']) ?>
     <fieldset>
         <?php
-        echo $this->Form->input('section', ['type' => 'select', 'options' => $section]);
+        echo $this->Form->input('section_id', ['type' => 'select', 'options' => $section]);
         echo $this->Form->label(__('content'));
         echo $this->Form->input('content',['templates' => [
             'formGroup' => '{{input}}'

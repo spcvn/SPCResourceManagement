@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
     
-    config.height   = '500px';
+    config.height   = '200px';
     
     config.extraPlugins = 'insertpre';
 	config.filebrowserBrowseUrl         = baseUrl + 'webroot/js/kcfinder/browse.php?opener=ckeditor&type=files';

@@ -14,9 +14,10 @@
         <fieldset>
             <?php
             // print_r($candidate->interview_date);exit();
-            echo $this->Form->input('first_name');
+            echo $this->Form->input('first_name',['required'=>true]);
             echo $this->Form->input('middle_name');
-            echo $this->Form->input('last_name');
+            echo $this->Form->input('last_name',['required'=>true]);
+            echo $this->Form->input('email',['required'=>true]);
             ?>
             <div class="form-group datetimepk">
                 <label><?= __('birthday'); ?></label>
@@ -37,7 +38,7 @@
                 <?php echo $this->cell("Province.Province",['config'=>'all',"type"=>"edit",'data'=>$candidate]);?>
             </div>
             <?php
-            echo $this->Form->input('mobile');
+            echo $this->Form->input('mobile',['required'=>true]);
             echo $this->Form->input('position_id',['options'=>$positions]);
             echo $this->Form->input('expected_salary',['type'=>'select','options'=>$select->salary]);
             echo $this->Form->input('interview_date',['type'=>'text','class'=>'datetimepicker'

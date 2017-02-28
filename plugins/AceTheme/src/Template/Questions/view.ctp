@@ -1,3 +1,8 @@
+<style type="text/css">
+    .btn-edit-view{
+
+    }
+</style>
 <div class="page-header">
     <h1>
         <?= __('question')?>
@@ -7,16 +12,16 @@
         </small>
     </h1>
 </div><!-- /.page-header -->
-<div class="action-render text-right">
-    <?= $this->Html->link(
-        $this->Html->tag('i','',['class'=>'fa fa-pencil']),
-        ['action' => 'edit', $question->id],
-        ['class'=>'btn-edit-simple', 'title'=>__('edit_this_question'),'escape'=>false]) ?>
-</div>
 <div class="row">
     <div class="col-md-6">
         <div class="content-question">
             <h4 class="header smaller lighter blue"><?= __('question') ?></h4>
+
+                <?= $this->Html->link(
+                    $this->Html->tag('i','',['class'=>'fa fa-pencil']),
+                    ['action' => 'edit', $question->id],
+                    ['class'=>'btn-edit-simple', 'title'=>__('edit_this_question'),'escape'=>false]) ?>
+
             <article>
                 <?= $question->content ?>
             </article>

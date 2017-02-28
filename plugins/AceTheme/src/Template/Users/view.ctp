@@ -19,7 +19,7 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4 text-center">
+            <div class="col-sm-4 col-lg-3 text-center">
                 <?= $this->Html->image('/images/avatars/avatar_user.png',['alt'=>''])?>
                 <div class="actions">
                     <?= $this->Html->link(
@@ -28,7 +28,7 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
                         ['class'=>'btn-edit-simple', 'title'=>'Edit Detail','escape'=>false]) ?>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 col-lg-9">
                 <ul class="inbox-tabs nav nav-tabs tab-size-bigger tab-space-1">
                     <li class="active"><a href="#generalUser" data-toggle="tab" data-target="#generalUser" aria-expanded="true">General</a></li>
                     <li><a href="#contactUser" data-toggle="tab" data-target="#contactUser" aria-expanded="true">Contact</a></li>

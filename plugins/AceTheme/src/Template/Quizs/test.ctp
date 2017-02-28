@@ -158,9 +158,9 @@
     function contentConfirm(){
         var question = $('.question_index[data-ans=uncheck]');
         if(question.length>0){
-            return "<?=__('Some questions is answer, are you sure??? ')?>";
+            return "<?=__('alert_when_question_not_check')?>";
         }else{
-            return "<?=__('Are you sure to finish this test?')?>";
+            return "<?=__('alert_finish')?>";
         }
     }
     

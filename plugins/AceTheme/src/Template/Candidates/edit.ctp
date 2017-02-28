@@ -82,6 +82,7 @@
             $(this).prev().focus();
         });
         $('#birth-date').val('<?=$candidate->birth_date->format("Y-m-d")?>').datetimepicker('update');
+        $('#interview-date').val('<?=$candidate->interview_date->format("Y-m-d h:i:s A")?>').datetimepicker('update');
         $(".loading").hide();
         $(".content").show('fade');
     } );

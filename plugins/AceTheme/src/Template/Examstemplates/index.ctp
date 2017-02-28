@@ -10,7 +10,7 @@
 <div class="exams index content">
     <div class="row">
         <div class="col-xs-12 tableTools-container">
-            <?= $this->Html->link($this->Html->tag('i','',['class'=>'ace-icon fa fa-plus bigger-125'])." Add ",
+            <?= $this->Html->link(__('add_template'),
                 ['controller'=>'examstemplates','action'=>'add'],
                 ['class'=>'btn btn-success','title'=>'Add a Exam Template','escape'=>false]
             ); ?> 
@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="table-header">
-                <span><?=__('Results for "Latest Template"')?></span>
+                <span><?=__('alert_result')?></span>
             </div>
 
             <!-- div.table-responsive -->
@@ -28,10 +28,10 @@
                 <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th class="center">
+                        <th style="width: 50px;" class="center">
                             <?= $this->Paginator->sort('id',__('No.')) ?>
                         </th>
-                        <th><?= __('template_name')?></th>
+                        <th><?= __('name')?></th>
                         <th><?= __('number_of_question')?></th>
                         <th class="hidden-480">
                             <?= __('duration_minute')?></th>
@@ -39,7 +39,7 @@
                         <th>
                             <?= __('section')?>
                         </th>
-                        <th class="hidden-480"><?= __('tested')?></th>
+                        <th style="width: 150px;" class="hidden-480"><?= __('tested_assigned')?></th>
 
                         <th><?=__('action')?></th>
                     </tr>

@@ -92,7 +92,7 @@ msgid "exam_name"
 msgstr "Exam Name"
 
 msgid "number_of_question"
-msgstr "Number of question"
+msgstr "No. Question"
 
 msgid "question"
 msgstr "Question"
@@ -120,6 +120,9 @@ msgstr "Candidate"
 
 msgid "candidate_name"
 msgstr "Candidate Name"
+
+msgid "add_template"
+msgstr "Add Template"
 
 msgid "exam_template"
 msgstr "Exam Template"
@@ -166,8 +169,8 @@ msgstr "New Template"
 msgid "test"
 msgstr "Test"
 
-msgid "tested"
-msgstr "Tested"
+msgid "tested_assigned"
+msgstr "Tested/Assigned"
 
 msgid "action"
 msgstr "Action"
@@ -414,3 +417,15 @@ msgstr "Do you want to save this?"
 
 msgid "option"
 msgstr "Option"
+
+msgid "alert_when_question_not_check"
+msgstr "Some questions aren't answer, are you sure?"
+
+msgid "name"
+msgstr "Name"
+
+msgid "alert_finish"
+msgstr "Are you sure to finish this test?"
+
+msgid "alert_result"
+msgstr "Results for Latest Template"

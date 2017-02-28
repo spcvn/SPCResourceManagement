@@ -58,6 +58,8 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}')]) ?></p>
     </div>
 </div>
+
+
 <script>
     $(document).ready(function(){
         $( ".btn-delete" ).each(function(index) {

@@ -21,7 +21,7 @@
             <div class="form-group datetimepk">
                 <label><?= __('birthday'); ?></label>
                 <div class='input-group date' id="">
-                    <input type='text' class="form-control datepicker" id='birth-date' name="birth-datee" />
+                    <input type='text' class="form-control datepicker" id='birth-date' name="birth_date" value="<?=$candidate->birth_date?>" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -34,8 +34,7 @@
             echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
             ?>
             <div class="row col-3">
-                <?php
-                echo $this->cell("Province.Province",['config'=>'all']);?>
+                <?php echo $this->cell("Province.Province",['config'=>'all',"type"=>"edit",'data'=>$candidate]);?>
             </div>
             <?php
             echo $this->Form->input('mobile');
@@ -84,7 +83,7 @@
         }).next().on(ace.click_event, function(){
             $(this).prev().focus();
         });
-
+        $('#birth-date').val('<?=$candidate->birth_date->format("Y-m-d")?>').datetimepicker('update');
         $(".loading").hide();
         $(".content").show('fade');
     } );

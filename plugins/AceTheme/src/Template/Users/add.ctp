@@ -311,7 +311,6 @@
                 }
           },
           submitHandler:function(form){
-            
             $("#dialog").dialog({
                modal: true,
                buttons : {

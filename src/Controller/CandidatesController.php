@@ -2,6 +2,7 @@
 namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Province\Controller\ProvincesController;
 /**
  * Candidates Controller
  *
@@ -48,12 +49,16 @@ class CandidatesController extends AppController
      */
     public function view($id = null)
     {
+        $pro = new ProvincesController;
         $candidate = $this->Candidates->get($id, [
             'contain' => ['Positions']
         ]);
         $select = new \stdClass();
         $select->position = ['it' => 'IT Position', 'admin' => 'Admin'];
-        $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
+        $select->salary = ['< 300$' => '< 300$', '300$ ~ 500$' => '300$ ~ 500$', '500$ ~ 750$' => '500$ ~ 750$', '> 700' => '> 750$'];
+        $candidate->province = array_values($pro->getProvince($candidate->provinceid));
+        $candidate->district = array_values($pro->getDistrict(null,$candidate->districtid));
+        $candidate->ward = array_values($pro->getWard(null,$candidate->wardid));
         $this->set(compact('select'));
         $this->set('candidate', $candidate);
         $this->set('_serialize', ['candidate']);
@@ -84,7 +89,7 @@ class CandidatesController extends AppController
         }
         $select = new \stdClass();
 
-        $select->salary = ['< 300' => '< 300', '300$ ~ 500$' => '300$ ~ 500$', '500$ ~ 750$' => '500$ ~ 750$', '> 700' => '> 700'];
+        $select->salary = ['< 300$' => '< 300$', '300$ ~ 500$' => '300$ ~ 500$', '500$ ~ 750$' => '500$ ~ 750$', '> 700' => '> 750$'];
         $positions = $this->Candidates->Positions->find('list');
         $this->set(compact('candidate', 'positions'));
         $this->set(compact('select'));
@@ -104,7 +109,7 @@ class CandidatesController extends AppController
             'contain' => ['Positions']
         ]);
         $select = new \stdClass();
-        $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
+        $select->salary = ['< 300$' => '< 300$', '300$ ~ 500$' => '300$ ~ 500$', '500$ ~ 750$' => '500$ ~ 750$', '> 700' => '> 750$'];
         if ($this->request->is(['patch', 'post', 'put'])) {
             $candidate = $this->Candidates->patchEntity($candidate, $this->request->data);
             if ($this->Candidates->save($candidate)) {
@@ -167,7 +172,7 @@ class CandidatesController extends AppController
         $this->loadModel('Positions');
         $select = new \stdClass();
         $select->position = $this->Positions->find('list')->toArray();
-        $select->salary = ['250$ ~ 350$' => '250$ ~ 350$', '350$ ~ 500$' => '350$ ~ 500$', '550$ ~ 750$' => '550$ ~ 750$'];
+        $select->salary = ['< 300$' => '< 300$', '300$ ~ 500$' => '300$ ~ 500$', '500$ ~ 750$' => '500$ ~ 750$', '> 700' => '> 750$'];
         $candidate = $this->Candidates->get($this->request->data['id'], [
             'contain' => []
         ])->toArray();

@@ -21,7 +21,7 @@
             <div class="form-group datetimepk">
                 <label><?= __('birthday'); ?></label>
                 <div class='input-group date' id="">
-                    <input type='text' class="form-control datepicker" id='birth-date' name="birth-datee" />
+                    <input type='text' class="form-control datepicker" id='birth-date' name="birth_date" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>

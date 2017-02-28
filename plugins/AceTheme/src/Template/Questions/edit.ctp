@@ -1,3 +1,15 @@
+<style type="text/css">
+    .red{
+        color:red;
+    }
+    input[readonly]{
+        content: "";
+        background-color: #fff!important;
+        border-color: #fff;
+        text-decoration: line-through;
+         /*text-align: left; */
+    }
+</style>
 <div class="page-header">
     <h1>
         <?= __('question')?>
@@ -37,14 +49,14 @@
                 ?>
                 <div class="row line-add">
                     <div class="col-xs-3 col-sm-2 text-right">
-                        <label> <?= __('option').$i.': ';?></label>
+                        <label> <?= __('option').' '.$i.': ';?></label>
                     </div>
                     <div class="col-xs-6 col-sm-8">
                         <?php
                         echo $this->Form->input($key, ['label'=>false,'default' => $answer]);?>
                     </div>
                     <div class="col-xs-3 col-sm-2">
-                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a>
+                        <a class="btn btn-remove" data-id="<?=$key?>"><i class="fa fa-remove"></i></a>
                         <?php if($i==count($answers)){?>
                         <a class="btn btn-add">+</i></a>
                         <?php }?>
@@ -63,9 +75,18 @@
                 </div>
                 <div class="col-sm-8 col-xs-8">
                     <div class="input select">
-                        <?php
+                        <!-- <?php
                         echo $this->Form->select('correct_answer', $answers,['default'=>key($correct_answer)]);
+                        ?> -->
+                        <select id="correct-answer" name="correct_answer">
+                        <?php $i=1; foreach ($answers as $key => $value) {
+                            ?>
+                            <option value="<?=$key?>" <?=($key == key($correct_answer))?'selected="selected"':''?>>Option <?=$i++?></option>
+                        <?php
+                        } 
                         ?>
+                        
+                        </select>
                     </div>
                 </div>
             </div>
@@ -96,6 +117,7 @@
         checkAnswer(answer_no);
         addAnswer();
         removeAnwser();
+        recoverAnwser();
     });
     var num = $('#answer .line-add').length;
     var __mainHtml = function () {
@@ -105,7 +127,7 @@
             +'<label>Option '+ num +'.</label>'
             +'</div>'
             +'<div class="col-xs-6 col-sm-8">'
-            +'<input type="text" name="answer'+num+'" required>'
+            +'<input type="text" name="answer'+num+'" onchange="changeVal($(this),' + num + ')" required>'
             +'</div>'
             +'<div class="col-xs-3 col-sm-2">'
             +'<a class="btn btn-remove"><i class="fa fa-remove"></i></a> <a class="btn btn-add">+</i></a>'
@@ -124,13 +146,38 @@
     function removeAnwser(){
         $('#answer').on('click','.btn-remove',function(e){
             e.preventDefault();
-            if(num < 1){
-                return;
-            }
-            num--;
-            if($(this).parent().parent().is(':last-children')) return;
-            $(this).parent().parent().remove();
-            $('#answer .line-add:last-child').addClass('last');
+            var line = $(this).parents('div.line-add');
+
+            //add input type value remove
+            var id = $(this).attr('data-id');
+            line.append("<input type='hidden' name='ans_delete[]' value='"+id+"' >");
+
+            line.addClass('red');
+            line.find('input[type=text]').attr('disabled',true);
+            line.find('label').addClass('line-through');
+            var btnEnabel = '<a class="btn btn-inverse btn-enable" data-id="'+id+'"><i class="fa fa-undo"></i></a>';
+            $(this).parent('div').prepend(btnEnabel);
+            $(this).remove();
+
+        });
+    }
+
+    function recoverAnwser(){
+        $('#answer').on('click','.btn-enable',function(e){
+            e.preventDefault();
+            var line = $(this).parents('div.line-add');
+
+            //add input type value remove
+            var id = $(this).attr('data-id');
+            line.find('input[type=hidden]').remove();
+
+            line.removeClass('red');
+            line.find('input[type=text]').attr('disabled',false);
+            line.find('label').removeClass('line-through');
+            var btnEnabel = '<a class="btn btn-remove"  data-id="'+id+'"><i class="fa fa-remove"></i></a>';
+            $(this).parent('div').prepend(btnEnabel);
+            $(this).remove();
+
         });
     }
 
@@ -143,14 +190,13 @@
         }
     }
     function changeVal(element,index){
-        var val = element.val().replace(/[a-z]. /, '');
+        var val = "Option "+index;// element.val().replace(/[a-z]. /, '');
         if($('select[name=correct_answer] option[value='+index+']').length == 0){
-            // console.log($(this));
             $('select[name=correct_answer]').append($('<option>', { value : index }).text(val));
         }else{
             $('select[name=correct_answer] option[value='+index+']').text(val);
         }
-        return element.val(val);
+        // return element.val(val);
     }
     function deleteAnswer(){
         $('.row-answer').each(function () {

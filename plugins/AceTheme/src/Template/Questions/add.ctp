@@ -16,7 +16,7 @@
     <?= $this->Form->create($question) ?>
     <fieldset>
         <?php
-            echo $this->Form->input('section', ['type' => 'select', 'options' => $section]);
+            echo $this->Form->input('section_id', ['type' => 'select', 'options' => $section]);
             echo $this->Form->label('content');
 			echo $this->Form->input('content',['templates' => [
                 'formGroup' => '{{input}}',
@@ -25,18 +25,68 @@
         ?>
         <div class="question-action">
             <h4><?= __('answer');?>:</h4>
-            <div id="answer"></div>
+            <!-- answer line -->
+            <div id="answer">
+                <div class="row line-add">
+                    <div class="col-xs-3 col-sm-2 text-right">
+                        <label>Option 1</label>
+                    </div>
+                    <div class="col-xs-6 col-sm-8">
+                        <input type="text" name="answer1" required  >
+                    </div>
+                    <div class="col-xs-3 col-sm-2">
+                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a> 
+                    </div>
+                </div>
+            
+                <div class="row line-add">
+                    <div class="col-xs-3 col-sm-2 text-right">
+                        <label>Option 2</label>
+                    </div>
+                    <div class="col-xs-6 col-sm-8">
+                        <input type="text" name="answer2" required  >
+                    </div>
+                    <div class="col-xs-3 col-sm-2">
+                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a> 
+                    </div>
+                </div>
+            
+                <div class="row line-add">
+                    <div class="col-xs-3 col-sm-2 text-right">
+                        <label>Option 3</label>
+                    </div>
+                    <div class="col-xs-6 col-sm-8">
+                        <input type="text" name="answer3" required  >
+                    </div>
+                    <div class="col-xs-3 col-sm-2">
+                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a> 
+                    </div>
+                </div>
+            
+                <div class="row line-add">
+                    <div class="col-xs-3 col-sm-2 text-right">
+                        <label>Option 4</label>
+                    </div>
+                    <div class="col-xs-6 col-sm-8">
+                        <input type="text" name="answer4" required  >
+                    </div>
+                    <div class="col-xs-3 col-sm-2">
+                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a> <a class="btn btn-add">+</i></a>
+                    </div>
+                </div>
+            </div>
+            <!--End answer line -->
             <div class="row">
                 <div class="col-sm-2 col-xs-3 text-right">
                     <label>Correct answer:</label>
                 </div>
                 <div class="col-sm-8 col-xs-8">
-                    <div class="input select">
-                        <select>
-                            <option>Anwser 1</option>
-                            <option>Anwser 2</option>
-                            <option>Anwser 3</option>
-                            <option>Anwser 4</option>
+                    <div class="input select" >
+                        <select name="correct_answer" required>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
                         </select>
                     </div>
                 </div>
@@ -62,7 +112,7 @@
             +'<label>Option '+ num +'.</label>'
             +'</div>'
             +'<div class="col-xs-6 col-sm-8">'
-            +'<input type="text" name="answer'+num+'" required>'
+            +'<input type="text" name="answer'+num+'" required onchange="changeVal($(this),' + num + ')" >'
             +'</div>'
             +'<div class="col-xs-3 col-sm-2">'
             +'<a class="btn btn-remove"><i class="fa fa-remove"></i></a> <a class="btn btn-add">+</i></a>'
@@ -87,16 +137,33 @@
                 return;
             }
             num--;
-            if($(this).parent().parent().is(':last-children')) return;
-            $(this).parent().parent().remove();
-            $('#answer').find('.line-add:last-child').addClass('last');
+            var line = $(this).parents('div.line-add');
+            line.remove();
+            for(var i=1; i<=$('#answer').find('label').length; i++){
+                $('#answer').find('label')[i-1].innerHTML = "Option "+i;
+            }
+            var j = 1;
+            $('#answer').find('input[type=text]').each(function(index){
+                $(this).attr('name','answer'+ j++);
+            });
+            console.log(num);
+            $('select[name=correct_answer] option').remove();
+            for (var k = 1; k <= num; k++) {
+                $('select[name=correct_answer]').append($('<option>', { value : k }).text("Option "+k));
+            }
+
         });
     }
+    function changeVal(element,index){
+        var val = "Option "+index;// element.val().replace(/[a-z]. /, '');
+        if($('select[name=correct_answer] option[value='+index+']').length == 0){
+            $('select[name=correct_answer]').append($('<option>', { value : index }).text(val));
+        }else{
+            $('select[name=correct_answer] option[value='+index+']').text(val);
+        }
+        // return element.val(val);
+    }
     $(document).ready(function () {
-        __mainHtml();
-        __mainHtml();
-        __mainHtml();
-        __mainHtml();
         addAnswer();
         removeAnwser();
         $('.questions form').validate();

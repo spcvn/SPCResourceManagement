@@ -106,7 +106,7 @@ class QuestionsController extends AppController
         if ($this->request->is('post')) {
         	$arrDatas = $this->request->data;
             $question->content = $arrDatas['content'];
-            $question->section_id = $arrDatas['section'];
+            $question->section_id = $arrDatas['section_id'];
             if ($this->Questions->save($question)) {
                 $question_id = $question->id;
                 if(!$this->registerAnswer($question_id, $arrDatas)){
@@ -153,7 +153,7 @@ class QuestionsController extends AppController
         	$arrDatas = $this->request->data;
         	 
         	$question->content = $arrDatas['content'];
-        	$question->section = $arrDatas['section'];
+        	$question->section_id = $arrDatas['section_id'];
         	if ($this->Questions->save($question)) {
         		$this->registerAnswer($id, $arrDatas);
         		
@@ -198,20 +198,22 @@ class QuestionsController extends AppController
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function ansdelete($id = null)
+    private function ansdelete($id = null)
     {
-        $this->request->allowMethod(['post', 'get']);
         $this->loadModel('Answers');
-        $answer = $this->Answers->get($id);
-        $answer->is_delete = 1;
-        // echo "<pre>";print_r($answer);exit();
-        if ($this->Answers->save($answer)) {
-            $this->Flash->success(__('The answer has been delete.'));
-        } else {
-            $this->Flash->error(__('The answer could not be delete. Please, try again.'));
+        try{
+            $answer = $this->Answers->get($id);
+            $answer->is_delete = 1;
+            if ($this->Answers->save($answer)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (\Exception $e) {
+            return false;
         }
 
-        return $this->redirect($this->referer());
+        
     }
     
     // Active question
@@ -229,12 +231,26 @@ class QuestionsController extends AppController
     }
     
     public function registerAnswer($question_id, $arrDatas){
-    	$this->loadModel('Answers');
+        $this->loadModel('Answers');
         $answers = $this->Answers->find('all', ['keyField' => 'id'])
                                 ->where(['question_id' => $question_id])
                                 ->toArray();
         $temp = $arrDatas;
-        unset($temp['section'],$temp['content'],$temp['correct_answer']);
+        unset(
+            $temp['section_id'],
+            $temp['content'],
+            $temp['correct_answer'],
+            $temp['ans_delete']
+            );
+//Delete answer was checked
+        if(isset($arrDatas['ans_delete'])){
+            $deleted = 0;
+            foreach ($arrDatas['ans_delete'] as $value) {
+                if($value != 'undefined' && $value != ''){
+                    if($this->ansdelete($value)) $deleted++;
+                }
+            }
+        }
         $i=1;
         foreach ($temp as $ansId=>$content) {
             $ans = $this->Answers->newEntity();

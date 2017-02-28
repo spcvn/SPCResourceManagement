@@ -705,6 +705,9 @@ tr.hover{
 form .error{
 
 }
+.line-through{
+    text-decoration: line-through;
+}
 /*table layout end*/
 .label.btn-status{
     width: 64px;

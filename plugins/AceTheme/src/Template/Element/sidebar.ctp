@@ -43,7 +43,7 @@
 
                     <b class="arrow"></b>
                 </li>
-                <li>
+                <!-- <li>
                     <?= $this->Html->link(
                         $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right'])
                         .$this->Html->tag('span',__('Report'),['class'=>'menu-text'])
@@ -78,7 +78,7 @@
 
                         </li>
                     </ul>
-                </li>
+                </li> -->
             </ul>
         </li>
         <li class="Examstemplates">

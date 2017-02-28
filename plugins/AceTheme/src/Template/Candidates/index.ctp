@@ -14,7 +14,7 @@
                 <th scope="col" style="text-align: center;"><?= __('No').'.'?></th>
                 <th scope="col"><?= $this->Paginator->sort('first_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('birth_date',['label'=>"Birthday"]) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('birth_date',['label'=>__('birthday')]) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('mobile') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('position') ?></th>
                 <th scope="col" class="actions"><a><?= __('actions') ?></a></th>

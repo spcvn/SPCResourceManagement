@@ -496,29 +496,31 @@ select::-ms-expand{
     padding: 15px 0;
 }
 .btn-edit-simple{
-    text-align: center;
     border: 1px solid #6FB3E0;
-    padding: 5px 9px;
-    /*color: #8089A0;*/
-    opacity: 1;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    text-align: center;
+    opacity: 0.8;
     cursor: pointer;
     margin-bottom: 5px;
     background-color: #6FB3E0;
     color: #ffffff;
+    padding-top: 5px;
+}
+.content-question .btn-edit-simple{
     float: right;
     margin-top: -55px;
 }
 .btn-simple{
     text-align: center;
     border: 1px solid #8089A0;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
     display: inline-block;
-    padding: 10px 15px;
-    /*color: #8089A0;*/
+    width: 32px;
+    height: 32px;
+    padding-top: 5px;
     color: #ffffff;
-    opacity: 1;
+    opacity: 0.8;
     cursor: pointer;
     margin-bottom: 5px;
 }
@@ -538,7 +540,7 @@ select::-ms-expand{
 .btn-simple:focus{
     text-decoration: none;
     color: #ffffff;
-    opacity: 0.85;
+    opacity: 1;
 }
 /*.btn-create-test{*/
     /*border-color: #82AF6F;*/
@@ -553,7 +555,7 @@ select::-ms-expand{
     /*width: 90%;*/
     margin: 0 auto;
     padding: 30px;
-    /*border: 1px double #438EB9;*/
+    border: 1px double #438EB9;
 }
 .users .wrap-edit h2,
 .candidates .wrap-edit h2{

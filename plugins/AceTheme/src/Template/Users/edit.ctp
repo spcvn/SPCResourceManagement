@@ -23,11 +23,31 @@
                 <div class="row col-3">
                     <?php echo $this->cell("Province.Province",['config'=>'all',"type"=>"edit",'data'=>$user]);?>
                 </div>
+                <div class="form-group datetimepk">
+                    <label><?= __('birthday'); ?></label>
+                    <div class='input-group date' id="">
+                        <input type='text' class="form-control datepicker" id='birth-date' name="birth_date" />
+                        <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
                 <?php
-                echo $this->Form->input('birthday', ['class' => 'datepicker', 'type' => 'text', 'format' => 'Y-m-d', 'default' => date('Y-m-d'), 'value' => !empty($user->birth_date) ? $user->birth_date->format('Y-m-d') : date('Y-m-d')]);
                 echo $this->Form->input('mobile',['type'=>'text']);
                 echo $this->Form->input('department',['type'=>'select','name'=>'dept','default'=>$user->dept,'options'=>$user->positions]);
-                echo $this->Form->input('start_working_date',['type'=>'text','class'=>'datepicker','format' => 'Y-m-d','value'=>!empty($user->start_work)?$user->start_work->format('Y-m-d'):""]);
+                ?>
+                <div class="form-group datetimepk">
+                    <label><?= __('start_working_date'); ?></label>
+                    <div class='input-group date' id="">
+                        <input type='text' class="form-control datepicker" id='start-work' name="start_work" />
+                        <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <?php
                 $status = ['0' => 'Active', '1' => 'Disable'];
                 echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
                 echo $this->Form->input('role', ['type' => 'hidden', 'value'=>'0']);
@@ -46,14 +66,19 @@
 <script>
     $(document).ready( function() {
         var year = (new Date).getFullYear();
-        $( ".datepicker" ).datepicker({
-            changeYear : true,
-            changeMonth : true,
-            yearRange : "1950:c",
-            dateFormat : "yy-mm-dd",
-            minDate: new Date(year-60, 0, 1),
-            maxDate: new Date(year-13, 11, 31)
+        $('#birth-date').datetimepicker({
+            format: 'YYYY-MM-DD'
+        }).next().on(ace.click_event, function(){
+            $(this).prev().focus();
         });
+        $('#start-work').datetimepicker({
+            format: 'YYYY-MM-DD'
+        }).next().on(ace.click_event, function(){
+            $(this).prev().focus();
+        });
+
+        $('#start-work').val('<?=$user->birth_date->format("Y-m-d")?>').datetimepicker('update');
+        $('#start-work').val('<?=$user->start_work->format("Y-m-d")?>').datetimepicker('update');
          $(".loading").hide();
          $(".content").show('fade');
 

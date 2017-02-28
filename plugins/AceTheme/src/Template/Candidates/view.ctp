@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4 text-center">
+            <div class="col-sm-4 col-lg-3 text-center">
                 <?= $this->Html->image('/images/avatars/avatar_user.png',['alt'=>''])?>
                 <div class="actions">
                     <?= $this->Html->link(
@@ -27,7 +27,7 @@
                     <a href="#" class="btn-simple btn-member" title="<?= __('member_of_spc')?>" ><i class="fa fa-user-o"></i></a>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 col-lg-9">
                 <ul class="inbox-tabs nav nav-tabs tab-size-bigger tab-space-1">
                     <li class="active"><a href="#generalCan" data-toggle="tab" data-target="#generalCan" aria-expanded="true">General</a></li>
                     <li><a href="#contactCan" data-toggle="tab" data-target="#contactCan" aria-expanded="true">Contact</a></li>

@@ -20,8 +20,7 @@
             echo $this->Form->label('content');
 			echo $this->Form->input('content',['templates' => [
                 'formGroup' => '{{input}}',
-                'required' => true
-            ]]);
+            ],['required'=>true]]);
         ?>
         <div class="question-action">
             <h4><?= __('answer');?>:</h4>
@@ -71,7 +70,7 @@
                         <input type="text" name="answer4" required  >
                     </div>
                     <div class="col-xs-3 col-sm-2">
-                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a> <a class="btn btn-add">+</i></a>
+                        <a class="btn btn-remove"><i class="fa fa-remove"></i></a> <a class="btn btn-add">+</a>
                     </div>
                 </div>
             </div>
@@ -125,6 +124,7 @@
         $('#answer').on('click','.btn-add',function(e){
             e.preventDefault();
             if(num > 9) return;
+
             $(this).remove();
             __mainHtml();
             $('#answer').find('.line-add:last-child').addClass('last');
@@ -138,7 +138,12 @@
             }
             num--;
             var line = $(this).parents('div.line-add');
+            console.log(line.is(':last-child'));
+            if(line.is(':last-child')){
+                $('.line-add').last().prev().children('div').last().append('<a class="btn btn-add">+</i></a>');
+            }
             line.remove();
+
             for(var i=1; i<=$('#answer').find('label').length; i++){
                 $('#answer').find('label')[i-1].innerHTML = "Option "+i;
             }
@@ -166,6 +171,10 @@
     $(document).ready(function () {
         addAnswer();
         removeAnwser();
-        $('.questions form').validate();
+        $('.questions form').validate({
+            rules: {
+                 content: 'Required'
+            }
+        });
     })
 </script>

@@ -170,7 +170,7 @@ input#start-working-date{
     display: inline-block;
 }
 .form-question form .question-action .line-add:not(:last-child) .btn-add{
-    display: none;
+    /*display: none;*/
 }
 form button[type=submit]{
     background-color: #438EB9;

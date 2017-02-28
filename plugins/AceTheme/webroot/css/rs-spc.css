@@ -69,7 +69,7 @@ img{
     color: #393939;
 }
 .form .select select{
-    min-width: 65px;
+    min-width: 80px;
 }
 .form .textarea textarea{
     min-height: 150px;
@@ -503,7 +503,6 @@ select::-ms-expand{
     border-radius: 3px;
     display: inline-block;
     padding: 10px 15px;
-    /*color: #8089A0;*/
     opacity: 1;
     cursor: pointer;
     margin-bottom: 5px;
@@ -519,26 +518,28 @@ select::-ms-expand{
     display: inline-block;
     padding: 10px 15px;
     /*color: #8089A0;*/
+    color: #ffffff;
     opacity: 1;
     cursor: pointer;
     margin-bottom: 5px;
 }
 .btn-simple.btn-member{
     background-color: #87B87F;
-    color: #ffffff;
     border: 1px solid #87B87F;
 }
-.btn-edit-simple:hover,
-.btn-edit-simple:focus{
-    text-decoration: none;
-    /*color: #438EB9;*/
-    opacity: 0.85;
-    color: #ffffff;
+.btn-simple.btn-create-test{
+    background-color: #2679B5;
+    border: 1px solid #2679B5;
 }
+.btn-edit-simple:hover,
+.btn-edit-simple:focus,
+.btn-simple.btn-create-test:hover,
+.btn-simple.btn-create-test:focus,
 .btn-simple:hover,
 .btn-simple:focus{
     text-decoration: none;
-    opacity: 0.8;
+    color: #ffffff;
+    opacity: 0.85;
 }
 /*.btn-create-test{*/
     /*border-color: #82AF6F;*/
@@ -550,10 +551,10 @@ select::-ms-expand{
 /*}*/
 .users .wrap-edit,
 .candidates .wrap-edit{
-    width: 80%;
+    /*width: 90%;*/
     margin: 0 auto;
     padding: 30px;
-    border: 1px double #438EB9;
+    /*border: 1px double #438EB9;*/
 }
 .users .wrap-edit h2,
 .candidates .wrap-edit h2{
@@ -876,6 +877,9 @@ form .error{
     .datetimepk > label{
         float: left;
         width: 18%;
+    }
+    .users.form-register .datetimepk > label{
+        width: 100%;
     }
 
     .datetimepk .input-group.date{

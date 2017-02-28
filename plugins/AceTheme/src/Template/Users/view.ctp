@@ -14,16 +14,22 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
 <div class="users view content">
     <div class="wrap-review">
         <div class="row">
-            <div class="col-sm-8 col-sm-push-4">
+            <div class="col-xs-12">
                 <h3 class="ttl-light"><i class="fa fa-vcard"></i> <?= h($user->first_name).' '.h($user->last_name); ?> </h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-center">
                 <?= $this->Html->image('/images/avatars/avatar_user.png',['alt'=>''])?>
+                <div class="actions">
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
+                        ['action' => 'edit', $user->id],
+                        ['class'=>'btn-edit-simple', 'title'=>'Edit Detail','escape'=>false]) ?>
+                </div>
             </div>
             <div class="col-sm-8">
-                <ul class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
+                <ul class="inbox-tabs nav nav-tabs tab-size-bigger tab-space-1">
                     <li class="active"><a href="#generalUser" data-toggle="tab" data-target="#generalUser" aria-expanded="true">General</a></li>
                     <li><a href="#contactUser" data-toggle="tab" data-target="#contactUser" aria-expanded="true">Contact</a></li>
                 </ul>
@@ -94,16 +100,6 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
                     </div>
                 </div>
 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-8 col-sm-push-4">
-                <div class="actions">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
-                        ['action' => 'edit', $user->id],
-                        ['class'=>'btn-edit-simple', 'title'=>'Edit Detail','escape'=>false]) ?>
-                </div>
             </div>
         </div>
 

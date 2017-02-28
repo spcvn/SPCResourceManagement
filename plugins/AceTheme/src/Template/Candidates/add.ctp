@@ -52,10 +52,10 @@
             </div>
         </fieldset>
         <div class="row action">
-            <div class="col-sm-6">
-                <a class="btn btnPreview" data-toggle="modal" data-target="#reviewCandidate"><?= __('preview'); ?></a>
-            </div>
-            <div class="col-sm-6 text-right">
+<!--            <div class="col-sm-6">-->
+<!--                <a class="btn btnPreview" data-toggle="modal" data-target="#reviewCandidate">--><?//= __('preview'); ?><!--</a>-->
+<!--            </div>-->
+            <div class="col-xs-12 text-right">
                 <?= $this->Form->button(__('submit'),['class'=>'btn-submit']) ?>
             </div>
         </div>

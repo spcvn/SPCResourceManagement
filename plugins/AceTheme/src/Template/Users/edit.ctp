@@ -65,19 +65,43 @@
 <?= $this->Html->script('jquery.validate.min.js')?>
 <script>
     $(document).ready( function() {
-        var year = (new Date).getFullYear();
+        $('.datepicker').keydown(false);
+        var d = new Date();
+
+        var month = d.getMonth()+1;
+        var day = d.getDate();
+        var year = d.getFullYear();
+        var output = d.getFullYear() + '-' +
+            (month<10 ? '0' : '') + month + '-' +
+            (day<10 ? '0' : '') + day;
         $('#birth-date').datetimepicker({
-            format: 'YYYY-MM-DD'
+            format: 'YYYY-MM-DD',
+            minDate: new Date(year-65, 0, 1),
+            maxDate: new Date(year-16, 11, 31)
         }).next().on(ace.click_event, function(){
             $(this).prev().focus();
         });
-        $('#start-work').datetimepicker({
-            format: 'YYYY-MM-DD'
+        $('input[name=start_work]').datetimepicker({
+             format: 'YYYY-MM-DD h:mm:ss A',//use this option to display seconds
+             icons: {
+                time: 'fa fa-clock-o',
+                date: 'fa fa-calendar',
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down',
+                previous: 'fa fa-chevron-left',
+                next: 'fa fa-chevron-right',
+                today: 'fa fa-arrows ',
+                clear: 'fa fa-trash',
+                close: 'fa fa-times'
+             },
+             minDate: new Date(year, month-6, 1),
+              maxDate: new Date(year, month+6, 31),
+             useCurrent : true
         }).next().on(ace.click_event, function(){
             $(this).prev().focus();
         });
 
-        $('#start-work').val('<?=$user->birth_date->format("Y-m-d")?>').datetimepicker('update');
+        $('#birth-date').val('<?=$user->birth_date->format("Y-m-d")?>').datetimepicker('update');
         $('#start-work').val('<?=$user->start_work->format("Y-m-d")?>').datetimepicker('update');
          $(".loading").hide();
          $(".content").show('fade');

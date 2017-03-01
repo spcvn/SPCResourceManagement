@@ -32,6 +32,14 @@
                 </div>
             </div>
             <div class="row form-group">
+                <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('description')?></label>
+                <div class="col-xs-10 col-sm-5">
+                    <textarea class="form-control" name="description" id="form-field-1" placeholder="Description "></textarea>
+                </div>
+                <div class="col-xs-2 col-sm-3">
+                </div>
+            </div>
+            <div class="row form-group">
                 <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('section')?></label>
                 <div class="col-xs-12 col-sm-9 col-md-9 section-add">
                     <div class="row line-add">
@@ -68,7 +76,6 @@
             </div>
             <div class="row actions">
                 <div class="col-xs-push-3 col-lg-push-2 col-xs-9">
-                    <button type="reset" class="btn btn-default btn-reset">Reset</button>
                     <button type="submit" name="save" class="btn btn-info">Save</button>
                 </div>
             </div>
@@ -253,24 +260,6 @@
         });
     }
     $(document).ready(function(){
-        $('.btn-remove').each(function () {
-           $(this).confirm({
-               content: "Are you sure you want to remove this section?",
-               title: "",
-               buttons: {
-                   yes: {
-                       btnClass:'btn-danger',
-                       action: function () {
-                           
-                       }
-                   },
-                   no: {
-                       keys: ['N'],
-                   },
-               }
-           });
-        });
-
         $('form').submit(function(){
             $('.section-add select option[disabled=disabled]').each(function(){
                 $(this).removeAttr('disabled');

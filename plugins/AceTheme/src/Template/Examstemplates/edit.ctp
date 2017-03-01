@@ -32,6 +32,14 @@
                 </div>
             </div>
             <div class="row form-group">
+                <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('description')?></label>
+                <div class="col-xs-10 col-sm-5">
+                    <textarea class="form-control" name="description" id="form-field-1" placeholder="Description "><?=$examstemplate->description?></textarea>
+                </div>
+                <div class="col-xs-2 col-sm-3">
+                </div>
+            </div>
+            <div class="row form-group">
                 <label  class="col-xs-12 col-sm-2 control-label"><?= __('section')?></label>
                     <div class="col-xs-12 col-sm-10 section-add">
                 <?php 
@@ -83,11 +91,11 @@
     </div>
 </div>
 <script type="text/javascript">
-    var line = 1;
+    var line = $('.line-add').length;
     var _Per_input_change = 0;
     var per = 100;
-    var countSections = <?=$sections->count()?>;
-
+    var countSections = $('.line-add').length; //<?=$sections->count()?>;
+    var numSections = <?=count($examstemplate->sections)?>;
     function addline(){
         var str = '<div class="row line-add">'+
             '<div class="col-sm-6">'+
@@ -257,24 +265,6 @@
         });
     }
     $(document).ready(function(){
-        $('.btn-remove').each(function () {
-           $(this).confirm({
-               content: "Are you sure you want to remove this section?",
-               title: "",
-               buttons: {
-                   yes: {
-                       btnClass:'btn-danger',
-                       action: function () {
-                           
-                       }
-                   },
-                   no: {
-                       keys: ['N'],
-                   },
-               }
-           });
-        });
-
         $('form').submit(function(){
             $('.section-add select option[disabled=disabled]').each(function(){
                 $(this).removeAttr('disabled');

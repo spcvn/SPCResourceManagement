@@ -75,9 +75,18 @@
         }).next().on(ace.click_event, function(){
             $(this).prev().focus();
         });
-        var year = (new Date).getFullYear();
+        var d = new Date();
+
+        var month = d.getMonth()+1;
+        var day = d.getDate();
+        var year = d.getFullYear();
+        var output = d.getFullYear() + '-' +
+            (month<10 ? '0' : '') + month + '-' +
+            (day<10 ? '0' : '') + day;
         $('#birth-date').datetimepicker({
-            format: 'YYYY-MM-DD'
+            format: 'YYYY-MM-DD',
+            minDate: new Date(year-65, 0, 1),
+            maxDate: new Date(year-16, 11, 31)
         }).next().on(ace.click_event, function(){
             $(this).prev().focus();
         });

@@ -118,6 +118,15 @@
         addAnswer();
         removeAnwser();
         recoverAnwser();
+        $('.questions form').validate({
+            rules: {
+                 content: 'Required'
+            }
+        });
+        $('select[name=correct_answer]').on('change',function(){
+            rmAnswer();
+        });
+        eventCorrectAnswer();
     });
     var num = $('#answer .line-add').length;
     var __mainHtml = function () {
@@ -158,7 +167,6 @@
             var btnEnabel = '<a class="btn btn-inverse btn-enable" data-id="'+id+'"><i class="fa fa-undo"></i></a>';
             $(this).parent('div').prepend(btnEnabel);
             $(this).remove();
-
         });
     }
 
@@ -217,5 +225,19 @@
                 }
             });
         })
+    }
+
+    function eventCorrectAnswer(){
+        console.log($('select[name=correct_answer] option:selected').val());
+        $('.btn-remove[data-id='+$('select[name=correct_answer] option:selected').val()+']').hide();
+    }
+
+    function enableSelect(){
+         $('.btn-remove').show();
+    }
+
+    function rmAnswer(){
+        enableSelect();
+        eventCorrectAnswer();
     }
 </script>

@@ -43,7 +43,7 @@
             <div class="row input text">
                 <label class="col-sm-2"><?= __('description')?>:</label>
                 <label class="col-sm-3 col-xs-10">
-                    <textarea class="form-control" name="description" id="form-field-1" placeholder="Description "></textarea>
+                    <strong id="description">Description</strong>
                 </label>
             </div>
             <div class="row actions">
@@ -70,6 +70,7 @@
                 duration: "'.$val->duration.'",
                 num_questions: "'.$val->num_questions.'",
                 ratio: "'.$ratio.'",
+                description: "'.$val->description.'",
             },';
         }
         $str .= ' ]';
@@ -100,6 +101,7 @@
                     $('strong#duration').text(ui.item.duration);
                     $('strong#num_questions').text(ui.item.num_questions);
                     $('strong#ratio').text(ui.item.ratio);
+                    $('strong#description').text(ui.item.description);
                 }
                 return false;
             },
@@ -110,6 +112,7 @@
                     $('strong#duration').text(ui.item.duration);
                     $('strong#num_questions').text(ui.item.num_questions);
                     $('strong#ratio').text(ui.item.ratio);
+                    $('strong#description').text(ui.item.description);
                 }
                 return false;
             },

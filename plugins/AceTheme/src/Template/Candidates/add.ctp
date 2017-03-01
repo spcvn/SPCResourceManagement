@@ -179,6 +179,7 @@
         $(idi).addClass('required').parent().addClass('required');
     };
     $(document).ready( function() {
+        $('.datepicker').keydown(false);
         $('#datetimepicker').datetimepicker({
              format: 'YYYY-MM-DD h:mm:ss A',//use this option to display seconds
              icons: {

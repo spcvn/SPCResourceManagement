@@ -232,7 +232,7 @@
 <?= $this->Html->script('wizard.min.js')?>
 <script>
     $( function() {
-      
+      $('.datepicker').keydown(false);
       $('#modal-wizard-container').ace_wizard()
         .on('actionclicked.fu.wizard' , function(e, info){
           if(!$('.form-register form').valid()){

@@ -48,7 +48,6 @@
             </div>
             <div class="row actions">
                 <div class="col-sm-10 col-sm-push-2">
-                    <button type="button" class="btn btn-default"><?= __('cancle')?></button>
                     <button type="submit" class="btn btn-info"><?= __('assign')?></button>
                 </div>
             </div>

@@ -154,8 +154,8 @@ class ExamstemplatesController extends AppController
  ,           'valueField'=> 'count',
         ])->select([
             'template_id',
-            'count' => 'COUNT(quizs.id)'
-        ])->where(['quizs.status > 0'])->group('template_id,status')->toArray();
+            'count' => 'COUNT(Quizs.id)'
+        ])->where(['Quizs.status > 0'])->group('template_id,status')->toArray();
         return $quizs_group;
     }
 
@@ -166,7 +166,7 @@ class ExamstemplatesController extends AppController
             'valueField'=> 'count',
         ])->select([
             'template_id',
-            'count' => 'COUNT(quizs.id)'
+            'count' => 'COUNT(Quizs.id)'
         ])->group('template_id')->toArray();
         return $quizs_group;
     }

@@ -44,7 +44,7 @@
                             <tr>
                                 <th scope="row"><?= __('middle_name') ?></th>
                                 <td>:</td>
-                                <td><?= h($candidate->middle_name) ?></td>
+                                <td><?= $this->indexHelper->isNull($candidate->middle_name) ?></td>
                             </tr>
 
                             <tr>
@@ -85,7 +85,7 @@
                             <tr>
                                 <th scope="row"><?= __('address') ?></th>
                                 <td>:</td>
-                                <td><?= h($candidate->addr01) ?> <?= h(@$candidate->province[0].", ".@$candidate->district[0]->type.' '.@$candidate->district[0]->name.", ".@$candidate->ward[0]->type.' '.@$candidate->ward[0]->name) ?></td>
+                                <td><?= h($candidate->addr01) ?> <?= h(@$candidate->province[0].", ".@$candidate->district[0]->type.' '.@$candidate->district[0]->name.", ".@$candidate->ward[0]->type.' '.$this->indexHelper->isNull(@$candidate->ward[0]->name)) ?></td>
                             </tr>
 
                         </table>
@@ -105,7 +105,7 @@
                             <tr>
                                 <th scope="row"><?= __('score') ?></th>
                                 <td>:</td>
-                                <td><?= h($candidate->score) ?></td>
+                                <td><?= $this->indexHelper->isNull($candidate->score) ?></td>
                             </tr>
                             <tr>
                                 <th scope="row"><?= __('result') ?></th>

@@ -74,7 +74,7 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
                             <tr>
                                 <th scope="row"><?= __('updated') ?></th>
                                 <td>:</td>
-                                <td><?= (isset($user->updated))?$user->updated->format('Y-m-d H:i'):"" ?></td>
+                                <td><?= $this->indexHelper->isNull(isset($user->updated))?$user->updated->format('Y-m-d H:i'):"" ?></td>
                             </tr>
 
                         </table>

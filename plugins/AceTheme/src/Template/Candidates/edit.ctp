@@ -85,5 +85,7 @@
         $('#interview-date').val('<?=$candidate->interview_date->format("Y-m-d h:i:s A")?>').datetimepicker('update');
         $(".loading").hide();
         $(".content").show('fade');
+
+        $('.datepicker').keydown(false);
     } );
 </script>

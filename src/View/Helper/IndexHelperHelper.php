@@ -29,4 +29,11 @@ class IndexHelperHelper extends Helper
         echo $status[$id_status];
     }
 
+    public function isNull($val = null){
+        if($val == null || $val == ''){
+            return "---";
+        }
+        return $val;
+    }
+
 }

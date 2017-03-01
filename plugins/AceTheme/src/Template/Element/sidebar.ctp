@@ -16,6 +16,95 @@
 
             <b class="arrow"></b>
         </li>
+        <li class="Candidates" id="">
+            <?= $this->Html->link(
+                $this->Html->tag('i','',['class'=>'menu-icon fa fa-users'])
+                .$this->Html->tag('span',__('candidate'),
+                    ['class'=>'menu-text']).$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
+                '',
+                ['class'=>'dropdown-toggle','escape'=>false])?>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="" id="index">
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('list_candidate'),
+                        ['controller'=>'candidates','action'=>'index'],
+                        ['escape'=>false])?>
+
+                    <b class="arrow"></b>
+                </li>
+                <li class="" id="add">
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('add_candidate'),
+                        ['controller'=>'candidates','action'=>'add'],
+                        ['escape'=>false])?>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        <li class="Examstemplates">
+            <?= $this->Html->link(
+                $this->Html->tag('i','',['class'=>'menu-icon fa fa-list-alt'])
+                .$this->Html->tag('span',__('Exam'),
+                    ['class'=>'menu-text']).$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
+                '',
+                ['class'=>'dropdown-toggle','escape'=>false])?>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="" id="Quizs_index">
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('test_list'),
+                        ['controller'=>'quizs','action'=>'index'],
+                        ['escape'=>false])?>
+
+                    <b class="arrow"></b>
+                </li>
+                <li class="Examstemplates">
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right'])
+                        .$this->Html->tag('span',__('exam_template'),['class'=>'menu-text'])
+                        .$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
+                        [],
+                        ['class'=>'dropdown-toggle','escape'=>false])?>
+
+                    <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="" id="index">
+                            <?= $this->Html->link(
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('list'),
+                                ['controller'=>'examstemplates','action'=>'index'],
+                                ['escape'=>false])?>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="" id="add">
+                            <?= $this->Html->link(
+                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('add'),
+                                ['controller'=>'examstemplates','action'=>'add'],
+                                ['escape'=>false])?>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+                <li class="" id="examAssignment">
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('exam_assignment'),
+                        ['controller'=>'examstemplates','action'=>'exam_assignment'],
+                        ['escape'=>false])?>
+
+                    <b class="arrow"></b>
+                </li>
+
+            </ul>
+        </li>
+
         <li class="Questions">
             <?= $this->Html->link(
                     $this->Html->tag('i','',['class'=>'menu-icon fa fa-question-circle'])
@@ -81,94 +170,9 @@
                 </li> -->
             </ul>
         </li>
-        <li class="Examstemplates">
-            <?= $this->Html->link(
-                $this->Html->tag('i','',['class'=>'menu-icon fa fa-list-alt'])
-                .$this->Html->tag('span',__('Exam'),
-                    ['class'=>'menu-text']).$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
-                '',
-                ['class'=>'dropdown-toggle','escape'=>false])?>
+        
 
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-                <li class="" id="Quizs_index">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('test_list'),
-                        ['controller'=>'quizs','action'=>'index'],
-                        ['escape'=>false])?>
-
-                    <b class="arrow"></b>
-                </li>
-                <li class="Examstemplates">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right'])
-                        .$this->Html->tag('span',__('exam_template'),['class'=>'menu-text'])
-                        .$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
-                        [],
-                        ['class'=>'dropdown-toggle','escape'=>false])?>
-
-                    <b class="arrow"></b>
-                    <ul class="submenu">
-                        <li class="" id="index">
-                            <?= $this->Html->link(
-                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('list'),
-                                ['controller'=>'examstemplates','action'=>'index'],
-                                ['escape'=>false])?>
-
-                            <b class="arrow"></b>
-                        </li>
-                        <li class="" id="add">
-                            <?= $this->Html->link(
-                                $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('add'),
-                                ['controller'=>'examstemplates','action'=>'add'],
-                                ['escape'=>false])?>
-
-                            <b class="arrow"></b>
-                        </li>
-                    </ul>
-                </li>
-                <li class="" id="examAssignment">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('exam_assignment'),
-                        ['controller'=>'examstemplates','action'=>'exam_assignment'],
-                        ['escape'=>false])?>
-
-                    <b class="arrow"></b>
-                </li>
-
-            </ul>
-        </li>
-
-        <li class="Candidates" id="">
-            <?= $this->Html->link(
-                $this->Html->tag('i','',['class'=>'menu-icon fa fa-users'])
-                .$this->Html->tag('span',__('candidate'),
-                    ['class'=>'menu-text']).$this->Html->tag('b','',['class'=>'arrow fa fa-angle-down']),
-                '',
-                ['class'=>'dropdown-toggle','escape'=>false])?>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-                <li class="" id="index">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('list_candidate'),
-                        ['controller'=>'candidates','action'=>'index'],
-                        ['escape'=>false])?>
-
-                    <b class="arrow"></b>
-                </li>
-                <li class="" id="add">
-                    <?= $this->Html->link(
-                        $this->Html->tag('i','',['class'=>'menu-icon fa fa-caret-right']).__('add_candidate'),
-                        ['controller'=>'candidates','action'=>'add'],
-                        ['escape'=>false])?>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
+        
         <li class="Users" id="">
             <?= $this->Html->link(
                     $this->Html->tag('i','',['class'=>'menu-icon fa fa-user-o'])

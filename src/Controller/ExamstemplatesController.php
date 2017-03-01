@@ -70,7 +70,8 @@ class ExamstemplatesController extends AppController
                 $this->Flash->error(__('The examstemplate could not be saved. Please, try again.'));
             }
         }
-        $sections = $this->Examstemplates->Sections->find('list', ['limit' => 200]);
+        
+        $sections = $this->getSectionIds();
         $this->set(compact('examstemplate', 'sections'));
         $this->set('_serialize', ['examstemplate']);
     }
@@ -98,7 +99,7 @@ class ExamstemplatesController extends AppController
                 $this->Flash->error(__('The examstemplate could not be saved. Please, try again.'));
             }
         }
-        $sections = $this->Examstemplates->Sections->find('list', ['limit' => 200]);
+        $sections = $this->getSectionIds();
         $this->set(compact('examstemplate', 'sections'));
         $this->set('_serialize', ['examstemplate']);
     }
@@ -187,5 +188,13 @@ class ExamstemplatesController extends AppController
         $str .= ' ]';
         $str = str_replace(", ]", "]", $str);
         return $str;
+    }
+
+    private function getSectionIds(){
+        $this->loadModel('Questions');
+        $section_ids = $this->Questions->find('list',['keyField' => 'id',
+                                'valueField' => 'section_id'])->group('section_id')->select('section_id')->where(['is_delete'=>0])->toArray();
+        $sections = $this->Examstemplates->Sections->find('list', ['limit' => 200])->where(['id IN'=>$section_ids]);
+        return $sections;
     }
 }

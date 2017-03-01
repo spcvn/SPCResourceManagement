@@ -65,7 +65,7 @@
                   <div class="form-group datetimepk">
                       <label><?= __('birthday'); ?></label>
                       <div class='input-group date' id="">
-                          <input type='text' class="form-control datepicker" id='birth-date' name="birth-datee" />
+                          <input type='text' class="form-control datepicker" id='birth-date' name="birth_date" />
                           <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -127,104 +127,104 @@
   </div>
 </div>
 
-    <div id="reviewUser" class="modal fade review-user" role="dialog">
-    <div class="modal-dialog modal-lg">
+<div id="reviewUser" class="modal fade review-user" role="dialog">
+  <div class="modal-dialog modal-lg">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title text-center"><?= __('user_information')?></h3>
-                <ul class="ulnostyle">
-                    <li>
-                        <h4><strong><?= __('account')?></strong></h4>
-                        <table class="table ViewTable">
-                            <tr>
-                                <th style="width: 150px;"><?= __('username')?></th>
-                                <td style="width: 10px;">:</td>
-                                <td><span id="get_username"></span></td>
-                            </tr>
-                        </table>
-                    </li>
-                    <li>
-                        <h4><strong><?= __('information')?></strong></h4>
-                        <table class="table">
-                            <tr>
-                                <th style="width: 150px;"><?= __('email');?></th>
-                                <td style="width: 10px;">:</td>
-                                <td><span id="get_email"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('first_name')?></th>
-                                <td>:</td>
-                                <td><span id="get_first-name"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('middle_name')?></th>
-                                <td>:</td>
-                                <td><span id="get_middle-name"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('last_name')?></th>
-                                <td>:</td>
-                                <td><span id="get_last-name"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('address')?></th>
-                                <td>:</td>
-                                <td><span id="get_address"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('province')?></th>
-                                <td>:</td>
-                                <td><span id="get_provinceid"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('district')?></th>
-                                <td>:</td>
-                                <td><span id="get_districtid"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('ward')?></th>
-                                <td>:</td>
-                                <td><span id="get_wardid"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('birthday')?></th>
-                                <td>:</td>
-                                <td><span id="get_birth-date"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('mobile')?></th>
-                                <td>:</td>
-                                <td><span id="get_mobile"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('department')?></th>
-                                <td>:</td>
-                                <td><span id="get_dept"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('start_work')?></th>
-                                <td>:</td>
-                                <td><span id="get_start-work"></td>
-                            </tr>
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div class="modal-body">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3 class="modal-title text-center"><?= __('user_information')?></h3>
+              <ul class="ulnostyle">
+                  <li>
+                      <h4><strong><?= __('account')?></strong></h4>
+                      <table class="table ViewTable">
+                          <tr>
+                              <th style="width: 150px;"><?= __('username')?></th>
+                              <td style="width: 10px;">:</td>
+                              <td><span id="get_username"></span></td>
+                          </tr>
+                      </table>
+                  </li>
+                  <li>
+                      <h4><strong><?= __('information')?></strong></h4>
+                      <table class="table">
+                          <tr>
+                              <th style="width: 150px;"><?= __('email');?></th>
+                              <td style="width: 10px;">:</td>
+                              <td><span id="get_email"></td>
+                          </tr>
+                          <tr>
+                              <th><?= __('first_name')?></th>
+                              <td>:</td>
+                              <td><span id="get_first-name"></td>
+                          </tr>
+                          <tr>
+                              <th><?= __('middle_name')?></th>
+                              <td>:</td>
+                              <td><span id="get_middle-name"></td>
+                          </tr>
+                          <tr>
+                              <th><?= __('last_name')?></th>
+                              <td>:</td>
+                              <td><span id="get_last-name"></td>
+                          </tr>
+                          <tr>
+                              <th><?= __('address')?></th>
+                              <td>:</td>
+                              <td><span id="get_address"></td>
+                          </tr>
+                          <tr>
+                              <th><?= __('province')?></th>
+                              <td>:</td>
+                              <td><span id="get_provinceid"></td>
+                          </tr>
+                          <tr>
+                              <th><?= __('district')?></th>
+                              <td>:</td>
+                              <td><span id="get_districtid"></td>
+                          </tr>
+                          <tr>
+                              <th><?= __('ward')?></th>
+                              <td>:</td>
+                              <td><span id="get_wardid"></td>
+                          </tr>
+                          <tr>
+                              <th><?= __('birthday')?></th>
+                              <td>:</td>
+                              <td><span id="get_birth-date"></td>
+                          </tr>
+                          <tr>
+                              <th><?= __('mobile')?></th>
+                              <td>:</td>
+                              <td><span id="get_mobile"></td>
+                          </tr>
+                          <tr>
+                              <th><?= __('department')?></th>
+                              <td>:</td>
+                              <td><span id="get_dept"></td>
+                          </tr>
+                          <tr>
+                              <th><?= __('start_work')?></th>
+                              <td>:</td>
+                              <td><span id="get_start-work"></td>
+                          </tr>
 
-                        </table>
-                    </li>
-                </ul>
-                <div class="row">
-                    <div class="col-sm-6 text-left">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    </div>
-                    <div class="col-sm-6 text-right">
-                        <button type="button" class="btn btn-info">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                      </table>
+                  </li>
+              </ul>
+              <div class="row">
+                  <div class="col-sm-6 text-left">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </div>
+                  <div class="col-sm-6 text-right">
+                      <button type="button" class="btn btn-info">Save</button>
+                  </div>
+              </div>
+          </div>
+      </div>
 
-    </div>
+  </div>
 </div>
 <div id="dialog" title="" class="modal">
   <?=__("Do you want to save this?")?>
@@ -241,14 +241,11 @@
           if(info.direction == "prevert"){
             e.preventDefault();
           }
-          console.log($('.form-register form').valid());
-          console.log("actionclicked");
         })
         .on('finished.fu.wizard', function(e) {
           
           // $('.form-register form').submit();
         }).on('stepclick.fu.wizard', function(e){
-          console.log("step head");
           //e.preventDefault();//this will prevent clicking and selecting steps
         });
         var d = new Date();
@@ -267,15 +264,27 @@
             $(this).prev().focus();
         });
 
-        $('#start-work').datetimepicker({
-            format: 'YYYY-MM-DD',
-            minDate: new Date(year, month-6, 1),
-            maxDate: new Date(year, month+6, 31)
+
+        $('input[name=start_work]').datetimepicker({
+             format: 'YYYY-MM-DD h:mm:ss A',//use this option to display seconds
+             icons: {
+                time: 'fa fa-clock-o',
+                date: 'fa fa-calendar',
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down',
+                previous: 'fa fa-chevron-left',
+                next: 'fa fa-chevron-right',
+                today: 'fa fa-arrows ',
+                clear: 'fa fa-trash',
+                close: 'fa fa-times'
+             },
+             minDate: new Date(year, month-6, 1),
+              maxDate: new Date(year, month+6, 31),
+             useCurrent : true,
+             defaultDate : "moment"
         }).next().on(ace.click_event, function(){
             $(this).prev().focus();
         });
-
-        $('#start-work input').val(output);
 
          $('.form-register form').validate({
             rules: {
@@ -371,17 +380,28 @@
         addRequired('#provinceid');
         addRequired('#districtid');
 
+        $('.datepicker').keydown(false);
     } );
     
    $('select[name=candidate_id]').on('change',function(event){
        var id = $(this).val();
+       var d = new Date();
+
+       var year = d.getFullYear();
+       if(id == ""){
+          $('input[type=text]').not('.datepicker').val('');
+          $('input[type=email]').val('');
+          $('.select.required select').val('');
+          return;
+       }
        var url = "<?=$this->Url->build(['controller'=>'candidates','action'=>'getCandidate'])?>"
        $.post(url,{"id":id},function(resData){
            var data = $.parseJSON(resData);
+           $('#provinceid').provinceAutoFill(data)
            $.each(data,function(key,val){
                $('input[name='+key+']').val(val);
-               if(key=='position')
-                   $('select[name=dept]').val(val);
+                  if(key=='position')
+                    $('select[name=dept]').val(val);
            });
        });
    });
@@ -411,7 +431,4 @@
 
     }
     loadDataModal();
-
-   
-
 </script>

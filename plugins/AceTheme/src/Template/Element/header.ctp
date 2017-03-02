@@ -19,9 +19,7 @@
                 </small>
             </a>
         </div>
-<?php
-    
-?>
+
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
 <!--                //noti-->
@@ -30,7 +28,7 @@
                         <?= $this->Html->image('/images/avatars/default-user-icon.png',['class'=>'nav-user-photo', 'alt'=>'Jason\'s Photo'])?>
                         <span class="user-info">
 									<small>Welcome,</small>
-									Admin
+									<small class="text-capitalize"><?=$this->request->session()->read('Auth.User.username')?></small>
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>

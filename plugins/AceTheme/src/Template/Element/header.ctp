@@ -19,7 +19,9 @@
                 </small>
             </a>
         </div>
-
+<?php
+    
+?>
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
 <!--                //noti-->

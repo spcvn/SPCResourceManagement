@@ -61,7 +61,7 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($candidateid = null)
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
@@ -93,6 +93,7 @@ class UsersController extends AppController
         $candidates = $this->Candidates->find('list',['keyField'=>'id','valueField'=>function($candidate){
             return $candidate->first_name." ".$candidate->last_name;
         }])->where(['result'=>2])->toArray();
+        $user->_candidateid = $candidateid;
         $this->set(compact('user'));
         $this->set(compact('candidates'));
         $this->set('_serialize', ['user']);

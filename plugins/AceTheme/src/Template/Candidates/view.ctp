@@ -23,8 +23,19 @@
                         $this->Html->tag('i','',['class'=>'fa fa-pencil bigger-120']),
                         ['action' => 'edit', $candidate->id],
                         ['class'=>'btn-edit-simple', 'title'=>__('edit'),'escape'=>false]) ?>
-                    <a href="#" class="btn-simple btn-create-test" title="<?= __('create_test');?>"><i class="fa fa-file-o"></i></a>
-                    <a href="#" class="btn-simple btn-member" title="<?= __('member_of_spc')?>" ><i class="fa fa-user-o"></i></a>
+
+
+                    <?= $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'fa fa-file-o bigger-120']),
+                        ['controller'=>'examstemplates','action' => 'examAssignment', $candidate->id],
+                        ['class'=>'btn-simple btn-create-test', 'title'=> __('create_test'),'escape'=>false]) ?>
+
+                    <?php if ($candidate->result == 2) {
+                        echo $this->Html->link(
+                        $this->Html->tag('i','',['class'=>'fa fa-user-o bigger-120']),
+                        ['controller'=>'users','action' => 'add', $candidate->id],
+                        ['class'=>'btn-simple btn-member', 'title'=> __('member_of_spc'),'escape'=>false]); } ?>
+                    
                 </div>
             </div>
             <div class="col-sm-8 col-lg-9">

@@ -229,6 +229,7 @@
 <div id="dialog" title="" class="modal">
   <?=__("Do you want to save this?")?>
 </div>​
+
 <?= $this->Html->script('wizard.min.js')?>
 <script>
     $( function() {
@@ -381,6 +382,8 @@
         addRequired('#districtid');
 
         $('.datepicker').keydown(false);
+
+        $('select[name=candidate_id]').val('<?=$user->_candidateid?>').trigger('change');
     } );
     
    $('select[name=candidate_id]').on('change',function(event){

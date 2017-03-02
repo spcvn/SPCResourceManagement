@@ -88,7 +88,6 @@ class QuizsController extends AppController
             
             $quiz->candidate_id = $datas['candidate_id'];
             $quiz->template_id = $datas['template_id'];
-            $quiz->description = $datas['description'];
             $quiz->time = $examstemplates->duration;
             $quiz->code = $this->randomCode();
             $quiz->url = $this->randomURL();

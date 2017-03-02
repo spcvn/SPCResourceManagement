@@ -78,8 +78,16 @@ class AppController extends Controller
         $develop_mode = $this->getDevelopMode();
         if($develop_mode == 'local'){
             $this->viewBuilder()->theme('AceTheme');
+            $this->_setErrorLayout();
         }
 
+
     }
+
+    public function _setErrorLayout() {  
+     if ($this->name == 'CakeError') {  
+        $this->layout = 'error';  
+     }    
+}  
 	
 }

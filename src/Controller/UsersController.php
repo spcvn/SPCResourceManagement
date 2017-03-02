@@ -259,6 +259,7 @@ class UsersController extends AppController
         $this->viewBuilder()->layout('login-form');
     }
     public function resetPassword($token){
+        if(!isset($token)) return $this->redirect($this->Auth->logout());
         $this->loadModel('Resetpasswords');
         if($this->request->is('post')){
             $data = $this->request->data;

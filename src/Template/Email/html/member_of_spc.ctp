@@ -105,7 +105,7 @@
       <br>
       Your infomation to sign in Resource Management application : <br/>
       Username : <b><?=$user->username?></b><br>
-      Password : <?=$password?><br/>
+      Password : <b><?=$password?></b><br/>
       <i>Please change your password to continue.</i>
     </div>
   </td></tr></tbody></table>

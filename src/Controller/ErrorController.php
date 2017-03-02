@@ -52,7 +52,6 @@ class ErrorController extends AppController
     public function beforeRender(Event $event)
     {
         parent::beforeRender($event);
-
         $this->viewBuilder()->templatePath('Error');
     }
 
@@ -71,6 +70,6 @@ class ErrorController extends AppController
     }
     
     public function error404(){
-        
+        print_r('expression');
     }
 }

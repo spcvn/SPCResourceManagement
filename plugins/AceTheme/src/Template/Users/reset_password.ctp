@@ -6,3 +6,16 @@
 	echo $this->Form->submit('send', array('class' => 'button'));
 	echo $this->Form->end();
 ?>
+<script type="text/javascript">
+	$('form').validate({
+            rules: {
+                password: {
+                  required: true,
+                  minlength: 6
+                },
+                confirm_password: {
+                  equalTo: "#password"
+                },
+          }
+        });
+</script>

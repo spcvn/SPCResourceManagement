@@ -7,7 +7,7 @@
         </small>
     </h1>
 </div><!-- /.page-header -->
-<span class="loading" style="display:block"><?=$this->Html->image('../images/loading.gif')?>Loading...</span>
+<span class="loading" style="display:block"><?=$this->Html->image('/images/loading.gif')?>Loading...</span>
 <div class="users form content" style="display:none">
     <div class="wrap-edit">
         <h2>Edit Information</h2>

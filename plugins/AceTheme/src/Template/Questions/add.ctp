@@ -98,7 +98,7 @@
     </div>
     <?= $this->Form->end() ?>
 </div>
-<?= $this->html->script('jquery.validate.min.js'); ?>
+<?= $this->Html->script('jquery.validate.min.js'); ?>
 <script type="text/javascript">
     jQuery(function($) {
         CKEDITOR.replace( 'content' );

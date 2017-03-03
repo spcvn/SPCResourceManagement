@@ -824,6 +824,14 @@ form .error{
    padding: 0 !important;
    margin: 0 !important;
 }
+
+/*style daskboard*/
+.infobox-container{
+    padding: 30px 0;
+}
+.infobox{
+    width: 380px;
+}
 /*style content test end*/
 @media (min-width: 1200px) {
     .form .text label,

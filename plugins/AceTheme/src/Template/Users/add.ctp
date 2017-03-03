@@ -46,7 +46,7 @@
         <div class="modal-body step-content">
           <div class="step-pane active" data-step="1">
                 <h2><?= __('candidate_exists')?></h2>
-                <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>''])?>            
+                <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>'', 'label'=>false])?>
           </div>
 
           <div class="step-pane" data-step="2">

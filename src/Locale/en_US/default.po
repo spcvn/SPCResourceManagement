@@ -127,6 +127,9 @@ msgstr "Add Template"
 msgid "exam_template"
 msgstr "Exam Template"
 
+msgid "add_a_exam_template"
+msgstr "Add a Exam Template"
+
 msgid "description"
 msgstr "Description"
 
@@ -368,7 +371,7 @@ msgid "new_question"
 msgstr "New Question"
 
 msgid "list_question"
-msgstr "List Question"
+msgstr "Question list"
 
 msgid "test_list"
 msgstr "Test List"

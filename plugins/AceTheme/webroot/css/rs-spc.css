@@ -608,6 +608,10 @@ select::-ms-expand{
     font-weight: bold;
 }
 /*add exam template*/
+.question-action .btn-inverse{
+    padding: 0 5px;
+    border-color: transparent;
+}
 .question-action .btn-remove,
 .exams .btn-remove{
     padding: 0 5px;

@@ -11,6 +11,9 @@
     <div class="col-xs-12">
         <!-- PAGE CONTENT BEGINS -->
         <div class="questions content">
+            <div class="table-header">
+                <span><?=__('list_question')?></span>
+            </div>
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
@@ -55,19 +58,19 @@
                 <?php endforeach; ?>
                 </tbody>
             </table>
-            <div class="paginator">
-                <ul class="pagination">
-                    <?= $this->Paginator->first(''.$this->Html->tag('i','',['class'=>'fa fa-angle-double-left']),['title'=>__('first'),'escape'=>false]) ?>
-                    <?= $this->Paginator->prev(''.$this->Html->tag('i','',['class'=>'fa fa-angle-left']),['title'=>__('previous'),'escape'=>false]) ?>
-                    <?= $this->Paginator->numbers(['modulus' => 4]) ?>
-                    <?= $this->Paginator->next(''.$this->Html->tag('i','',['class'=>'fa fa-angle-right']),['title'=>__('next'),'escape'=>false]) ?>
-                    <?= $this->Paginator->last(''.$this->Html->tag('i','',['class'=>'fa fa-angle-double-right']),['title'=>__('last'),'escape'=>false]) ?>
-                </ul>
-                <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}')]) ?></p>
-            </div>
         </div>
     </div>
 </div>
+<!-- page specific plugin scripts -->
+<?= $this->Html->script('jquery.dataTables.min.js');?>
+<?= $this->Html->script('jquery.dataTables.bootstrap.min.js');?>
+<?= $this->Html->script('dataTables.buttons.min.js');?>
+<?= $this->Html->script('buttons.flash.min.js');?>
+<?= $this->Html->script('buttons.html5.min.js');?>
+<?= $this->Html->script('buttons.print.min.js');?>
+<?= $this->Html->script('buttons.colVis.min.js');?>
+<?= $this->Html->script('dataTables.select.min.js');?>
+
 <script>
     function deleteAQuestion(){
         $( ".btn-delete" ).each(function(index) {
@@ -90,6 +93,9 @@
         });
     }
     $(document).ready(function(){
+        $('.questions table').DataTable( {
+        } );
+        $('table').wrap('<div class="table-responsive"></div>');
         var check = true;
         $('#check-all .lbl').click(function () {
             if(check){

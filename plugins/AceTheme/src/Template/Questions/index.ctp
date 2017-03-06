@@ -11,9 +11,6 @@
     <div class="col-xs-12">
         <!-- PAGE CONTENT BEGINS -->
         <div class="questions content">
-            <div class="table-header">
-                <span><?=__('list_question')?></span>
-            </div>
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>

@@ -432,3 +432,6 @@ msgstr "Are you sure to finish this test?"
 
 msgid "alert_result"
 msgstr "Results for Latest Template"
+
+msgid "active"
+msgstr "Active"

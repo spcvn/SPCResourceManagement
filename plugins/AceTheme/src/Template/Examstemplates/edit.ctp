@@ -10,132 +10,128 @@
 <div class="exams area-add content">
     <div class="form-add-exam">
         <?= $this->Form->create($examstemplate) ?>
-            <div class="row form-group">
-                <label  class="col-xs-12 col-sm-2 control-label"><?= __('template_name')?></label>
-                <div class="col-xs-12 col-sm-5">
-                    <input type="text" name="name" value="<?=$examstemplate->name?>" class="width-100" />
-                </div>
+        <div class="row form-group required">
+            <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('template_name')?></label>
+            <div class="col-xs-10 col-sm-5">
+                <input type="text" name="name" class="width-100" value="<?=$examstemplate->name?>" />
             </div>
-            <div class="row form-group">
-                <label  class="col-xs-12 col-sm-2 control-label"><?= __('number_of_question')?></label>
-                <div class="col-xs-12 col-sm-5">
-                    <input type="text" name="num_questions" value="<?=$examstemplate->num_questions?>" class="width-100" />
-                </div>
+        </div>
+        <div class="row form-group required">
+            <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('number_of_question')?></label>
+            <div class="col-xs-10 col-sm-5">
+                <input type="text" name="num_questions" class="width-100 num"  value="<?=$examstemplate->num_questions?>"/>
             </div>
-            <div class="row form-group">
-                <label  class="col-xs-12 col-sm-2 control-label"><?= __('duration')?></label>
-                <div class="col-xs-12 col-sm-5">
-                    <input type="text" name="duration" value="<?=$examstemplate->duration?>" class="width-100" />
-                </div>
-                <div class="col-sm-3">
-                    <span><?= __('minute')?>(s)</span>
-                </div>
+        </div>
+        <div class="row form-group required">
+            <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('duration')?></label>
+            <div class="col-xs-10 col-sm-5">
+                <input type="text" name="duration" class="width-100 num"  value="<?=$examstemplate->duration?>"/>
             </div>
-            <div class="row form-group">
-                <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('description')?></label>
-                <div class="col-xs-10 col-sm-5">
-                    <textarea class="form-control" name="description" id="form-field-1" placeholder="Description "><?=$examstemplate->description?></textarea>
-                </div>
-                <div class="col-xs-2 col-sm-3">
-                </div>
+            <div class="col-xs-2 col-sm-3">
+                <span><?= __('minute')?>(s)</span>
             </div>
-            <div class="row form-group">
-                <label  class="col-xs-12 col-sm-2 control-label"><?= __('section')?></label>
-                    <div class="col-xs-12 col-sm-10 section-add">
-                <?php 
+        </div>
+        <div class="row form-group">
+            <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('description')?></label>
+            <div class="col-xs-10 col-sm-5">
+                <textarea class="form-control" name="description" id="form-field-1" placeholder="Description" rows="5"><?=$examstemplate->description?></textarea>
+            </div>
+            <div class="col-xs-2 col-sm-3">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('section')?></label>
+            <div class="col-xs-12 col-sm-9 col-md-9 section-add">
+                <?php
                 foreach ($examstemplate->sections as $key => $objSection) {
                     ?>
-                        <div class="row line-add">
-                            <div class="col-sm-6">
-                                <select class="width-100" name='sections[<?=$key?>][id]' onChange="enableSeleced()">
-                                    <?php
-                                        foreach ($sections as $sKey=>$value) {
-                                            $selected = ($sKey == $objSection->id)?"selected='selected'":"";
-                                            echo "<option value='$sKey' $selected >$value</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="col-sm-2">
-                                <input type="text" class="width-80 percent-section" name="sections[<?=$key?>][_joinData][ratio]" value="<?=$objSection->_joinData->ratio?>"/>
-                                <span>%</span>
-                            </div>
-                            <div class="col-sm-4 actions">
-                                <a class="btn btn-remove"><i class="fa fa-remove"></i></a>
-                                <a class="btn btn-add">+</i></a>
-                            </div>
+                    <div class="row line-add">
+                        <div class="col-xs-6 col-sm-7">
+                            <select class="width-100" name='sections[<?=$key?>][id]' onChange="enableSeleced()">
+                                <?php
+                                foreach ($sections as $sKey=>$value) {
+                                    $selected = ($sKey == $objSection->id)?"selected='selected'":"";
+                                    echo "<option value='$sKey' $selected >$value</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
-
+                        <div class="col-xs-3 col-sm-2">
+                            <input onkeyup="hasChanged($(this))" type="text" min="0" max="100" class="width-80 num percent-section hasChanged" name="sections[<?=$key?>][_joinData][ratio]" value="<?=$objSection->_joinData->ratio?>"/>
+                            <span>%</span>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 actions">
+                            <a class="btn btn-remove"><i class="fa fa-remove"></i></a>
+                            <a class="btn btn-add">+</i></a>
+                        </div>
+                    </div>
                     <?php
                 }
                 ?>
-                    </div>
             </div>
-            <div class="row form-group">
-                <div class="col-sm-10 col-sm-push-2">
-                    <label class="col-sm-6 text-right">Total</label>
-                    <div class="col-xs-2">
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-12 col-sm-9 col-lg-9 col-sm-push-3 col-lg-push-2">
+                <div class="row">
+                    <label class="col-xs-6 col-sm-7 text-right">Total</label>
+                    <div class="col-xs-3 col-sm-2">
                         <input class="total-percent width-80" type="text" value="100" readonly/> <span>%</span>
                     </div>
                 </div>
+            </div>
 
-            </div>
-            <div class="row actions">
-                <div class="col-xs-push-2 col-xs-9">
-                    <button type="submit" class="btn btn-info">Save</button>
-                </div>
-            </div>
+        </div>
         <?= $this->Form->end() ?>
 
 
     </div>
 </div>
 <script type="text/javascript">
-    var line = $('.line-add').length;
+    var line = 1;
     var _Per_input_change = 0;
     var per = 100;
-    var countSections = $('.line-add').length; //<?=$sections->count()?>;
-    var numSections = <?=count($examstemplate->sections)?>;
+    var countSections = <?=$sections->count()?>;
+
     function addline(){
         var str = '<div class="row line-add">'+
-            '<div class="col-sm-6">'+
-            '<select class="width-100" name="sections['+numSections+'][id]" onChange="enableSeleced()">'+
+            '<div class="col-xs-6 col-sm-7">'+
+            '<select class="width-100" name="sections[_ids][]" onChange="enableSeleced()">'+
             '<?php
-                            foreach ($sections as $key=>$value) {
-                                echo "<option value=\'$key\'>$value</option>";
-                            }
-                        ?>'+
+                foreach ($sections as $key=>$value) {
+                    echo "<option value=\'$key\'>$value</option>";
+                }
+                ?>'+
             '</select>'+
             '</div>'+
-            '<div class="col-sm-2">'+
-            '<input type="text" name="sections['+numSections+'][_joinData][ratio]" class="width-80 percent-section" onchange="hasChanged($(this))" />'+
+            '<div class="col-xs-3 col-sm-2">'+
+            '<input type="text" name="sections[ratio][]" class="width-80 percent-section noChange" onkeyup="hasChanged($(this))" />'+
             ' <span>%</span>'+
             '</div>'+
-            '<div class="col-sm-4 actions">'+
+            '<div class="col-xs-3 col-sm-3 actions">'+
             '<a class="btn btn-remove"><i class="fa fa-remove"></i></a>'+
             ' <a class="btn btn-add">+</i></a>'+
             '</div>'+
             '</div>';
 
 
-            $('.section-add').on('click','.btn-add',function(e){
-                /*
-                * Count section to append 
-                */
-                if(countSections < 2) {
-                    $.alert('Not enought section for this exam template!');
-                    return;
-                }
-                countSections--;
+        $('.section-add').on('click','.btn-add',function(e){
+            /*
+             * Count section to append
+             */
+            if(countSections < 2) {
+                $.alert('Not enought section for this exam template!');
+                return;
+            }
+            countSections--;
 
-                e.preventDefault();
-                line++;
-                $('.section-add').append(str);
+            e.preventDefault();
+            line++;
+            $('.section-add').append(str);
 
-                resetPercent();
-                finishCount();
-                disableSection();
-            });
+            resetPercent();
+            finishCount();
+            disableSection();
+        });
     }
 
     function finishCount(){
@@ -195,7 +191,7 @@
     }
 
     function removeline(){
-        
+
         $('.section-add').each(function(){
             $(this).on('click','.btn-remove',function () {
                 if(line <=1) return;
@@ -230,18 +226,18 @@
         __this.each(function(){
             $(this).blur(function(){
                 var percent = parseInt($(this).val());
-                    $('.percent-section').each(function () {
-                        console.log($(this));
-                    });
+                $('.percent-section').each(function () {
+                    console.log($(this));
+                });
 
             })
         })
     }
 
-    /* 
-    * function disableSection
-    * Disable section choosed
-    */
+    /*
+     * function disableSection
+     * Disable section choosed
+     */
     var m = [];
     function disableSection(){
         enableSeleced();
@@ -257,11 +253,11 @@
             m[i++]= $(this).val();
         });
         $('.section-add select').each(function(){
-           $.each(m,function(key,val){
-            if(typeof(val) != "undefined"){
-                $('.section-add select option[value='+val+']').attr('disabled','disabled');
-            }
-           }); 
+            $.each(m,function(key,val){
+                if(typeof(val) != "undefined"){
+                    $('.section-add select option[value='+val+']').attr('disabled','disabled');
+                }
+            });
         });
     }
     $(document).ready(function(){
@@ -293,110 +289,3 @@
     }
 
 </script>
-<!-- <script>
-    var line = 1;
-    var per = 100;
-    var numSections = <?=count($examstemplate->sections)?>;
-    console.log(numSections);
-    function addline(){
-        numSections = numSections + 1;
-        var str = '<div class="row line-add">'+
-            '<div class="col-sm-6">'+
-            '<select class="width-100" name="sections['+numSections+'][id]">'+
-            '<?php
-                            foreach ($sections as $key=>$value) {
-                                echo "<option value=\'$key\'>$value</option>";
-                            }
-                        ?>'+
-            '</select>'+
-            '</div>'+
-            '<div class="col-sm-2">'+
-            '<input type="text" name="sections['+numSections+'][_joinData][ratio]" class="width-80 percent-section" onchange="hasChanged($(this))" />'+
-            ' <span>%</span>'+
-            '</div>'+
-            '<div class="col-sm-4 actions">'+
-            '<a class="btn btn-remove"><i class="fa fa-remove"></i></a>'+
-            ' <a class="btn btn-add">+</i></a>'+
-            '</div>'+
-            '</div>';
-
-        $('.line-add .btn-add').each(function (index) {
-            $(this).click(function(){
-                line++;
-                $('.section-add').append(str);
-                if($(this).is(':focus')){
-
-                }else {
-                    $('.percent-section').each(function(){
-                        if($( this ).hasClass('hasChanged')){
-                            console.log($(this).val());
-                        }else{
-                            $( this ).val(Math.round(per/line));
-                        }
-                    });
-
-                }
-                var total = countval();
-                if(total>100){
-                    setvaluelastchildex(total);
-                    countval();
-                }else {
-                    setvaluelastchildsu(total);
-                    countval();
-                }
-
-                addline();
-            });
-        });
-    }
-    function countval() {
-        var sum = 0;
-        $('.line-add').each(function() {
-            $(this).find('input').each(function(){
-                sum += parseInt($(this).val());
-            });
-            $('.total-percent').val(sum);
-        });
-        return sum;
-    }
-    function setvaluelastchildex(total) {
-        var _this = $('.line-add:last-child .percent-section');
-        var _itsval = _this.val();
-        var lost =  total - per;
-        _this.val(_itsval-lost);
-    }
-    function setvaluelastchildsu(total) {
-        var _this = $('.line-add:last-child .percent-section');
-        var _itsval = _this.val();
-        var lost = per - total;
-        _this.val(parseInt(_itsval)+ parseInt(lost))
-    }
-
-//    function removeline(){
-//        $(this).parent().parent().remove();
-//        removeline();
-//    }
-    $(document).ready(function(){
-        $('.btn-remove').each(function () {
-           $(this).confirm({
-               content: "Are you sure you want to remove this section?",
-               title: "",
-               buttons: {
-                   yes: {
-                       btnClass:'btn-danger',
-                   },
-                   no: {
-                       keys: ['N'],
-                   },
-               }
-           });
-        });
-
-        addline();
-    });
-    function hasChanged(e) {
-        console.log(e.val());
-        e.addClass('hasChanged');
-    }
-//    removeline();
-</script> -->

@@ -29,20 +29,20 @@
                 </div>
             </div>
             <div class="row input text">
-                <label class="col-sm-2"><?= __('duration')?>:</label>
-                <label class="col-sm-10"><strong id="duration">0</strong> minutes</label>
+                <label class="col-sm-3 col-lg-2"><?= __('duration')?>:</label>
+                <label class="col-sm-9 col-lg-10"><strong id="duration">0</strong> minutes</label>
             </div>
             <div class="row input text">
-                <label class="col-sm-2"><?= __('number_of_question')?>:</label>
-                <label class="col-sm-10"><strong id="num_questions">0</strong> questions</label>
+                <label class="col-sm-3 col-lg-2"><?= __('number_of_question')?>:</label>
+                <label class="col-sm-9 col-lg-10"><strong id="num_questions">0</strong> questions</label>
             </div>
             <div class="row input text">
-                <label class="col-sm-2"><?= __('question')?>:</label>
-                <label class="col-sm-10"><strong id="ratio">---</strong></label>
+                <label class="col-sm-3 col-lg-2"><?= __('question')?>:</label>
+                <label class="col-sm-9 col-lg-10"><strong id="ratio">---</strong></label>
             </div>
             <div class="row input text">
-                <label class="col-sm-2"><?= __('description')?>:</label>
-                <label class="col-sm-3 col-xs-10">
+                <label class="col-sm-3 col-lg-2"><?= __('description')?>:</label>
+                <label class="col-sm-9 col-lg-10">
                     <strong id="description">Description</strong>
                 </label>
             </div>

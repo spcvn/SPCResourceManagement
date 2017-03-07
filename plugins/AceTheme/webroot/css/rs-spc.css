@@ -608,6 +608,10 @@ select::-ms-expand{
     font-weight: bold;
 }
 /*add exam template*/
+.question-action .btn-inverse{
+    padding: 0 5px;
+    border-color: transparent;
+}
 .question-action .btn-remove,
 .exams .btn-remove{
     padding: 0 5px;
@@ -823,6 +827,22 @@ form .error{
 .nopadding {
    padding: 0 !important;
    margin: 0 !important;
+}
+
+/*style daskboard*/
+.infobox-container{
+    padding: 30px 0;
+}
+.infobox{
+    width: 380px;
+}
+/*custom switch*/
+input[type=checkbox].ace.ace-switch.ace-switch-5.switch-act+.lbl::before{
+    content: "Active \a0\a0\a0 Deactive";
+    width: 76px;
+}
+input[type=checkbox].ace.ace-switch.ace-switch-5.switch-act:checked+.lbl::after{
+    left: 54px;
 }
 /*style content test end*/
 @media (min-width: 1200px) {

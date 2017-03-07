@@ -17,7 +17,7 @@
                 <th scope="col"><?= $this->Paginator->sort('birth_date',['text'=>__('birthday')]) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('provinceid',['text'=>__('province')]) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('dept',['model'=>__('department')]) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('active') ?></th>
                 <th scope="col" class="actions"><?= __('actions') ?></th>
             </tr>
             </thead>
@@ -34,7 +34,13 @@
                     <td><?=  date("Y-m-d",strtotime(h($user->birth_date))) ?></td>
                     <td><?= $province[$user->provinceid] ?></td>
                     <td><?= h($user->position->name)?></td>
-                    <td><label class="btn-status label <?=($user->status == 0)?'label-success':'label-danger'?> "><?= h($status[$user->status]) ?></label></td>
+                    <td>
+                        <label class="inline">
+                            <input id="id-button-borders" <?=($user->status)==0?"checked":""?> type="checkbox" class="ace ace-switch ace-switch-5 switch-act" />
+                            <span class="lbl middle"></span>
+                        </label>
+                    </td>
+
                     <td class="actions">
                         <div class="btn-group">
                             <?= $this->Html->link(

@@ -34,7 +34,7 @@
             <div class="row form-group">
                 <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('description')?></label>
                 <div class="col-xs-10 col-sm-5">
-                    <textarea class="form-control" name="description" id="form-field-1" placeholder="Description "></textarea>
+                    <textarea class="form-control" name="description" id="form-field-1" placeholder="Description " rows="5"></textarea>
                 </div>
                 <div class="col-xs-2 col-sm-3">
                 </div>

@@ -155,9 +155,8 @@ class QuestionsController extends AppController
         	$question->content = $arrDatas['content'];
         	$question->section_id = $arrDatas['section_id'];
         	if ($this->Questions->save($question)) {
-        		$this->registerAnswer($id, $arrDatas);
-        		
-        		return $this->redirect(['action' => 'edit', $id]);
+        		if($this->registerAnswer($id, $arrDatas)) return $this->redirect(['action' => 'index', $id]);
+        		else return $this->redirect(['action' => 'edit', $id]);
         	} else {
         		$this->Flash->error(__('The question could not be saved. Please, try again.'));
         	}

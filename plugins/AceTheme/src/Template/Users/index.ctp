@@ -36,7 +36,7 @@
                     <td><?= h($user->position->name)?></td>
                     <td>
                         <label class="inline">
-                            <input id="id-button-borders" <?=($user->status)==0?"checked":""?> type="checkbox" class="ace ace-switch ace-switch-5 switch-act" />
+                            <input id="id-button-borders" <?=($user->status)==0?"checked":""?> type="checkbox" class="ace ace-switch ace-switch-6" />
                             <span class="lbl middle"></span>
                         </label>
                     </td>

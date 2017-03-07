@@ -426,4 +426,19 @@ class QuestionsController extends AppController
     
         return $outpath;
     }
+
+    public function updatestatus(){
+        $this->request->allowMethod(['post', 'get', 'delete']);
+        if(!isset($this->request->data)) return;
+        $arrDatas = $this->request->data;
+        $question = $this->Questions->get($arrDatas['id']);
+        $question->status = $arrDatas['status']; // 0 : not used
+        $arrReturn = array();
+        if ($this->Questions->save($question)) {
+            $arrReturn['success']='ok';
+        }else{
+            $arrReturn['success']='nok';
+        }
+        echo json_encode($arrReturn);exit();
+    }
 }

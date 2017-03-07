@@ -17,6 +17,7 @@
                 <th scope="col"><?= $this->Paginator->sort('quiz_date') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('score') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('result') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -31,16 +32,27 @@
                 <td><?= (!is_null($quiz->quiz_date))?$quiz->quiz_date->format('Y-m-d h:i:s'):"Not yet" ?></td>
                 <td><?= $this->IndexHelper->status($quiz->status) ?></td>
                 <td><?= $this->Number->format($quiz->score)."/".$quiz->examstemplate->num_questions ?></td>
+                <td>
+                <?php 
+                    $label = "";
+                    $text = "";
+                    $result = $quiz->candidate->result;
+                    // $results = ['0' => 'Fail', '2' => 'Pass',''=>'---'];
+                    if($result == '2') { $text = "Pass"; $label = "label-success"; }
+                    elseif($result == '1') { $text= "Fail"; $label = "label-inverse arrowed"; }
+                    elseif($result == "") { $text= ""; $label = ""; }
+                 ?>
+                <span class="label <?=$label?> "><?=$text?></span></td>
                 <td class="actions">
                     <div class="btn-group">
                         <?= $this->Html->link(
                             $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
                             ['action' => 'view', $quiz->id],
                             ['class'=>'btn btn-xs btn-success','title'=>__('Show Details'),'escape'=>false]) ?>
-                        <!-- <?= $this->Html->link(
-                            $this->Html->tag('i','',['class'=>'ace-icon fa fa-trash-o bigger-120 btn-delete']),
-                            ['action' => 'delete', $quiz->id],
-                            ['class'=>'btn btn-xs btn-danger', 'title'=>'Delete','escape'=>false]) ?> -->
+                        <?= $this->Html->link(
+                            $this->Html->tag('i','',['class'=>'ace-icon fa fa-cog bigger-120 ']),
+                            ['controller'=>'Candidates','action' => 'result', $quiz->candidate->id],
+                            ['class'=>'btn btn-white btn-primary btn-xs btn-pass', 'title'=>'Result','escape'=>false]) ?>
                     </div>
                 </td>
             </tr>
@@ -59,7 +71,6 @@
     </div>
 </div>
 
-
 <script>
     $(document).ready(function(){
         $( ".btn-delete" ).each(function(index) {
@@ -74,6 +85,36 @@
                     no: {
                         keys: ['N'],
                     },
+                }
+            });
+        });
+        var row = function(index){
+
+            var item = $(this).parents('tr').children('td').eq(index);
+            return item.text();
+        }
+        $( ".btn-pass" ).each(function(index) {
+            $(this).confirm({
+                content: "Please choose a result!",
+                title: "",
+                buttons: {
+                    Pass: {
+                        btnClass:'btn-success',
+                        keys: ['P'],
+                        action : function () {
+                            location.href = this.$target.attr('href')+"/2";
+                        }
+                    },
+                    False: {
+                        action : function(){
+                            location.href = this.$target.attr('href')+"/1";
+                        },
+                        keys: ['F'],
+                    },
+                    Cancel : {
+                        btnClass:'btn-danger',
+                        keys: ['C'],
+                    }
                 }
             });
         });

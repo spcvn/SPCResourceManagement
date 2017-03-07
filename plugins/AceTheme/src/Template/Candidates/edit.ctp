@@ -32,12 +32,12 @@
             <?php
             $marriedStatus = ['0' => 'Single', '1' => 'Married'];
             echo $this->Form->input('married', ['type' => 'select','options'=>$marriedStatus, 'label'=>'Married Status']);
-            echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
             ?>
             <div class="row col-3">
                 <?php echo $this->cell("Province.Province",['config'=>'all',"type"=>"edit",'data'=>$candidate]);?>
             </div>
             <?php
+            echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
             echo $this->Form->input('mobile',['required'=>true]);
             echo $this->Form->input('position_id',['options'=>$positions]);
             echo $this->Form->input('expected_salary',['type'=>'select','options'=>$select->salary]);

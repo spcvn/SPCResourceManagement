@@ -179,4 +179,25 @@ class CandidatesController extends AppController
         $candidate['birth_date'] = $candidate['birth_date']->i18nFormat('yyyy-MM-dd');
         echo json_encode($candidate);exit();
     }
+
+     /**
+     * Passs method
+     *
+     * @param string|null $id Candidate id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function result($id = null,$result = "")
+    {
+        $this->request->allowMethod(['post','get' , 'pass']);
+        $candidate = $this->Candidates->get($id);
+        $candidate->result = $result; // pass
+        if ($this->Candidates->save($candidate)) {
+            $this->Flash->success(__('The candidate has been deleted.'));
+        } else {
+            $this->Flash->error(__('The candidate could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect($this->referer());
+    }
 }

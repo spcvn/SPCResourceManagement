@@ -56,12 +56,13 @@
                   echo $this->Form->input('first_name',['type'=>'text']);
                   echo $this->Form->input('middle_name',['type'=>'text']);
                   echo $this->Form->input('last_name',['type'=>'text']);
-                  echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
                   ?>
                   <div class="row col-3">
                       <?php echo $this->cell("Province.Province",['config'=>'all']);?>
                   </div>
-
+                  <?php
+                  echo $this->Form->input('addr01',['label'=>'Address', 'type'=>'text']);
+                  ?>
                   <div class="form-group datetimepk">
                       <label><?= __('birthday'); ?></label>
                       <div class='input-group date' id="">

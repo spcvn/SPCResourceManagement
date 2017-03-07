@@ -5,7 +5,16 @@ $(document).ready(function(){
 		console.log()
 		redirectURL(_controller,'view',param);
 	});
-
+     //tooltip : 
+    setTimeout(function() {
+        $($('.btn-group')).find('a.btn').each(function() {
+            var div = $(this).find(' > div').first();
+            var title  = $(this).attr('title');
+            if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
+            else $(this).tooltip({container: 'body', title: title});
+        });
+    }, 500);
+    
 	submitForm();
 });
 jQuery(function(){

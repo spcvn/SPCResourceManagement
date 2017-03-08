@@ -54,6 +54,7 @@
         <div class="modal-body step-content">
           <div class="step-pane active" data-step="1">
                 <h2><?= __('candidate_exists')?></h2>
+              <input id="candidate_id" name="candidate_id" type="text" placeholder="<?= __('candidate_name')?>...">
                 <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>'', 'label'=>false])?>
           </div>
 
@@ -135,7 +136,6 @@
       </div>
     </div>
     <?= $this->Form->end() ?>
-  </div>
 </div>
 
 <div id="reviewUser" class="modal fade review-user" role="dialog">
@@ -234,7 +234,6 @@
               </div>
           </div>
       </div>
-
   </div>
 </div>
 <div id="dialog" title="" class="modal">
@@ -465,5 +464,36 @@
         }
       });
     }
+
+    //auto complete
+    var availableCandidates = [
+        "Nguyen Hien",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+        "Trung Ta",
+    ];
+    $( "#candidate_id" ).autocomplete({
+        source: availableCandidates
+    });
 
 </script>

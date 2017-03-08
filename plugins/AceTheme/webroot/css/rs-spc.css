@@ -851,6 +851,14 @@ form .error{
     /*!*left: 54px;*!*/
 /*}*/
 /*style content test end*/
+/*custom ui auto complete*/
+.ui-autocomplete{
+    max-height: 150px;
+    overflow: auto;
+}
+.ui-autocomplete-input{
+    width: 100%;
+}
 @media (min-width: 1200px) {
     .form-register .modal-body.step-content{
         width: 80%;

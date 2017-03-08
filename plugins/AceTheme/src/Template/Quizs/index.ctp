@@ -39,7 +39,7 @@
                     $result = $quiz->candidate->result;
                     // $results = ['0' => 'Fail', '2' => 'Pass',''=>'---'];
                     if($result == '2') { $text = "Pass"; $label = "label-success"; }
-                    elseif($result == '1') { $text= "Fail"; $label = "label-inverse arrowed"; }
+                    elseif($result == '1') { $text= "Fail"; $label = "label-inverse"; }
                     elseif($result == "") { $text= ""; $label = ""; }
                  ?>
                 <span class="label <?=$label?> "><?=$text?></span></td>
@@ -49,10 +49,12 @@
                             $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
                             ['action' => 'view', $quiz->id],
                             ['class'=>'btn btn-xs btn-success','title'=>__('Show Details'),'escape'=>false]) ?>
-                        <?= $this->Html->link(
-                            $this->Html->tag('i','',['class'=>'ace-icon fa fa-cog bigger-120 ']),
-                            ['controller'=>'Candidates','action' => 'result', $quiz->candidate->id],
-                            ['class'=>'btn btn-white btn-primary btn-xs btn-pass', 'title'=>'Result','escape'=>false]) ?>
+                        <?php if($quiz->status==1) {
+                            echo $this->Html->link(
+                                $this->Html->tag('i','',['class'=>'ace-icon fa fa-cog bigger-120 ']),
+                                ['controller'=>'Candidates','action' => 'result', $quiz->candidate->id],
+                                ['class'=>'btn btn-white btn-primary btn-xs btn-pass', 'title'=>'Result','escape'=>false]);
+                                                    } ?>
                     </div>
                 </td>
             </tr>

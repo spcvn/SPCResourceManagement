@@ -81,6 +81,11 @@
             </div>
 
         </div>
+        <div class="row actions">
+            <div class="col-xs-push-3 col-lg-push-2 col-xs-9">
+                <button type="submit" name="save" class="btn btn-info">Save</button>
+            </div>
+        </div>
         <?= $this->Form->end() ?>
 
 

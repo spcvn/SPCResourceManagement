@@ -730,10 +730,15 @@ form .error{
 .sidebar-shortcuts .ttlsb{
     text-align: left;
     padding-left: 10px;
+    padding-top: 14px;
     color: #2B7DBC;
     font-size: 14px;
     text-transform: uppercase;
-    margin-top: 14px;
+    margin: 0;
+}
+.menu-min .sidebar-shortcuts .ttlsb{
+    padding-left: 0;
+    letter-spacing: -1px;
 }
 /*style autocomplete*/
 .autocomplete_wrap input{
@@ -836,16 +841,21 @@ form .error{
 .infobox{
     width: 380px;
 }
-/*custom switch*/
-input[type=checkbox].ace.ace-switch.ace-switch-5.switch-act+.lbl::before{
-    content: "Active \a0\a0\a0 Deactive";
-    width: 76px;
-}
-input[type=checkbox].ace.ace-switch.ace-switch-5.switch-act:checked+.lbl::after{
-    left: 54px;
-}
+/*!*custom switch*!*/
+/*input[type=checkbox].ace.ace-switch.ace-switch-5.switch-act+.lbl::before{*/
+    /*content: "\f00c \a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0\a0 \f00d";*/
+    /*font-family: "FontAwesome";*/
+    /*!*width: 76px;*!*/
+/*}*/
+/*input[type=checkbox].ace.ace-switch.ace-switch-5.switch-act:checked+.lbl::after{*/
+    /*!*left: 54px;*!*/
+/*}*/
 /*style content test end*/
 @media (min-width: 1200px) {
+    .form-register .modal-body.step-content{
+        width: 80%;
+        margin: 0 auto;
+    }
     .form .text label,
     .form .email label,
     .form .password label,
@@ -918,22 +928,23 @@ input[type=checkbox].ace.ace-switch.ace-switch-5.switch-act:checked+.lbl::after{
     .candidates .wrap-edit{
         width: 90%;
     }
-    .form .text label,
-    .form .email label,
-    .form .password label,
-    .form .select label,
-    .form .number label,
-    .form .file label,
-    .form .textarea label{
+    .form .text label:not(.error),
+    .form .email label:not(.error),
+    .form .password label:not(.error),
+    .form .select label:not(.error),
+    .form .number label:not(.error),
+    .form .file label:not(.error),
+    .form .textarea label:not(.error){
         width: 22%;
     }
+
     .form .text label.error,
     .form .email label.error,
     .form .password label.error,
-    .form .select label.error,
     .form .number label.error,
     .form .file label.error,
     .form .textarea label.error{
+        display: block;
         padding-left: 22%;
     }
     .users.form .wrap-edit .text input,

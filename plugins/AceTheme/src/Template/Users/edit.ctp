@@ -7,6 +7,22 @@
         </small>
     </h1>
 </div><!-- /.page-header -->
+<?php
+    $jsonDept = json_decode($user->positions);
+    $deptOptions = array();
+    foreach ($jsonDept as $obj) {
+      $deptOptions[$obj->short_name] = $obj->name;
+    }
+    foreach ($jsonDept as $obj) {
+      $posOptions[$obj->short_name][$obj->id] = $obj->position;
+    }
+    $short_name_choosed = "";
+    foreach ($jsonDept as $obj) {
+        if($obj->id == $user->dept){
+            $short_name_choosed = $obj->short_name;
+        }
+    }
+?>
 <span class="loading" style="display:block"><?=$this->Html->image('/images/loading.gif')?>Loading...</span>
 <div class="users form content" style="display:none">
     <div class="wrap-edit">
@@ -38,7 +54,8 @@
                 </div>
                 <?php
                 echo $this->Form->input('mobile',['type'=>'text']);
-                echo $this->Form->input('department',['type'=>'select','name'=>'dept','default'=>$user->dept,'options'=>$user->positions]);
+                echo $this->Form->input('position',['type'=>'select', 'options'=>$deptOptions]);
+                echo $this->Form->input('department',['name'=>'dept','type'=>'select', 'options'=>$user->position ,'default'=>'']);
                 ?>
                 <div class="form-group datetimepk">
                     <label><?= __('start_working_date'); ?></label>
@@ -106,6 +123,9 @@
 
         $('#birth-date').val('<?=$user->birth_date->format("Y-m-d")?>').datetimepicker('update');
         $('#start-work').val('<?=$user->start_work->format("Y-m-d")?>').datetimepicker('update');
+        //load department 
+        loaddingSelect('<?=$user->dept?>');
+
          $(".loading").hide();
          $(".content").show('fade');
 
@@ -128,5 +148,29 @@
                 }
           }
         });
+
+         // linking 2 selectbox department
+         $('#position').on('change',function(){
+          choosing($(this).val());
+        });
     } );
+    // link 2 selectbox department
+    var posOptions = $.parseJSON('<?=json_encode($posOptions)?>');
+
+    function choosing(selected){
+      $.each(posOptions, function(key, val) {
+        if(selected == key){
+           $('#department').find('option').remove();
+          $.each(val,function(id,name){
+            $('#department').append($('<option>', { value : id }).text(name)); 
+          });
+        }
+      });
+    }
+
+    function loaddingSelect(short_name){
+        $('#position').val('<?=$short_name_choosed?>');
+        choosing('<?=$short_name_choosed?>');
+        $('#department').val(short_name);
+    }
 </script>

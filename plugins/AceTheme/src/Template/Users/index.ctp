@@ -36,7 +36,7 @@
                     <td><?= h($user->position->name)?></td>
                     <td>
                         <label class="inline">
-                            <input id="id-button-borders" <?=($user->status)==0?"checked":""?> type="checkbox" class="ace ace-switch ace-switch-5 switch-act" />
+                            <input id="id-button-borders" <?=($user->status)==0?"checked":""?> type="checkbox" class="ace ace-switch ace-switch-5 switch-act ckb_status" data-value="<?=($user->id)?>" />
                             <span class="lbl middle"></span>
                         </label>
                     </td>
@@ -96,50 +96,27 @@
             });
         });
 
-//        $('tr').click( function() {
-//            window.location = $(this).find('a[title="Show Detail"]').attr('href');
-//        }).hover( function() {
-//            $(this).toggleClass('hover');
-//        });
-        $( ".btn-status" ).each(function(index) {
-            var currentStatus;
-            if($(this).hasClass('label-danger')){
-                currentStatus = 'Active';
-            }else {
-                currentStatus = 'Deactive';
-            }
-            $(this).confirm({
-                content: "<?=__('Are you sure you want to')?> "+ currentStatus +" this user?",
-                title: "",
-                buttons: {
-                    yes: {
-                        btnClass:'btn-danger',
-                        keys: ['Y'],
-                    },
-                    no: {
-                        keys: ['N'],
-                    },
+        //check status
+        $('.ckb_status').each(function(){
+            $(this).on('click', function(){
+                var data = {};
+                data['id'] = $(this).attr('data-value');
+                if($(this).prop('checked')){
+                    data['status'] = 0;
+                }else{
+                    data['status'] = 1;
                 }
+                $.post('/users/updatestatus',data,function(res){
+                    var mRes = $.parseJSON(res);
+                    if(mRes.success == 'ok'){
+                        $(this).removeAttr('checked');
+                    }else{
+                        $.confirm('Some action is not ready!');
+                    }
+                });
             });
         });
 
-        function changeStatus(){
-            $('.btn-status').each(function () {
-                $(this).stop().hover(function () {
-                    if($(this).hasClass('label-success')){
-                        $(this).removeClass('label-success').addClass('label-danger').html('Deactive');
-                    }else {
-                        $(this).removeClass('label-danger').addClass('label-success').html('Active');
-                    }
-                }, function () {
-                    if($(this).hasClass('label-danger')){
-                        $(this).removeClass('label-danger').addClass('label-success').html('Active');
-                    }else {
-                        $(this).removeClass('label-success').addClass('label-danger').html('Deactive');
-                    }
-                })
-            })
-        }
-//        changeStatus();
+
     })
 </script>

@@ -115,7 +115,6 @@
 
 //check status
         $('.ckb_status').each(function(){
-            console.log($(this));
             $(this).on('click', function(){
                 var data = {};
                 data['id'] = $(this).attr('data-value');

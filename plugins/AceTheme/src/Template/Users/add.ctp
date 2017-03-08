@@ -18,7 +18,15 @@
 <?php
     $candidates['']=__('Select a candidate...');
     asort($candidates);
-    $user->positions[''] = __('Select a position...');
+
+    $jsonDept = json_decode($user->positions);
+    $deptOptions = array();
+    foreach ($jsonDept as $obj) {
+      $deptOptions[$obj->short_name] = $obj->name;
+    }
+    foreach ($jsonDept as $obj) {
+      $posOptions[$obj->short_name][$obj->id] = $obj->position;
+    }
 ?>
 <div class="users form-register content">
     <?= $this->Form->create($user) ?>
@@ -75,8 +83,10 @@
                   </div>
                   <?php
                   echo $this->Form->input('mobile',['type'=>'text']);
-                  echo $this->Form->input('department',['name'=>'dept','type'=>'select', 'options'=>$user->positions ,'default'=>'']);
+                  echo $this->Form->input('position',['type'=>'select', 'options'=>$deptOptions ,'default'=>'']);
+                  echo $this->Form->input('department',['name'=>'dept','type'=>'select', 'options'=>null ,'default'=>'']);
                   ?>
+
                   <div class="form-group datetimepk">
                       <label><?= __('start_working_date'); ?></label>
                       <div class='input-group date'>
@@ -385,6 +395,11 @@
         $('.datepicker').keydown(false);
 
         $('select[name=candidate_id]').val('<?=$user->_candidateid?>').trigger('change');
+
+        $('#position').on('change',function(){
+          choosing($(this).val());
+        });
+
     } );
     
    $('select[name=candidate_id]').on('change',function(event){
@@ -434,5 +449,21 @@
         })
 
     }
+
     loadDataModal();
+
+    // link 2 selectbox department
+    var posOptions = $.parseJSON('<?=json_encode($posOptions)?>');
+
+    function choosing(selected){
+      $.each(posOptions, function(key, val) {
+        if(selected == key){
+           $('#department').find('option').remove();
+          $.each(val,function(id,name){
+            $('#department').append($('<option>', { value : id }).text(name)); 
+          });
+        }
+      });
+    }
+
 </script>

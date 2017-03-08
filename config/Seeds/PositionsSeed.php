@@ -23,16 +23,33 @@ class PositionsSeed extends AbstractSeed
                 'id' => '1',
                 'name' => 'ADMIN',
                 'is_delete' => '0',
+                'short_name' => 'admin',
+                'position' => '',
+                'short_position' => '',
             ],
             [
                 'id' => '2',
                 'name' => 'IT',
                 'is_delete' => '0',
+                'short_name' => 'it',
+                'position' => 'Senior',
+                'short_position' => 'it_senior',
             ],
             [
                 'id' => '3',
                 'name' => 'HR',
                 'is_delete' => '0',
+                'short_name' => 'hr',
+                'position' => 'Accounter',
+                'short_position' => 'hr_accounter',
+            ],
+            [
+                'id' => '4',
+                'name' => 'IT',
+                'is_delete' => '0',
+                'short_name' => 'it',
+                'position' => 'Tester',
+                'short_position' => 'it_tester',
             ],
         ];
 

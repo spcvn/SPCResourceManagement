@@ -54,7 +54,9 @@
         <div class="modal-body step-content">
           <div class="step-pane active" data-step="1">
                 <h2><?= __('candidate_exists')?></h2>
-              <input id="candidate_id" name="candidate_id" type="text" placeholder="<?= __('candidate_name')?>...">
+              <div class="autocomplet_wrap">
+                  <input id="candidate_id" name="candidate_id" type="text" placeholder="<?= __('candidate_name')?>...">
+              </div>
                 <?=$this->Form->input('candidate_id',['type'=>'select','options'=>$candidates,'default'=>'', 'label'=>false])?>
           </div>
 

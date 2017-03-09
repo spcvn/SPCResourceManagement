@@ -5,6 +5,9 @@
 .btn:focus{
     border-color: transparent;
 }
+.btn .fa{
+    vertical-align: middle;
+}
 /*custom paginator*/
 .paginator{
     text-align: right;
@@ -19,8 +22,8 @@
 .welcome-logo{
     text-align: center;
 }
-.welcome-logo img{
-    max-width: 60%;
+.welcome-logo .logo-company{
+    max-width: 250px;
 }
 img{
     max-width: 100%;
@@ -856,7 +859,7 @@ form .error{
     max-height: 150px;
     overflow: auto;
 }
-.ui-autocomplete-input{
+.users.form-register .ui-autocomplete-input{
     width: 100%;
 }
 .paginate_button.next a,

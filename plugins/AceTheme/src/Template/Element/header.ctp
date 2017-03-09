@@ -52,7 +52,7 @@
                         <li class="divider"></li>
 
                         <li>
-                            <a href="/users/logout">
+                            <a href="/auth-master/logout">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>

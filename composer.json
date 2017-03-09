@@ -10,6 +10,7 @@
         "mobiledetect/mobiledetectlib": "2.*",
         "cakephp/migrations": "@stable",
         "cakephp/plugin-installer": "*",
+        "friendsofcake/authenticate": "dev-cake3",
         "friendsofcake/cakephp-csvview": "~3.0"
     },
     "require-dev": {
@@ -27,7 +28,9 @@
             "App\\": "src",
             "City\\": "./plugins/City/src",
             "Province\\": "./plugins/Province/src",
-            "AceTheme\\": "./plugins/AceTheme/src"
+            "AceTheme\\": "./plugins/AceTheme/src",
+            "SpcAuth\\": "./plugins/SpcAuth/src",
+            "Notification\\": "./plugins/Notification/src"
         }
     },
     "autoload-dev": {
@@ -36,7 +39,9 @@
             "Cake\\Test\\": "./vendor/cakephp/cakephp/tests",
             "City\\Test\\": "./plugins/City/tests",
             "Province\\Test\\": "./plugins/Province/tests",
-            "AceTheme\\Test\\": "./plugins/AceTheme/tests"
+            "AceTheme\\Test\\": "./plugins/AceTheme/tests",
+            "SpcAuth\\Test\\": "./plugins/SpcAuth/tests",
+            "Notification\\Test\\": "./plugins/Notification/tests"
         }
     },
     "scripts": {

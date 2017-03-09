@@ -50,11 +50,15 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'index']);
-
+    $routes->connect('/login', ['controller' => 'AuthMaster', 'action' => 'login', 'login']);
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
+
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    $routes->connect('/403', ['controller' => 'AuthMaster', 'action' => 'accessDenied', 'access_denied']);
+    $routes->connect('/404', ['controller' => 'AuthMaster', 'action' => 'pageNotFound', 'page_not_found']);
+    $routes->connect('/logout', ['controller' => 'AuthMaster', 'action' => 'logout', 'logout']);
 
     /**
      * Connect catchall routes for all controllers.

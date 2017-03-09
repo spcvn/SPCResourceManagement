@@ -38,21 +38,22 @@ class AppController extends Controller
      */
        public function initialize()
     {	
-	
+	   parent::initialize();
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth', [
+        $this->loadComponent('Cookie');
+        /*$this->loadComponent('Auth', [
             'loginRedirect' => [
                 'controller' => 'Users',
                 'action' => 'index'
             ],
             'logoutRedirect' => [
-                'controller' => 'Users',
+                'controller' => 'AuthMaster',
                 'action' => 'login'
                 
             ]
-        ]);
+        ]);*/
 		
-        $this->set('is_login', $this->Auth->user());
+        // $this->set('is_login', $this->Auth->user());
     }
     function getDevelopMode(){
 
@@ -70,7 +71,8 @@ class AppController extends Controller
 	];
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['test', 'complete']);
+        parent::beforeFilter($event);
+        // $this->Auth->allow(['test', 'complete']);
     }
     //...
     public function beforeRender(Event $event)

@@ -859,6 +859,30 @@ form .error{
 .ui-autocomplete-input{
     width: 100%;
 }
+.paginate_button.next a,
+.paginate_button.previous a{
+    width: 34px;
+    color: transparent!important;
+    overflow: hidden;
+}
+.paginate_button.next:hover a,
+.paginate_button.next:focus a,
+.paginate_button.previous:hover a,
+.paginate_button.previous:focus a{
+    color: transparent;
+}
+.paginate_button.next a:before,
+.paginate_button.previous a:before{
+    font-family: "FontAwesome";
+    color: #777777;
+}
+.paginate_button.previous a:before{
+    content: "\f104";
+}
+.paginate_button.next a:before{
+    content: "\f105";
+}
+
 @media (min-width: 1200px) {
     .form-register .modal-body.step-content{
         width: 80%;

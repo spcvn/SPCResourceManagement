@@ -12,31 +12,45 @@
         <?= $this->Form->create($examstemplate) ?>
             <div class="row form-group required">
                 <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('template_name')?></label>
-                <div class="col-xs-10 col-sm-5">
-                    <input type="text" name="name" class="width-100" />
+                <div class="col-xs-12 col-sm-9">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-7">
+                            <input type="text" name="name" class="width-100" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row form-group required">
                 <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('number_of_question')?></label>
-                <div class="col-xs-10 col-sm-5">
-                    <input type="text" name="num_questions" class="width-100 num" />
+                <div class="col-xs-12 col-sm-9">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-7">
+                            <input type="text" name="num_questions" class="width-100 num" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row form-group required">
                 <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('duration')?></label>
-                <div class="col-xs-10 col-sm-5">
-                    <input type="text" name="duration" class="width-100 num" />
-                </div>
-                <div class="col-xs-2 col-sm-3">
-                    <span><?= __('minute')?>(s)</span>
+                <div class="col-xs-12 col-sm-9">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-7">
+                            <input type="text" name="duration" class="width-100 num" />
+                        </div>
+                        <div class="col-xs-2 col-sm-3">
+                            <span><?= __('minute')?>(s)</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row form-group">
                 <label  class="col-xs-12 col-sm-3 col-lg-2 control-label"><?= __('description')?></label>
-                <div class="col-xs-10 col-sm-5">
-                    <textarea class="form-control" name="description" id="form-field-1" placeholder="Description " rows="5"></textarea>
-                </div>
-                <div class="col-xs-2 col-sm-3">
+                <div class="col-xs-12 col-sm-9">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-7">
+                            <textarea class="form-control" name="description" id="form-field-1" placeholder="Description " rows="5"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row form-group">

@@ -48,13 +48,15 @@
                         <?= $this->Html->link(
                             $this->Html->tag('i','',['class'=>'ace-icon fa fa-search-plus']),
                             ['action' => 'view', $quiz->id],
-                            ['class'=>'btn btn-xs btn-success','title'=>__('Show Details'),'escape'=>false]) ?>
+                            ['class'=>'btn btn-xs btn-success','title'=>__('show_detail'),'escape'=>false]) ?>
                         <?php if($quiz->status==1) {
                             echo $this->Html->link(
                                 $this->Html->tag('i','',['class'=>'ace-icon fa fa-cog bigger-120 ']),
                                 ['controller'=>'Candidates','action' => 'result', $quiz->candidate->id],
-                                ['class'=>'btn btn-white btn-primary btn-xs btn-pass', 'title'=>'Result','escape'=>false]);
-                        } ?>
+
+                                ['class'=>'btn btn-inverse btn-xs btn-pass', 'title'=>__('result'),'escape'=>false]);
+                                                    } ?>
+
                     </div>
                 </td>
             </tr>

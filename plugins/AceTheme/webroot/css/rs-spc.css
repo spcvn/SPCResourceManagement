@@ -224,6 +224,10 @@ form button[type=submit]:hover{
 .form-login .forgetPassword{
     color: inherit;
 }
+.form-login .input .label,
+.form-login .input input{
+    width: 100%;
+}
 .form .group-control .text input,
 .form .group-control .text label{
     width: 100%;

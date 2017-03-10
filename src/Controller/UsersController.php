@@ -4,13 +4,14 @@ use Cake\Event\Event;
 use App\Controller\AppController;
 use Province\Controller\ProvincesController;
 use Cake\Mailer\MailerAwareTrait;
+use Cake\ORM\TableRegistry;
 use Cake\Utility\Security;
 /**
  * Users Controller
  *
  * @property \App\Model\Table\UsersTable $Users
  */
-class UsersController extends AppController
+class UsersController extends AuthMasterController
 {
     /**
      * Index method
@@ -63,12 +64,21 @@ class UsersController extends AppController
      */
     public function add($candidateid = null)
     {
+        $roles = TableRegistry::get('Roles');
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
+
             $user = $this->Users->patchEntity($user, $this->request->data);
 
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                // $this->Flash->success(__('The user has been saved.'));
+                $roleUsers = TableRegistry::get('RoleUsers');
+                $roleUserE = $roleUsers->newEntity();
+                $roleUserE->user_id = $user->id;
+                $roleUserE->role_id = $this->request->data['role_id'];
+                $roleUsers->save($roleUserE);
+                // $isCheck = true;
+
                 try{
                     $this->getMailer('User')->send('memberOfSpc', [$user,$this->request->data['password']]);
                 } catch (PDOException $e) {
@@ -92,6 +102,22 @@ class UsersController extends AppController
             return $candidate->first_name." ".$candidate->last_name;
         }])->where(['result'=>2])->toArray();
         $user->_candidateid = $candidateid;
+
+        //Load role
+        $listRoles = $roles->find('list', [
+            'keyField' => 'id',
+            'valueField' => 'display_name',
+            'conditions' => ['status' => true,'id >'=>2]
+        ]);
+        $department = TableRegistry::get('Departments');
+        $listDepartments = $department->find('list', [
+            'keyField' => 'id',
+            'valueField' => 'name',
+            'conditions' => ['status' => true,'del_flg' => false]
+        ]);
+        $this->set(compact('listRoles'));
+        $this->set(compact('listDepartments'));
+
         $this->set(compact('user'));
         $this->set(compact('candidates'));
         $this->set('_serialize', ['user']);
@@ -153,7 +179,7 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['logout','forgotPassword','resetPassword']);
+        // $this->Auth->allow(['logout','forgotPassword','resetPassword']);
     }
     public function login()
     {

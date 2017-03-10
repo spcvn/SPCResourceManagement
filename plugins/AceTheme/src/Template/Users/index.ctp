@@ -25,6 +25,7 @@
             <?php $i = 1;
             $province[0] = $province[1] = "-";
             foreach ($users as $user): ;?>
+
                 <?php $name = h($user->last_name ." ". $user->middle_name ." ". $user->first_name);?>
                 <tr>
                     <td style="text-align: center;"><?= $i++ ?></td>

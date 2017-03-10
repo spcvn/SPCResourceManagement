@@ -35,9 +35,9 @@
             echo $this->cell("Province.Province",['config'=>'all']);
             echo "</div>";
             echo $this->Form->input('addr01',['label'=>__('address'),'type'=>'text']);
-            echo $this->Form->input('mobile',['label'=>__('contact_no')]);
+            echo $this->Form->input('mobile',['label'=>__('mobile')]);
             echo $this->Form->input('position_id',['label'=>__('position'),'type'=>'select','options'=>$positions]);
-            echo $this->Form->input('expected_salary',['label'=>__('salary'),'type'=>'select','options'=>$select->salary]);
+            echo $this->Form->input('expected_salary',['label'=>__('expected_salary'),'type'=>'select','options'=>$select->salary]);
             //            echo $this->Form->input('interview_date',['type'=>'text','class'=>'datetimepicker']);
             ?>
             <div class="form-group datetimepk">
@@ -52,97 +52,11 @@
             </div>
         </fieldset>
         <div class="row action">
-<!--            <div class="col-sm-6">-->
-<!--                <a class="btn btnPreview" data-toggle="modal" data-target="#reviewCandidate">--><?//= __('preview'); ?><!--</a>-->
-<!--            </div>-->
-            <div class="col-xs-12 text-right">
+            <div class="col-xs-12 text-center">
                 <?= $this->Form->button(__('submit'),['class'=>'btn-submit']) ?>
             </div>
         </div>
         <?= $this->Form->end() ?>
-    </div>
-</div>
-<div id="reviewCandidate" class="modal fade review-candidate" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title text-center"><?= __('candidate_information')?></h3>
-                <ul class="ulnostyle">
-                    <li>
-                        <table class="table">
-                            <tr>
-                                <th style="width: 150px;"><?= __('first_name');?></th>
-                                <td style="width: 10px;">:</td>
-                                <td><span id="get_first-name"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('middle_name')?></th>
-                                <td>:</td>
-                                <td><span id="get_middle-name"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('last_name')?></th>
-                                <td>:</td>
-                                <td><span id="get_last-name"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('email')?></th>
-                                <td>:</td>
-                                <td><span id="get_email"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('birthday')?></th>
-                                <td>:</td>
-                                <td><span id="get_birthday"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('marriage_status')?></th>
-                                <td>:</td>
-                                <td><span id="get_married"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('address')?></th>
-                                <td>:</td>
-                                <td><span id="get_addr01"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('mobile')?></th>
-                                <td>:</td>
-                                <td><span id="get_mobile"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('department')?></th>
-                                <td>:</td>
-                                <td><span id="get_position-id"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('salary')?></th>
-                                <td>:</td>
-                                <td><span id="get_expected-salary"></td>
-                            </tr>
-                            <tr>
-                                <th><?= __('interview_date')?></th>
-                                <td>:</td>
-                                <td><span id="get_interview-date"></td>
-                            </tr>
-
-                        </table>
-                    </li>
-                </ul>
-                <div class="row">
-                    <div class="col-sm-6 text-left">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    </div>
-                    <div class="col-sm-6 text-right">
-                        <button type="button" class="btn btn-info">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -150,31 +64,7 @@
 <?= $this->Html->script('jquery.validate.min.js'); ?>
 <script>
     //load data form to modal preview
-    function loadDataModal(){
-        $('.candidates form input').each(function () {
-            $(this).on('change',function () {
-                console.log($(this));
-                var iname = $(this).attr('id');
-                var idname = '#get_'+iname;
-                var text = $(this).val();
-                $('#reviewCandidate').find(idname).html(text);
-            });
 
-        });
-        $('.candidates form select').each(function(){
-            $(this).on('change',function () {
-                var iname = $(this).attr('id');
-                var idname = '#get_'+iname;
-                var text = $(this).find('option:selected').text();
-                $('#reviewCandidate').find(idname).html(text);
-            });
-
-        });
-        $('#reviewCandidate').find('#get_interview-date').html($('#datetimepicker').find('input').val());
-
-
-
-    }
     function addRequired(idi) {
         $(idi).addClass('required').parent().addClass('required');
     };
@@ -209,7 +99,6 @@
 
         $(".loading").hide();
         $(".content").show('fade');
-        loadDataModal();
         addRequired('#provinceid');
         addRequired('#districtid');
         $(".candidates form").validate({

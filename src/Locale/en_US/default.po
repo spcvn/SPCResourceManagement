@@ -283,6 +283,9 @@ msgstr "Exam detail"
 msgid "candidates"
 msgstr "Candidates"
 
+msgid "candidate_profile"
+msgstr "Candidates Profile"
+
 msgid "add_candidate"
 msgstr "Add Candidate"
 
@@ -293,7 +296,7 @@ msgid "users"
 msgstr "Users"
 
 msgid "profile_user"
-msgstr "Profile user"
+msgstr "User Profile "
 
 msgid "edit_user"
 msgstr "Edit user"

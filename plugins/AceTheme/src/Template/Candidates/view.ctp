@@ -3,7 +3,7 @@
         Candidates
         <small>
             <i class="ace-icon fa fa-angle-double-right"></i>
-            Profile Candidate
+            <?= __('candidate_profile')?>
         </small>
     </h1>
 </div><!-- /.page-header -->

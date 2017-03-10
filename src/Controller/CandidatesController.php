@@ -8,7 +8,7 @@ use Province\Controller\ProvincesController;
  *
  * @property \App\Model\Table\CandidatesTable $Candidates
  */
-class CandidatesController extends AppController
+class CandidatesController extends AuthMasterController
 {
     /**
      * Index method`
@@ -16,7 +16,7 @@ class CandidatesController extends AppController
      * @return \Cake\Network\Response|null
      
      */
-     public $paginate = [
+    public $paginate = [
     // Other keys here.
     'maxLimit' => 10
     ];

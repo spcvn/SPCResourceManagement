@@ -182,11 +182,10 @@ class AuthMasterController extends AppController
     }
     protected function _allowActions()
     {
-        $this->Auth->allow([ 'login', 'logout' , 'accessDenied','pageNotFound']);
-
+        $this->Auth->allow([ 'login', 'logout' , 'accessDenied','pageNotFound','test','complete']);
     }
     public function accessDenied(){
-
+        $this->viewBuilder()->layout('access_denied');
     }
     /**
      * Login method

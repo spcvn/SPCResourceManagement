@@ -77,6 +77,11 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->fallbacks(DashedRoute::class);
 });
+Router::scope('/candidates', function (RouteBuilder $routes) {
+    $routes->connect('/', ['controller' => 'Candidates', 'action' => 'index'], ['routeClass' => 'DashedRoute']);
+    $routes->connect('/:action/*', ['controller' => 'Candidates'], ['routeClass' => DashedRoute::class]);
+    $routes->fallbacks(DashedRoute::class);
+});
 
 	// Load extension csv
 	Router::extensions(['csv']);

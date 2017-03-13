@@ -8,7 +8,7 @@
     </h1>
 </div><!-- /.page-header -->
 <?php
-$arrStatus = ['1' => 'Disable', '0' => 'Active'];
+$arrStatus = ['1' => 'Disable', '0' => 'Enable'];
 ?>
 
 <div class="users view content">
@@ -46,6 +46,12 @@ $arrStatus = ['1' => 'Disable', '0' => 'Active'];
                                 <td>:</td>
                                 <td><?= h($user->first_name) ?></td>
                             </tr>
+                            <tr>
+                                <th scope="row"><?= __('middle_name') ?></th>
+                                <td>:</td>
+                                <td><?= h($user->middle_name) ?></td>
+                            </tr>
+
                             <tr>
                                 <th scope="row"><?= __('last_name') ?></th>
                                 <td>:</td>

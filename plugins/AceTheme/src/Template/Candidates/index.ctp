@@ -1,6 +1,6 @@
 <div class="page-header">
     <h1>
-        Candidates
+        <?=__('manage_candidate')?>
         <small>
             <i class="ace-icon fa fa-angle-double-right"></i>
             All Candidates

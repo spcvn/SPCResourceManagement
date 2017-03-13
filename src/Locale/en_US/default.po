@@ -441,3 +441,6 @@ msgstr "Results for Latest Template"
 
 msgid "active"
 msgstr "Active"
+
+msgid "send"
+msgstr "Send"

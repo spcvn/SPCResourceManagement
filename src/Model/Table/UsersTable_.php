@@ -68,6 +68,9 @@ class UsersTable extends Table
         $validator
             ->requirePresence('password', 'create')
             ->notEmpty('password');
+        $validator
+            ->requirePresence('confirm_password', 'create')
+            ->notEmpty('confirm_password');
 
         $validator
             ->allowEmpty('salt');
@@ -97,7 +100,7 @@ class UsersTable extends Table
             ->notEmpty('addr01');
 
 
-        $validator
+        /*$validator
             ->integer('provinceid')
             ->requirePresence('provinceid', 'create')
             ->notEmpty('provinceid');
@@ -111,7 +114,7 @@ class UsersTable extends Table
             ->integer('wardid')
             ->requirePresence('wardid', 'create')
             ->notEmpty('wardid');
-
+*/
         $validator
             ->date('birth_date')
             ->requirePresence('birth_date', 'create')
@@ -131,18 +134,9 @@ class UsersTable extends Table
             ->notEmpty('avatar');
 
         $validator
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
-
-        $validator
             ->integer('role')
             ->requirePresence('role', 'create')
             ->notEmpty('role');
-
-        $validator
-            ->date('start_work')
-            ->requirePresence('start_work', 'create')
-            ->notEmpty('start_work');
 
         $validator->add('password', 'length', 
             ['rule' => ['lengthBetween', 6, 12],

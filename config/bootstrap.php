@@ -12,7 +12,25 @@
  * @since         0.10.8
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+define('HEADQUARTER_ID', 1);
 
+define('ADD_REQUEST_BY_STAFF', 1);
+define('EDIT_REQUEST_BY_STAFF', 2);
+define('ADD_REQUEST_BY_SUB_MANAGE', 3);
+define('EDIT_REQUEST_BY_SUB_MANAGE', 4);
+define('ADD_REQUEST_BY_MANAGE', 5);
+define('EDIT_REQUEST_BY_MANAGE', 6);
+define('APPROVE_REQUEST_BY_SUB_MANAGE', 7);
+define('REJECT_REQUEST_BY_SUB_MANAGE', 8);
+define('RETURN_REQUEST_BY_SUB_MANAGE', 9);
+define('APPROVE_REQUEST_BY_MANAGE', 10);
+define('REJECT_REQUEST_BY_MANAGE', 11);
+define('RETURN_REQUEST_BY_MANAGE', 12);
+define('APPROVE_REQUEST_BY_TOP', 13);
+define('REJECT_REQUEST_BY_TOP', 14);
+define('RETURN_REQUEST_BY_TOP', 15);
+define('ADD_REQUEST_BY_TOP', 16);
+define('CATEGORY_REQUEST', 1);
 /*
  * You can remove this if you are confident that your PHP version is sufficient.
  */
@@ -233,3 +251,11 @@ Plugin::load('Province', ['bootstrap' => false, 'routes' => true]);
 Plugin::load('AceTheme', ['bootstrap' => false, 'routes' => true]);
 
 Plugin::load('Migrations');
+
+
+Configure::write('Exception.renderer', 'AppExceptionRenderer');
+
+
+Plugin::load('Notification');
+
+Plugin::load('SpcAuth', ['bootstrap' => false, 'routes' => true]);

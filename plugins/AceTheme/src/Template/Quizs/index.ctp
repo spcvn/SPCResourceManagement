@@ -53,8 +53,10 @@
                             echo $this->Html->link(
                                 $this->Html->tag('i','',['class'=>'ace-icon fa fa-cog bigger-120 ']),
                                 ['controller'=>'Candidates','action' => 'result', $quiz->candidate->id],
+
                                 ['class'=>'btn btn-inverse btn-xs btn-pass', 'title'=>__('result'),'escape'=>false]);
                                                     } ?>
+
                     </div>
                 </td>
             </tr>

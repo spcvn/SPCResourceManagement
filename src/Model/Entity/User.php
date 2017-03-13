@@ -3,7 +3,9 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 use Cake\Auth\DefaultPasswordHasher;
-
+use App\Utility\FunctionCommon;
+use Cake\Core\Configure;
+use Cake\Utility\Security;
 /**
  * User Entity
  *
@@ -61,7 +63,8 @@ class User extends Entity
     ];
     protected function _setPassword($password)
     {
-        return (new DefaultPasswordHasher)->hash($password);
+//        print_r(fopen((new FunctionCommon)->cipher_encrypt($password,MCRYPT_KEY),256)) ;exit;
+        return base64_encode(Security::encrypt($password, Configure::read("Security.password")));
     }
 
 }

@@ -102,8 +102,9 @@
                   </div>
                   <?php
                   $status = ['0' => 'Enable', '1' => 'Disable'];
+                  echo $this->Form->input('dep_id',['type'=>'select', 'options'=>$listDepartments]);
+
                   echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
-                  echo $this->Form->input('role', ['type' => 'hidden', 'value'=>'0']);
                   echo $this->Form->input('avatar', ['type' => 'hidden', 'value'=>'default.png']);
                   ?>
           </div>
@@ -120,6 +121,8 @@
                 echo $this->Form->input('confirm_password',['type'=>'password']);
                 echo "<div class='pass'>&nbsp;</div>";
                 echo $this->Html->link(__('generate_password'),"javascript:generationPassword()",["id"=>"btnPassword"]);
+                echo $this->Form->input('role_id',['type'=>'select', 'options'=>$listRoles]);
+
                 ?>
           </div>
         </div>

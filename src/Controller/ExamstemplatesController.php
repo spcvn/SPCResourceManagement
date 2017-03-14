@@ -18,7 +18,12 @@ class ExamstemplatesController extends AppController
      */
     public function index()
     {
-        $examstemplates = $this->paginate($this->Examstemplates,[
+        /*$examstemplates = $this->paginate($this->Examstemplates,[
+            'contain' => ['Sections'],
+            'conditions'=> ['is_delete'=>0],
+            'limit'=>'100'
+        ]);*/
+        $examstemplates = $this->Examstemplates->find('all', [
             'contain' => ['Sections'],
             'conditions'=> ['is_delete'=>0],
             'limit'=>null

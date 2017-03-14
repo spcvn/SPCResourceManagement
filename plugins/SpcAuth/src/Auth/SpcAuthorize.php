@@ -200,8 +200,8 @@ class SpcAuthorize extends BaseAuthorize {
 	protected function _getAcl($path = null) {
 		if ($path === null) {
 			$path = ROOT . DS . 'config' . DS;
-		}
-
+		} 
+		
 		if ($this->_config['autoClearCache'] && Configure::read('debug')) {
 			Cache::delete($this->_config['cacheKey'], $this->_config['cache']);
 		}

@@ -34,6 +34,10 @@ class AuthMasterController extends AppController
 
         $this->_initNotification();
     }
+    public function index()
+    {
+        return $this->redirect('/');
+    }
     private function _initNotification(){
         if (!empty($this->user)) {
 //            $tblUser = TableRegistry::get('Users');

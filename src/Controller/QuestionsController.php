@@ -30,7 +30,7 @@ class QuestionsController extends AppController
         $this->paginate = [
                             'conditions'=>['Questions.is_delete'=>0],
                             'contain'=>['Sections'],
-                            'limit' => 5, 
+                            'limit' => 20, 
                             'order' => ['id' => 'DESC']
                           ];
         $query = $this->Questions->find('all');

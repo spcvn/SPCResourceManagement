@@ -8,7 +8,7 @@ use Province\Controller\ProvincesController;
  *
  * @property \App\Model\Table\CandidatesTable $Candidates
  */
-class CandidatesController extends AppController
+class CandidatesController extends AuthMasterController
 {
     /**
      * Index method`

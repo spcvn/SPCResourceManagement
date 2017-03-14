@@ -23,7 +23,7 @@
                                 <tr class="btn-success" <?php echo ($key === 'AuthMaster') ? "style='display:none;'" : ''; ?>>
                                     <td><?=__($acls['alias']);?></td>
                                     <?php foreach ($roles as $key1 => $role): ?>
-                                        <td><td>
+                                        <td></td>
                                     <?php endforeach;?>
                                 </tr>
 

@@ -11,7 +11,7 @@ use Cake\Filesystem\File;
  *
  * @property \App\Model\Table\QuestionsTable $Questions
  */
-class QuestionsController extends AppController
+class QuestionsController extends AuthMasterController
 {
 
     /**

@@ -8,7 +8,7 @@ use App\Controller\AppController;
  *
  * @property \App\Model\Table\ExamstemplatesTable $Examstemplates
  */
-class ExamstemplatesController extends AppController
+class ExamstemplatesController extends AuthMasterController
 {
 
     /**

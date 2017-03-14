@@ -10,7 +10,7 @@ use Cake\Event\Event;
  *
  * @property \App\Model\Table\QuestionsTable $Questions
  */
-class QuizsController extends AppController
+class QuizsController extends AuthMasterController
 {
     /**
      * Index method

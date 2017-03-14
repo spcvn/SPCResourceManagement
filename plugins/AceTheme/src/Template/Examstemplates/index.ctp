@@ -25,7 +25,7 @@
             <!-- div.table-responsive -->
             <!-- div.dataTables_borderWrap -->
             <div>
-                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                <table id="dynamic-table" class="table table-striped table-bordered table-hover" >
                     <thead>
                     <tr>
                         <th style="width: 50px;" class="center">
@@ -47,7 +47,8 @@
 
                     <tbody>
                     <?php
-                        $cur = $this->Paginator->counter('{{start}}');
+                        // $cur = $this->Paginator->counter('{{start}}');
+                    $cur = 1;
                         foreach ($examstemplates as $examstemplate) {
                             ?>
                                 <tr>

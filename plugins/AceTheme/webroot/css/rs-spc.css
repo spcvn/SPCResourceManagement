@@ -232,6 +232,10 @@ form button[type=submit]:hover{
 .form-login .input input{
     width: 100%;
 }
+.form-login .panel{
+    background-color: transparent;
+    box-shadow: none;
+}
 .form .group-control .text input,
 .form .group-control .text label{
     width: 100%;

@@ -91,6 +91,6 @@ class AppController extends Controller
      if ($this->name == 'CakeError') {  
         $this->layout = 'error';  
      }    
-}  
+    }
 	
 }

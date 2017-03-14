@@ -16,7 +16,7 @@ class CandidatesController extends AuthMasterController
      * @return \Cake\Network\Response|null
      
      */
-     public $paginate = [
+    public $paginate = [
     // Other keys here.
     'maxLimit' => 10
     ];

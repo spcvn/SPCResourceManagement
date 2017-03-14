@@ -1,3 +1,6 @@
+msgid "dashboard"
+msgstr "Dashboard"
+
 msgid "view"
 msgstr "View"
 
@@ -280,6 +283,9 @@ msgstr "Exam detail"
 msgid "candidates"
 msgstr "Candidates"
 
+msgid "candidate_profile"
+msgstr "Candidates Profile"
+
 msgid "add_candidate"
 msgstr "Add Candidate"
 
@@ -290,7 +296,7 @@ msgid "users"
 msgstr "Users"
 
 msgid "profile_user"
-msgstr "Profile user"
+msgstr "User Profile "
 
 msgid "edit_user"
 msgstr "Edit user"
@@ -435,3 +441,6 @@ msgstr "Results for Latest Template"
 
 msgid "active"
 msgstr "Active"
+
+msgid "send"
+msgstr "Send"

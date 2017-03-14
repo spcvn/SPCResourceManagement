@@ -56,7 +56,6 @@
                                     </td>
 
                                     <td>
-                                        <!-- <?=$examstemplate->name?> -->
                                         <?= $this->Html->link($examstemplate->name,
                                             ['controller'=>'examstemplates','action'=>'view',$examstemplate->id],
                                             ['title'=>'View a Exam Template']

@@ -332,7 +332,10 @@ class QuizsController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
+<<<<<<< HEAD
         // $this->Auth->allow(['test', 'complete']);
+=======
+>>>>>>> f4874923432a463c4ca88e8d96afd41fc2f4ef98
     
     }
     public function beforeRender(Event $event)

@@ -444,3 +444,21 @@ msgstr "Active"
 
 msgid "send"
 msgstr "Send"
+
+msgid "role"
+msgstr "Role"
+
+msgid "permission"
+msgstr "Permission"
+
+msgid "role_list"
+msgstr "Role List"
+
+msgid "role_name"
+msgstr "Role Name"
+
+msgid "placeholder_role_name"
+msgstr "Role name"
+
+msgid "role_display_name"
+msgstr "Alias"

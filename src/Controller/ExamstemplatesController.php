@@ -20,7 +20,8 @@ class ExamstemplatesController extends AppController
     {
         $examstemplates = $this->paginate($this->Examstemplates,[
             'contain' => ['Sections'],
-            'conditions'=> ['is_delete'=>0]
+            'conditions'=> ['is_delete'=>0],
+            'limit'=>null
         ]);
         $quizs_test = $this->report_temp_test();
         $quizs_status = $this->report_temp_status();
@@ -89,6 +90,7 @@ class ExamstemplatesController extends AppController
             'contain' => ['Sections']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            // echo "<pre>"; print_r($this->request->data);exit();
             $examstemplate = $this->Examstemplates->patchEntity($examstemplate, $this->request->data);
             $resExamstemplate = $this->Examstemplates->save($examstemplate);
             if ($resExamstemplate) {

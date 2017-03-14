@@ -269,6 +269,7 @@ class QuizsController extends AppController
     	$this->loadModel('QuizDetails');
     	
         $section_num_questions  = $examstemplate->num_questions;
+        $sort = 0;
         foreach ($examstemplate->sections as $section) {
             $section_id             = $section->id;
             $section_ratio          = $section->_joinData->ratio;
@@ -288,11 +289,13 @@ class QuizsController extends AppController
                 if(!in_array($id, $arrQuestionQuizs)){
                     $arrQuestionQuizs[] = $id;
                 }
-            }                                      
+            }                     
+                             
             foreach($arrQuestionQuizs as $arrQuestionQuiz){
                 $arrQuizDetail = $this->QuizDetails->newEntity();
                 $arrQuizDetail->quiz_id = $quiz_id;
                 $arrQuizDetail->question_id = $arrQuestionQuiz;
+                $arrQuizDetail->sort = $sort++;
                 
                 $this->QuizDetails->save($arrQuizDetail);
             }

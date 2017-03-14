@@ -106,24 +106,24 @@
     </div>
 </div>
 <script type="text/javascript">
-    var line = 1;
+    var line = $('.line-add').length;
     var _Per_input_change = 0;
     var per = 100;
     var countSections = <?=$sections->count()?>;
-
-    function addline(){
+    var numSections = <?=count($examstemplate->sections)?>;
+    function strLine(line){
         var str = '<div class="row line-add">'+
             '<div class="col-xs-6 col-sm-7">'+
-            '<select class="width-100" name="sections[_ids][]" onChange="enableSeleced()">'+
+            '<select class="width-100" name="sections['+line+'][id]" onChange="enableSeleced()">'+
             '<?php
                 foreach ($sections as $key=>$value) {
                     echo "<option value=\'$key\'>$value</option>";
                 }
-                ?>'+
+            ?>'+
             '</select>'+
             '</div>'+
             '<div class="col-xs-3 col-sm-2">'+
-            '<input type="text" name="sections[ratio][]" class="width-80 percent-section noChange" onkeyup="hasChanged($(this))" />'+
+            '<input type="text" name="sections['+line+'][_joinData][ratio]" class="width-80 percent-section noChange" onchange="hasChanged($(this))" />'+
             ' <span>%</span>'+
             '</div>'+
             '<div class="col-xs-3 col-sm-3 actions">'+
@@ -131,26 +131,28 @@
             ' <a class="btn btn-add">+</i></a>'+
             '</div>'+
             '</div>';
+            return str;
+    }
+    function addline(){
+            $('.section-add').on('click','.btn-add',function(e){
+                /*
+                * Count section to append 
+                */
+                console.log(line);
+                if(countSections < 2) {
+                    $.alert('Not enought section for this exam template!');
+                    return;
+                }
+                countSections--;
 
+                e.preventDefault();
+                line++;
+                $('.section-add').append(strLine(line));
 
-        $('.section-add').on('click','.btn-add',function(e){
-            /*
-             * Count section to append
-             */
-            if(countSections < 2) {
-                $.alert('Not enought section for this exam template!');
-                return;
-            }
-            countSections--;
-
-            e.preventDefault();
-            line++;
-            $('.section-add').append(str);
-
-            resetPercent();
-            finishCount();
-            disableSection();
-        });
+                resetPercent();
+                finishCount();
+                disableSection();
+            });
     }
 
     function finishCount(){
@@ -210,7 +212,7 @@
     }
 
     function removeline(){
-
+        
         $('.section-add').each(function(){
             $(this).on('click','.btn-remove',function () {
                 if(line <=1) return;
@@ -245,18 +247,18 @@
         __this.each(function(){
             $(this).blur(function(){
                 var percent = parseInt($(this).val());
-                $('.percent-section').each(function () {
-                    console.log($(this));
-                });
+                    $('.percent-section').each(function () {
+                        console.log($(this));
+                    });
 
             })
         })
     }
 
-    /*
-     * function disableSection
-     * Disable section choosed
-     */
+    /* 
+    * function disableSection
+    * Disable section choosed
+    */
     var m = [];
     function disableSection(){
         enableSeleced();
@@ -272,11 +274,11 @@
             m[i++]= $(this).val();
         });
         $('.section-add select').each(function(){
-            $.each(m,function(key,val){
-                if(typeof(val) != "undefined"){
-                    $('.section-add select option[value='+val+']').attr('disabled','disabled');
-                }
-            });
+           $.each(m,function(key,val){
+            if(typeof(val) != "undefined"){
+                $('.section-add select option[value='+val+']').attr('disabled','disabled');
+            }
+           }); 
         });
     }
     $(document).ready(function(){

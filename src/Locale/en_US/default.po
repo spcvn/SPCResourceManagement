@@ -1,0 +1,446 @@
+msgid "dashboard"
+msgstr "Dashboard"
+
+msgid "view"
+msgstr "View"
+
+msgid "menu"
+msgstr "Menu"
+
+msgid "detail"
+msgstr "Detail"
+
+msgid "show_detail"
+msgstr "Show Detail"
+
+msgid "edit"
+msgstr "Edit"
+
+msgid "submit"
+msgstr "Submit"
+
+msgid "delete"
+msgstr "Delete"
+
+msgid "confirm_delete"
+msgstr "Are you sure you want to delete"
+
+msgid "username"
+msgstr "Username"
+
+msgid "password"
+msgstr "Password"
+
+msgid "confirm_password"
+msgstr "Confirm Password"
+
+msgid "first_name"
+msgstr "First Name"
+
+msgid "middle_name"
+msgstr "Middle Name"
+
+msgid "last_name"
+msgstr "Last Name"
+
+msgid "married"
+msgstr "Married"
+
+msgid "status"
+msgstr "Status"
+
+msgid "married_status"
+msgstr "Married Status"
+
+msgid "email"
+msgstr "Email"
+
+msgid "mobile"
+msgstr "Mobile"
+
+msgid "region"
+msgstr "Region"
+
+msgid "address"
+msgstr "Address"
+
+msgid "birthday"
+msgstr "Birthday"
+
+msgid "score"
+msgstr "Score"
+
+msgid "result"
+msgstr "Result"
+
+msgid "created"
+msgstr "Created"
+
+msgid "updated"
+msgstr "Updated"
+
+msgid "position"
+msgstr "Position"
+
+msgid "interview_date"
+msgstr "Interview Date"
+
+msgid "start_work"
+msgstr "Start Work"
+
+msgid "start_working_date"
+msgstr "Start Working date"
+
+msgid "exam_name"
+msgstr "Exam Name"
+
+msgid "number_of_question"
+msgstr "No. Question"
+
+msgid "question"
+msgstr "Question"
+
+msgid "all_questions"
+msgstr "All Questions"
+
+msgid "add_question"
+msgstr "Add Question"
+
+msgid "edit_question"
+msgstr "Edit Question"
+
+msgid "question_detail"
+msgstr "Question detail"
+
+msgid "duration"
+msgstr "Duration"
+
+msgid "section"
+msgstr "Section"
+
+msgid "candidate"
+msgstr "Candidate"
+
+msgid "candidate_name"
+msgstr "Candidate Name"
+
+msgid "add_template"
+msgstr "Add Template"
+
+msgid "exam_template"
+msgstr "Exam Template"
+
+msgid "add_a_exam_template"
+msgstr "Add a Exam Template"
+
+msgid "description"
+msgstr "Description"
+
+msgid "assign"
+msgstr "Assign"
+
+msgid "cancel"
+msgstr "Cancel"
+
+msgid "save"
+msgstr "Save"
+
+msgid "answer"
+msgstr "Answer"
+
+msgid "answers"
+msgstr "Answers"
+
+msgid "correct_answer"
+msgstr "Correct Answer"
+
+msgid "alert_checkbox"
+msgstr "Please check in which is correct"
+
+msgid "template_name"
+msgstr "Template name"
+
+msgid "template_type"
+msgstr "Template Type"
+
+msgid "template"
+msgstr "Template"
+
+msgid "new"
+msgstr "New"
+
+msgid "new_template"
+msgstr "New Template"
+
+msgid "test"
+msgstr "Test"
+
+msgid "tested_assigned"
+msgstr "Tested/Assigned"
+
+msgid "action"
+msgstr "Action"
+
+msgid "actions"
+msgstr "Actions"
+
+msgid "first"
+msgstr "First"
+
+msgid "last"
+msgstr "Last"
+
+msgid "add"
+msgstr "Add"
+
+msgid "edit"
+msgstr "Edit"
+
+msgid "remove"
+msgstr "Remove"
+
+msgid "previous"
+msgstr "Previous"
+
+msgid "next"
+msgstr "Next"
+
+msgid "search"
+msgstr "Search"
+
+msgid "title_add_answer"
+msgstr "Add a new answer"
+
+msgid "title_remove_answer"
+msgstr "Remove an answer"
+
+msgid "related_answers"
+msgstr "Related Answers"
+
+msgid "is_correct"
+msgstr "Is Correct"
+
+msgid "expected_salary"
+msgstr "Expected Salary"
+
+msgid "birth_date"
+msgstr "Birthday"
+
+msgid "account"
+msgstr "Account"
+
+msgid "create_an_account"
+msgstr "Create An Account"
+
+msgid "candidate_exists"
+msgstr "Candidates exists"
+
+msgid "account_information"
+msgstr "Account Information"
+
+msgid "user_information"
+msgstr "USER INFORMATION"
+
+msgid "candidate_information"
+msgstr "CANDIDATE INFORMATION"
+
+msgid "information"
+msgstr "Information"
+
+msgid "province"
+msgstr "Province/City"
+
+msgid "district"
+msgstr "District"
+
+msgid "ward"
+msgstr "Ward"
+
+msgid "department"
+msgstr "Department"
+
+msgid "minute"
+msgstr "minute"
+
+msgid "exam"
+msgstr "Exam"
+
+msgid "create_a_template"
+msgstr "Create a template"
+
+msgid "all_exam"
+msgstr "All Exam"
+
+msgid "add_exam"
+msgstr "Add Exam"
+
+msgid "edit_exam"
+msgstr "Edit Exam"
+
+msgid "exam_detail"
+msgstr "Exam detail"
+
+msgid "candidates"
+msgstr "Candidates"
+
+msgid "candidate_profile"
+msgstr "Candidates Profile"
+
+msgid "add_candidate"
+msgstr "Add Candidate"
+
+msgid "edit_candidates"
+msgstr "Edit Candidate"
+
+msgid "users"
+msgstr "Users"
+
+msgid "profile_user"
+msgstr "User Profile "
+
+msgid "edit_user"
+msgstr "Edit user"
+
+msgid "add_user"
+msgstr "Add user"
+
+msgid "all_users"
+msgstr "All users"
+
+msgid "select_a_candidate"
+msgstr "Select a candidate"
+
+msgid "select_a_position"
+msgstr "Select a position"
+
+msgid "generate_password"
+msgstr "Generate password"
+
+msgid "content"
+msgstr "Content"
+
+msgid "full_name"
+msgstr "Full Name"
+
+msgid "duration_minute"
+msgstr "Duration"
+
+msgid "preview"
+msgstr "Preview"
+
+msgid "preview_question"
+msgstr "Preview Question"
+
+msgid "edit_this_question"
+msgstr "Edit this question"
+
+msgid "member_of_spc"
+msgstr "Create user"
+
+msgid "create_test"
+msgstr "Create Test"
+
+msgid "single"
+msgstr "Single"
+
+msgid "married"
+msgstr "Married"
+
+msgid "marriage_status"
+msgstr "Marriage status"
+
+msgid "contact_no"
+msgstr "Contact No."
+
+msgid "contact_no"
+msgstr "Contact No."
+
+msgid "salary"
+msgstr "Salary"
+
+msgid "stop"
+msgstr "Stop"
+
+msgid "alert_delete_candidate"
+msgstr "Are you sure you want to delete this candidate?"
+
+msgid "export_answer"
+msgstr "Export Answer"
+
+msgid "import"
+msgstr "Import"
+
+msgid "export_question"
+msgstr "Export Question"
+
+msgid "new_question"
+msgstr "New Question"
+
+msgid "list_question"
+msgstr "Question list"
+
+msgid "test_list"
+msgstr "Test List"
+
+msgid "list"
+msgstr "List"
+
+msgid "exam_assignment"
+msgstr "Exam Assignment"
+
+msgid "list_candidate"
+msgstr "Candidate List"
+
+msgid "add_candidate"
+msgstr "Add Candidate"
+
+msgid "list_user"
+msgstr "User List"
+
+msgid "add_user"
+msgstr "Add User"
+
+msgid "user"
+msgstr "User"
+
+msgid "quiz_date"
+msgstr "Quiz date"
+
+msgid "total"
+msgstr "Total"
+
+msgid "time"
+msgstr "Time"
+
+msgid "quiz"
+msgstr "Quiz"
+
+msgid "code"
+msgstr "Code"
+
+msgid "Please wating..."
+msgstr "Please wating..."
+
+msgid "Do you want to save this?"
+msgstr "Do you want to save this?"
+
+msgid "option"
+msgstr "Option"
+
+msgid "alert_when_question_not_check"
+msgstr "Some questions aren't answer, are you sure?"
+
+msgid "name"
+msgstr "Name"
+
+msgid "alert_finish"
+msgstr "Are you sure to finish this test?"
+
+msgid "alert_result"
+msgstr "Results for Latest Template"
+
+msgid "active"
+msgstr "Active"
+
+msgid "send"
+msgstr "Send"

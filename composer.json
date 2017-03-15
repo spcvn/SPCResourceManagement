@@ -1,0 +1,54 @@
+{
+    "name": "cakephp/app",
+    "description": "CakePHP skeleton app",
+    "homepage": "http://cakephp.org",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5.9",
+        "cakephp/cakephp": "3.3.*",
+        "mobiledetect/mobiledetectlib": "2.*",
+        "cakephp/migrations": "@stable",
+        "cakephp/plugin-installer": "*",
+        "friendsofcake/authenticate": "dev-cake3",
+        "friendsofcake/cakephp-csvview": "~3.0"
+    },
+    "require-dev": {
+        "psy/psysh": "@stable",
+        "cakephp/debug_kit": "~3.2",
+        "cakephp/bake": "~1.1"
+    },
+    "suggest": {
+        "markstory/asset_compress": "An asset compression plugin which provides file concatenation and a flexible filter system for preprocessing and minification.",
+        "phpunit/phpunit": "Allows automated tests to be run without system-wide install.",
+        "cakephp/cakephp-codesniffer": "Allows to check the code against the coding standards used in CakePHP."
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src",
+            "City\\": "./plugins/City/src",
+            "Province\\": "./plugins/Province/src",
+            "AceTheme\\": "./plugins/AceTheme/src",
+            "SpcAuth\\": "./plugins/SpcAuth/src",
+            "Notification\\": "./plugins/Notification/src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests",
+            "City\\Test\\": "./plugins/City/tests",
+            "Province\\Test\\": "./plugins/Province/tests",
+            "AceTheme\\Test\\": "./plugins/AceTheme/tests",
+            "SpcAuth\\Test\\": "./plugins/SpcAuth/tests",
+            "Notification\\Test\\": "./plugins/Notification/tests"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": "App\\Console\\Installer::postInstall",
+        "post-create-project-cmd": "App\\Console\\Installer::postInstall",
+        "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump"
+    },
+    "minimum-stability": "beta",
+    "prefer-stable": true
+}

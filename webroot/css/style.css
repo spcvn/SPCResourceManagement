@@ -1,0 +1,118 @@
+/* layout */
+@media only screen and (min-width: 64.0625em){
+	.large-3{
+		width: 20%;
+	}	
+	.large-9 {
+		width: 80%;
+	}
+}
+@media only screen and (min-width: 48.0625em){
+	.large-3{
+		width: 15%;
+	}	
+	.large-9 {
+		width: 85%;
+	}
+}
+
+/* FORM  */
+
+/* Table */
+table tbody tr:nth-child(even){
+	background-color: #fcffd6;
+}
+table tbody tr:hover{
+	background-color:#e5e6e6;
+}
+.green{
+	color:#00bd46;
+}
+.green:hover{
+	color:#01dc52;
+}
+.red{
+	color:#c70000;
+}
+.red:hover{
+	color:#dc0101;
+}
+.orange{
+	color:#bd4700;
+}
+.orange:hover{
+	color:#e05400;
+}
+.viewDetail{
+	cursor: pointer;
+}
+/* Page->index */
+.logo h1{
+	    font-family: cursive;
+    font-size: 1.12rem;
+    color: #555;
+}
+.logo{
+	position: absolute;
+	top:150px;
+	left: 15%;
+}
+.logo img{
+	max-width: 80%;
+}
+/* Question */
+.correctRow{
+	background-color: #ecffe0!important;
+}
+#review .title{
+	text-transform: uppercase;
+	font-weight: bold;
+	border-bottom: 1px solid #ccc;
+	padding: 20px 10px;
+}
+#review .body .trow{
+	padding: 20px 0;
+}
+#review .body .trow:nth-child(even){
+	background-color: #ecffe0;
+}
+#review .body .col-left{
+	float: left;
+	font-weight: bold;
+	margin-right: 20px;
+}
+.actions {
+	text-align: center;
+}
+.actions a {
+	margin: 0px 2px;
+}
+/* Quizs */
+.position{
+	font-weight: bold;
+	padding: 5px 10px 5px 40px;
+	background: #e8e8e8;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+
+}
+#frmUsers input#password, #confirm-password{
+	width: 50%;
+}
+#btnPassword{
+	background-color: #f04124;
+	color: #fff;
+	padding: 15px 20px;
+	display: inline-block;
+}
+#btnPassword:hover{
+	background-color: #ff593e;
+}
+.pass{
+}
+pre.prettyprint{
+	background-color: #F8F8F8;
+    border: 1px solid #DDD;
+    padding: 10px;
+    box-shadow: none;
+}

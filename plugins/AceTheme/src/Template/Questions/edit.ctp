@@ -1,0 +1,243 @@
+<style type="text/css">
+    .red{
+        color:red;
+    }
+    input[readonly]{
+        content: "";
+        background-color: #fff!important;
+        border-color: #fff;
+        text-decoration: line-through;
+         /*text-align: left; */
+    }
+</style>
+<div class="page-header">
+    <h1>
+        <?= __('question')?>
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <?= __('edit_question')?>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
+<style>
+    .no_display{
+        display: none;
+    }
+    .btnDelete{
+        float: right;
+        margin: -45px -20px auto;
+    }
+</style>
+<span class="loading" style="display:block"><?=$this->Html->image('../images/loading.gif')?>Loading...</span>
+<div class="questions form form-question content no_display">
+    <?= $this->Form->create($question,['id'=>'qForm']) ?>
+    <fieldset>
+        <?php
+        echo $this->Form->input('section_id', ['type' => 'select', 'options' => $section]);
+        echo $this->Form->label(__('content'));
+        echo $this->Form->input('content',['templates' => [
+            'formGroup' => '{{input}}'
+        ]]);
+        ?>
+        <div class="question-action">
+            <h4><?= __('answer');?>:</h4>
+            <div id="answer">
+                <?php
+                $i = 0;
+                foreach($answers as $key =>$answer){
+                $i++;
+                ?>
+                <div class="row line-add">
+                    <div class="col-xs-3 col-sm-2 text-right">
+                        <label> <?= __('option').' '.$i.': ';?></label>
+                    </div>
+                    <div class="col-xs-6 col-sm-8">
+                        <?php
+                        echo $this->Form->input($key, ['label'=>false,'default' => $answer]);?>
+                    </div>
+                    <div class="col-xs-3 col-sm-2">
+                        <a class="btn btn-remove" data-id="<?=$key?>"><i class="fa fa-remove"></i></a>
+                        <?php if($i==count($answers)){?>
+                        <a class="btn btn-add">+</i></a>
+                        <?php }?>
+                    </div>
+                </div>
+                    <?php
+                }
+                ?>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-2 col-xs-3 text-right">
+                    <?php
+                    echo $this->Form->label(__('correct_answer'));
+                    ?>
+                </div>
+                <div class="col-sm-8 col-xs-8">
+                    <div class="input select">
+                        <!-- <?php
+                        echo $this->Form->select('correct_answer', $answers,['default'=>key($correct_answer)]);
+                        ?> -->
+                        <select id="correct-answer" name="correct_answer">
+                        <?php $i=1; foreach ($answers as $key => $value) {
+                            ?>
+                            <option value="<?=$key?>" <?=($key == key($correct_answer))?'selected="selected"':''?>>Option <?=$i++?></option>
+                        <?php
+                        } 
+                        ?>
+                        
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="Actions-end clearfix">
+        <?= $this->Form->button(__('save')) ?>
+    </div>
+    <?= $this->Form->end() ?>
+</div>
+<div id="reviewQuestion" class="modal fade review-question" role="dialog">
+    <div class="title">Title</div>
+    <div class="body">Body</div>
+    <div class="footer">
+        <?=$this->Html->link(__('cancel'),'#',['class'=>'btn btn-cancel','rel'=>'modal:close'])?>
+        <?=$this->Html->link(__('save'),'javascript:submit($("#qForm"))',['class'=>'btn btn-cancel'])?>
+    </div>
+</div>
+<script>
+    var answer_init = <?php echo count($answers); ?>;
+    var answer_no = answer_init;
+
+    $( document ).ready(function() {
+        $(".loading").hide();
+         $(".content").show();
+
+        CKEDITOR.replace( 'content' );
+        checkAnswer(answer_no);
+        addAnswer();
+        removeAnwser();
+        recoverAnwser();
+        $('.questions form').validate({
+            rules: {
+                 content: 'Required'
+            }
+        });
+        $('select[name=correct_answer]').on('change',function(){
+            rmAnswer();
+        });
+        eventCorrectAnswer();
+    });
+    var num = $('#answer .line-add').length;
+    var __mainHtml = function () {
+        num++;
+        var __htmlAns = '<div class="row line-add">'
+            +'<div class="col-xs-3 col-sm-2 text-right">'
+            +'<label>Option '+ num +'.</label>'
+            +'</div>'
+            +'<div class="col-xs-6 col-sm-8">'
+            +'<input type="text" name="answer'+num+'" onchange="changeVal($(this),' + num + ')" required>'
+            +'</div>'
+            +'<div class="col-xs-3 col-sm-2">'
+            +'<a class="btn btn-remove"><i class="fa fa-remove"></i></a> <a class="btn btn-add">+</i></a>'
+            +'</div>'
+            +'</div>';
+        $('#answer').append(__htmlAns);
+    }
+    function addAnswer() {
+        $('#answer').on('click','.btn-add',function(e){
+            e.preventDefault();
+            if(num > 9) return;
+            $(this).remove();
+            __mainHtml();
+        });
+    }
+    function removeAnwser(){
+        $('#answer').on('click','.btn-remove',function(e){
+            e.preventDefault();
+            var line = $(this).parents('div.line-add');
+
+            //add input type value remove
+            var id = $(this).attr('data-id');
+            line.append("<input type='hidden' name='ans_delete[]' value='"+id+"' >");
+
+            line.addClass('red');
+            line.find('input[type=text]').attr('disabled',true);
+            line.find('label').addClass('line-through');
+            var btnEnabel = '<a class="btn btn-inverse btn-enable" data-id="'+id+'"><i class="fa fa-undo"></i></a>';
+            $(this).parent('div').prepend(btnEnabel);
+            $(this).remove();
+        });
+    }
+
+    function recoverAnwser(){
+        $('#answer').on('click','.btn-enable',function(e){
+            e.preventDefault();
+            var line = $(this).parents('div.line-add');
+
+            //add input type value remove
+            var id = $(this).attr('data-id');
+            line.find('input[type=hidden]').remove();
+
+            line.removeClass('red');
+            line.find('input[type=text]').attr('disabled',false);
+            line.find('label').removeClass('line-through');
+            var btnEnabel = '<a class="btn btn-remove"  data-id="'+id+'"><i class="fa fa-remove"></i></a>';
+            $(this).parent('div').prepend(btnEnabel);
+            $(this).remove();
+
+        });
+    }
+
+    function checkAnswer(answer_no){
+        if(answer_no > answer_init){
+            $(".delete_answer").removeClass("no_display");
+        }
+        else{
+            $(".delete_answer").addClass("no_display");
+        }
+    }
+    function changeVal(element,index){
+        var val = "Option "+index;// element.val().replace(/[a-z]. /, '');
+        if($('select[name=correct_answer] option[value='+index+']').length == 0){
+            $('select[name=correct_answer]').append($('<option>', { value : index }).text(val));
+        }else{
+            $('select[name=correct_answer] option[value='+index+']').text(val);
+        }
+        // return element.val(val);
+    }
+    function deleteAnswer(){
+        $('.row-answer').each(function () {
+            $(this).find('.btnDelete').confirm({
+                content: "Do you want to delete it?",
+                title: "",
+                buttons: {
+                    yes: {
+                        btnClass:'btn-danger',
+                        keys: ['Y'],
+                        action: function(){
+                            location.href = this.$target.attr('href');
+                        }
+                    },
+                    no: {
+                        keys: ['N'],
+                    },
+                }
+            });
+        })
+    }
+
+    function eventCorrectAnswer(){
+        console.log($('select[name=correct_answer] option:selected').val());
+        $('.btn-remove[data-id='+$('select[name=correct_answer] option:selected').val()+']').hide();
+    }
+
+    function enableSelect(){
+         $('.btn-remove').show();
+    }
+
+    function rmAnswer(){
+        enableSelect();
+        eventCorrectAnswer();
+    }
+</script>

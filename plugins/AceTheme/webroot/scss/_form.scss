@@ -1,0 +1,73 @@
+.form{
+  .input {
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .text{
+    input{
+      float: left;
+      width: 100%;
+    }
+  }
+  .text,
+  .email,
+  .password,
+  .number,
+  .file{
+    label{
+      float: left;
+    }
+    input{
+      color: #393939;
+    }
+  }
+  .select{
+    label{
+      float: left;
+    }
+    select{
+      color: #393939;
+    }
+  }
+  .textarea{
+    label{
+      float: left;
+    }
+    textarea{
+      color: #393939;
+      min-height: 150px;
+    }
+  }
+
+  &-question{
+    form {
+      .question-action{
+        .select,
+        .text{
+          position: relative;
+          padding-left: 50px;
+        }
+        .select{
+          padding-left: 160px;
+        }
+      }
+    }
+  }
+
+}
+.required{
+  label:after{
+    content: " (*)";
+    color: #ff2222;
+  }
+  &.error{
+    position: relative;
+    padding-bottom: 20px;
+    .error-message{
+      position: absolute;
+      padding-left: 18%;
+      bottom: 0px;
+      font-style: italic;
+    }
+  }
+}

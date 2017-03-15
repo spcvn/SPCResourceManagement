@@ -37,7 +37,7 @@
                 <hr />
                 <div class="widget-content">
                     <div class="table-responsive">
-                        <table id="roleList" data-sortable class="table table-inverse">
+                        <table id="roleList" data-sortable class="table table-hover table-inverse">
                             <thead>
                                 <tr>
                                     <th><?=__('no')?></th>

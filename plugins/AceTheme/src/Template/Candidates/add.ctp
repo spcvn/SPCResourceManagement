@@ -98,7 +98,7 @@
         });
 
         $(".loading").hide();
-        $(".content").show('fade');``
+        $(".content").show('fade');
         addRequired('#provinceid');
         addRequired('#districtid');
         $(".candidates form").validate({

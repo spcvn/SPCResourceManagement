@@ -68,7 +68,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <?php
-                $status = ['0' => 'Active', '1' => 'Disable'];
+                $status = ['0' => 'Enable', '1' => 'Disable'];
                 echo $this->Form->input('status', ['type' => 'select', 'options' => $status]);
                 echo $this->Form->input('role', ['type' => 'hidden', 'value'=>'0']);
                 echo $this->Form->input('avatar', ['type' => 'hidden', 'value'=>'default.png']);

@@ -158,5 +158,7 @@
 
     })
 </script>
+<?php echo $this->fetch('scriptBlock'); ?>
+<?= $this->fetch('script') ?>
 </body>
 </html>

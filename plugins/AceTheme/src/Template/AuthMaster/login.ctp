@@ -1,13 +1,10 @@
 <!-- File: src/Template/Users/login.ctp -->
-<div class="index large-4 medium-4 large-offset-4 medium-offset-4 columns">
-	<div class="panel">
-		<h2 class="text-center">Login</h2>
-		<?= $this->Form->create(); ?>
-			<?= $this->Form->input('username'); ?>
-			<?= $this->Form->input('password', array('type' => 'password')); ?>
-			<h2 class="text-center"><?= $this->Form->submit('Login', array('class' => 'button')); ?> </h2>
-		<?= $this->Form->end(); ?>
-		<?= $this->Html->link(__("forgot password"),["controller"=>"users","action"=>"forgotPassword"])?>
-	</div>
+<div class="panel">
+    <?= $this->Form->create(); ?>
+    <?= $this->Form->input('username'); ?>
+    <?= $this->Form->input('password', array('type' => 'password')); ?>
+    <?= $this->Form->submit(__('login'), array('class' => 'btn-login button')); ?>
+    <?= $this->Form->end(); ?>
+    <?= $this->Html->link(__("forgot password"),["controller"=>"users","action"=>"forgotPassword"])?>
 </div>
 <?= $this->Flash->render('auth') ?>

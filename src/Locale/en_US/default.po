@@ -73,6 +73,9 @@ msgstr "Score"
 msgid "result"
 msgstr "Result"
 
+msgid "create"
+msgstr "Create"
+
 msgid "created"
 msgstr "Created"
 
@@ -444,3 +447,51 @@ msgstr "Active"
 
 msgid "send"
 msgstr "Send"
+
+msgid "role"
+msgstr "Role"
+
+msgid "permission"
+msgstr "Permission"
+
+msgid "role_list"
+msgstr "Role List"
+
+msgid "role_name"
+msgstr "Role Name"
+
+msgid "placeholder_role_name"
+msgstr "Role name"
+
+msgid "role_display_name"
+msgstr "Alias"
+
+msgid "manage_permission"
+msgstr "Management Permission"
+
+msgid "placeholder_role_display_name"
+msgstr "Alias"
+
+msgid "no"
+msgstr "No."
+
+msgid "alias"
+msgstr "Alias"
+
+msgid "manage_candidate"
+msgstr "Candidate Manager"
+
+msgid "manage_examstemplates"
+msgstr "Exams Template Manager"
+
+msgid "manage_quiz"
+msgstr "Quiz Manager"
+
+msgid "manage_question"
+msgstr "Question Manager"
+
+msgid "manage_user"
+msgstr "User Manager"
+
+msgid "manage_role"
+msgstr "Role Manager"

@@ -232,6 +232,10 @@ form button[type=submit]:hover{
 .form-login .input input{
     width: 100%;
 }
+.form-login .panel{
+    background-color: transparent;
+    box-shadow: none;
+}
 .form .group-control .text input,
 .form .group-control .text label{
     width: 100%;
@@ -475,6 +479,10 @@ select::-ms-expand{
 }
 .form-question .line-add input{
     width: 100%;
+}
+.form-question .line-add label:after{
+    content: ' (*)';
+    color: #ff2222;
 }
 .form-question .actions.nopd{
     padding-left: 0;
@@ -890,6 +898,40 @@ form .error{
 .paginate_button.next a:before{
     content: "\f105";
 }
+/*style table table-inverse*/
+.table.table-inverse >thead>tr{
+    background: #555!important;
+    color: #ffffff;
+}
+.table.table-inverse .tr-ttl{
+    background-color: rgba(85,85,85,0.5);
+    color: #ffffff;
+}
+/*end style table table-inverse*/
+/*role form*/
+.role-form .stacked .label-inverse{
+    padding: 3px 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ffffff;
+}
+#addRole .hasChanged,
+#addRole.hasChanged .Actions{
+    display: none;
+}
+#addRole.hasChanged .hasChanged{
+    display: block;
+}
+#addRole .btn{
+    min-width: 0px;
+    padding: 8px 15px;
+}
+#addRole .Actions{
+    margin-bottom: 15px;
+}
+/*end role form*/
+/*permission*/
+/*end permission*/
 
 @media (min-width: 1200px) {
     .form-register .modal-body.step-content{

@@ -25,7 +25,7 @@ use Cake\View\Exception\MissingTemplateException;
  *
  * @link http://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class PagesController extends AppController
+class PagesController extends AuthMasterController
 {
 
     /**
@@ -51,7 +51,17 @@ class PagesController extends AppController
         if (!empty($path[1])) {
             $subpage = $path[1];
         }
-        $this->set(compact('page', 'subpage'));
+
+        $arrCounter = [
+            "candidates" => $this->_countCandidate(),
+            "users" => $this->_countUser(),
+            "isonline" => $this->_isOnline()
+        ];
+
+        $arrRecent = [
+            "listCandidate" => $this->_listCandidate()
+        ];
+        $this->set(compact('page', 'subpage','arrCounter', 'arrRecent'));
 
         try {
             $this->render(implode('/', $path));
@@ -61,5 +71,32 @@ class PagesController extends AppController
             }
             throw new NotFoundException();
         }
+    }
+
+    private function _countCandidate(){
+        $this->loadModel('Candidates');
+        $cCandidate = $this->Candidates->find('all')->count();
+        return $cCandidate;
+    }
+
+    private function _countUser(){
+        $this->loadModel('Users');
+        $cUser = $this->Candidates->find('all')->count();
+        return $cUser;
+    }
+
+    private function _isOnline(){
+        return "5";
+    }
+
+    private function _listCandidate(){
+        $this->loadModel('Candidates');
+        $lCandidate = $this->Candidates->find('all',[
+            'conditions'=> [ "is_delete"=>0 ],
+            'order'     => [ "interview_date" => "DESC" ],
+            'limit'     => 15
+
+        ])->toArray();
+        return $lCandidate;   
     }
 }

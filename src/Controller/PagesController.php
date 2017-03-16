@@ -55,7 +55,10 @@ class PagesController extends AuthMasterController
         $arrCounter = [
             "candidates" => $this->_countCandidate(),
             "users" => $this->_countUser(),
-            "isonline" => $this->_isOnline()
+            "isonline" => $this->_isOnline(),
+            "questions" => $this->_countQuestion(),
+            "examtempate" => $this->_countExamtemplate(),
+            "quiz" => $this->_countQuiz()
         ];
 
         $arrRecent = [
@@ -98,5 +101,29 @@ class PagesController extends AuthMasterController
 
         ])->toArray();
         return $lCandidate;   
+    }
+
+    private function _countQuestion(){
+        $this->loadModel('Questions');
+        $cQuestion = $this->Questions->find('all')->count();
+        return $cQuestion;
+    }
+
+    private function _countExamtemplate(){
+        $this->loadModel('Examstemplates');
+        $cExamtemplates = $this->Examstemplates->find('all')->count();
+        return $cExamtemplates;
+    }
+
+    private function _countQuiz(){
+        $this->loadModel('Quizs');
+        $Quizs = [
+
+            "all" => $this->Quizs->find('all')->count(),
+            "comp" => $this->Quizs->find('all')->select('status')->where(["status" => 1,"is_delete" => 0])->count(),
+        ];
+
+        $Quizs['ratio'] = ($Quizs['comp']/$Quizs['all'])*100;
+        return $Quizs;
     }
 }

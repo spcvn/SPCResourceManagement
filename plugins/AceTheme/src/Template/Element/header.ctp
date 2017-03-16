@@ -35,12 +35,14 @@
                     </a>
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <?php if($this->request->session()->read('Auth.User.username') == 'admin'){?>
                         <li>
-                            <a href="#">
+                            <a href="/roles">
                                 <i class="ace-icon fa fa-cog"></i>
-                                Settings
+                                Settings Roles 
                             </a>
                         </li>
+                        <?php } ?>
 
                         <li>
                             <a href="#">

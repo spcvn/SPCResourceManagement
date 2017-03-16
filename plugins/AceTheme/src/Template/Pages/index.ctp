@@ -1,13 +1,12 @@
 <style type="text/css">
-    .welcome-logo .container div:first-child{
+    .welcome-logo .content div:first-child{
         text-align: left;
     }
 </style>
 <div class="logo welcome-logo">
-    <h1> Welcome to SPCVN</h1>
     <?=$this->Html->image('logo.png',['class'=>'logo-company', 'alt'=>''])?>
     <hr/>
-    <div class="container">
+    <div class="content">
         <div class="col-sm-7">
             <div class="widget-box transparent" id="recent-box">
                 <div class="widget-header">
@@ -18,7 +17,7 @@
                     <div class="widget-toolbar no-border">  
                         <ul class="nav nav-tabs" id="recent-tab">
                             <li class="active">
-                                <a data-toggle="tab" href="#task-tab">Candidate list</a>
+                                <a data-toggle="tab" href="#task-tab">Interview list</a>
                             </li>
 
                             <li>
@@ -39,9 +38,9 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <td>Name</td>    
-                                            <td></td>    
-                                            <td>Interview Date</td>    
+                                            <th>Name</th>    
+                                            <th>Interview Date</th>    
+                                            <th>Status</th>    
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -53,16 +52,11 @@
                                         foreach ($arrRecent['listCandidate'] as $candidate) {
                                             echo "<tr>
                                                 <td>$candidate->first_name $candidate->last_name</td>
-                                                <td></td>
                                                 <td>$candidate->interview_date</td>
+                                                <td></td>
                                             <tr/>";
                                         }
                                     ?>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
                                     </tbody>
 
 
@@ -565,8 +559,8 @@
                 </div>
 
                 <div class="infobox-data">
-                    <span class="infobox-data-number">11</span>
-                    <div class="infobox-content">new followers</div>
+                    <span class="infobox-data-number"><?=$arrCounter['questions']?></span>
+                    <div class="infobox-content">Questions</div>
                 </div>
 
                 <div class="badge badge-success">
@@ -582,56 +576,24 @@
                 </div>
 
                 <div class="infobox-data">
-                    <span class="infobox-data-number">7</span>
-                    <div class="infobox-content">experiments</div>
+                    <span class="infobox-data-number"><?=$arrCounter['examtempate']?></span>
+                    <div class="infobox-content">Exam Templates</div>
                 </div>
             </div>
 
-            <div class="infobox infobox-orange2">
-                <div class="infobox-chart">
-                    <span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
-                </div>
-
-                <div class="infobox-data">
-                    <span class="infobox-data-number">6,251</span>
-                    <div class="infobox-content">pageviews</div>
-                </div>
-
-                <div class="badge badge-success">
-                    7.2%
-                    <i class="ace-icon fa fa-arrow-up"></i>
-                </div>
-            </div>
-
-            <div class="infobox infobox-blue2">
-                <div class="infobox-progress">
-                    <div class="easy-pie-chart percentage" data-percent="42" data-size="46">
-                        <span class="percent">42</span>%
-                    </div>
-                </div>
-
-                <div class="infobox-data">
-                    <span class="infobox-text">traffic used</span>
-
-                    <div class="infobox-content">
-                        <span class="bigger-110">~</span>
-                        58GB remaining
-                    </div>
-                </div>
-            </div>
 
             <div class="space-6"></div>
 
             <div class="infobox infobox-green infobox-small infobox-dark">
                 <div class="infobox-progress">
-                    <div class="easy-pie-chart percentage" data-percent="61" data-size="39">
-                        <span class="percent">61</span>%
+                    <div class="easy-pie-chart percentage" data-percent="<?=$arrCounter['quiz']['ratio']?>" data-size="39">
+                        <span class="percent"><?=$arrCounter['quiz']['ratio']?></span>%
                     </div>
                 </div>
 
                 <div class="infobox-data">
-                    <div class="infobox-content">Task</div>
-                    <div class="infobox-content">Completion</div>
+                    <div class="infobox-content">Test</div>
+                    <div class="infobox-content"><?=$arrCounter['quiz']['comp']?>/<?=$arrCounter['quiz']['all']?></div>
                 </div>
             </div>
 

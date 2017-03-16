@@ -139,6 +139,52 @@ class RolesController extends AuthMasterController
         $this->safefilerewrite($file, implode("\r\n", $res));
     }
 
+    /**
+     * Edit method
+     *
+     * @param string|null $id Role id.
+     * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function edit($id = null)
+    {
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            if($id == null) $id = $this->request->data['id'];
+            $role = $this->Roles->get($id, [
+                'contain' => ['user']
+            ]);
+            $role = $this->Roles->patchEntity($role, $this->request->data);
+            if ($this->Roles->save($role)) {
+                $this->Flash->success(__('The role has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The role could not be saved. Please, try again.'));
+        }
+        $this->Flash->error(__('The role could not be saved. Please, try again.'));
+        return $this->redirect($this->referer());
+    }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id Role id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function delete($id = null)
+    {
+        $this->request->allowMethod(['get', 'delete']);
+        $role = $this->Roles->get($id);
+        if ($this->Roles->delete($role)) {
+            $this->Flash->success(__('The role has been deleted.'));
+        } else {
+            $this->Flash->error(__('The role could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
     function safefilerewrite($fileName, $dataToSave)
     {    if ($fp = fopen($fileName, 'w'))
     {

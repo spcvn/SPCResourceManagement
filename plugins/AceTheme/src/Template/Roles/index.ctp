@@ -50,26 +50,30 @@
 <?php $this->Html->scriptStart(array('block' => 'scriptBlock')); ?>
 
 $(document).ready(function(){
-$(document).on("click", ".list-group-item_permission", function() {
-var name =  $(this).attr('id-tab');
-$(".list-group-item_permission").removeClass("active");
-$('.'+name).addClass("active");
-});
+    $(document).on("click", ".list-group-item_permission", function() {
+        var name =  $(this).attr('id-tab');
+        $(".list-group-item_permission").removeClass("active");
+            $('.'+name).addClass("active");
+    });
 
-$('#roleList tr').each(function(){
-$(this).on('click',function(){
-$('#addRole').addClass('hasChanged');
-var name = $(this).find('td:nth-child(2)').attr('data-name');
-var alias = $(this).find('td:nth-child(3)').attr('data-alias');
-$('#addRole #name').val(name);
-$('#addRole #display_name').val(alias);
-});
-});
-$('#addRole .btn-cancel').on('click', function(){
-$('#addRole').removeClass('hasChanged');
-});
+    $('#roleList tr').each(function(){
+        $(this).on('click',function(){
+            $('#addRole').addClass('hasChanged');
+            $('#addRole input[name=id]').val($(this).attr('data-id'));
+            $('#addRole').attr('action','/roles/edit');
+            var name = $(this).find('td:nth-child(2)').attr('data-name');
+            var alias = $(this).find('td:nth-child(3)').attr('data-alias');
+            $('#addRole #name').val(name);
+            $('#addRole #display_name').val(alias); 
+        });
+    });
+    $('#addRole .btn-cancel').on('click', function(){
+        $('#addRole').removeClass('hasChanged');
+        $('#addRole input[name=id]').val('');
+        $('#addRole').attr('action','/roles/add');
+    });
 
-$('form#addRole').validate();
+    $('form#addRole').validate();
 });
 
 <?php $this->Html->scriptEnd();?>

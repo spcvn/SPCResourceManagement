@@ -123,7 +123,7 @@ class PagesController extends AuthMasterController
             "comp" => $this->Quizs->find('all')->select('status')->where(["status" => 1,"is_delete" => 0])->count(),
         ];
 
-        $Quizs['ratio'] = ($Quizs['comp']/$Quizs['all'])*100;
+        $Quizs['ratio'] = @($Quizs['comp']/$Quizs['all'])*100;
         return $Quizs;
     }
 }

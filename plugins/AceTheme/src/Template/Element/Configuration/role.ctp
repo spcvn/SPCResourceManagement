@@ -6,7 +6,7 @@
             <br/>
 
             <form role="form" method="post" id="addRole" name="addRole" action="/roles/add">
-                <input type="hidden" value="resetpass" id="hdnmode" name="hdnmode">
+                <input type="hidden" value="" id="hdnmode" name="id">
                 <div class="form-group required">
                     <label for="tblName"><?php echo __('role_name');?></label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="<?=__('placeholder_role_name')?>" required>
@@ -49,14 +49,13 @@
 
                             <tbody>
                             <?php foreach ($roles as $key => $role): ?>
-                                <tr>
+                                <tr data-id="<?=$role->id?>">
                                     <td><?php echo $key+1;?></td>
                                     <td data-name="<?php echo $role->name;?>"><strong><?php echo $role->name;?></strong></td>
                                     <td data-alias="<?php echo $role->display_name;?>"><strong><?php echo $role->display_name;?></strong></td>
                                     <td>
                                         <div class="btn-group">
-                                            <?php echo $this->Html->link($this->Html->tag('i', '', array('class'=>'fa fa-edit')),array('controller'=>'users','action'=>'edit','edit_dep'),array('style' => 'margin-right:4px;' ,'class'=>'btn btn-xs btn-success','title'=>'Edit','data-toggle'=>"tooltip",'escape' => false ))?>
-                                            <?php echo $this->Html->link($this->Html->tag('i', '', array('class'=>'fa fa-trash')),array('controller'=>'users','action'=>'delete','del_dep'),array('class'=>'btn btn-xs btn-danger','title'=>'Delete','data-toggle'=>"tooltip",'escape' => false ))?>
+                                            <?php echo $this->Html->link($this->Html->tag('i', '', array('class'=>'fa fa-trash')),array('controller'=>'roles','action'=>'delete',$role->id),array('class'=>'btn btn-xs btn-danger','title'=>'Delete','data-toggle'=>"tooltip",'escape' => false ))?>
                                         </div>
                                     </td>
                                 </tr>

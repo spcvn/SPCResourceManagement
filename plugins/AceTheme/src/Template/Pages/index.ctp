@@ -538,7 +538,7 @@
                     <div class="infobox-content"><?=__("Candidates")?></div>
                 </div>
 
-                <div class="stat stat-success">8%</div>
+                <!-- <div class="stat stat-success">8%</div> -->
             </div>
 
             <div class="infobox infobox-pink">
@@ -550,7 +550,7 @@
                     <span class="infobox-data-number"><?=$arrCounter['users']?></span>
                     <div class="infobox-content">Users</div>
                 </div>
-                <div class="stat stat-important">4%</div>
+                <!-- <div class="stat stat-important">4%</div> -->
             </div>
 
             <div class="infobox infobox-blue">
@@ -563,10 +563,10 @@
                     <div class="infobox-content">Questions</div>
                 </div>
 
-                <div class="badge badge-success">
+                <!-- <div class="badge badge-success">
                     +32%
                     <i class="ace-icon fa fa-arrow-up"></i>
-                </div>
+                </div> -->
             </div>
             
 
@@ -592,7 +592,7 @@
                 </div>
 
                 <div class="infobox-data">
-                    <div class="infobox-content">Test</div>
+                    <div class="infobox-content">Examed</div>
                     <div class="infobox-content"><?=$arrCounter['quiz']['comp']?>/<?=$arrCounter['quiz']['all']?></div>
                 </div>
             </div>
@@ -603,18 +603,18 @@
                 </div>
 
                 <div class="infobox-data">
-                    <div class="infobox-content">Earnings</div>
-                    <div class="infobox-content">$32,000</div>
+                    <div class="infobox-content">Online</div>
+                    <div class="infobox-content">2 persons</div>
                 </div>
             </div>
 
             <div class="infobox infobox-grey infobox-small infobox-dark">
                 <div class="infobox-icon">
-                    <i class="ace-icon fa fa-download"></i>
+                    <i class="ace-icon fa fa-tachometer"></i>
                 </div>
 
                 <div class="infobox-data">
-                    <div class="infobox-content">Downloads</div>
+                    <div class="infobox-content">Visited</div>
                     <div class="infobox-content">1,205</div>
                 </div>
             </div>

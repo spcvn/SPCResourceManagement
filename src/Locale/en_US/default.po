@@ -495,3 +495,73 @@ msgstr "User Manager"
 
 msgid "manage_role"
 msgstr "Role Manager"
+
+msgid "index"
+msgstr "Index"
+
+msgid "edit_candidate"
+msgstr "Edit Candidate"
+
+msgid "delete_candidate"
+msgstr "Delete Candidate"
+
+msgid "exam_view"
+msgstr "View Exam"
+
+msgid "exam_add"
+msgstr "Add Exam"
+
+msgid "exam_delete"
+msgstr "Delete Exam"
+
+msgid "exam_edit"
+msgstr "Edit Exam"
+
+msgid "exam_assign"
+msgstr "Exam Assign"
+
+msgid "quiz_view"
+msgstr "View Quiz"
+
+msgid "quiz_add"
+msgstr "Add Quiz"
+
+msgid "quiz_edit"
+msgstr "Edit Quiz"
+
+msgid "quiz_delete"
+msgstr "Delete Quiz"
+
+msgid "question_view"
+msgstr "View Question"
+
+msgid "question_add"
+msgstr "Add Question"
+
+msgid "question_edit"
+msgstr "Edit Question"
+
+msgid "question_delete"
+msgstr "Delete Question"
+
+msgid "user_view"
+msgstr "View User"
+
+msgid "user_add"
+msgstr "Add User"
+
+msgid "user_edit"
+msgstr "Edit User"
+
+msgid "user_delete"
+msgstr "Delete User"
+
+msgid "add_role"
+msgstr "Add Role"
+
+msgid "edit_role"
+msgstr "Edit Role"
+
+msgid "role_detail"
+msgstr "Role Detail"
+
